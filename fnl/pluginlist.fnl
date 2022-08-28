@@ -45,11 +45,11 @@
     }
 
     :wellle/targets.vim { :event "BufRead" }
-    :antoinemadec/FixCursorHold.nvim { :event "BufRead" }
+    :antoinemadec/FixCursorHold.nvim {}
     :nvim-lua/plenary.nvim { :module "plenary" }
     :nvim-lua/popup.nvim { :module "popup" }
     :dstein64/vim-startuptime { :opt false }
-    :RRethy/vim-illuminate { :opt true }
+    :RRethy/vim-illuminate { :opt false }
     :preservim/tagbar { :opt true }
     :godlygeek/tabular { :opt true }
     :mbbill/undotree { :opt true}
@@ -77,12 +77,11 @@
     :stevearc/aerial.nvim { :opt true }
 
     :L3MON4D3/LuaSnip {
-        :module "luasnip"
         :config #(let [loader (require :luasnip/loaders/from_vscode)
                        ls (require :luasnip)]
                    (loader.lazy_load)
                    (ls.setup { :history true :delete_check_events "TextChanged" }))
-        :requires [ { 1 "rafamadriz/friendly-snippets" :opt true } ]
+        :requires [ "rafamadriz/friendly-snippets" ]
     }
 
     :hrsh7th/nvim-cmp {

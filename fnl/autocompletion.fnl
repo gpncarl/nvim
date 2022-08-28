@@ -32,7 +32,7 @@
     :sources [ { :name "nvim_lsp" }
                { :name "buffer" }
                { :name "path" }
-               ;; { :name "luasnip" }
+               { :name "luasnip" }
                { :name "cmp_tabnine" }
                { :name "neorg" :ft "norg" } ]
 
