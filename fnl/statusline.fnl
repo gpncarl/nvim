@@ -13,7 +13,7 @@
         }
         :ignore_focus {}
         :always_divide_middle true
-        :globalstatus true
+        :globalstatus false
         :refresh {
             :statusline 1000
             :tabline 1000
@@ -25,8 +25,8 @@
         :lualine_b [ "branch" "diff" "diagnostics" ]
         :lualine_c []
         :lualine_x [ "encoding" "fileformat" "filetype" ]
-        :lualine_y [ "progress" "location" ]
-        :lualine_z [ "windows" ]
+        :lualine_y [ "progress" ]
+        :lualine_z [ "location" ]
     }
     :inactive_sections {
         :lualine_a []
@@ -41,7 +41,7 @@
         :lualine_z [ "tabs" ]
     }
     :winbar {
-         :lualine_c [ { 1 gps.get_location :cond gps.is_available } ]
+         :lualine_c [ "filetype" gps.get_location ]
     }
     :inactive_winbar {}
     :extensions [ "quickfix" "fugitive" ]

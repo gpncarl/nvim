@@ -1,3 +1,5 @@
+(require :impatient)
+(require :pluginlist)
 (require :options)
 
 (fn _G.dump [...]
