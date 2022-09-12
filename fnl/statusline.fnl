@@ -41,7 +41,7 @@
         :lualine_z [ "tabs" ]
     }
     :winbar {
-         :lualine_c [ "filetype" gps.get_location ]
+         :lualine_c [ "filetype" { 1 gps.get_location :cond gps.is_available } ]
     }
     :inactive_winbar {}
     :extensions [ "quickfix" "fugitive" ]

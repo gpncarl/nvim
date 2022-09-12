@@ -1,6 +1,6 @@
 (local plists {
     :rktjmp/hotpot.nvim {}
-    :lewis6991/impatient.nvim {}
+    ;; :lewis6991/impatient.nvim {}
     :wbthomason/packer.nvim {}
     :tpope/vim-vinegar {}
     :tpope/vim-surround {}
