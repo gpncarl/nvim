@@ -8,6 +8,10 @@
     :navarasu/onedark.nvim {}
     :tpope/vim-unimpaired {}
     :tpope/vim-repeat {}
+    :akinsho/toggleterm.nvim {
+        :event "BufRead"
+        :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
+    }
     :SmiteshP/nvim-gps {
         :module "nvim-gps"
         :config #(let [gps (require :nvim-gps)] (gps.setup))
@@ -49,7 +53,7 @@
     :nvim-lua/plenary.nvim { :module "plenary" }
     :nvim-lua/popup.nvim { :module "popup" }
     :dstein64/vim-startuptime { :opt false }
-    :RRethy/vim-illuminate { :opt false }
+    :RRethy/vim-illuminate { :opt true }
     :preservim/tagbar { :opt true }
     :godlygeek/tabular { :opt true }
     :mbbill/undotree { :opt true}

@@ -15,7 +15,7 @@
                   }
          ext (vim.fn.expand "%:e")
          basename (vim.fn.expand "%:t:r")
-         alt_ext (vim.fn.get alt_exts ext);
+         alt_ext (. alt_exts ext)
          pattern_ext (vim.fn.join alt_ext "|")
          cmdstring (.. "fd -tf -1 --strip-cwd-prefix -s \"^" basename "\\.(" pattern_ext ")$\"|xargs printf %s")
          pathname (vim.fn.system cmdstring)]
@@ -34,6 +34,9 @@
 (local nmap (partial vim.keymap.set :n))
 (nmap :<space>d "<Cmd>!sdcv <cword><CR>" { :desc "sdcv dict" })
 (nmap :<space>h switchHeader { :desc "switch header" })
+
+(local tmap (partial vim.keymap.set :t))
+(tmap :<c-w> "<c-\\><c-n><c-w>")
 
 (set vim.g.netrw_list_hide "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+")
 (set vim.g.netrw_winsize 20)
