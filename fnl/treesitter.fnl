@@ -3,7 +3,7 @@
 (set vim.opt.foldlevel 2)
 (set vim.opt.foldenable false)
 
-(let [install  (require :nvim-treesitter.install)] (set install.compilers [ "gcc-12" ]))
+;; (let [install  (require :nvim-treesitter.install)] (set install.compilers [ "clang++" ]))
 
 (let [ts (require :nvim-treesitter.configs)]
   (ts.setup {

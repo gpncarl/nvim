@@ -141,7 +141,7 @@
         :event "DiagnosticChanged"
         :config #(let [t (require :trouble)]
                    (t.setup { :icons true })
-                   (vim.keymap.set "n" "<leader>t" "<Cmd>TroubleToggle<CR>" { desc "toggle troube" }))
+                   (vim.keymap.set "n" "<leader>t" "<Cmd>TroubleToggle<CR>" { :desc "toggle troube" }))
     }
 
     :neovim/nvim-lspconfig { :config #(require :lspsetting) }

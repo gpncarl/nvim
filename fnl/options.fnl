@@ -6,7 +6,7 @@
 (set vim.opt.shiftwidth 4)
 (set vim.opt.signcolumn :yes)
 (set vim.opt.inccommand :nosplit)
-(set vim.opt.mouse :a)
+(set vim.opt.mouse :n)
 (set vim.opt.laststatus 2)
 (set vim.opt.hlsearch true)
 (set vim.opt.showmode true)

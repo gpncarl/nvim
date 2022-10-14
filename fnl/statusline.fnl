@@ -23,7 +23,7 @@
     :sections {
         :lualine_a [ "mode" ]
         :lualine_b [ "branch" "diff" "diagnostics" ]
-        :lualine_c []
+        :lualine_c [ "filename" ]
         :lualine_x [ "encoding" "fileformat" "filetype" ]
         :lualine_y [ "progress" ]
         :lualine_z [ "location" ]
@@ -36,13 +36,13 @@
         :lualine_y []
         :lualine_z []
     }
-    :tabline {
-        :lualine_a [ { 1 "buffers" :mode 4 } ]
-        :lualine_z [ "tabs" ]
-    }
-    :winbar {
-         :lualine_c [ "filetype" { 1 gps.get_location :cond gps.is_available } ]
-    }
-    :inactive_winbar {}
+    ;; :tabline {
+    ;;     :lualine_a [ { 1 "buffers" :mode 4 } ]
+    ;;     :lualine_z [ "tabs" ]
+    ;; }
+    ;; :winbar {
+    ;;      :lualine_c [ "filetype" { 1 gps.get_location :cond gps.is_available } ]
+    ;; }
+    ;; :inactive_winbar {}
     :extensions [ "quickfix" "fugitive" ]
 })
