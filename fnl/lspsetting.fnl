@@ -57,4 +57,4 @@
 
 (lspconfig.hls.setup { :autostart false :on_attach on_attach })
 (lspconfig.pylsp.setup { :autostart false :on_attach on_attach :capabilities capabilities })
-(lspconfig.clangd.setup { :autostart false :on_attach on_attach :capabilities capabilities })
+(lspconfig.clangd.setup { :autostart true :on_attach on_attach :capabilities capabilities })
