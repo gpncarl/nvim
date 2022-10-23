@@ -28,7 +28,7 @@
 (set vim.opt.autowriteall true)
 (set vim.opt.relativenumber true)
 (set vim.opt.splitright true)
-(set vim.opt.hidden true)
+(set vim.opt.hidden false)
 (set vim.opt.showmatch true)
 (set vim.opt.breakindentopt :shift:4)
 (set vim.opt.clipboard :unnamedplus)

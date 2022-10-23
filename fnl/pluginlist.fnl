@@ -18,6 +18,7 @@
     }
 
     :folke/which-key.nvim {
+        :event "BufRead"
         :module "which-key"
         :config #(let [wk (require :which-key)]
                    (wk.setup { :plugins { :presets { :operators false :motions false :text_objects false } } }))
@@ -62,6 +63,18 @@
     :hrsh7th/cmp-buffer { :after "nvim-cmp" }
     :hrsh7th/cmp-nvim-lsp { :after "nvim-cmp" }
     :saadparwaiz1/cmp_luasnip { :after "nvim-cmp"}
+    :MunifTanjim/nui.nvim { :module "nui" }
+    :rcarriga/nvim-notify { :module "notify" }
+
+    :folke/noice.nvim {
+        :opt true
+        :config #(let [n (require :noice)] (n.setup {}))
+    }
+
+    :j-hui/fidget.nvim {
+        :event "LspAttach"
+        :config #(let [f (require :fidget)] (f.setup {}))
+    }
 
     :mfussenegger/nvim-dap {
         :opt true

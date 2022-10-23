@@ -1,11 +1,11 @@
-(local signs { :Error " " :Warn " " :Hint " " :Info " " })
-(local colors { :Error "Red" :Warn "Orange" :Hint "LightGrey" :Info "LightBlue" })
-
-(each [type icon (pairs signs)]
-  (let [hl (.. "DiagnosticSign" type)]
-    (vim.cmd (.. "hi " hl " guifg=" (. colors type) " guibg=#ebdbb2"))
-    (vim.fn.sign_define hl { :text icon :texthl hl :numhl "" })))
-
+;; (local signs { :Error " " :Warn " " :Hint " " :Info " " })
+;; (local colors { :Error "Red" :Warn "Orange" :Hint "LightGrey" :Info "LightBlue" })
+;;
+;; (each [type icon (pairs signs)]
+;;   (let [hl (.. "DiagnosticSign" type)]
+;;     (vim.cmd (.. "hi " hl " guifg=" (. colors type) " guibg=#ebdbb2"))
+;;     (vim.fn.sign_define hl { :text icon :texthl hl :numhl "" })))
+;;
 (local lspconfig (require :lspconfig))
 
 (local fuzzy (require :telescope.builtin))
