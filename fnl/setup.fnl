@@ -41,5 +41,3 @@
 (set vim.g.netrw_list_hide "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+")
 (set vim.g.netrw_winsize 20)
 (set vim.g.netrw_altfile true)
-
-(set vim.notify (require :notify))

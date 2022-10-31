@@ -18,7 +18,6 @@
     }
 
     :folke/which-key.nvim {
-        :event "BufRead"
         :module "which-key"
         :config #(let [wk (require :which-key)]
                    (wk.setup { :plugins { :presets { :operators false :motions false :text_objects false } } }))
