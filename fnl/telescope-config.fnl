@@ -32,6 +32,7 @@
 })
 
 (telescope.load_extension "fzf")
+(telescope.load_extension "ui-select")
 (local fuzzy
        (fn [name opts]
          (let [ default_opts { :push_cursor_on_edit true :winblend 10 }

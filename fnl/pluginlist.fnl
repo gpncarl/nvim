@@ -216,7 +216,11 @@
         :module "telescope"
         :config #(require :telescope-config)
         :wants [ "telescope-fzf-native.nvim" ]
-        :requires [ { 1 "nvim-telescope/telescope-fzf-native.nvim" :run "make" :module "fzf_lib" } ]
+        :requires [ { 1 "nvim-telescope/telescope-fzf-native.nvim"
+                      :run "make" :module "fzf_lib"
+                    }
+                    [ "nvim-telescope/telescope-ui-select.nvim" ]
+                  ]
     }
 })
 
