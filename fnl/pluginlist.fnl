@@ -222,6 +222,19 @@
                     [ "nvim-telescope/telescope-ui-select.nvim" ]
                   ]
     }
+
+    :glacambre/firenvim {
+        :cond #(not= vim.g.started_by_firenvim nil)
+        :run #(let [{:firenvim#install install} vim.fn] (install 0))
+        :config (fn []
+                  (set vim.opt.laststatus 0)
+                  (set vim.opt.relativenumber false)
+                  (set vim.opt.number false)
+                  (set vim.opt.background :light)
+                  (set vim.opt.signcolumn :no)
+                  (vim.cmd "colorscheme zellner"))
+
+    }
 })
 
 (local packer (require :packer))
