@@ -1,6 +1,6 @@
 ;; (require :impatient)
 (require :pluginlist)
-(require :options)
+(when (not vim.g.started_by_firenvim) (require :options))
 
 (fn _G.dump [...]
   (let [objects (vim.tbl_map vim.inspect [...])]
@@ -25,9 +25,7 @@
 
 (vim.api.nvim_create_autocmd "FileType" {
     :pattern [ "text" ]
-    :callback (fn []
-                (set vim.opt.hlsearch true)
-                (set vim.opt.number true))
+    :callback #(set vim.opt.hlsearch true)
 })
 (vim.api.nvim_create_autocmd "QuickFixCmdPre" { :command "packadd cfilter"})
 
