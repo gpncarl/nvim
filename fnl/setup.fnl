@@ -1,6 +1,6 @@
 ;; (require :impatient)
 (require :pluginlist)
-(when (not vim.g.started_by_firenvim) (require :options))
+(require :options)
 
 (fn _G.dump [...]
   (let [objects (vim.tbl_map vim.inspect [...])]

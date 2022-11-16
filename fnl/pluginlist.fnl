@@ -225,15 +225,6 @@
                     [ "nvim-telescope/telescope-ui-select.nvim" ]
                   ]
     }
-
-    :glacambre/firenvim {
-        :cond #(not= vim.g.started_by_firenvim nil)
-        :run #(let [{:firenvim#install install} vim.fn] (install 0))
-        :config (fn []
-                  (set vim.opt.laststatus 0)
-                  (set vim.opt.guifont "FiraCode Nerd Font Mono:h22")
-                  (vim.cmd "colorscheme zellner"))
-    }
 })
 
 (local packer (require :packer))
