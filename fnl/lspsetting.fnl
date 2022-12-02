@@ -19,7 +19,7 @@
     ;; (nmap :gs fuzzy.lsp_document_symbols { :buffer bufnr :desc "document symbols" })
 
     (nmap :gd vim.lsp.buf.definition { :buffer bufnr :desc "goto define" })
-    (nmap :gr #(vim.lsp.buf.reference $1 nil) { :buffer bufnr :desc "goto define" })
+    (nmap :gr #(vim.lsp.buf.references $1 nil) { :buffer bufnr :desc "goto ref" })
     (nmap :<space>a vim.lsp.buf.code_action { :buffer bufnr :desc "code action" })
 
     (when (= client.name "clangd")
