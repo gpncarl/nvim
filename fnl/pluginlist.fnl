@@ -8,6 +8,7 @@
     :navarasu/onedark.nvim {}
     :tpope/vim-unimpaired {}
     :tpope/vim-repeat {}
+    :tpope/vim-rsi {}
     :akinsho/toggleterm.nvim {
         :event "BufRead"
         :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
