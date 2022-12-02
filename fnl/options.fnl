@@ -38,7 +38,8 @@
 (set vim.opt.background :light)
 (set vim.opt.guifont "FiraCode Nerd Font Mono:h14")
 (set vim.opt.completeopt "menuone,noinsert,noselect")
-(set vim.opt.grepprg "ug -RInkus --tabs=4 --ignore-files") ;; vim.opt.grepprg = 'rg --vimgrep --no-heading'
+;; (set vim.opt.grepprg "ug -RInkus --tabs=4 --ignore-files")
+(set vim.opt.grepprg "rg --vimgrep --no-heading")
 (set vim.opt.grepformat "%f:%l:%c:%m,%f+%l+%c+%m,%-G%f|%l|%c|%m") ;; vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
 
 (vim.opt.shortmess:append  { :I true })
