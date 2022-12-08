@@ -26,10 +26,27 @@
 
     :phaazon/hop.nvim {
         :module "hop"
-        :event "BufRead"
         :config #(let [h (require :hop)]
                   (h.setup { :keys "etovxqpdygfblzhckisuran" })
                   (require :hop_keymap))
+    }
+
+    :ggandor/leap.nvim {
+        :module "leap"
+        :wants [ "vim-repeat" ]
+        :config #(let [l (require :leap)] (l.add_default_mappings))
+    }
+
+    :ggandor/leap-spooky.nvim {
+        :event "BufRead"
+        :wants [ "leap.nvim" ]
+        :config #(let [l (require :leap-spooky)] (l.setup))
+    }
+
+    :ggandor/flit.nvim {
+        :event "BufRead"
+        :wants [ "leap.nvim" ]
+        :config #(let [f (require :flit)] (f.setup))
     }
 
     :bkad/CamelCaseMotion {
