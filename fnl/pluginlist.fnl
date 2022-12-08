@@ -26,6 +26,7 @@
 
     :phaazon/hop.nvim {
         :module "hop"
+        :event "BufRead"
         :config #(let [h (require :hop)]
                   (h.setup { :keys "etovxqpdygfblzhckisuran" })
                   (require :hop_keymap))
@@ -44,7 +45,7 @@
     }
 
     :ggandor/flit.nvim {
-        :event "BufRead"
+        :opt true
         :wants [ "leap.nvim" ]
         :config #(let [f (require :flit)] (f.setup))
     }
