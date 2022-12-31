@@ -1,11 +1,14 @@
 (local plists {
     :rktjmp/hotpot.nvim {}
-    ;; :lewis6991/impatient.nvim {}
-    :wbthomason/packer.nvim {}
     :tpope/vim-vinegar {}
     :tpope/vim-surround {}
-    :kyazdani42/nvim-web-devicons {}
-    :navarasu/onedark.nvim {}
+    :nvim-tree/nvim-web-devicons {}
+    :navarasu/onedark.nvim {
+        :enabled false
+        :lazy false
+        :priority 1000
+        :config #(vim.cmd "colorscheme onedark")
+    }
     :tpope/vim-unimpaired {}
     :tpope/vim-repeat {}
     :tpope/vim-rsi {}
@@ -14,18 +17,17 @@
         :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
     }
     :SmiteshP/nvim-gps {
-        :module "nvim-gps"
+        :lazy true
         :config #(let [gps (require :nvim-gps)] (gps.setup))
     }
 
     :folke/which-key.nvim {
-        :module "which-key"
+        :lazy true
         :config #(let [wk (require :which-key)]
                    (wk.setup { :plugins { :presets { :operators false :motions false :text_objects false } } }))
     }
 
     :phaazon/hop.nvim {
-        :module "hop"
         :event "BufRead"
         :config #(let [h (require :hop)]
                   (h.setup { :keys "etovxqpdygfblzhckisuran" })
@@ -33,26 +35,26 @@
     }
 
     :ggandor/leap.nvim {
-        :module "leap"
-        :wants [ "vim-repeat" ]
+        :event "BufRead"
+        :dependencies [ "vim-repeat" "leap-spooky" ]
         :config #(let [l (require :leap)] (l.add_default_mappings))
     }
 
     :ggandor/leap-spooky.nvim {
-        :event "BufRead"
-        :wants [ "leap.nvim" ]
+        :name "leap-spooky"
+        :lazy true
         :config #(let [l (require :leap-spooky)] (l.setup))
     }
 
     :ggandor/flit.nvim {
-        :opt true
-        :wants [ "leap.nvim" ]
+        :enabled false
+        :lazy true
         :config #(let [f (require :flit)] (f.setup))
     }
 
     :bkad/CamelCaseMotion {
         :event "BufRead"
-        :setup #(set vim.g.camelcasemotion_key "<leader>")
+        :init #(set vim.g.camelcasemotion_key "<leader>")
     }
 
     :tpope/vim-fugitive {
@@ -62,30 +64,28 @@
 
     :lewis6991/gitsigns.nvim {
         :event "BufRead"
-        :module "gitsigns"
         :config #(let [gs (require :gitsigns)]
                    (gs.setup { :attach_to_untracked false }))
     }
 
     :wellle/targets.vim { :event "BufRead" }
     :antoinemadec/FixCursorHold.nvim {}
-    :nvim-lua/plenary.nvim { :module "plenary" }
-    :nvim-lua/popup.nvim { :module "popup" }
-    :dstein64/vim-startuptime { :opt false }
-    :RRethy/vim-illuminate { :opt true }
-    :preservim/tagbar { :opt true }
-    :godlygeek/tabular { :opt true }
-    :mbbill/undotree { :opt true}
-    :onsails/lspkind-nvim { :module "lspkind" }
-    :hrsh7th/cmp-path { :after "nvim-cmp" }
-    :hrsh7th/cmp-buffer { :after "nvim-cmp" }
-    :hrsh7th/cmp-nvim-lsp { :after "nvim-cmp" }
-    :saadparwaiz1/cmp_luasnip { :after "nvim-cmp"}
-    :MunifTanjim/nui.nvim { :module "nui" }
-    :rcarriga/nvim-notify { :module "notify" }
+    :nvim-lua/plenary.nvim { :lazy true }
+    :nvim-lua/popup.nvim { :lazy true }
+    :RRethy/vim-illuminate { :enabled false }
+    :preservim/tagbar { :enabled false }
+    :godlygeek/tabular { :enabled false }
+    :mbbill/undotree { :enabled false}
+    :onsails/lspkind-nvim { :lazy true }
+    :hrsh7th/cmp-path { :lazy true }
+    :hrsh7th/cmp-buffer { :lazy true }
+    :hrsh7th/cmp-nvim-lsp { :lazy true }
+    :saadparwaiz1/cmp_luasnip { :lazy true }
+    :MunifTanjim/nui.nvim { :lazy true }
+    :rcarriga/nvim-notify { :lazy true }
 
     :folke/noice.nvim {
-        :opt true
+        :enabled false
         :config #(let [n (require :noice)] (n.setup {}))
     }
 
@@ -95,34 +95,35 @@
     }
 
     :mfussenegger/nvim-dap {
-        :opt true
+        :enabled false
         :config #(require :dapsetting)
     }
 
     :tzachar/cmp-tabnine {
-        :run "./install.sh"
-        :after "nvim-cmp"
+        :build "./install.sh"
+        :lazy true
     }
 
     :kyazdani42/nvim-tree.lua {
-        :opt true
+        :enabled false
         :config #(let [tree (require :nvim-tree)] (tree.setup {}))
     }
 
-    :stevearc/aerial.nvim { :opt true }
+    :stevearc/aerial.nvim { :enabled false }
 
+    :rafamadriz/friendly-snippets {}
     :L3MON4D3/LuaSnip {
         :config #(let [loader (require :luasnip/loaders/from_vscode)
                        ls (require :luasnip)]
                    (loader.lazy_load)
                    (ls.setup { :history true :delete_check_events "TextChanged" }))
-        :requires [ "rafamadriz/friendly-snippets" ]
+        :dependencies [ "friendly-snippets" ]
     }
 
     :hrsh7th/nvim-cmp {
         :event "InsertEnter"
-        :module "cmp"
         :config #(require :autocompletion)
+        :dependencies [ "lspkind-nvim" "cmp-path" "cmp-buffer" "cmp-tabnine" "cmp_luasnip" "cmp-nvim-lsp" ]
     }
 
     :numToStr/Comment.nvim {
@@ -132,14 +133,15 @@
 
     :ludovicchabant/vim-gutentags {
         :event "BufRead"
-        :setup #(and
+        :init #(and
                   (set vim.g.gutentags_modules [ "ctags" ])
                   (set vim.g.gutentags_ctags_exclude [ ".ccls-cache" ".cache" ".clangd" ".vscode" ]))
     }
 
     :ellisonleao/gruvbox.nvim {
-        :opt false
-        :as "theme"
+        :enabled true
+        :lazy false
+        :priority 1000
         :config #(let [gruvbox (require :gruvbox)]
                    (gruvbox.setup
                      { :undercurl true
@@ -164,11 +166,11 @@
 
     :goolord/alpha-nvim {
         :cond #(= (vim.fn.argc) 0)
-        :wants [ "theme" ]
         :config #(let [alpha (require :alpha)
                        startify (require :alpha.themes.startify)]
                     (set startify.nvim_web_devicons.enabled true)
                     (alpha.setup startify.config))
+        :dependencies [ "nvim-web-devicons" ]
     }
 
     :folke/trouble.nvim {
@@ -183,8 +185,8 @@
     :nvim-treesitter/nvim-treesitter { :config #(require :treesitter) }
 
     :nvim-treesitter/nvim-treesitter-context {
-        :wants [ "nvim-treesitter" ]
-        :disable true
+        :dependencies [ "nvim-treesitter" ]
+        :enabled false
     }
 
     :lukas-reineke/indent-blankline.nvim {
@@ -199,7 +201,7 @@
 
     :nvim-neorg/neorg {
         :ft "norg"
-        :wants [ "nvim-treesitter" ]
+        :dependencies [ "nvim-treesitter" ]
         :config #(let [n (require :neorg)]
                    (n.setup { :load {
                         :core.defaults {}
@@ -222,6 +224,7 @@
                                 :enable_check_bracket_line false })
                     (cmp.event:on "confirm_done"
                                   (cmp_autopairs.on_confirm_done { :map_char { :tex "" } })))
+        :dependencies [ "nvim-cmp" ]
     }
 
     :kevinhwang91/nvim-bqf {
@@ -231,22 +234,17 @@
                               :preview { :auto_preview false }}))
     }
 
+    :nvim-telescope/telescope-fzf-native.nvim {
+        :build "make"
+    }
+    :nvim-telescope/telescope-ui-select.nvim {}
     :nvim-telescope/telescope.nvim {
         :event "BufRead"
-        :module "telescope"
         :config #(require :telescope-config)
-        :wants [ "telescope-fzf-native.nvim" ]
-        :requires [ { 1 "nvim-telescope/telescope-fzf-native.nvim"
-                      :run "make" :module "fzf_lib"
-                    }
-                    [ "nvim-telescope/telescope-ui-select.nvim" ]
-                  ]
+        :dependencies [ "telescope-fzf-native.nvim" "telescope-ui-select.nvim" ]
     }
 })
 
-(local packer (require :packer))
-(local use packer.use)
-(local util (require :packer.util))
-(local layout { :display { :open_fn util.float :border [ "┌" "─" "┐" "│" "┘" "─" "└" "│" ]}})
 (local plugins (icollect [name config (pairs plists)] (vim.tbl_extend "error" config [name])))
-(packer.startup #(use plugins) layout)
+(local lazy (require :lazy))
+(lazy.setup plugins)
