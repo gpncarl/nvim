@@ -43,8 +43,8 @@
 
 (local nmap (partial vim.keymap.set :n))
 (nmap :<space>o (partial (fuzzy "treesitter") { :buffer 0 }) { :desc "fuzzy outline" })
-(nmap :<leader>f (fuzzy "find_files") { :desc "fuzzy files" })
-(nmap :<space>f (fuzzy "git_files" { :show_untracked false }) { :desc "fuzzy git files" })
+(nmap :<space>ff (fuzzy "find_files") { :desc "fuzzy files" })
+(nmap :<space>gf (fuzzy "git_files" { :show_untracked false }) { :desc "fuzzy git files" })
 (nmap :<space>m (fuzzy "oldfiles") { :desc "fuzzy oldfiles" })
 (nmap :<space>b (fuzzy "buffers") { :desc "fuzzy buffers" })
 (nmap :<leader>r (fuzzy "grep_string") { :desc "fuzzy string" })

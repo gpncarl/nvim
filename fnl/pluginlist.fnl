@@ -13,7 +13,7 @@
     :tpope/vim-repeat {}
     :tpope/vim-rsi {}
     :akinsho/toggleterm.nvim {
-        :event "BufRead"
+        :keys "<c-\\><c-\\>"
         :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
     }
     :SmiteshP/nvim-gps {
@@ -22,13 +22,12 @@
     }
 
     :folke/which-key.nvim {
-        :lazy true
         :config #(let [wk (require :which-key)]
                    (wk.setup { :plugins { :presets { :operators false :motions false :text_objects false } } }))
     }
 
     :phaazon/hop.nvim {
-        :event "BufRead"
+        :keys "<leader><leader>"
         :config #(let [h (require :hop)]
                   (h.setup { :keys "etovxqpdygfblzhckisuran" })
                   (require :hop_keymap))
@@ -104,9 +103,18 @@
         :lazy true
     }
 
-    :kyazdani42/nvim-tree.lua {
-        :enabled false
-        :config #(let [tree (require :nvim-tree)] (tree.setup {}))
+    :nvim-neo-tree/neo-tree.nvim {
+        :keys [
+          { 1 "<space>ft" 2 "<cmd>Neotree toggle<cr>" :mode "n" :desc "Neotree toggle"}
+          { 1 "<space>fb" 2 "<cmd>Neotree buffers toggle<cr>" :mode "n" :desc "Neotree buffers toggle"}
+        ]
+        :config #(let [tree (require :neo-tree)]
+                   (tree.setup {
+                     :buffers {
+                         :follow_current_file true
+                         :group_empty_dirs true
+                         :show_unloaded true
+                     }}))
     }
 
     :stevearc/aerial.nvim { :enabled false }
