@@ -184,7 +184,6 @@
     }
 
     :hoob3rt/lualine.nvim {
-        :cond #(= vim.g.started_by_firenvim nil)
         :config #(require :statusline)
     }
 
