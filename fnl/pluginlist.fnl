@@ -1,17 +1,31 @@
 (local plists {
-    :rktjmp/hotpot.nvim {}
-    :tpope/vim-vinegar {}
-    :tpope/vim-surround {}
-    :nvim-tree/nvim-web-devicons {}
+    :rktjmp/hotpot.nvim {
+        :enable false
+    }
+    :tpope/vim-vinegar {
+        :event "VeryLazy"
+    }
+    :tpope/vim-surround {
+        :event "VeryLazy"
+    }
+    :nvim-tree/nvim-web-devicons {
+        :lazy true
+    }
     :navarasu/onedark.nvim {
         :enabled false
         :lazy false
         :priority 1000
         :config #(vim.cmd "colorscheme onedark")
     }
-    :tpope/vim-unimpaired {}
-    :tpope/vim-repeat {}
-    :tpope/vim-rsi {}
+    :tpope/vim-unimpaired {
+        :event "VeryLazy"
+    }
+    :tpope/vim-repeat {
+        :event "VeryLazy"
+    }
+    :tpope/vim-rsi {
+        :event "VeryLazy"
+    }
     :akinsho/toggleterm.nvim {
         :keys "<c-\\><c-\\>"
         :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
@@ -22,6 +36,7 @@
     }
 
     :folke/which-key.nvim {
+        :event "VeryLazy"
         :config #(let [wk (require :which-key)]
                    (wk.setup { :plugins { :presets { :operators false :motions false :text_objects false } } }))
     }
@@ -67,8 +82,8 @@
                    (gs.setup { :attach_to_untracked false }))
     }
 
-    :wellle/targets.vim { :event "BufRead" }
-    :antoinemadec/FixCursorHold.nvim {}
+    :wellle/targets.vim { :event "VeryLazy" }
+    :antoinemadec/FixCursorHold.nvim { :event "VeryLazy" }
     :nvim-lua/plenary.nvim { :lazy true }
     :nvim-lua/popup.nvim { :lazy true }
     :RRethy/vim-illuminate { :enabled false }
@@ -119,8 +134,9 @@
 
     :stevearc/aerial.nvim { :enabled false }
 
-    :rafamadriz/friendly-snippets {}
+    :rafamadriz/friendly-snippets { :lazy true }
     :L3MON4D3/LuaSnip {
+        :lazy true
         :config #(let [loader (require :luasnip/loaders/from_vscode)
                        ls (require :luasnip)]
                    (loader.lazy_load)
@@ -135,12 +151,12 @@
     }
 
     :numToStr/Comment.nvim {
-        :event "BufRead"
+        :event "VeryLazy"
         :config #(let [c (require :Comment)] (c.setup {}))
     }
 
     :ludovicchabant/vim-gutentags {
-        :event "BufRead"
+        :event "VeryLazy"
         :init #(and
                   (set vim.g.gutentags_modules [ "ctags" ])
                   (set vim.g.gutentags_ctags_exclude [ ".ccls-cache" ".cache" ".clangd" ".vscode" ]))
@@ -188,7 +204,10 @@
                    (vim.keymap.set "n" "<leader>t" "<Cmd>TroubleToggle<CR>" { :desc "toggle troube" }))
     }
 
-    :neovim/nvim-lspconfig { :config #(require :lspsetting) }
+    :neovim/nvim-lspconfig {
+        :event "VeryLazy"
+        :config #(require :lspsetting)
+    }
 
     :nvim-treesitter/nvim-treesitter { :config #(require :treesitter) }
 
@@ -198,6 +217,7 @@
     }
 
     :lukas-reineke/indent-blankline.nvim {
+        :event "VeryLazy"
         :config #(let [ib (require :indent_blankline)]
                    (ib.setup
                      { :filetype_exclude [ "help"  "terminal" "norg" "alpha" ]
@@ -243,11 +263,14 @@
     }
 
     :nvim-telescope/telescope-fzf-native.nvim {
+        :lazy true
         :build "make"
     }
-    :nvim-telescope/telescope-ui-select.nvim {}
+    :nvim-telescope/telescope-ui-select.nvim {
+        :lazy true
+    }
     :nvim-telescope/telescope.nvim {
-        :event "BufRead"
+        :event "VeryLazy"
         :config #(require :telescope-config)
         :dependencies [ "telescope-fzf-native.nvim" "telescope-ui-select.nvim" ]
     }
