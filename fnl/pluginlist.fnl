@@ -287,9 +287,11 @@
     :ThePrimeagen/harpoon {
         :event "VeryLazy"
         :dependencies [ "plenary.nvim" ]
-	:config #(let [nmap (partial vim.keymap.set :n)]
-		  (nmap :<leader>ha #(let [hm (require :harpoon.mark)] (hm.add_file)) { :desc "harpoon add file"})
-		  (nmap :<leader>ht #(let [hu (require :harpoon.ui)] (hu.toggle_quick_menu)) { :desc "harpoon add file" }))
+        :config #(let [nmap (partial vim.keymap.set :n)]
+		  (nmap :<space>ha #(let [hm (require :harpoon.mark)] (hm.add_file)) { :desc "harpoon add file"})
+		  (nmap :<space>hl #(let [hu (require :harpoon.ui)] (hu.toggle_quick_menu)) { :desc "harpoon marks" })
+		  (nmap :<space>hn #(let [hu (require :harpoon.ui)] (hu.nav_next)) { :desc "harpoon next file"})
+		  (nmap :<space>hp #(let [hu (require :harpoon.ui)] (hu.nav_prev)) { :desc "harpoon prev file" }))
     }
 
     :nvim-telescope/telescope-ui-select.nvim {
