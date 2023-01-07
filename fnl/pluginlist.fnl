@@ -26,6 +26,12 @@
     :tpope/vim-rsi {
         :event "VeryLazy"
     }
+    :tpope/vim-sleuth {
+        :event "VeryLazy"
+    }
+    :tpope/vim-abolish {
+        :event "CmdlineEnter"
+    }
     :akinsho/toggleterm.nvim {
         :keys "<c-\\><c-\\>"
         :config #(let [term (require :toggleterm)] (term.setup { :open_mapping "<c-\\><c-\\>" }))
@@ -96,11 +102,15 @@
     :hrsh7th/cmp-nvim-lsp { :lazy true }
     :saadparwaiz1/cmp_luasnip { :lazy true }
     :MunifTanjim/nui.nvim { :lazy true }
-    :rcarriga/nvim-notify { :lazy true }
+    :rcarriga/nvim-notify {
+        :event "VeryLazy"
+        :config { :top_down false }
+    }
 
     :folke/noice.nvim {
         :enabled false
         :config #(let [n (require :noice)] (n.setup {}))
+        :dependencies [ "nvim-notify" "nui.nvim" "nvim-treesitter" ]
     }
 
     :j-hui/fidget.nvim {
@@ -123,13 +133,16 @@
           { 1 "<space>ft" 2 "<cmd>Neotree toggle<cr>" :mode "n" :desc "Neotree toggle"}
           { 1 "<space>fb" 2 "<cmd>Neotree buffers toggle<cr>" :mode "n" :desc "Neotree buffers toggle"}
         ]
-        :config #(let [tree (require :neo-tree)]
-                   (tree.setup {
-                     :buffers {
-                         :follow_current_file true
-                         :group_empty_dirs true
-                         :show_unloaded true
-                     }}))
+        :config {
+            :buffers {
+                :follow_current_file true
+                 :group_empty_dirs true
+                 :show_unloaded true
+            }
+            :filesystem {
+                :hijack_netrw_behavior "disabled"
+            }
+        }
     }
 
     :stevearc/aerial.nvim { :enabled false }
@@ -204,7 +217,6 @@
     }
 
     :neovim/nvim-lspconfig {
-        :event "VeryLazy"
         :config #(require :lspsetting)
     }
 
@@ -265,13 +277,16 @@
         :lazy true
         :build "make"
     }
-    :nvim-telescope/telescope-ui-select.nvim {
-        :lazy true
+
+    :stevearc/dressing.nvim {
+        :event "VeryLazy"
+        :dependencies [ "telescope.nvim" ]
     }
+
     :nvim-telescope/telescope.nvim {
         :event "VeryLazy"
         :config #(require :telescope-config)
-        :dependencies [ "telescope-fzf-native.nvim" "telescope-ui-select.nvim" ]
+        :dependencies [ "telescope-fzf-native.nvim" ]
     }
 })
 

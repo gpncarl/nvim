@@ -55,6 +55,10 @@
         :signs true
         :update_in_insert false }))
 
-(lspconfig.hls.setup { :autostart false :on_attach on_attach })
-(lspconfig.pylsp.setup { :autostart false :on_attach on_attach :capabilities capabilities })
+(lspconfig.hls.setup { :autostart true :on_attach on_attach })
+(lspconfig.pylsp.setup { :autostart true :on_attach on_attach :capabilities capabilities })
 (lspconfig.clangd.setup { :autostart true :on_attach on_attach :capabilities capabilities })
+(lspconfig.rust_analyzer.setup { :autostart true :on_attach on_attach :capabilities capabilities })
+(lspconfig.gopls.setup { :autostart true :on_attach on_attach :capabilities capabilities })
+(lspconfig.sumneko_lua.setup { :autostart true :on_attach on_attach :capabilities capabilities })
+(lspconfig.neocmake.setup { :autostart true :on_attach on_attach :capabilities capabilities })
