@@ -30,8 +30,8 @@
 (vim.api.nvim_create_autocmd "QuickFixCmdPre" { :command "packadd cfilter"})
 
 (local nmap (partial vim.keymap.set :n))
-(nmap :<space>d "<Cmd>!sdcv <cword><CR>" { :desc "sdcv dict" })
-(nmap :<space>h switchHeader { :desc "switch header" })
+(nmap :<space>sd "<Cmd>!sdcv <cword><CR>" { :desc "sdcv dict" })
+(nmap :<space>sh switchHeader { :desc "switch header" })
 
 (local tmap (partial vim.keymap.set :t))
 (tmap :<c-w> "<c-\\><c-n><c-w>")

@@ -279,14 +279,28 @@
     }
 
     :stevearc/dressing.nvim {
+        :enabled false
         :event "VeryLazy"
         :dependencies [ "telescope.nvim" ]
+    }
+
+    :ThePrimeagen/harpoon {
+        :event "VeryLazy"
+        :dependencies [ "plenary.nvim" ]
+	:config #(let [nmap (partial vim.keymap.set :n)]
+		  (nmap :<leader>ha #(let [hm (require :harpoon.mark)] (hm.add_file)) { :desc "harpoon add file"})
+		  (nmap :<leader>ht #(let [hu (require :harpoon.ui)] (hu.toggle_quick_menu)) { :desc "harpoon add file" }))
+    }
+
+    :nvim-telescope/telescope-ui-select.nvim {
+        :lazy true
     }
 
     :nvim-telescope/telescope.nvim {
         :event "VeryLazy"
         :config #(require :telescope-config)
-        :dependencies [ "telescope-fzf-native.nvim" ]
+        :dependencies [ "telescope-fzf-native.nvim" "telescope-ui-select.nvim" "harpoon" ]
+
     }
 })
 

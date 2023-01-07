@@ -23,7 +23,7 @@
     (nmap :<space>a vim.lsp.buf.code_action { :buffer bufnr :desc "code action" })
 
     (when (= client.name "clangd")
-        (nmap :<space>h "<cmd>ClangdSwitchSourceHeader<cr>" { :buffer bufnr :desc "switch header" })))
+        (nmap :<space>sh "<cmd>ClangdSwitchSourceHeader<cr>" { :buffer bufnr :desc "switch header" })))
 
 (nmap :K vim.diagnostic.open_float { :desc "current line diagnostic" })
 (nmap "[g" (partial vim.diagnostic.goto_prev { :float false }) { :desc "goto previous diagnostic" })

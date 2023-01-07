@@ -32,6 +32,9 @@
 })
 
 (telescope.load_extension "fzf")
+(telescope.load_extension "ui-select")
+(telescope.load_extension "harpoon")
+
 (local fuzzy
        (fn [name opts]
          (let [ default_opts { :push_cursor_on_edit true :winblend 10 }
@@ -51,3 +54,4 @@
 (nmap :<space>j (fuzzy "jumplist") { :desc "fuzzy jumplist" })
 (nmap :<space>q (fuzzy "quickfix") { :desc "fuzzy quickfix" })
 (nmap :<space>l (fuzzy "loclist") { :desc "fuzzy loclist" })
+(nmap :<space>ht #(telescope.extensions.harpoon.marks) { :desc "fuzzy harpoon marks" })
