@@ -55,12 +55,14 @@
     }
 
     :ggandor/leap.nvim {
+        :enabled false
         :event "BufRead"
         :dependencies [ "vim-repeat" "leap-spooky" ]
         :config #(let [l (require :leap)] (l.add_default_mappings))
     }
 
     :ggandor/leap-spooky.nvim {
+        :enabled false
         :name "leap-spooky"
         :lazy true
         :config #(let [l (require :leap-spooky)] (l.setup))
