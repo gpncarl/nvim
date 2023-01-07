@@ -39,3 +39,5 @@
 (set vim.g.netrw_list_hide "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+")
 (set vim.g.netrw_winsize 20)
 (set vim.g.netrw_altfile true)
+(set vim.g.loaded_netrw true)
+(set vim.g.loaded_netrwPlugin true)

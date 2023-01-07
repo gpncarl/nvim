@@ -2,11 +2,14 @@
     :rktjmp/hotpot.nvim {
         :enable false
     }
-    :tpope/vim-vinegar {
-        :event "VeryLazy"
+    :stevearc/oil.nvim {
+        :config #(let [oil (require :oil)]
+                  (oil.setup {})
+                  (vim.keymap.set "n" "-" oil.open { :desc "Open parent directory" }))
     }
-    :tpope/vim-surround {
+    :kylechui/nvim-surround {
         :event "VeryLazy"
+        :config {}
     }
     :nvim-tree/nvim-web-devicons {
         :lazy true
