@@ -105,7 +105,7 @@
     :saadparwaiz1/cmp_luasnip { :lazy true }
     :MunifTanjim/nui.nvim { :lazy true }
     :rcarriga/nvim-notify {
-        :event "VeryLazy"
+        :lazy true
         :config { :top_down false }
     }
 
