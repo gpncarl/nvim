@@ -4,7 +4,7 @@
                                        (oil.setup {})
                                        (vim.keymap.set :n "-" oil.open
                                                        {:desc "Open parent directory"}))}
-        :kylechui/nvim-surround {:event :VeryLazy :config {}}
+        :kylechui/nvim-surround {:event :VeryLazy :config true}
         :nvim-tree/nvim-web-devicons {:lazy true}
         :navarasu/onedark.nvim {:enabled false
                                 :lazy false
@@ -16,16 +16,12 @@
         :tpope/vim-sleuth {:event :VeryLazy}
         :tpope/vim-abolish {:event :CmdlineEnter}
         :akinsho/toggleterm.nvim {:keys "<c-\\><c-\\>"
-                                  :config #(let [term (require :toggleterm)]
-                                             (term.setup {:open_mapping "<c-\\><c-\\>"}))}
-        :SmiteshP/nvim-gps {:lazy true
-                            :config #(let [gps (require :nvim-gps)]
-                                       (gps.setup))}
+                                  :config {:open_mapping "<c-\\><c-\\>"}}
+        :SmiteshP/nvim-gps {:lazy true :config true}
         :folke/which-key.nvim {:event :VeryLazy
-                               :config #(let [wk (require :which-key)]
-                                          (wk.setup {:plugins {:presets {:operators false
-                                                                         :motions false
-                                                                         :text_objects false}}}))}
+                               :config {:plugins {:presets {:operators false
+                                                            :motions false
+                                                            :text_objects false}}}}
         :phaazon/hop.nvim {:keys :<leader><leader>
                            :config #(let [h (require :hop)]
                                       (h.setup {:keys :etovxqpdygfblzhckisuran})
@@ -35,23 +31,15 @@
                             :dependencies [:vim-repeat :leap-spooky]
                             :config #(let [l (require :leap)]
                                        (l.add_default_mappings))}
-        :ggandor/leap-spooky.nvim {:enabled false
-                                   :name :leap-spooky
-                                   :lazy true
-                                   :config #(let [l (require :leap-spooky)]
-                                              (l.setup))}
-        :ggandor/flit.nvim {:enabled false
-                            :lazy true
-                            :config #(let [f (require :flit)]
-                                       (f.setup))}
+        :ggandor/leap-spooky.nvim {:enabled false :lazy true :config true}
+        :ggandor/flit.nvim {:enabled false :lazy true :config true}
         :bkad/CamelCaseMotion {:event :BufRead
                                :init #(set vim.g.camelcasemotion_key :<leader>)}
         :tpope/vim-fugitive {:event :BufRead
                              ;; config (partial set vim.opt.statusline "%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P")
                              }
         :lewis6991/gitsigns.nvim {:event :BufRead
-                                  :config #(let [gs (require :gitsigns)]
-                                             (gs.setup {:attach_to_untracked false}))}
+                                  :config {:attach_to_untracked false}}
         :wellle/targets.vim {:event :VeryLazy}
         :antoinemadec/FixCursorHold.nvim {:event :VeryLazy}
         :nvim-lua/plenary.nvim {:lazy true}
@@ -68,14 +56,11 @@
         :MunifTanjim/nui.nvim {:lazy true}
         :rcarriga/nvim-notify {:lazy true :config {:top_down false}}
         :folke/noice.nvim {:enabled false
-                           :config #(let [n (require :noice)]
-                                      (n.setup {}))
+                           :config true
                            :dependencies [:nvim-notify
                                           :nui.nvim
                                           :nvim-treesitter]}
-        :j-hui/fidget.nvim {:event :LspAttach
-                            :config #(let [f (require :fidget)]
-                                       (f.setup {}))}
+        :j-hui/fidget.nvim {:event :LspAttach :config true}
         :mfussenegger/nvim-dap {:enabled false :config #(require :dapsetting)}
         :tzachar/cmp-tabnine {:build :./install.sh :lazy true}
         :nvim-neo-tree/neo-tree.nvim {:keys [{1 :<space>ft
@@ -107,9 +92,7 @@
                                           :cmp-tabnine
                                           :cmp_luasnip
                                           :cmp-nvim-lsp]}
-        :numToStr/Comment.nvim {:event :VeryLazy
-                                :config #(let [c (require :Comment)]
-                                           (c.setup {}))}
+        :numToStr/Comment.nvim {:event :VeryLazy :config true}
         :ludovicchabant/vim-gutentags {:event :VeryLazy
                                        :init #(and (set vim.g.gutentags_modules
                                                         [:ctags])
@@ -174,14 +157,13 @@
                                                                     :show_first_indent_level false}))}
         :nvim-neorg/neorg {:ft :norg
                            :dependencies [:nvim-treesitter]
-                           :config #(let [n (require :neorg)]
-                                      (n.setup {:load {:core.defaults {}
-                                                       :core.norg.concealer {}
-                                                       :core.norg.manoeuvre {}
-                                                       :core.norg.journal {:config {:workspace :journal}}
-                                                       :core.norg.completion {:config {:engine :nvim-cmp}}
-                                                       :core.norg.dirman {:config {:workspaces {:my_workspace "~/shared/neorg"
-                                                                                                :journal "~/shared/journal"}}}}}))}
+                           :config {:load {:core.defaults {}
+                                           :core.norg.concealer {}
+                                           :core.norg.manoeuvre {}
+                                           :core.norg.journal {:config {:workspace :journal}}
+                                           :core.norg.completion {:config {:engine :nvim-cmp}}
+                                           :core.norg.dirman {:config {:workspaces {:my_workspace "~/shared/neorg"
+                                                                                    :journal "~/shared/journal"}}}}}}
         :windwp/nvim-autopairs {:event :InsertEnter
                                 :config #(let [ap (require :nvim-autopairs)
                                                cmp_autopairs (require :nvim-autopairs.completion.cmp)
@@ -193,9 +175,8 @@
                                                          (cmp_autopairs.on_confirm_done {:map_char {:tex ""}})))
                                 :dependencies [:nvim-cmp]}
         :kevinhwang91/nvim-bqf {:ft :qf
-                                :config #(let [bqf (require :bqf)]
-                                           (bqf.setup {:auto_resize_height false
-                                                       :preview {:auto_preview false}}))}
+                                :config {:auto_resize_height false
+                                         :preview {:auto_preview false}}}
         :nvim-telescope/telescope-fzf-native.nvim {:lazy true :build :make}
         :stevearc/dressing.nvim {:enabled false
                                  :event :VeryLazy
