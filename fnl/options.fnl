@@ -30,7 +30,7 @@
 (set vim.opt.splitright true)
 (set vim.opt.hidden true)
 (set vim.opt.showmatch true)
-(set vim.opt.breakindentopt :shift:4)
+(set vim.opt.breakindentopt "shift:4")
 (set vim.opt.clipboard :unnamedplus)
 (set vim.opt.cinoptions "l1,N-s,E-s,t0,(0,w1,W4")
 (set vim.opt.showbreak "↪ ")
@@ -40,9 +40,11 @@
 (set vim.opt.completeopt "menuone,noinsert,noselect")
 ;; (set vim.opt.grepprg "ug -RInkus --tabs=4 --ignore-files")
 (set vim.opt.grepprg "rg --vimgrep --no-heading")
-(set vim.opt.grepformat "%f:%l:%c:%m,%f+%l+%c+%m,%-G%f|%l|%c|%m") ;; vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+(set vim.opt.grepformat "%f:%l:%c:%m,%f+%l+%c+%m,%-G%f|%l|%c|%m")
 
-(vim.opt.shortmess:append  { :I true })
-(vim.opt.cpoptions:append { :n true })
+;; vim.opt.grepformat = '%f:%l:%c:%m,%f:%l:%m'
+
+(vim.opt.shortmess:append {:I true})
+(vim.opt.cpoptions:append {:n true})
 (vim.opt.sessionoptions:append :winpos)
-(vim.opt.path:append :**)
+(vim.opt.path:append "**")
