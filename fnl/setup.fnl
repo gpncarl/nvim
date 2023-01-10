@@ -33,6 +33,12 @@
 (nmap :<space>sd "<Cmd>!sdcv <cword><CR>" {:desc "sdcv dict"})
 (nmap :<space>sh switchHeader {:desc "switch header"})
 
+(nmap :K vim.diagnostic.open_float {:desc "current line diagnostic"})
+(nmap "[g" (partial vim.diagnostic.goto_prev {:float false})
+      {:desc "goto previous diagnostic"})
+(nmap "]g" (partial vim.diagnostic.goto_next {:float false})
+      {:desc "goto next diagnostic"})
+
 (local tmap (partial vim.keymap.set :t))
 (tmap :<c-w> "<c-\\><c-n><c-w>")
 
@@ -41,3 +47,4 @@
 (set vim.g.netrw_altfile true)
 (set vim.g.loaded_netrw true)
 (set vim.g.loaded_netrwPlugin true)
+(vim.cmd.colorscheme :gruvbox)

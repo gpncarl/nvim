@@ -3,7 +3,7 @@
 ;;
 ;; (each [type icon (pairs signs)]
 ;;   (let [hl (.. "DiagnosticSign" type)]
-;;     (vim.cmd (.. "hi " hl " guifg=" (. colors type) " guibg=#ebdbb2"))
+;;     (vim.cmd.highlight [hl (.. "guifg=" (. colors type)) "guibg=#ebdbb2"])
 ;;     (vim.fn.sign_define hl { :text icon :texthl hl :numhl "" })))
 ;;
 (local lspconfig (require :lspconfig))
@@ -25,12 +25,6 @@
   (when (= client.name :clangd)
     (nmap :<space>sh :<cmd>ClangdSwitchSourceHeader<cr>
           {:buffer bufnr :desc "switch header"})))
-
-(nmap :K vim.diagnostic.open_float {:desc "current line diagnostic"})
-(nmap "[g" (partial vim.diagnostic.goto_prev {:float false})
-      {:desc "goto previous diagnostic"})
-(nmap "]g" (partial vim.diagnostic.goto_next {:float false})
-      {:desc "goto next diagnostic"})
 
 (local capabilities (vim.lsp.protocol.make_client_capabilities))
 ;; NOTE: expand "require('cmp_nvim_lsp').update_capabilities(capabilities)" here, for snippets support
