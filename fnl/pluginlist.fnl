@@ -16,12 +16,12 @@
         :tpope/vim-unimpaired {:keys ["[" "]"]}
         :tpope/vim-repeat {:keys "."}
         :tpope/vim-rsi {:event [:InsertEnter :CmdlineEnter]}
-        :tpope/vim-sleuth {:event :VeryLazy}
+        :tpope/vim-sleuth {:lazy true}
         :tpope/vim-abolish {:event :CmdlineEnter}
         :akinsho/toggleterm.nvim {:keys "<c-\\><c-\\>"
                                   :opts {:open_mapping "<c-\\><c-\\>"}}
         :SmiteshP/nvim-gps {:lazy true :opts {}}
-        :folke/which-key.nvim {:keys ["`" "'" "\"" :<space> :<leader><leader>]
+        :folke/which-key.nvim {:keys ["`" "'" "\"" :<space> :<leader>]
                                :opts {:plugins {:presets {:operators false
                                                           :motions false
                                                           :text_objects false}}}}
@@ -35,13 +35,13 @@
                                        (l.add_default_mappings))}
         :ggandor/leap-spooky.nvim {:lazy true :config true}
         :ggandor/flit.nvim {:lazy true :config true}
-        :bkad/CamelCaseMotion {:keys :<leader>
+        :bkad/CamelCaseMotion {:event "ModeChanged *:no"
+                               :keys :<leader>
                                :init #(set vim.g.camelcasemotion_key :<leader>)}
         :tpope/vim-fugitive {:event :CmdlineEnter}
-        ;; config (partial set vim.opt.statusline "%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P")
         :lewis6991/gitsigns.nvim {:event :VeryLazy
                                   :opts {:attach_to_untracked false}}
-        :wellle/targets.vim {:keys [:d :c :y]}
+        :wellle/targets.vim {:event "ModeChanged *:no"}
         :antoinemadec/FixCursorHold.nvim {:event :VeryLazy}
         :nvim-lua/plenary.nvim {:lazy true}
         :nvim-lua/popup.nvim {:lazy true}
@@ -53,7 +53,7 @@
         :hrsh7th/cmp-path {:lazy true}
         :hrsh7th/cmp-buffer {:lazy true}
         :hrsh7th/cmp-nvim-lsp {:lazy true}
-        :saadparwaiz1/cmp_luasnip {:lazy true}
+        :saadparwaiz1/cmp_luasnip {:lazy true :dependencies [:LuaSnip]}
         :MunifTanjim/nui.nvim {:lazy true}
         :rcarriga/nvim-notify {:lazy true :opts {:top_down false}}
         :folke/noice.nvim {:lazy true
@@ -93,7 +93,7 @@
                                           :cmp_luasnip
                                           :cmp-nvim-lsp]
                            :config #(require :autocompletion)}
-        :numToStr/Comment.nvim {:keys :gc :config true}
+        :numToStr/Comment.nvim {:keys [{1 :gc :mode [:n :v :o]}] :config true}
         :ludovicchabant/vim-gutentags {:event :VeryLazy
                                        :init #(and (set vim.g.gutentags_modules
                                                         [:ctags])
@@ -142,8 +142,11 @@
                                                                                             {:buffer $2
                                                                                              :desc :format})}))}
         :nvim-treesitter/nvim-treesitter {:config #(require :treesitter)}
-        :nvim-treesitter/nvim-treesitter-context {:dependencies [:nvim-treesitter]
-                                                  :lazy true}
+        :nvim-treesitter/nvim-treesitter-textobjects {:event "ModeChanged *:no"
+                                                      :keys ["[" "]"]
+                                                      :dependencies [:nvim-treesitter]}
+        :nvim-treesitter/nvim-treesitter-context {:lazy true
+                                                  :dependencies [:nvim-treesitter]}
         :lukas-reineke/indent-blankline.nvim {:event :VeryLazy
                                               :opts {:filetype_exclude [:help
                                                                         :terminal
