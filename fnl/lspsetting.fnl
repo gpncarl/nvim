@@ -49,7 +49,11 @@
 
 (lspconfig.hls.setup {:autostart true : on_attach})
 (lspconfig.pylsp.setup {:autostart true : on_attach : capabilities})
-(lspconfig.clangd.setup {:autostart true : on_attach : capabilities})
+(lspconfig.clangd.setup {:autostart true
+                         :filetypes [:c :cpp]
+                         : on_attach
+                         : capabilities})
+
 (lspconfig.rust_analyzer.setup {:autostart true : on_attach : capabilities})
 (lspconfig.gopls.setup {:autostart true : on_attach : capabilities})
 (lspconfig.sumneko_lua.setup {:autostart true : on_attach : capabilities})

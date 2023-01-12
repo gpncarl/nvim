@@ -4,18 +4,24 @@
                                        (oil.setup {})
                                        (vim.keymap.set :n "-" oil.open
                                                        {:desc "Open parent directory"}))}
-        :kylechui/nvim-surround {:event :VeryLazy :config true}
+        :kylechui/nvim-surround {:keys [{1 :ds :mode :n}
+                                        {1 :ys :mode :n}
+                                        {1 :cs :mode :n}
+                                        {1 :S :mode :v}
+                                        {1 :<C-g>s :mode :i}
+                                        {1 :<C-g>S :mode :i}]
+                                 :config true}
         :nvim-tree/nvim-web-devicons {:lazy true}
         :navarasu/onedark.nvim {:lazy true :priority 1000}
-        :tpope/vim-unimpaired {:event :VeryLazy}
-        :tpope/vim-repeat {:event :VeryLazy}
-        :tpope/vim-rsi {:event :VeryLazy}
+        :tpope/vim-unimpaired {:keys ["[" "]"]}
+        :tpope/vim-repeat {:keys "."}
+        :tpope/vim-rsi {:event [:InsertEnter :CmdlineEnter]}
         :tpope/vim-sleuth {:event :VeryLazy}
         :tpope/vim-abolish {:event :CmdlineEnter}
         :akinsho/toggleterm.nvim {:keys "<c-\\><c-\\>"
                                   :opts {:open_mapping "<c-\\><c-\\>"}}
         :SmiteshP/nvim-gps {:lazy true :opts {}}
-        :folke/which-key.nvim {:event :VeryLazy
+        :folke/which-key.nvim {:keys ["`" "'" "\"" :<space> :<leader><leader>]
                                :opts {:plugins {:presets {:operators false
                                                           :motions false
                                                           :text_objects false}}}}
@@ -23,27 +29,26 @@
                            :config #(let [h (require :hop)]
                                       (h.setup {:keys :etovxqpdygfblzhckisuran})
                                       (require :hop_keymap))}
-        :ggandor/leap.nvim {:enabled false
-                            :event :BufRead
+        :ggandor/leap.nvim {:lazy true
                             :dependencies [:vim-repeat :leap-spooky]
                             :config #(let [l (require :leap)]
                                        (l.add_default_mappings))}
-        :ggandor/leap-spooky.nvim {:enabled false :lazy true :config true}
-        :ggandor/flit.nvim {:enabled false :lazy true :config true}
-        :bkad/CamelCaseMotion {:event :VeryLazy
+        :ggandor/leap-spooky.nvim {:lazy true :config true}
+        :ggandor/flit.nvim {:lazy true :config true}
+        :bkad/CamelCaseMotion {:keys :<leader>
                                :init #(set vim.g.camelcasemotion_key :<leader>)}
-        :tpope/vim-fugitive {:event :VeryLazy}
+        :tpope/vim-fugitive {:event :CmdlineEnter}
         ;; config (partial set vim.opt.statusline "%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P")
         :lewis6991/gitsigns.nvim {:event :VeryLazy
                                   :opts {:attach_to_untracked false}}
-        :wellle/targets.vim {:event :VeryLazy}
+        :wellle/targets.vim {:keys [:d :c :y]}
         :antoinemadec/FixCursorHold.nvim {:event :VeryLazy}
         :nvim-lua/plenary.nvim {:lazy true}
         :nvim-lua/popup.nvim {:lazy true}
-        :RRethy/vim-illuminate {:enabled false}
-        :preservim/tagbar {:enabled false}
-        :godlygeek/tabular {:enabled false}
-        :mbbill/undotree {:enabled false}
+        :RRethy/vim-illuminate {:lazy true}
+        :preservim/tagbar {:lazy true}
+        :godlygeek/tabular {:lazy true}
+        :mbbill/undotree {:lazy true}
         :onsails/lspkind-nvim {:lazy true}
         :hrsh7th/cmp-path {:lazy true}
         :hrsh7th/cmp-buffer {:lazy true}
@@ -51,13 +56,13 @@
         :saadparwaiz1/cmp_luasnip {:lazy true}
         :MunifTanjim/nui.nvim {:lazy true}
         :rcarriga/nvim-notify {:lazy true :opts {:top_down false}}
-        :folke/noice.nvim {:enabled false
+        :folke/noice.nvim {:lazy true
                            :dependencies [:nvim-notify
                                           :nui.nvim
                                           :nvim-treesitter]
                            :config true}
         :j-hui/fidget.nvim {:event :LspAttach :config true}
-        :mfussenegger/nvim-dap {:enabled false :config #(require :dapsetting)}
+        :mfussenegger/nvim-dap {:lazy true :config #(require :dapsetting)}
         :tzachar/cmp-tabnine {:build :./install.sh :lazy true}
         :nvim-neo-tree/neo-tree.nvim {:keys [{1 :<space>ft
                                               2 "<cmd>Neotree toggle<cr>"
@@ -71,7 +76,7 @@
                                                        :group_empty_dirs true
                                                        :show_unloaded true}
                                              :filesystem {:hijack_netrw_behavior :disabled}}}
-        :stevearc/aerial.nvim {:enabled false}
+        :stevearc/aerial.nvim {:lazy true}
         :rafamadriz/friendly-snippets {:lazy true}
         :L3MON4D3/LuaSnip {:lazy true
                            :dependencies [:friendly-snippets]
@@ -88,7 +93,7 @@
                                           :cmp_luasnip
                                           :cmp-nvim-lsp]
                            :config #(require :autocompletion)}
-        :numToStr/Comment.nvim {:event :VeryLazy :config true}
+        :numToStr/Comment.nvim {:keys :gc :config true}
         :ludovicchabant/vim-gutentags {:event :VeryLazy
                                        :init #(and (set vim.g.gutentags_modules
                                                         [:ctags])
@@ -97,8 +102,7 @@
                                                          :.cache
                                                          :.clangd
                                                          :.vscode]))}
-        :ellisonleao/gruvbox.nvim {:enabled true
-                                   :lazy true
+        :ellisonleao/gruvbox.nvim {:lazy true
                                    :priority 1000
                                    :opts {:undercurl true
                                           :underline true
@@ -139,7 +143,7 @@
                                                                                              :desc :format})}))}
         :nvim-treesitter/nvim-treesitter {:config #(require :treesitter)}
         :nvim-treesitter/nvim-treesitter-context {:dependencies [:nvim-treesitter]
-                                                  :enabled false}
+                                                  :lazy true}
         :lukas-reineke/indent-blankline.nvim {:event :VeryLazy
                                               :opts {:filetype_exclude [:help
                                                                         :terminal
@@ -171,10 +175,8 @@
                                 :opts {:auto_resize_height false
                                        :preview {:auto_preview false}}}
         :nvim-telescope/telescope-fzf-native.nvim {:lazy true :build :make}
-        :stevearc/dressing.nvim {:enabled false
-                                 :event :VeryLazy
-                                 :dependencies [:telescope.nvim]}
-        :ThePrimeagen/harpoon {:event :VeryLazy
+        :stevearc/dressing.nvim {:lazy true :dependencies [:telescope.nvim]}
+        :ThePrimeagen/harpoon {:keys :<space>
                                :dependencies [:plenary.nvim]
                                :config #(let [nmap (partial vim.keymap.set :n)]
                                           (nmap :<space>ha
@@ -194,7 +196,7 @@
                                                    (hu.nav_prev))
                                                 {:desc "harpoon prev file"}))}
         :nvim-telescope/telescope-ui-select.nvim {:lazy true}
-        :nvim-telescope/telescope.nvim {:event :VeryLazy
+        :nvim-telescope/telescope.nvim {:keys :<space>
                                         :dependencies [:telescope-fzf-native.nvim
                                                        :telescope-ui-select.nvim
                                                        :harpoon]
