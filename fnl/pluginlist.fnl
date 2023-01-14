@@ -36,7 +36,10 @@
         :ggandor/leap-spooky.nvim {:lazy true :config true}
         :ggandor/flit.nvim {:lazy true :config true}
         :bkad/CamelCaseMotion {:event "ModeChanged *:no"
-                               :keys :<leader>
+                               :keys [:<leader>w
+                                      :<leader>b
+                                      :<leader>e
+                                      :<leader>ge]
                                :init #(set vim.g.camelcasemotion_key :<leader>)}
         :tpope/vim-fugitive {:event :CmdlineEnter}
         :lewis6991/gitsigns.nvim {:event :VeryLazy
