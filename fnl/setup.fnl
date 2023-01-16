@@ -47,4 +47,4 @@
 (set vim.g.netrw_altfile true)
 (set vim.g.loaded_netrw true)
 (set vim.g.loaded_netrwPlugin true)
-(vim.cmd.colorscheme :gruvbox)
+(vim.cmd.colorscheme :onedark)

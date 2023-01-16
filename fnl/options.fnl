@@ -35,7 +35,7 @@
 (set vim.opt.cinoptions "l1,N-s,E-s,t0,(0,w1,W4")
 (set vim.opt.showbreak "↪ ")
 (set vim.opt.virtualedit :block)
-(set vim.opt.background :light)
+(set vim.opt.background :dark)
 (set vim.opt.guifont "FiraCode Nerd Font Mono:h14")
 (set vim.opt.completeopt "menuone,noinsert,noselect")
 ;; (set vim.opt.grepprg "ug -RInkus --tabs=4 --ignore-files")
