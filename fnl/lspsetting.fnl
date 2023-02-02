@@ -8,7 +8,7 @@
 ;;
 (local lspconfig (require :lspconfig))
 
-(local fuzzy (require :telescope.builtin))
+;; (local fuzzy (require :telescope.builtin))
 (local nmap (partial vim.keymap.set :n))
 (fn on_attach [client bufnr]
   ;; require'aerial'.on_attach(client)
