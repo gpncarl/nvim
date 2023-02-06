@@ -159,7 +159,7 @@
                                                      :show_trailing_blankline_indent false
                                                      :show_first_indent_level false}}
         :nvim-neorg/neorg {:ft :norg
-                           :dependencies [:nvim-treesitter]
+                           :dependencies [:nvim-treesitter :nvim-cmp]
                            :opts {:load {:core.defaults {}
                                          :core.norg.concealer {}
                                          :core.norg.manoeuvre {}
