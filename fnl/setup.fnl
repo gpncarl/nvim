@@ -1,5 +1,5 @@
-(require :pluginlist)
 (require :options)
+(require :pluginlist)
 
 (fn _G.dump [...]
   (let [objects (vim.tbl_map vim.inspect [...])]
