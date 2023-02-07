@@ -1,4 +1,4 @@
-(local gps (require :nvim-gps))
+;; (local gps (require :nvim-gps))
 (local lualine (require :lualine))
 
 (lualine.setup {:options {:icons_enabled true
