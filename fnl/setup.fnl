@@ -42,6 +42,7 @@
 (local tmap (partial vim.keymap.set :t))
 (tmap :<c-w> "<c-\\><c-n><c-w>")
 
+(nmap :<leader>g  vim.diagnostic.setqflist {:desc "goto define"})
 (set vim.g.netrw_list_hide "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+")
 (set vim.g.netrw_winsize 20)
 (set vim.g.netrw_altfile true)

@@ -127,7 +127,7 @@
                                         (set startify.nvim_web_devicons.enabled
                                              true)
                                         (alpha.setup startify.config))}
-        :folke/trouble.nvim {:event :DiagnosticChanged
+        :folke/trouble.nvim {:keys [:<leader>t]
                              :config #(let [t (require :trouble)]
                                         (t.setup {:icons true})
                                         (vim.keymap.set :n :<leader>t

@@ -31,7 +31,7 @@
 (set vim.opt.hidden true)
 (set vim.opt.showmatch true)
 (set vim.opt.breakindentopt "shift:4")
-(set vim.opt.clipboard :unnamedplus)
+;; (set vim.opt.clipboard :unnamedplus)
 (set vim.opt.cinoptions "l1,N-s,E-s,t0,(0,w1,W4")
 (set vim.opt.showbreak "↪ ")
 (set vim.opt.virtualedit :block)
