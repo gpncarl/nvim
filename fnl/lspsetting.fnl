@@ -56,5 +56,5 @@
 
 (lspconfig.rust_analyzer.setup {:autostart true : on_attach : capabilities})
 (lspconfig.gopls.setup {:autostart true : on_attach : capabilities})
-(lspconfig.sumneko_lua.setup {:autostart true : on_attach : capabilities})
+(lspconfig.lua_ls.setup {:autostart true : on_attach : capabilities})
 (lspconfig.neocmake.setup {:autostart true : on_attach : capabilities})
