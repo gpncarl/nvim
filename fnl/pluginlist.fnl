@@ -1,5 +1,5 @@
 (local plists
-       {:rktjmp/hotpot.nvim {:enable false}
+       {:rktjmp/hotpot.nvim {:enable true}
         :stevearc/oil.nvim {:config #(let [oil (require :oil)]
                                        (oil.setup {})
                                        (vim.keymap.set :n "-" oil.open
@@ -43,7 +43,8 @@
                                :init #(set vim.g.camelcasemotion_key :<leader>)}
         :tpope/vim-fugitive {:event :CmdlineEnter}
         :lewis6991/gitsigns.nvim {:event :VeryLazy
-                                  :opts {:attach_to_untracked false :trouble false}}
+                                  :opts {:attach_to_untracked false
+                                         :trouble false}}
         :wellle/targets.vim {:event "ModeChanged *:no"}
         :antoinemadec/FixCursorHold.nvim {:event :VeryLazy}
         :nvim-lua/plenary.nvim {:lazy true}
