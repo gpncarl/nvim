@@ -42,10 +42,10 @@
 
 (tset vim.lsp.handlers :textDocument/publishDiagnostics
       (vim.lsp.with vim.lsp.diagnostic.on_publish_diagnostics
-                    {:underline true
-                     :virtual_text true
-                     :signs true
-                     :update_in_insert false}))
+        {:underline true
+         :virtual_text true
+         :signs true
+         :update_in_insert false}))
 
 (lspconfig.hls.setup {:autostart true : on_attach})
 (lspconfig.pylsp.setup {:autostart true : on_attach : capabilities})

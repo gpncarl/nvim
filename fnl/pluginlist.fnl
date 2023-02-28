@@ -134,7 +134,16 @@
                                         (vim.keymap.set :n :<leader>t
                                                         :<Cmd>TroubleToggle<CR>
                                                         {:desc "toggle troube"}))}
-        :neovim/nvim-lspconfig {:config #(require :lspsetting)}
+        :neovim/nvim-lspconfig {:lazy false :config #(require :lspsetting)}
+        :williamboman/mason.nvim {:config #(let [m (require :mason)]
+                                             (m.setup {}))}
+        :williamboman/mason-lspconfig.nvim {:dependencies [:mason.nvim
+                                                           :nvim-lspconfig]
+                                            :config #(let [m (require :mason-lspconfig)]
+                                                       (m.setup {}))}
+        :jay-babu/mason-null-ls.nvim {:dependencies [:mason.nvim :null-ls.nvim]
+                                      :config #(let [m (require :mason-null-ls)]
+                                                 (m.setup {}))}
         :jose-elias-alvarez/null-ls.nvim {:event :VeryLazy
                                           :dependencies [:plenary.nvim]
                                           :config #(let [nl (require :null-ls)]
