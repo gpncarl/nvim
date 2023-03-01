@@ -1,5 +1,5 @@
 (local plists
-       {:rktjmp/hotpot.nvim {:enable true}
+       {:rktjmp/hotpot.nvim {:enabled true}
         :stevearc/oil.nvim {:config #(let [oil (require :oil)]
                                        (oil.setup {})
                                        (vim.keymap.set :n "-" oil.open
