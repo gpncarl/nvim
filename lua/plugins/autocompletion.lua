@@ -1,3 +1,76 @@
+local function cmp_config()
+    local cmp = require('cmp')
+    local luasnip = require("luasnip")
+    cmp.setup {
+        snippet = {
+            expand = function(args)
+                require 'luasnip'.lsp_expand(args.body)
+            end
+        },
+        completion = {
+            completeopt = 'menuone,noinsert,noselect',
+        },
+
+        mapping = {
+                ['<C-p>'] = cmp.mapping.select_prev_item(),
+                ['<C-n>'] = cmp.mapping.select_next_item(),
+                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                ['<C-Space>'] = cmp.mapping.complete(),
+                ['<C-e>'] = cmp.mapping.close(),
+                ['<CR>'] = cmp.mapping.confirm({ select = false, }),
+                ["<C-j>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.close()
+                end
+                if luasnip.jumpable(1) then
+                    luasnip.jump(1)
+                end
+            end, { "i", "s" }),
+                ["<C-k>"] = cmp.mapping(function(fallback)
+                if cmp.visible() then
+                    cmp.close()
+                end
+                if luasnip.jumpable(-1) then
+                    luasnip.jump(-1)
+                end
+            end, { "i", "s" }),
+        },
+
+        sources = {
+            { name = 'nvim_lsp' },
+            { name = 'buffer' },
+            { name = 'path' },
+            { name = 'luasnip' },
+            { name = 'cmp_tabnine' },
+            { name = 'neorg',      ft = 'norg' },
+        },
+
+        formatting = {
+            format = function(entry, vim_item)
+                vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+                vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+                vim_item.menu = ({
+                        buffer = "[B]",
+                        path = "[P]",
+                        luasnip = "[S]",
+                        nvim_lsp = "[L]",
+                        cmp_tabnine = "[T]"
+                    })[entry.source.name]
+                return vim_item
+            end,
+        },
+
+        view = {
+            entries = "native",
+        },
+
+        experimental = {
+            ghost_text = false,
+        }
+    }
+end
+
 return {
     { "onsails/lspkind-nvim",         lazy = true },
     { "hrsh7th/cmp-path",             lazy = true },
@@ -30,9 +103,7 @@ return {
         event = "InsertEnter",
         dependencies = { "lspkind-nvim", "cmp-path", "cmp-buffer",
             "cmp-tabnine", "cmp_luasnip", "cmp-nvim-lsp" },
-        config = function()
-            require("autocompletion")
-        end
+        config = cmp_config
     },
     {
         "windwp/nvim-autopairs",

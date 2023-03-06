@@ -1,12 +1,15 @@
-require("options")
-
 _G.dump = function(...)
     local objects = vim.tbl_map(vim.inspect, { ... })
     return print(unpack(objects))
 end
 local function switchHeader()
-    local alt_exts = { c = { "h" }, cpp = { "h", "hpp" }, cc = { "h", "hpp" }, hpp = { "cc", "cpp" },
-        h = { "cc", "cpp", "c" } }
+    local alt_exts = {
+        c = { "h" },
+        cpp = { "h", "hpp" },
+        cc = { "h", "hpp" },
+        hpp = { "cc", "cpp" },
+        h = { "cc", "cpp", "c" }
+    }
     local ext = vim.fn.expand("%:e")
     local basename = vim.fn.expand("%:t:r")
     local alt_ext = alt_exts[ext]
@@ -29,39 +32,23 @@ end
 
 vim.api.nvim_create_autocmd("FileType", { pattern = { "text" }, callback = _2_ })
 vim.api.nvim_create_autocmd("QuickFixCmdPre", { command = "packadd cfilter" })
-local nmap
-local function _3_(...)
-    return vim.keymap.set("n", ...)
-end
-nmap = _3_
-nmap("<space>sd", "<Cmd>!sdcv <cword><CR>", { desc = "sdcv dict" })
-nmap("<space>sh", switchHeader, { desc = "switch header" })
-nmap("K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
-local _5_
-do
-    local _4_ = { float = false }
-    local function _6_(...)
-        return vim.diagnostic.goto_prev(_4_, ...)
-    end
-    _5_ = _6_
-end
-nmap("[g", _5_, { desc = "goto previous diagnostic" })
-local _8_
-do
-    local _7_ = { float = false }
-    local function _9_(...)
-        return vim.diagnostic.goto_next(_7_, ...)
-    end
-    _8_ = _9_
-end
-nmap("]g", _8_, { desc = "goto next diagnostic" })
-local tmap
-local function _10_(...)
-    return vim.keymap.set("t", ...)
-end
-tmap = _10_
-tmap("<c-w>", "<c-\\><c-n><c-w>")
-nmap("<leader>g", vim.diagnostic.setqflist, { desc = "goto define" })
+vim.keymap.set("n", "<space>sd", "<Cmd>!sdcv <cword><CR>", { desc = "sdcv dict" })
+vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
+vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
+vim.keymap.set("n",
+    "[g",
+    function()
+        vim.diagnostic.goto_prev { float = false }
+    end,
+    { desc = "goto previous diagnostic" })
+vim.keymap.set("n",
+    "]g",
+    function()
+        vim.diagnostic.goto_next { float = false }
+    end,
+    { desc = "goto next diagnostic" })
+vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
+vim.keymap.set("n", "<leader>g", vim.diagnostic.setqflist, { desc = "goto define" })
 
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 vim.g.netrw_winsize = 20

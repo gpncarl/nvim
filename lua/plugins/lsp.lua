@@ -1,3 +1,61 @@
+local function lsp_config()
+    local lspconfig = require("lspconfig")
+    local function on_attach(client, bufnr)
+        local function ref(opts)
+            return vim.lsp.buf.references(opts, nil)
+        end
+        vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
+        vim.keymap.set("n", "gr", ref, { buffer = bufnr, desc = "goto ref" })
+        vim.keymap.set("n", "<space>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
+        vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
+        if (client.name == "clangd") then
+            return vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = bufnr, desc = "switch header" })
+        end
+    end
+    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    capabilities.textDocument.completion.completionItem = {
+        snippetSupport = true,
+        preselectSupport = true,
+        insertReplaceSupport = true,
+        labelDetailsSupport = true,
+        deprecatedSupport = true,
+        commitCharactersSupport = true,
+        tagSupport = { valueSet = { 1 } },
+        resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } }
+    }
+    vim.lsp.handlers["textDocument/publishDiagnostics"] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+            {
+                underline = true,
+                virtual_text = true,
+                signs = true,
+                update_in_insert = false
+            })
+    lspconfig.hls.setup({ autostart = true, on_attach = on_attach })
+    lspconfig.pylsp.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
+    lspconfig.clangd.setup({
+        autostart = true,
+        filetypes = { "c", "cpp" },
+        on_attach = on_attach,
+        capabilities = capabilities
+    })
+    lspconfig.rust_analyzer.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
+    lspconfig.gopls.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
+    lspconfig.lua_ls.setup({
+        autostart = true,
+        on_attach = on_attach,
+        capabilities = capabilities,
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = { 'vim' }
+                }
+            }
+        }
+    })
+    return lspconfig.neocmake.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
+end
+
 return {
     {
         "folke/trouble.nvim",
@@ -11,9 +69,7 @@ return {
     {
         "neovim/nvim-lspconfig",
         lazy = false,
-        config = function()
-            require("lspsetting")
-        end
+        config = lsp_config
     },
     {
         "williamboman/mason.nvim",
@@ -46,7 +102,7 @@ return {
             local nl = require("null-ls")
             return nl.setup {
                 sources = { nl.builtins.formatting.fnlfmt },
-                on_attach = function(client, buffer)
+                on_attach = function(_, buffer)
                     vim.keymap.set({ "n", "v" },
                         "<space>fm",
                         vim.lsp.buf.format,
