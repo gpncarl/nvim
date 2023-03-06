@@ -134,5 +134,4 @@ do
   end
   plugins = tbl_17_auto
 end
-local lazy = require("lazy")
-return lazy.setup(plugins)
+return plugins

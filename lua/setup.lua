@@ -1,5 +1,4 @@
 require("options")
-require("pluginlist")
 
 _G.dump = function(...)
     local objects = vim.tbl_map(vim.inspect, { ... })
@@ -69,4 +68,3 @@ vim.g.netrw_winsize = 20
 vim.g.netrw_altfile = true
 vim.g.loaded_netrw = true
 vim.g.loaded_netrwPlugin = true
-return vim.cmd.colorscheme("onedark")
