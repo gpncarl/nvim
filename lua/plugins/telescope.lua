@@ -34,7 +34,7 @@ local function config()
     local function nmap(...)
         return vim.keymap.set("n", ...)
     end
-    nmap("<space>o", fuzzy("treesitter"), { buffer = 0, desc = "fuzzy outline" })
+    nmap("<space>o", fuzzy("treesitter"), { desc = "fuzzy outline" })
     nmap("<space>ff", fuzzy("find_files"), { desc = "fuzzy files" })
     nmap("<space>gf", fuzzy("git_files", { show_untracked = false }), { desc = "fuzzy git files" })
     nmap("<space>m", fuzzy("oldfiles"), { desc = "fuzzy oldfiles" })
