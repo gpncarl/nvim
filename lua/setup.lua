@@ -1,7 +1,3 @@
-_G.dump = function(...)
-    local objects = vim.tbl_map(vim.inspect, { ... })
-    return print(unpack(objects))
-end
 local function switchHeader()
     local alt_exts = {
         c = { "h" },
@@ -25,14 +21,7 @@ local function switchHeader()
     end
 end
 
-local function _2_()
-    vim.opt.hlsearch = true
-    return nil
-end
-
-vim.api.nvim_create_autocmd("FileType", { pattern = { "text" }, callback = _2_ })
 vim.api.nvim_create_autocmd("QuickFixCmdPre", { command = "packadd cfilter" })
-vim.keymap.set("n", "<space>sd", "<Cmd>!sdcv <cword><CR>", { desc = "sdcv dict" })
 vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
 vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
 vim.keymap.set("n",
