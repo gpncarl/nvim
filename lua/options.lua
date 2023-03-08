@@ -31,15 +31,15 @@ vim.opt.splitright = true
 vim.opt.hidden = true
 vim.opt.showmatch = true
 vim.opt.breakindentopt = "shift:4"
-vim.opt.cinoptions = "l1,N-s,E-s,t0,(0,w1,W4"
+vim.opt.cinoptions = { "l1", "N-s", "E-s", "t0", "(0", "w1", "W4" }
 vim.opt.showbreak = "↪ "
 vim.opt.virtualedit = "block"
 vim.opt.background = "dark"
 vim.opt.guifont = "FiraCode Nerd Font Mono:h14"
-vim.opt.completeopt = "menuone,noinsert,noselect"
+vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
 vim.opt.grepprg = "rg --vimgrep --no-heading"
-vim.opt.grepformat = "%f:%l:%c:%m,%f+%l+%c+%m,%-G%f|%l|%c|%m"
-vim.opt.shortmess:append({I = true})
-vim.opt.cpoptions:append({n = true})
+vim.opt.grepformat = { "%f:%l:%c:%m", "%f+%l+%c+%m", "%-G%f|%l|%c|%m" }
+vim.opt.shortmess:append({ I = true })
+vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
