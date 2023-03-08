@@ -86,11 +86,12 @@ return {
     },
     {
         "ggandor/leap.nvim",
-        lazy = true,
-        dependencies = { "vim-repeat", "leap-spooky" },
+        lazy = false,
+        dependencies = { "vim-repeat", "leap-spooky.nvim" },
         config = function()
             local l = require("leap")
-            return l.add_default_mappings()
+            l.opts.safe_labels = {}
+            l.add_default_mappings()
         end
     },
     {
