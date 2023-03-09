@@ -1,4 +1,4 @@
-local function lsp_config()
+local function mason_lsp_config()
     local lspconfig = require("lspconfig")
     local function on_attach(client, bufnr)
         local function ref(opts)
@@ -9,7 +9,8 @@ local function lsp_config()
         vim.keymap.set("n", "<space>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
         vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
         if (client.name == "clangd") then
-            return vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>", { buffer = bufnr, desc = "switch header" })
+            return vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+                { buffer = bufnr, desc = "switch header" })
         end
     end
     local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -31,29 +32,35 @@ local function lsp_config()
                 signs = true,
                 update_in_insert = false
             })
-    lspconfig.hls.setup({ autostart = true, on_attach = on_attach })
-    lspconfig.pylsp.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
-    lspconfig.clangd.setup({
-        autostart = true,
-        filetypes = { "c", "cpp" },
-        on_attach = on_attach,
-        capabilities = capabilities
+    require("mason-lspconfig").setup({
+        ensure_installed = { "clangd", "pylsp", "lua_ls" }
     })
-    lspconfig.rust_analyzer.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
-    lspconfig.gopls.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
-    lspconfig.lua_ls.setup({
-        autostart = true,
-        on_attach = on_attach,
-        capabilities = capabilities,
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { 'vim' }
+    require("mason-lspconfig").setup_handlers {
+        -- The first entry (without a key) will be the default handler
+        -- and will be called for each installed server that doesn't have
+        -- a dedicated handler.
+        function(server_name) -- default handler (optional)
+            require("lspconfig")[server_name].setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            }
+        end,
+        -- Next, you can provide a dedicated handler for specific servers.
+        -- For example, a handler override for the `rust_analyzer`:
+        ["lua_ls"] = function()
+            lspconfig.lua_ls.setup {
+                on_attach = on_attach,
+                capabilities = capabilities,
+                settings = {
+                    Lua = {
+                        diagnostics = {
+                            globals = { 'vim' }
+                        }
+                    }
                 }
             }
-        }
-    })
-    return lspconfig.neocmake.setup({ autostart = true, on_attach = on_attach, capabilities = capabilities })
+        end
+    }
 end
 
 return {
@@ -66,11 +73,7 @@ return {
             return vim.keymap.set("n", "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "toggle troube" })
         end
     },
-    {
-        "neovim/nvim-lspconfig",
-        lazy = false,
-        config = lsp_config
-    },
+    { "neovim/nvim-lspconfig" },
     {
         "williamboman/mason.nvim",
         config = function()
@@ -80,10 +83,7 @@ return {
     {
         "williamboman/mason-lspconfig.nvim",
         dependencies = { "mason.nvim", "nvim-lspconfig" },
-        config = function()
-            local m = require("mason-lspconfig")
-            return m.setup {}
-        end
+        config = mason_lsp_config
     },
     {
         "jay-babu/mason-null-ls.nvim",
