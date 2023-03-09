@@ -33,7 +33,7 @@ local function mason_lsp_config()
                 update_in_insert = false
             })
     require("mason-lspconfig").setup({
-        ensure_installed = { "clangd", "pylsp", "lua_ls" }
+        ensure_installed = { "clangd", "lua_ls" }
     })
     require("mason-lspconfig").setup_handlers {
         -- The first entry (without a key) will be the default handler

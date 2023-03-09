@@ -7,8 +7,7 @@ local function config()
     local ts = require("nvim-treesitter.configs")
 
     ts.setup({
-        ensure_installed = { "bash", "lua", "json", "c", "cpp", "python", "haskell", "vim", "cmake", "make", "comment",
-            "fennel" },
+        ensure_installed = { "bash", "lua", "json", "c", "cpp", "python", "vim", "cmake", "make", "comment" },
         indent = { enable = false },
         matchup = { enable = true, disable = {} },
         highlight = { enable = true, use_languagetree = true },
