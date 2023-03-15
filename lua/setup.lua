@@ -38,6 +38,7 @@ vim.keymap.set("n",
     { desc = "goto next diagnostic" })
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
 vim.keymap.set("n", "<leader>g", vim.diagnostic.setqflist, { desc = "goto define" })
+vim.keymap.set("n", "<BS>", "<cmd>noh<cr>", { desc = "no hlsearch" })
 
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 vim.g.netrw_winsize = 20
