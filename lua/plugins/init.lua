@@ -6,6 +6,8 @@ return {
         keys = { "`", "'", "\"", "<space>", "<leader>" },
         opts = {
             plugins = {
+                marks = false,
+                registers = false,
                 presets = {
                     motions = false,
                     text_objects = false,
