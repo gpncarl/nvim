@@ -1,6 +1,7 @@
 local function mason_lsp_config()
     local lspconfig = require("lspconfig")
     local function on_attach(client, bufnr)
+        vim.bo[bufnr].tagfunc = nil
         local function ref(opts)
             return vim.lsp.buf.references(opts, nil)
         end
@@ -76,6 +77,7 @@ return {
     { "neovim/nvim-lspconfig" },
     {
         "williamboman/mason.nvim",
+        build = ":MasonUpdate",
         config = function()
             require("mason").setup {}
         end
