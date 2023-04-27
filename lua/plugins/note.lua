@@ -6,11 +6,11 @@ return {
         opts = {
             load = {
                     ["core.defaults"] = {},
-                    ["core.norg.concealer"] = {},
-                    ["core.norg.manoeuvre"] = {},
-                    ["core.norg.journal"] = { config = { workspace = "journal" } },
-                    ["core.norg.completion"] = { config = { engine = "nvim-cmp" } },
-                    ["core.norg.dirman"] = {
+                    ["core.concealer"] = {},
+                    ["core.manoeuvre"] = {},
+                    ["core.journal"] = { config = { workspace = "journal" } },
+                    ["core.completion"] = { config = { engine = "nvim-cmp" } },
+                    ["core.dirman"] = {
                     config = {
                         workspaces = {
                             my_workspace = "~/shared/neorg",
