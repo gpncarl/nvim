@@ -79,7 +79,7 @@ return {
     { "rafamadriz/friendly-snippets", lazy = true },
     {
         "tzachar/cmp-tabnine",
-        build = "./install.sh",
+        build = "bash install.sh",
         lazy = true
     },
     {
