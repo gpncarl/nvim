@@ -30,7 +30,7 @@ local function config()
                 },
                 keymaps = {
                     af = "@function.outer",
-                        ["if"] = "@function.inner",
+                    ["if"] = "@function.inner",
                     ac = "@class.outer",
                     ic = "@class.inner"
                 }

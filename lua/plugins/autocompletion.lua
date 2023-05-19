@@ -12,14 +12,14 @@ local function cmp_config()
         },
 
         mapping = {
-                ['<C-p>'] = cmp.mapping.select_prev_item(),
-                ['<C-n>'] = cmp.mapping.select_next_item(),
-                ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-                ['<C-d>'] = cmp.mapping.scroll_docs(4),
-                ['<C-Space>'] = cmp.mapping.complete(),
-                ['<C-e>'] = cmp.mapping.close(),
-                ['<CR>'] = cmp.mapping.confirm({ select = false, }),
-                ["<C-j>"] = cmp.mapping(function(fallback)
+            ['<C-p>'] = cmp.mapping.select_prev_item(),
+            ['<C-n>'] = cmp.mapping.select_next_item(),
+            ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+            ['<C-d>'] = cmp.mapping.scroll_docs(4),
+            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-e>'] = cmp.mapping.close(),
+            ['<CR>'] = cmp.mapping.confirm({ select = false }),
+            ["<C-j>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.close()
                 end
@@ -27,7 +27,7 @@ local function cmp_config()
                     luasnip.jump(1)
                 end
             end, { "i", "s" }),
-                ["<C-k>"] = cmp.mapping(function(fallback)
+            ["<C-k>"] = cmp.mapping(function(fallback)
                 if cmp.visible() then
                     cmp.close()
                 end
@@ -51,12 +51,12 @@ local function cmp_config()
                 vim_item.kind = require("lspkind").presets.default[vim_item.kind]
                 vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
                 vim_item.menu = ({
-                        buffer = "[B]",
-                        path = "[P]",
-                        luasnip = "[S]",
-                        nvim_lsp = "[L]",
-                        cmp_tabnine = "[T]"
-                    })[entry.source.name]
+                    buffer = "[B]",
+                    path = "[P]",
+                    luasnip = "[S]",
+                    nvim_lsp = "[L]",
+                    cmp_tabnine = "[T]"
+                })[entry.source.name]
                 return vim_item
             end,
         },

@@ -1,8 +1,8 @@
 return {
-    {"nvim-lua/popup.nvim", lazy = true },
-    {"nvim-tree/nvim-web-devicons", lazy = true },
-    {"MunifTanjim/nui.nvim", lazy = true },
-    {"rcarriga/nvim-notify", lazy = true, opts = { top_down = false } },
+    { "nvim-lua/popup.nvim",         lazy = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { "MunifTanjim/nui.nvim",        lazy = true },
+    { "rcarriga/nvim-notify",        lazy = true, opts = { top_down = false } },
     {
         "folke/noice.nvim",
         lazy = true,

@@ -3,6 +3,7 @@ return {
     { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
     {
         "folke/which-key.nvim",
+        cond = false,
         keys = { "`", "'", "\"", "<space>", "<leader>" },
         opts = {
             plugins = {
