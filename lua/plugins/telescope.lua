@@ -57,7 +57,8 @@ return {
     { "nvim-telescope/telescope-ui-select.nvim", lazy = true },
     {
         "nvim-telescope/telescope.nvim",
-        keys = "<space>",
+        -- keys = "<space>",
+        event = "VeryLazy",
         dependencies = {
             "nvim-telescope/telescope-fzf-native.nvim",
             "nvim-telescope/telescope-ui-select.nvim",

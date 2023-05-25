@@ -3,8 +3,8 @@ return {
     { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
     {
         "folke/which-key.nvim",
-        cond = false,
-        keys = { "`", "'", "\"", "<space>", "<leader>" },
+        lazy = true,
+        -- keys = { "`", "'", "\"", "<space>", "<leader>" },
         opts = {
             plugins = {
                 marks = false,
@@ -19,7 +19,7 @@ return {
     },
     {
         "tiagovla/scope.nvim",
-        cond = false,
+        lazy = true,
         opts = {
             restore_state = false, -- experimental
         }
