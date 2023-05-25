@@ -38,4 +38,10 @@ return {
         "hoob3rt/lualine.nvim",
         config = config
     },
+    {
+        "akinsho/bufferline.nvim",
+        cond = false,
+        dependencies = "nvim-web-devicons",
+        opts = {}
+    }
 }
