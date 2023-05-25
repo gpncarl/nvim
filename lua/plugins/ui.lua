@@ -5,7 +5,7 @@ return {
     { "rcarriga/nvim-notify",        lazy = true, opts = { top_down = false } },
     {
         "folke/noice.nvim",
-        lazy = true,
+        -- lazy = true,
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",

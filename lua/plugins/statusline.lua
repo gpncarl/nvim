@@ -10,7 +10,7 @@ local function config()
             ignore_focus = {},
             always_divide_middle = true,
             refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-            globalstatus = false
+            globalstatus = true
         },
         sections = {
             lualine_a = { "mode" },
