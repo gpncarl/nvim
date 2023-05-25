@@ -4,7 +4,7 @@ return {
         cond = function()
             return (vim.fn.argc() == 0)
         end,
-        dependencies = { "nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local alpha = require("alpha")
             local startify = require("alpha.themes.startify")

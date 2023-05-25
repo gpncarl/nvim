@@ -7,12 +7,15 @@ return {
         "folke/noice.nvim",
         lazy = true,
         dependencies = {
-            "nvim-notify", "nui.nvim", "nvim-treesitter" },
-        config = true
+            "rcarriga/nvim-notify",
+            "MunifTanjim/nui.nvim",
+            "nvim-treesitter/nvim-treesitter"
+        },
+        opts = {}
     },
     {
         "stevearc/dressing.nvim",
         lazy = true,
-        dependencies = { "telescope.nvim" }
+        dependencies = { "nvim-telescope/telescope.nvim" }
     },
 }

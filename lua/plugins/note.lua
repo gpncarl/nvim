@@ -1,7 +1,7 @@
 return {
     {
         "nvim-neorg/neorg",
-        dependencies = { "nvim-treesitter" },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             lazy_loading = true,
             load = {

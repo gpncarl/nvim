@@ -87,15 +87,23 @@ return {
     {
         "ggandor/leap.nvim",
         lazy = false,
-        dependencies = { "vim-repeat", "leap-spooky.nvim" },
+        dependencies = { "tpope/vim-repeat", "ggandor/leap-spooky.nvim" },
         config = function()
             local l = require("leap")
             l.opts.safe_labels = {}
             l.add_default_mappings()
         end
     },
-    { "ggandor/leap-spooky.nvim", lazy = true, config = true },
-    { "ggandor/flit.nvim",        lazy = true, config = true },
+    {
+        "ggandor/leap-spooky.nvim",
+        lazy = true,
+        opts = {}
+    },
+    {
+        "ggandor/flit.nvim",
+        lazy = true,
+        opts = {}
+    },
     {
         "chaoren/vim-wordmotion",
         event = "ModeChanged *:no",

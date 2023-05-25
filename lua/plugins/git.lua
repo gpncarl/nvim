@@ -11,13 +11,13 @@ return {
     {
         "sindrets/diffview.nvim",
         event = "CmdlineEnter",
-        dependencies = { "nvim-web-devicons" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {}
     },
     {
         "TimUntersberger/neogit",
         cmd = "Neogit",
-        dependencies = { "plenary.nvim", "diffview.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim", "sindrets/diffview.nvim" },
         opts = {}
     }
 }

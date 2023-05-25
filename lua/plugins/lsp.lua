@@ -87,21 +87,23 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = { "mason.nvim", "nvim-lspconfig", "neodev.nvim", "neoconf.nvim" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "neovim/nvim-lspconfig",
+            "folke/neodev.nvim",
+            "folke/neoconf.nvim"
+        },
         config = mason_lsp_config
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        dependencies = { "mason.nvim", "null-ls.nvim" },
-        config = function()
-            local m = require("mason-null-ls")
-            return m.setup({})
-        end
+        dependencies = { "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
+        opts = {}
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
         event = "VeryLazy",
-        dependencies = { "plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local nl = require("null-ls")
             return nl.setup {
@@ -118,7 +120,11 @@ return {
             }
         end
     },
-    { "j-hui/fidget.nvim",    event = "LspAttach", config = true },
+    {
+        "j-hui/fidget.nvim",
+        event = "LspAttach",
+        opts = {}
+    },
     { "folke/neodev.nvim",    opts = {} },
     { "folke/neoconf.nvim",   opts = {} }
 }

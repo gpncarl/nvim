@@ -59,9 +59,9 @@ return {
         "nvim-telescope/telescope.nvim",
         keys = "<space>",
         dependencies = {
-            "telescope-fzf-native.nvim",
-            "telescope-ui-select.nvim",
-            "harpoon"
+            "nvim-telescope/telescope-fzf-native.nvim",
+            "nvim-telescope/telescope-ui-select.nvim",
+            "ThePrimeagen/harpoon"
         },
         config = config
     }

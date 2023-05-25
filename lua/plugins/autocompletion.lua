@@ -85,12 +85,12 @@ return {
     {
         "saadparwaiz1/cmp_luasnip",
         lazy = true,
-        dependencies = { "LuaSnip" }
+        dependencies = { "L3MON4D3/LuaSnip" }
     },
     {
         "L3MON4D3/LuaSnip",
         lazy = true,
-        dependencies = { "friendly-snippets" },
+        dependencies = { "rafamadriz/friendly-snippets" },
         config = function()
             local loader = require("luasnip/loaders/from_vscode")
             local ls = require("luasnip")
@@ -101,14 +101,20 @@ return {
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
-        dependencies = { "lspkind-nvim", "cmp-path", "cmp-buffer",
-            "cmp-tabnine", "cmp_luasnip", "cmp-nvim-lsp" },
+        dependencies = {
+            "onsails/lspkind-nvim",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-buffer",
+            "tzachar/cmp-tabnine",
+            "saadparwaiz1/cmp_luasnip",
+            "hrsh7th/cmp-nvim-lsp"
+        },
         config = cmp_config
     },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
-        dependencies = { "nvim-cmp" },
+        dependencies = { "hrsh7th/nvim-cmp" },
         config = function()
             local ap = require("nvim-autopairs")
             local cmp_autopairs = require("nvim-autopairs.completion.cmp")

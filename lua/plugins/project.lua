@@ -2,7 +2,7 @@ return {
     {
         "ThePrimeagen/harpoon",
         keys = "<space>",
-        dependencies = { "plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             vim.keymap.set("n", "<space>ha",
                 function() require("harpoon.mark").add_file() end,

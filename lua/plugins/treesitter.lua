@@ -50,11 +50,11 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         event = "ModeChanged *:no",
         keys = { "[", "]" },
-        dependencies = { "nvim-treesitter" }
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
         lazy = true,
-        dependencies = { "nvim-treesitter" }
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
 }
