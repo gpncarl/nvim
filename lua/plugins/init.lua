@@ -17,4 +17,11 @@ return {
             }
         }
     },
+    {
+        "tiagovla/scope.nvim",
+        cond = false,
+        opts = {
+            restore_state = false, -- experimental
+        }
+    }
 }
