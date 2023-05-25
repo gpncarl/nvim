@@ -105,11 +105,12 @@ return {
         opts = {}
     },
     {
-        "chaoren/vim-wordmotion",
-        event = "ModeChanged *:no",
-        keys = { "<leader>w", "<leader>b", "<leader>e", "<leader>ge" },
+        "bkad/CamelCaseMotion",
+        -- event = "ModeChanged *:no",
+        -- keys = { "<leader>w", "<leader>b", "<leader>e", "<leader>ge" },
         init = function()
-            vim.g.wordmotion_prefix = "<leader>"
+            vim.g.camelcasemotion_key = "<leader>"
+            return nil
         end
     },
 }
