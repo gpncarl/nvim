@@ -14,17 +14,18 @@ local function config()
             mappings = { i = { ["<C-_>"] = actions.toggle_preview } },
             sorting_strategy = "ascending",
             layout_strategy = "horizontal",
-            layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
+            -- layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
+            layout_config = { prompt_position = "top", mirror = true, anchor = "N" },
             border = true,
             preview = { hide_on_startup = true }
         }
     }
 
     telescope.load_extension("fzf")
-    telescope.load_extension("ui-select")
+    -- telescope.load_extension("ui-select")
     telescope.load_extension("harpoon")
     local function fuzzy(name, opts)
-        local default_opts = { push_cursor_on_edit = true, winblend = 10 }
+        local default_opts = require("telescope.themes").get_dropdown({ push_cursor_on_edit = true, winblend = 10 })
         local builtin = require("telescope.builtin")
         local result = vim.tbl_extend("keep", (opts or {}), default_opts)
         return function(...)
@@ -39,8 +40,8 @@ local function config()
     nmap("<space>gf", fuzzy("git_files", { show_untracked = false }), { desc = "fuzzy git files" })
     nmap("<space>m", fuzzy("oldfiles"), { desc = "fuzzy oldfiles" })
     nmap("<space>b", fuzzy("buffers"), { desc = "fuzzy buffers" })
-    nmap("<leader>r", fuzzy("grep_string"), { desc = "fuzzy string" })
-    nmap("<space>r", fuzzy("live_grep"), { desc = "live fuzzy string" })
+    nmap("<leader>gr", fuzzy("grep_string"), { desc = "fuzzy string" })
+    nmap("<space>gr", fuzzy("live_grep"), { desc = "live fuzzy string" })
     nmap("<space>j", fuzzy("jumplist"), { desc = "fuzzy jumplist" })
     nmap("<space>q", fuzzy("quickfix"), { desc = "fuzzy quickfix" })
     nmap("<space>l", fuzzy("loclist"), { desc = "fuzzy loclist" })
@@ -61,7 +62,7 @@ return {
         event = "VeryLazy",
         dependencies = {
             "nvim-telescope/telescope-fzf-native.nvim",
-            "nvim-telescope/telescope-ui-select.nvim",
+            -- "nvim-telescope/telescope-ui-select.nvim",
             "ThePrimeagen/harpoon"
         },
         config = config

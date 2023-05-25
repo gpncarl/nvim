@@ -126,5 +126,14 @@ return {
         opts = {}
     },
     { "folke/neodev.nvim",    opts = {} },
-    { "folke/neoconf.nvim",   opts = {} }
+    { "folke/neoconf.nvim",   opts = {} },
+    {
+        "smjonas/inc-rename.nvim",
+        keys = { "<leader>rn" },
+        config = function()
+            require "inc_rename".setup {}
+            vim.keymap.set("n", "<leader>rn", ":IncRename ")
+        end
+    }
+
 }

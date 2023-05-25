@@ -62,7 +62,7 @@ local function cmp_config()
         },
 
         view = {
-            entries = "native",
+            -- entries = "native",
         },
 
         experimental = {
