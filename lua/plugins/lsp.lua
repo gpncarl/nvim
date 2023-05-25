@@ -87,7 +87,7 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = { "mason.nvim", "nvim-lspconfig", "neodev.nvim" },
+        dependencies = { "mason.nvim", "nvim-lspconfig", "neodev.nvim", "neoconf.nvim" },
         config = mason_lsp_config
     },
     {
@@ -118,6 +118,7 @@ return {
             }
         end
     },
-    { "j-hui/fidget.nvim", event = "LspAttach", config = true },
-    { "folke/neodev.nvim", opts = {} }
+    { "j-hui/fidget.nvim",    event = "LspAttach", config = true },
+    { "folke/neodev.nvim",    opts = {} },
+    { "folke/neoconf.nvim",   opts = {} }
 }
