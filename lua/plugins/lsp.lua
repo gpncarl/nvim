@@ -101,8 +101,7 @@ return {
     {
         "jose-elias-alvarez/null-ls.nvim",
         event = "VeryLazy",
-        dependencies = {
-            "plenary.nvim" },
+        dependencies = { "plenary.nvim" },
         config = function()
             local nl = require("null-ls")
             return nl.setup {
