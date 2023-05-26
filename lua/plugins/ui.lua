@@ -4,7 +4,13 @@ return {
     { "MunifTanjim/nui.nvim",        lazy = true },
     { "rcarriga/nvim-notify",        lazy = true, opts = { top_down = false } },
     {
+        'stevearc/stickybuf.nvim',
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
         "folke/noice.nvim",
+        event = "VeryLazy",
         -- lazy = true,
         dependencies = {
             "rcarriga/nvim-notify",
@@ -27,7 +33,7 @@ return {
             },
             presets = {
                 bottom_search = false,         -- use a classic bottom cmdline for search
-                command_palette = true,       -- position the cmdline and popupmenu together
+                command_palette = true,        -- position the cmdline and popupmenu together
                 long_message_to_split = false, -- long messages will be sent to a split
                 inc_rename = true,             -- enables an input dialog for inc-rename.nvim
                 lsp_doc_border = true,         -- add a border to hover docs and signature help
@@ -37,6 +43,7 @@ return {
     {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
+        opts = {},
         dependencies = { "nvim-telescope/telescope.nvim" }
     },
 }

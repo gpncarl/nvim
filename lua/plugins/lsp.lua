@@ -7,7 +7,8 @@ local function mason_lsp_config()
         end
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
         vim.keymap.set("n", "gr", ref, { buffer = bufnr, desc = "goto ref" })
-        vim.keymap.set("n", "<space>a", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
+        vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
+        vim.keymap.set("n", "<space>ac", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
         vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
         if (client.name == "clangd") then
             return vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",

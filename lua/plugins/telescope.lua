@@ -45,6 +45,9 @@ local function config()
     nmap("<space>j", fuzzy("jumplist"), { desc = "fuzzy jumplist" })
     nmap("<space>q", fuzzy("quickfix"), { desc = "fuzzy quickfix" })
     nmap("<space>l", fuzzy("loclist"), { desc = "fuzzy loclist" })
+    nmap("<space>re", fuzzy("resume"), { desc = "fuzzy resume" })
+    nmap("<space>ab", fuzzy("builtin"), { desc = "fuzzy all built-in" })
+    nmap("<space>ap", fuzzy("pickers"), { desc = "fuzzy all pickers" })
     nmap("<space>ht", function() telescope.extensions.harpoon.marks() end, { desc = "fuzzy harpoon marks" })
 end
 
