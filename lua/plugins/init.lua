@@ -1,6 +1,7 @@
 return {
     { "nvim-lua/plenary.nvim",           lazy = true },
     { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
+    { "kevinhwang91/promise-async",      lazy = true },
     {
         "folke/which-key.nvim",
         lazy = true,

@@ -26,6 +26,10 @@ local function mason_lsp_config()
         tagSupport = { valueSet = { 1 } },
         resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } }
     }
+    capabilities.textDocument.foldingRange = {
+        dynamicRegistration = false,
+        lineFoldingOnly = true
+    }
     vim.lsp.handlers["textDocument/publishDiagnostics"] =
         vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
             {
