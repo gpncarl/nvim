@@ -1,4 +1,4 @@
-vim.opt.cmdheight = 1
+vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
 vim.opt.fixendofline = false
 vim.opt.scrolloff = 10

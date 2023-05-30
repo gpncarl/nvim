@@ -10,8 +10,8 @@ return {
     },
     {
         "folke/noice.nvim",
-        event = "VeryLazy",
-        -- lazy = true,
+        -- event = "VeryLazy",
+        lazy = true,
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",
@@ -44,6 +44,5 @@ return {
         "stevearc/dressing.nvim",
         event = "VeryLazy",
         opts = {},
-        dependencies = { "nvim-telescope/telescope.nvim" }
     },
 }
