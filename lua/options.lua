@@ -43,9 +43,7 @@ vim.opt.shortmess:append({ I = true })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
-vim.opt.fillchars = { eob = " "}
-vim.opt.foldcolumn = '1' -- '0' is not bad
-vim.opt.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
+vim.opt.foldcolumn = '0'
+vim.opt.foldlevelstart = 5
+vim.opt.foldenable = false
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }

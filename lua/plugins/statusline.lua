@@ -44,5 +44,10 @@ return {
         lazy = true,
         dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {}
+    },
+    {
+        "Bekaboo/dropbar.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        opts = {}
     }
 }
