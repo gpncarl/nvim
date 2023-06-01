@@ -51,6 +51,13 @@ local function mason_lsp_config()
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
+        clangd = function()
+            local opts = require("clangd_extensions").prepare {
+                on_attach = on_attach,
+                capabilities = capabilities,
+            }
+            lspconfig.clangd.setup(opts)
+        end,
         lua_ls = function()
             lspconfig.lua_ls.setup {
                 on_attach = on_attach,
@@ -96,7 +103,8 @@ return {
             "williamboman/mason.nvim",
             "neovim/nvim-lspconfig",
             "folke/neodev.nvim",
-            "folke/neoconf.nvim"
+            "folke/neoconf.nvim",
+            "p00f/clangd_extensions.nvim"
         },
         config = mason_lsp_config
     },
@@ -139,6 +147,7 @@ return {
             require "inc_rename".setup {}
             vim.keymap.set("n", "<leader>rn", ":IncRename ")
         end
-    }
+    },
+    { "p00f/clangd_extensions.nvim" }
 
 }
