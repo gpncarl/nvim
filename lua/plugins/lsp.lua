@@ -10,8 +10,11 @@ local function mason_lsp_config()
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
         vim.keymap.set("n", "<space>ac", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
         vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
-        if (client.name == "clangd") then
-            return vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+
+        if client.server_capabilities.documentSymbolProvider then
+            require("nvim-navic").attach(client, bufnr)
+            require("nvim-navbuddy").attach(client, bufnr)
+            vim.keymap.set("n", "<space>o", require("nvim-navbuddy").open,
                 { buffer = bufnr, desc = "switch header" })
         end
     end
@@ -54,7 +57,11 @@ local function mason_lsp_config()
         clangd = function()
             local opts = require("clangd_extensions").prepare {
                 server = {
-                    on_attach = on_attach,
+                    on_attach = function(client, bufnr)
+                        on_attach(client, bufnr)
+                        vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+                            { buffer = bufnr, desc = "switch header" })
+                    end,
                     capabilities = capabilities,
                 }
             }
@@ -91,7 +98,7 @@ return {
             return vim.keymap.set("n", "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "toggle troube" })
         end
     },
-    { "neovim/nvim-lspconfig" },
+    { "neovim/nvim-lspconfig", lazy = true },
     {
         "williamboman/mason.nvim",
         build = ":MasonUpdate",
@@ -103,10 +110,8 @@ return {
         "williamboman/mason-lspconfig.nvim",
         dependencies = {
             "williamboman/mason.nvim",
-            "neovim/nvim-lspconfig",
             "folke/neodev.nvim",
             "folke/neoconf.nvim",
-            "p00f/clangd_extensions.nvim"
         },
         config = mason_lsp_config
     },
@@ -118,7 +123,6 @@ return {
     {
         "jose-elias-alvarez/null-ls.nvim",
         event = "VeryLazy",
-        dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             local nl = require("null-ls")
             return nl.setup {
@@ -140,8 +144,8 @@ return {
         event = "LspAttach",
         opts = {}
     },
-    { "folke/neodev.nvim",    opts = {} },
-    { "folke/neoconf.nvim",   opts = {} },
+    { "folke/neodev.nvim",     opts = {} },
+    { "folke/neoconf.nvim",    opts = {} },
     {
         "smjonas/inc-rename.nvim",
         keys = { "<leader>rn" },
@@ -150,6 +154,6 @@ return {
             vim.keymap.set("n", "<leader>rn", ":IncRename ")
         end
     },
-    { "p00f/clangd_extensions.nvim" }
+    { "p00f/clangd_extensions.nvim", lazy = true }
 
 }

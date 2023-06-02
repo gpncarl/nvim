@@ -5,4 +5,9 @@ return {
         opts = {},
     },
     { "preservim/tagbar", lazy = true },
+    {
+        "SmiteshP/nvim-navbuddy",
+        lazy = true,
+        opts = {}
+    }
 }

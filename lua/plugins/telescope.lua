@@ -11,11 +11,12 @@ local function config()
             }
         },
         defaults = {
-            mappings = { i = { ["<C-_>"] = actions.toggle_preview } },
+            mappings = { i = { ["<C-/>"] = actions.toggle_preview } },
             sorting_strategy = "ascending",
-            layout_strategy = "horizontal",
+            -- layout_strategy = "horizontal",
             -- layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
-            layout_config = { prompt_position = "top", mirror = true, anchor = "N" },
+            layout_config = { prompt_position = "top" },
+            -- layout_config = { prompt_position = "top", mirror = true, anchor = "N" },
             border = true,
             preview = { hide_on_startup = true }
         }
@@ -25,7 +26,8 @@ local function config()
     -- telescope.load_extension("ui-select")
     telescope.load_extension("harpoon")
     local function fuzzy(name, opts)
-        local default_opts = require("telescope.themes").get_dropdown({ push_cursor_on_edit = true, winblend = 10 })
+        -- local default_opts = require("telescope.themes").get_dropdown({ push_cursor_on_edit = true, winblend = 10 })
+        local default_opts = {}
         local builtin = require("telescope.builtin")
         local result = vim.tbl_extend("keep", (opts or {}), default_opts)
         return function(...)
@@ -35,7 +37,7 @@ local function config()
     local function nmap(...)
         return vim.keymap.set("n", ...)
     end
-    nmap("<space>o", function() fuzzy("treesitter") { buffer = 0 } end, { desc = "fuzzy outline" })
+    nmap("<space>fo", function() fuzzy("treesitter") { buffer = 0 } end, { desc = "fuzzy outline" })
     nmap("<space>ff", fuzzy("find_files"), { desc = "fuzzy files" })
     nmap("<space>gf", fuzzy("git_files", { show_untracked = false }), { desc = "fuzzy git files" })
     nmap("<space>m", fuzzy("oldfiles"), { desc = "fuzzy oldfiles" })

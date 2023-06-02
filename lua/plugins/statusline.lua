@@ -15,7 +15,7 @@ local function config()
         sections = {
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff", "diagnostics" },
-            lualine_c = { "filename" },
+            lualine_c = { "filename", { "navic", color_correction = nil, navic_opts = nil } },
             lualine_x = { "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" }
@@ -42,12 +42,45 @@ return {
     {
         "akinsho/bufferline.nvim",
         lazy = true,
-        dependencies = { "nvim-tree/nvim-web-devicons" },
         opts = {}
     },
     {
         "Bekaboo/dropbar.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
+        lazy = true,
         opts = {}
+    },
+    {
+        "SmiteshP/nvim-navic",
+        lazy = true,
+        opts = {
+            icons = {
+                File = ' ',
+                Module = ' ',
+                Namespace = ' ',
+                Package = ' ',
+                Class = ' ',
+                Method = ' ',
+                Property = ' ',
+                Field = ' ',
+                Constructor = ' ',
+                Enum = ' ',
+                Interface = ' ',
+                Function = ' ',
+                Variable = ' ',
+                Constant = ' ',
+                String = ' ',
+                Number = ' ',
+                Boolean = ' ',
+                Array = ' ',
+                Object = ' ',
+                Key = ' ',
+                Null = ' ',
+                EnumMember = ' ',
+                Struct = ' ',
+                Event = ' ',
+                Operator = ' ',
+                TypeParameter = ' '
+            }
+        }
     }
 }
