@@ -53,8 +53,10 @@ local function mason_lsp_config()
         -- For example, a handler override for the `rust_analyzer`:
         clangd = function()
             local opts = require("clangd_extensions").prepare {
-                on_attach = on_attach,
-                capabilities = capabilities,
+                server = {
+                    on_attach = on_attach,
+                    capabilities = capabilities,
+                }
             }
             lspconfig.clangd.setup(opts)
         end,
