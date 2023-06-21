@@ -11,11 +11,11 @@ local function config()
             }
         },
         defaults = {
-            mappings = { i = { ["<C-/>"] = actions.toggle_preview } },
+            mappings = { i = { ["<C-_>"] = actions.toggle_preview } },
             sorting_strategy = "ascending",
             -- layout_strategy = "horizontal",
             -- layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
-            layout_config = { prompt_position = "top" },
+            layout_config = { prompt_position = "top", preview_width = 0.6 },
             -- layout_config = { prompt_position = "top", mirror = true, anchor = "N" },
             border = true,
             preview = { hide_on_startup = true }
