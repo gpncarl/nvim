@@ -10,10 +10,8 @@ return {
         "folke/flash.nvim",
         event = "VeryLazy",
         opts = {
-            highlight = {
-                label = {
-                    after = {0, 3},
-                }
+            label = {
+                after = {0, 3},
             }
         },
         keys = {
