@@ -16,7 +16,7 @@ local function config()
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff", "diagnostics" },
             lualine_c = { "filename", { "navic", color_correction = nil, navic_opts = nil } },
-            lualine_x = { "encoding", "fileformat", "filetype" },
+            lualine_x = { "searchcount", "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" }
         },
