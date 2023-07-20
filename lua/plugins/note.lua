@@ -9,6 +9,7 @@ return {
                 ["core.concealer"] = {},
                 ["core.manoeuvre"] = {},
                 ["core.journal"] = { config = { workspace = "journal" } },
+                ["core.export"] = {},
                 ["core.completion"] = { config = { engine = "nvim-cmp" } },
                 ["core.dirman"] = {
                     config = {
