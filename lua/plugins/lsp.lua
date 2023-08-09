@@ -55,17 +55,16 @@ local function mason_lsp_config()
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
         clangd = function()
-            local opts = require("clangd_extensions").prepare {
-                server = {
-                    on_attach = function(client, bufnr)
-                        on_attach(client, bufnr)
-                        vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
-                            { buffer = bufnr, desc = "switch header" })
-                    end,
-                    capabilities = capabilities,
-                }
+            lspconfig.clangd.setup {
+                on_attach = function(client, bufnr)
+                    on_attach(client, bufnr)
+                    require("clangd_extensions.inlay_hints").setup_autocmd()
+                    require("clangd_extensions.inlay_hints").set_inlay_hints()
+                    vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+                        { buffer = bufnr, desc = "switch header" })
+                end,
+                capabilities = capabilities,
             }
-            lspconfig.clangd.setup(opts)
         end,
         lua_ls = function()
             lspconfig.lua_ls.setup {
