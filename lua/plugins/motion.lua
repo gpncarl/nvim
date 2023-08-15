@@ -1,17 +1,21 @@
 return {
     {
         "bkad/CamelCaseMotion",
-        event = {"ModeChanged *:no", "VeryLazy"},
+        event = { "ModeChanged *:no", "VeryLazy" },
         init = function()
             vim.g.camelcasemotion_key = "<leader>"
         end
     },
     {
         "folke/flash.nvim",
-        event = "VeryLazy",
+        event = "CmdlineEnter",
         opts = {
             label = {
-                after = {0, 3},
+                uppercase = false,
+                after = { 0, 3 },
+            },
+            modes = {
+                char = { enabled = false },
             }
         },
         keys = {
