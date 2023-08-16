@@ -45,4 +45,9 @@ return {
         event = "VeryLazy",
         opts = {},
     },
+    {
+        "folke/zen-mode.nvim",
+        cmd = "ZenMode",
+        opts = {}
+    }
 }

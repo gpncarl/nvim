@@ -5,7 +5,7 @@ local function config()
     local ts = require("nvim-treesitter.configs")
 
     ts.setup({
-        ensure_installed = { "bash", "lua", "json", "c", "cpp", "python", "vim", "cmake", "make", "comment" },
+        ensure_installed = { "bash", "lua", "c", "cpp", "python", "vim", "comment" },
         indent = { enable = false },
         matchup = { enable = true, disable = {} },
         highlight = { enable = true, use_languagetree = true },
@@ -14,6 +14,10 @@ local function config()
             highlight_current_scope = { enable = false },
             smart_rename = { enable = true, keymaps = { smart_rename = "<leader><leader>r" } },
             navigation = { enable = true }
+        },
+        context_commentstring = {
+            enable = true,
+            enable_autocmd = false,
         },
         textobjects = {
             select = {
@@ -41,6 +45,8 @@ end
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        event = { "BufReadPost", "BufNewFile" },
+        cmd = { "TSUpdateSync" },
         build = ":TSUpdate",
         config = config
     },
@@ -48,6 +54,11 @@ return {
         "nvim-treesitter/nvim-treesitter-textobjects",
         event = "ModeChanged *:no",
         keys = { "[", "]" },
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
+    },
+    {
+        "JoosepAlviste/nvim-ts-context-commentstring",
+        lazy = true,
         dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
     {

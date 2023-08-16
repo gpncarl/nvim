@@ -33,14 +33,14 @@ local function mason_lsp_config()
         dynamicRegistration = false,
         lineFoldingOnly = true
     }
-    vim.lsp.handlers["textDocument/publishDiagnostics"] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-            {
-                underline = true,
-                virtual_text = true,
-                signs = true,
-                update_in_insert = false
-            })
+    -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    --     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+    --         {
+    --             underline = true,
+    --             virtual_text = true,
+    --             signs = true,
+    --             update_in_insert = false
+    --         })
 
     local handlers = {
         -- The first entry (without a key) will be the default handler
@@ -140,6 +140,7 @@ return {
     },
     {
         "j-hui/fidget.nvim",
+        tag = "legacy",
         event = "LspAttach",
         opts = {}
     },

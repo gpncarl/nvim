@@ -2,6 +2,13 @@ return {
     { "nvim-lua/plenary.nvim",           lazy = true },
     { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
     {
+        "dstein64/vim-startuptime",
+        cmd = "StartupTime",
+        config = function()
+            vim.g.startuptime_tries = 10
+        end,
+    },
+    {
         "folke/which-key.nvim",
         lazy = true,
         -- keys = { "`", "'", "\"", "<space>", "<leader>" },
