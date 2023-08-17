@@ -1,4 +1,4 @@
-local function mason_lsp_config()
+local function lsp_setup()
     local lspconfig = require("lspconfig")
     local function on_attach(client, bufnr)
         vim.bo[bufnr].tagfunc = nil
@@ -90,6 +90,7 @@ end
 return {
     {
         "folke/trouble.nvim",
+        cmd = { "Trouble", "TroubleToggle", "TroubleClose", "TroubleRefresh" },
         keys = { "<leader>t" },
         config = function()
             local t = require("trouble")
@@ -97,9 +98,20 @@ return {
             return vim.keymap.set("n", "<leader>t", "<Cmd>TroubleToggle<CR>", { desc = "toggle troube" })
         end
     },
-    { "neovim/nvim-lspconfig", lazy = true },
+    {
+        "neovim/nvim-lspconfig",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "folke/neoconf.nvim",
+            "folke/neodev.nvim",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+        },
+        config = lsp_setup
+    },
     {
         "williamboman/mason.nvim",
+        cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
         build = ":MasonUpdate",
         config = function()
             require("mason").setup {}
@@ -107,21 +119,22 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        cmd = { "LspInstall", "LspUninstall" },
         dependencies = {
             "williamboman/mason.nvim",
             "folke/neodev.nvim",
             "folke/neoconf.nvim",
         },
-        config = mason_lsp_config
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        dependencies = { "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
+        cmd = { "NullLsInstall", "NullLsUninstall" },
         opts = {}
     },
     {
         "jose-elias-alvarez/null-ls.nvim",
-        event = "VeryLazy",
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
         config = function()
             local nl = require("null-ls")
             return nl.setup {
@@ -144,11 +157,21 @@ return {
         event = "LspAttach",
         opts = {}
     },
-    { "folke/neodev.nvim",     opts = {} },
-    { "folke/neoconf.nvim",    opts = {} },
+    {
+        "folke/neodev.nvim",
+        lazy = true,
+        opts = {}
+    },
+    {
+        "folke/neoconf.nvim",
+        cmd = "Neoconf",
+        dependencies = { "nvim-lspconfig" },
+        opts = {}
+    },
     {
         "smjonas/inc-rename.nvim",
         keys = { "<leader>rn" },
+        dependencies = { "nvim-lspconfig" },
         config = function()
             require "inc_rename".setup {}
             vim.keymap.set("n", "<leader>rn", ":IncRename ")

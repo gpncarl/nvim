@@ -61,17 +61,35 @@ vim.api.nvim_create_autocmd("QuickFixCmdPre", {
     command = "packadd cfilter"
 })
 
+HasStdin = false
+local stdin = vim.api.nvim_create_augroup('stdin', { clear = true })
+vim.api.nvim_create_autocmd("StdinReadPre", {
+    group = stdin,
+    callback = function()
+        HasStdin = true
+    end
+})
+
 local config = require "config"
 local enter = vim.api.nvim_create_augroup('enter', { clear = true })
 vim.api.nvim_create_autocmd("VimEnter", {
     group = enter,
     callback = function()
-        if vim.fn.argc() == 0 then
+        if HasStdin then
+            return
+        end
+
+        local argc = vim.fn.argc()
+        if argc == 0 then
             if config.dashboard == "alpha" then
                 vim.cmd "Alpha"
             elseif config.dashboard == "mini.starter" then
                 require "mini.starter".open()
             end
+        end
+
+        if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
+            vim.api.nvim_exec_autocmds("User", { pattern = "OpenDirectory" })
         end
     end
 })

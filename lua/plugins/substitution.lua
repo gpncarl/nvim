@@ -1,3 +1,3 @@
 return {
-    { "tpope/vim-abolish", event = "CmdlineEnter" },
+    { "tpope/vim-abolish", cmd = { "Abolish", "Subvert", "S" } },
 }

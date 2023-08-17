@@ -1,6 +1,7 @@
 return {
     {
         "ludovicchabant/vim-gutentags",
+        cmd = { "GutentagsUpdate", "GutentagsToggleEnabled" },
         init = function()
             vim.g.gutentags_enabled = false
             vim.g.gutentags_define_advanced_commands = true

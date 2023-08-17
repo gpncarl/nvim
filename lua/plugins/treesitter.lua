@@ -46,7 +46,7 @@ return {
     {
         "nvim-treesitter/nvim-treesitter",
         event = { "BufReadPost", "BufNewFile" },
-        cmd = { "TSUpdateSync" },
+        cmd = { "TSUpdateSync", "TSUpdate", "TSUninstall" },
         build = ":TSUpdate",
         config = config
     },

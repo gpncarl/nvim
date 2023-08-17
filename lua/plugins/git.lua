@@ -1,5 +1,29 @@
 return {
-    { "tpope/vim-fugitive", event = "CmdlineEnter" },
+    {
+        "tpope/vim-fugitive",
+        cmd = {
+            "G",
+            "Git",
+            "Ggrep",
+            "Git",
+            "Gclog",
+            "Gllog",
+            "Gcd",
+            "Glcd",
+            "Gedit",
+            "Gsplit",
+            "Gvsplit",
+            "Gtabedit",
+            "Gpedit",
+            "Gdrop",
+            "Gread",
+            "Gwrite",
+            "Gwq",
+            "Gdiffsplit",
+            "Gvdiffsplit",
+            "Ghdiffsplit",
+        }
+    },
     {
         "lewis6991/gitsigns.nvim",
         event = { "BufReadPre", "BufNewFile" },
@@ -18,7 +42,15 @@ return {
     },
     {
         "sindrets/diffview.nvim",
-        event = "CmdlineEnter",
+        cmd = {
+            "DiffviewOpen",
+            "DiffviewClose",
+            "DiffviewLog",
+            "DiffviewRefresh",
+            "DiffviewToggleFiles",
+            "DiffviewFocusFiles",
+            "DiffviewFileHistory",
+        },
         opts = {}
     },
     {

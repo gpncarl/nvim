@@ -1,11 +1,11 @@
 return {
     {
         "stevearc/oil.nvim",
-        config = function()
-            local oil = require("oil")
-            oil.setup {}
-            return vim.keymap.set("n", "-", oil.open, { desc = "Open parent directory" })
-        end
+        keys = {
+            { "-", [[<cmd>lua require("oil").open()<cr>]], mode = "n", desc = "Open parent directory" },
+        },
+        event = "User OpenDirectory",
+        opts = {}
     },
     {
         "nvim-neo-tree/neo-tree.nvim",
