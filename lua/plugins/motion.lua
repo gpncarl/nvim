@@ -1,10 +1,15 @@
 return {
     {
         "bkad/CamelCaseMotion",
-        event = { "ModeChanged *:no", "VeryLazy" },
-        init = function()
-            vim.g.camelcasemotion_key = "<leader>"
-        end
+        keys = {
+            { "<leader>w",  "<Plug>CamelCaseMotion_w",  desc = "camel case w" },
+            { "<leader>b",  "<Plug>CamelCaseMotion_b",  desc = "camel case b" },
+            { "<leader>e",  "<Plug>CamelCaseMotion_e",  desc = "camel case e" },
+            { "<leader>ge", "<Plug>CamelCaseMotion_ge", desc = "camel case ge" },
+            { "i<leader>w", "<Plug>CamelCaseMotion_iw", mode = { "x", "o" } },
+            { "i<leader>b", "<Plug>CamelCaseMotion_ib", mode = { "x", "o" } },
+            { "i<leader>e", "<Plug>CamelCaseMotion_ie", mode = { "x", "o" } },
+        },
     },
     {
         "folke/flash.nvim",
