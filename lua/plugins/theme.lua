@@ -1,7 +1,14 @@
+local config = require "config"
 return {
-    { "navarasu/onedark.nvim", lazy = true, priority = 1000 },
+    {
+        "navarasu/onedark.nvim",
+        cond = (config.colorscheme == "onedark"),
+        lazy = true,
+        priority = 1000
+    },
     {
         "ellisonleao/gruvbox.nvim",
+        cond = (config.colorscheme == "gruvbox"),
         lazy = true,
         priority = 1000,
         opts = {
@@ -12,7 +19,12 @@ return {
             inverse = true,
             contrast = "",
             overrides = {},
-            italic = false,
+            italic = {
+                strings = false,
+                comments = true,
+                folds = true,
+                operations = false,
+            },
             invert_selection = false,
             invert_signs = false,
             invert_tabline = false,

@@ -21,7 +21,6 @@ local function switchHeader()
     end
 end
 
-vim.api.nvim_create_autocmd("QuickFixCmdPre", { command = "packadd cfilter" })
 vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
 vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
 vim.keymap.set("n",
@@ -55,6 +54,27 @@ vim.diagnostic.config {
 
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
 vim.keymap.set("n", "<leader>g", vim.diagnostic.setqflist, { desc = "diagnostics" })
+
+local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
+vim.api.nvim_create_autocmd("QuickFixCmdPre", {
+    group = quickfix,
+    command = "packadd cfilter"
+})
+
+local config = require "config"
+local enter = vim.api.nvim_create_augroup('enter', { clear = true })
+vim.api.nvim_create_autocmd("VimEnter", {
+    group = enter,
+    callback = function()
+        if vim.fn.argc() == 0 then
+            if config.dashboard == "alpha" then
+                vim.cmd "Alpha"
+            elseif config.dashboard == "mini.starter" then
+                require "mini.starter".open()
+            end
+        end
+    end
+})
 
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 vim.g.netrw_winsize = 20

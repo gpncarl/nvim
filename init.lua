@@ -11,7 +11,13 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require"options"
-require"setup"
-require"lazy".setup("plugins")
-vim.cmd.colorscheme("onedark")
+require "options"
+require "setup"
+
+local theme = require "config".colorscheme
+require "lazy".setup("plugins", {
+    install = {
+        colorscheme = { theme }
+    }
+})
+vim.cmd.colorscheme(theme)

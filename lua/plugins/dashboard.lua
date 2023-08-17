@@ -1,9 +1,9 @@
+local config = require "config"
 return {
     {
         "goolord/alpha-nvim",
-        cond = function()
-            return (vim.fn.argc() == 0)
-        end,
+        cond = (config.dashboard == "alpha"),
+        cmd = { "Alpha", "AlphaRedraw" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local alpha = require("alpha")
@@ -12,4 +12,12 @@ return {
             return alpha.setup(startify.config)
         end
     },
+    {
+        "echasnovski/mini.starter",
+        cond = (config.dashboard == "mini.starter"),
+        lazy = true,
+        opts = {
+            autoopen = false,
+        }
+    }
 }
