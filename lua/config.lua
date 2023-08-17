@@ -10,4 +10,5 @@ return {
     popup_cmdline = false,
     popup_notify = false,
     undotree = false,
+    context = false,
 }

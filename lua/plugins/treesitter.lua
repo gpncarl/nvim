@@ -1,4 +1,5 @@
-local function config()
+local config = require "config"
+local function treesitter_config()
     vim.opt.foldmethod = "expr"
     vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 
@@ -48,7 +49,7 @@ return {
         event = { "BufReadPost", "BufNewFile" },
         cmd = { "TSUpdateSync", "TSUpdate", "TSUninstall" },
         build = ":TSUpdate",
-        config = config
+        config = treesitter_config
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
@@ -63,7 +64,8 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
-        lazy = true,
+        cond = config.context,
+        event = { "BufReadPost", "BufNewFile" },
         dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
 }
