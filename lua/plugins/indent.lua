@@ -1,7 +1,7 @@
 return {
     {
         "lukas-reineke/indent-blankline.nvim",
-        event = "BufReadPost",
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             char = "│",
             filetype_exclude = {
@@ -15,6 +15,7 @@ return {
                 "notify",
                 "toggleterm",
                 "lazyterm",
+                "fzf",
             },
             buftype_exclude = { "terminal" },
             show_trailing_blankline_indent = false,
@@ -23,7 +24,7 @@ return {
     },
     {
         "echasnovski/mini.indentscope",
-        event = { "BufReadPre", "BufNewFile" },
+        event = { "BufReadPost", "BufNewFile" },
         opts = {
             -- symbol = "▏",
             symbol = "│",
@@ -42,6 +43,7 @@ return {
                     "notify",
                     "toggleterm",
                     "lazyterm",
+                    "fzf",
                 },
                 callback = function()
                     vim.b.miniindentscope_disable = true

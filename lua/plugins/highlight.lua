@@ -1,3 +1,6 @@
 return {
-    { "RRethy/vim-illuminate", lazy = true },
+    {
+        "RRethy/vim-illuminate",
+        cmd = { "IlluminateToggle", "IlluminateToggleBuf" }
+    },
 }

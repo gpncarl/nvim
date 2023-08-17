@@ -1,3 +1,7 @@
+local config = require "config"
 return {
-    { "mbbill/undotree", lazy = true },
+    {
+        "mbbill/undotree",
+        cond = config.undotree
+    },
 }

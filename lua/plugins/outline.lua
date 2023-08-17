@@ -1,13 +1,16 @@
 return {
     {
         "stevearc/aerial.nvim",
-        cmd = "AerialToggle",
+        cmd = { "AerialToggle" },
         opts = {},
     },
-    { "preservim/tagbar", lazy = true },
+    {
+        "preservim/tagbar",
+        cmd = { "TagbarToggle" },
+    },
     {
         "SmiteshP/nvim-navbuddy",
-        lazy = true,
+        cmd = { "Navbuddy" },
         opts = {}
     }
 }

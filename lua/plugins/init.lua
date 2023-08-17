@@ -1,3 +1,4 @@
+local config = require "config"
 return {
     { "nvim-lua/plenary.nvim",           lazy = true },
     { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
@@ -10,7 +11,7 @@ return {
     },
     {
         "folke/which-key.nvim",
-        lazy = true,
+        cond = config.which_key,
         -- keys = { "`", "'", "\"", "<space>", "<leader>" },
         opts = {
             plugins = {
@@ -26,7 +27,7 @@ return {
     },
     {
         "tiagovla/scope.nvim",
-        lazy = true,
+        cond = config.scope_buffer,
         opts = {
             restore_state = false, -- experimental
         }

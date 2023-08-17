@@ -1,8 +1,13 @@
+local config = require "config"
 return {
     { "nvim-lua/popup.nvim",         lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },
     { "MunifTanjim/nui.nvim",        lazy = true },
-    { "rcarriga/nvim-notify",        lazy = true, opts = { top_down = false } },
+    {
+        "rcarriga/nvim-notify",
+        cond = config.popup_notify,
+        opts = { top_down = false }
+    },
     {
         'stevearc/stickybuf.nvim',
         event = "VeryLazy",
@@ -10,8 +15,7 @@ return {
     },
     {
         "folke/noice.nvim",
-        -- event = "VeryLazy",
-        lazy = true,
+        cond = config.popup_cmdline,
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",
@@ -47,7 +51,7 @@ return {
     },
     {
         "folke/zen-mode.nvim",
-        cmd = "ZenMode",
+        cmd = { "ZenMode" },
         opts = {}
     }
 }

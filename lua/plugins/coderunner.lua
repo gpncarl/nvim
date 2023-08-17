@@ -1,7 +1,8 @@
+local config = require "config"
 return {
     {
         "michaelb/sniprun",
-        enabled = false,
+        cond = config.code_runner,
         cmd = "SnipRun",
         build = "bash install.sh"
     },

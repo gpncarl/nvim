@@ -1,4 +1,5 @@
-local function config()
+local config = require "config"
+local function setup()
     local lualine = require("lualine")
     return lualine.setup({
         options = {
@@ -33,20 +34,19 @@ local function config()
 end
 
 return {
-    { "SmiteshP/nvim-gps", lazy = true, opts = {} },
     {
         "hoob3rt/lualine.nvim",
         event = "VeryLazy",
-        config = config
+        config = setup
     },
     {
         "akinsho/bufferline.nvim",
-        lazy = true,
+        cond = config.bufferline,
         opts = {}
     },
     {
         "Bekaboo/dropbar.nvim",
-        lazy = true,
+        cond = config.dropbar,
         opts = {}
     },
     {
