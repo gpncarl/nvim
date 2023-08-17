@@ -49,5 +49,11 @@ return {
             })
         end,
     },
-
+    {
+        "tpope/vim-sleuth",
+        cmd = { "Sleuth" },
+        config = function()
+            vim.g.sleuth_heuristics = 0
+        end
+    }
 }
