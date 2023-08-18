@@ -1,10 +1,5 @@
 return {
     {
-        "ellisonleao/glow.nvim",
-        cmd = "Glow",
-        config = {},
-    },
-    {
         "luckasRanarison/nvim-devdocs",
         cmd = {
             "DevdocsFetch",

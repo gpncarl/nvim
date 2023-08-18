@@ -58,8 +58,4 @@ return {
         cmd = "Neogit",
         opts = {}
     },
-    {
-        "kdheepak/lazygit.nvim",
-        cmd = "LazyGit"
-    }
 }
