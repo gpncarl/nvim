@@ -16,8 +16,8 @@ local function setup()
         sections = {
             lualine_a = { "mode" },
             lualine_b = { "branch", "diff", "diagnostics" },
-            lualine_c = { "filename", { "navic", color_correction = nil, navic_opts = nil } },
-            lualine_x = { "searchcount", "encoding", "fileformat", "filetype" },
+            lualine_c = { "filename" },
+            lualine_x = { "%S", "searchcount", "encoding", "fileformat", "filetype" },
             lualine_y = { "progress" },
             lualine_z = { "location" }
         },
@@ -46,6 +46,7 @@ return {
     },
     {
         "Bekaboo/dropbar.nvim",
+        event = { "BufReadPost", "BufNewFile" },
         cond = config.dropbar,
         opts = {}
     },

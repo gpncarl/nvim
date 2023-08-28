@@ -1,14 +1,16 @@
-local config = require "config"
 return {
     {
         "navarasu/onedark.nvim",
-        cond = (config.colorscheme == "onedark"),
+        lazy = true,
+        priority = 1000
+    },
+    {
+        "rebelot/kanagawa.nvim",
         lazy = true,
         priority = 1000
     },
     {
         "ellisonleao/gruvbox.nvim",
-        cond = (config.colorscheme == "gruvbox"),
         lazy = true,
         priority = 1000,
         opts = {

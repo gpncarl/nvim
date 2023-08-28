@@ -5,7 +5,7 @@ return {
     which_key = false,
     scope_buffer = false,
     bufferline = false,
-    dropbar = false,
+    dropbar = true,
     finder = "telescope", -- "telescope", "fzf"
     popup_cmdline = false,
     popup_notify = false,

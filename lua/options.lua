@@ -47,3 +47,4 @@ vim.opt.foldcolumn = '0'
 vim.opt.foldlevelstart = 5
 vim.opt.foldenable = false
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
+vim.opt.showcmdloc = "statusline"
