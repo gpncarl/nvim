@@ -41,6 +41,7 @@ return {
     },
     {
         "akinsho/bufferline.nvim",
+        event = "VeryLazy",
         cond = config.bufferline,
         opts = {}
     },
@@ -54,34 +55,7 @@ return {
         "SmiteshP/nvim-navic",
         lazy = true,
         opts = {
-            icons = {
-                File = ' ',
-                Module = ' ',
-                Namespace = ' ',
-                Package = ' ',
-                Class = ' ',
-                Method = ' ',
-                Property = ' ',
-                Field = ' ',
-                Constructor = ' ',
-                Enum = ' ',
-                Interface = ' ',
-                Function = ' ',
-                Variable = ' ',
-                Constant = ' ',
-                String = ' ',
-                Number = ' ',
-                Boolean = ' ',
-                Array = ' ',
-                Object = ' ',
-                Key = ' ',
-                Null = ' ',
-                EnumMember = ' ',
-                Struct = ' ',
-                Event = ' ',
-                Operator = ' ',
-                TypeParameter = ' '
-            }
+            icons = require("utils.icons").kinds
         }
     }
 }
