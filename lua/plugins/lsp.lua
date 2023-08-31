@@ -8,7 +8,7 @@ local function lsp_setup()
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
         vim.keymap.set("n", "gr", ref, { buffer = bufnr, desc = "goto ref" })
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
-        vim.keymap.set("n", "<space>ac", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
+        vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
         vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
 
         if client.server_capabilities.documentSymbolProvider then

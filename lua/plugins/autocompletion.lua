@@ -48,7 +48,7 @@ local function cmp_config()
 
         formatting = {
             format = function(entry, vim_item)
-                vim_item.kind = require("lspkind").presets.default[vim_item.kind]
+                vim_item.kind = require("utils.icons").kinds[vim_item.kind]
                 vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
                 vim_item.menu = ({
                     buffer = "[B]",
@@ -72,7 +72,6 @@ local function cmp_config()
 end
 
 return {
-    { "onsails/lspkind-nvim",         lazy = true },
     { "hrsh7th/cmp-path",             lazy = true },
     { "hrsh7th/cmp-buffer",           lazy = true },
     { "hrsh7th/cmp-nvim-lsp",         lazy = true },
@@ -102,7 +101,6 @@ return {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
-            "onsails/lspkind-nvim",
             "hrsh7th/cmp-path",
             "hrsh7th/cmp-buffer",
             "tzachar/cmp-tabnine",
