@@ -16,6 +16,7 @@ return {
                 "toggleterm",
                 "lazyterm",
                 "fzf",
+                "starter",
             },
             buftype_exclude = { "terminal" },
             show_trailing_blankline_indent = false,
@@ -44,6 +45,7 @@ return {
                     "toggleterm",
                     "lazyterm",
                     "fzf",
+                    "starter",
                 },
                 callback = function()
                     vim.b.miniindentscope_disable = true

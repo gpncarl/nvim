@@ -36,14 +36,21 @@ end
 return {
     {
         "hoob3rt/lualine.nvim",
-        event = "VeryLazy",
+        event = "ColorScheme",
         config = setup
     },
     {
         "akinsho/bufferline.nvim",
-        event = "VeryLazy",
+        event = "ColorScheme",
         cond = config.bufferline,
-        opts = {}
+        opts = {
+            options = {
+                mode = "buffers",
+                numbers = "buffer_id",
+                separator_style = "slant",
+                sort_by = "id",
+            }
+        }
     },
     {
         "Bekaboo/dropbar.nvim",

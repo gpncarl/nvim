@@ -28,8 +28,6 @@ return {
     {
         "tiagovla/scope.nvim",
         cond = config.scope_buffer,
-        opts = {
-            restore_state = false, -- experimental
-        }
+        opts = {}
     }
 }

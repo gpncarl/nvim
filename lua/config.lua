@@ -1,10 +1,10 @@
 return {
-    dashboard = "mini.starter", -- "alpha", "mini.starter"
-    colorscheme = "gruvbox",    -- "onedark", "gruvbox"
+    dashboard = "alpha", -- "alpha", "mini.starter"
+    colorscheme = "onedark",    -- "onedark", "gruvbox"
     code_runner = false,
     which_key = false,
-    scope_buffer = false,
-    bufferline = false,
+    scope_buffer = true,
+    bufferline = true,
     dropbar = true,
     finder = "telescope", -- "telescope", "fzf"
     popup_cmdline = false,
