@@ -1,7 +1,6 @@
 return {
     { "tpope/vim-rsi",        event = { "InsertEnter", "CmdlineEnter" } },
     { "echasnovski/mini.bracketed", keys = { "[", "]" }, opts = {} },
-    { "tpope/vim-repeat",     keys = "." },
     {
         "kylechui/nvim-surround",
         keys = {

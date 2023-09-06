@@ -15,7 +15,7 @@ local function lsp_setup()
             require("nvim-navic").attach(client, bufnr)
             require("nvim-navbuddy").attach(client, bufnr)
             vim.keymap.set("n", "<space>o", require("nvim-navbuddy").open,
-                { buffer = bufnr, desc = "switch header" })
+                { buffer = bufnr, desc = "open navbuddy" })
         end
     end
     local capabilities = vim.lsp.protocol.make_client_capabilities()

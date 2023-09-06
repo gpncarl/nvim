@@ -53,7 +53,6 @@ vim.diagnostic.config {
 }
 
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
-vim.keymap.set("n", "<leader>g", vim.diagnostic.setqflist, { desc = "diagnostics" })
 
 local quickfix = vim.api.nvim_create_augroup('quickfix', { clear = true })
 vim.api.nvim_create_autocmd("QuickFixCmdPre", {
