@@ -33,4 +33,10 @@ return {
             invert_intend_guides = false
         }
     },
+    {
+        "folke/tokyonight.nvim",
+        lazy = true,
+        priority = 1000,
+        opts = {},
+    }
 }

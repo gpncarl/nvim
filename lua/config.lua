@@ -1,6 +1,6 @@
 return {
     dashboard = "alpha", -- "alpha", "mini.starter"
-    colorscheme = "onedark",    -- "onedark", "gruvbox"
+    colorscheme = "tokyonight",    -- "onedark", "gruvbox"
     code_runner = false,
     which_key = false,
     scope_buffer = true,
