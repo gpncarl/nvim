@@ -7,6 +7,9 @@ return {
             indent = {
                 char = "│",
             },
+            scope = {
+                enabled = false,
+            },
             exclude = {
                 filetypes = {
                     "help",
@@ -29,7 +32,6 @@ return {
         "echasnovski/mini.indentscope",
         event = { "BufReadPost", "BufNewFile" },
         opts = {
-            -- symbol = "▏",
             symbol = "│",
             options = { try_as_border = true },
         },
