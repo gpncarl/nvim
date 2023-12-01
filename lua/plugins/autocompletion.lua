@@ -41,7 +41,6 @@ local function cmp_config()
             { name = 'nvim_lsp' },
             { name = 'buffer' },
             { name = 'path' },
-            { name = 'codeium' },
             { name = 'luasnip' },
             { name = 'cmp_tabnine' },
             { name = 'neorg',      ft = 'norg' },
@@ -56,8 +55,7 @@ local function cmp_config()
                     path = "[P]",
                     luasnip = "[S]",
                     nvim_lsp = "[L]",
-                    cmp_tabnine = "[T]",
-                    codeium = "[C]"
+                    cmp_tabnine = "[T]"
                 })[entry.source.name]
                 return vim_item
             end,
@@ -100,11 +98,6 @@ return {
         end
     },
     {
-        "Exafunction/codeium.nvim",
-        lazy = true,
-        opts = {}
-    },
-    {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
         dependencies = {
@@ -112,8 +105,7 @@ return {
             "hrsh7th/cmp-buffer",
             "tzachar/cmp-tabnine",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp",
-            "Exafunction/codeium.nvim"
+            "hrsh7th/cmp-nvim-lsp"
         },
         config = cmp_config
     },
