@@ -1,7 +1,6 @@
 local config = require "config"
 return {
     { "nvim-lua/plenary.nvim",           lazy = true },
-    { "antoinemadec/FixCursorHold.nvim", event = "VeryLazy" },
     {
         "dstein64/vim-startuptime",
         cmd = "StartupTime",
