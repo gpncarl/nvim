@@ -16,10 +16,6 @@ local function treesitter_config()
             smart_rename = { enable = true, keymaps = { smart_rename = "<leader><leader>r" } },
             navigation = { enable = true }
         },
-        context_commentstring = {
-            enable = true,
-            enable_autocmd = false,
-        },
         textobjects = {
             select = {
                 enable = true,
