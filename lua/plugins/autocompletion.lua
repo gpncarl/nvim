@@ -39,6 +39,7 @@ local function cmp_config()
 
         sources = {
             { name = 'nvim_lsp' },
+            { name = 'copilot' },
             { name = 'buffer' },
             { name = 'path' },
             { name = 'luasnip' },
@@ -55,7 +56,8 @@ local function cmp_config()
                     path = "[P]",
                     luasnip = "[S]",
                     nvim_lsp = "[L]",
-                    cmp_tabnine = "[T]"
+                    cmp_tabnine = "[T]",
+                    copilot = "[C]",
                 })[entry.source.name]
                 return vim_item
             end,
@@ -97,6 +99,22 @@ return {
             return ls.setup({ history = true, delete_check_events = "TextChanged" })
         end
     },
+
+    {
+        "zbirenbaum/copilot.lua",
+        lazy = true,
+        opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+        }
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+        lazy = true,
+        dependencies = { "zbirenbaum/copilot.lua" },
+        opts = {}
+    },
+
     {
         "hrsh7th/nvim-cmp",
         event = "InsertEnter",
@@ -105,7 +123,8 @@ return {
             "hrsh7th/cmp-buffer",
             "tzachar/cmp-tabnine",
             "saadparwaiz1/cmp_luasnip",
-            "hrsh7th/cmp-nvim-lsp"
+            "hrsh7th/cmp-nvim-lsp",
+            "zbirenbaum/copilot-cmp",
         },
         config = cmp_config
     },
