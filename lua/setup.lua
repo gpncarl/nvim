@@ -23,18 +23,6 @@ end
 
 vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
 vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
-vim.keymap.set("n",
-    "[g",
-    function()
-        vim.diagnostic.goto_prev { float = false }
-    end,
-    { desc = "goto previous diagnostic" })
-vim.keymap.set("n",
-    "]g",
-    function()
-        vim.diagnostic.goto_next { float = false }
-    end,
-    { desc = "goto next diagnostic" })
 
 for name, icon in pairs(require("utils.icons").diagnostics) do
     name = "DiagnosticSign" .. name
