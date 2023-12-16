@@ -103,25 +103,24 @@ return {
     {
         "luukvbaal/statuscol.nvim",
         config = function()
-            local builtin = require("statuscol.builtin")
             require("statuscol").setup({
                 relculright = true,
                 bt_ignore = { 'terminal' },
-                ft_ignore = { 'oil' },
+                ft_ignore = { 'oil', 'alpha', 'qf', '' },
                 segments = {
                     {
                         text = { get_fold },
                         click = "v:lua.ScFa"
                     },
                     {
-                        sign = { namespace = { "diagnostic" }, colwidth = 1, maxwidth = 1, auto = true },
+                        sign = { namespace = { "diagnostic" }, colwidth = 1, maxwidth = 1, auto = false },
                         click = "v:lua.ScSa"
                     },
-                    { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa", },
                     {
-                        sign = { namespace = { "gitsigns" }, colwidth = 1, auto = true, wrap = true },
+                        sign = { namespace = { "gitsigns" }, fillchar = "│", colwidth = 1, wrap = true },
                         click = "v:lua.ScSa"
                     },
+                    { text = { "%=%{v:relnum}", " " }, click = "v:lua.ScLa", },
                 }
             })
         end,
