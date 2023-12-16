@@ -24,20 +24,26 @@ end
 vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
 vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
 
-for name, icon in pairs(require("utils.icons").diagnostics) do
-    name = "DiagnosticSign" .. name
-    vim.fn.sign_define(name, { text = icon, texthl = name, numhl = "" })
-end
-
 vim.diagnostic.config {
     underline = true,
     update_in_insert = false,
+    severity_sort = true,
     virtual_text = {
         spacing = 4,
         source = "if_many",
         prefix = "●",
+        severity = {
+            vim.diagnostic.severity.ERROR,
+        }
     },
-    severity_sort = true,
+    signs = {
+        text = {
+            [vim.diagnostic.severity.ERROR] = require("utils.icons").diagnostics.ERROR,
+            [vim.diagnostic.severity.WARN] = require("utils.icons").diagnostics.WARN,
+            [vim.diagnostic.severity.INFO] = require("utils.icons").diagnostics.INFO,
+            [vim.diagnostic.severity.HINT] = require("utils.icons").diagnostics.HINT,
+        }
+    },
 }
 
 vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")

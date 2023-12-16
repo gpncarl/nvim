@@ -31,6 +31,15 @@ local function setup()
     })
 end
 
+local function get_fold()
+    local fcs = vim.opt.fillchars:get()
+    local lnum = vim.v.lnum
+
+    if vim.fn.foldlevel(lnum) <= vim.fn.foldlevel(lnum - 1) then return ' ' end
+
+    return vim.fn.foldclosed(lnum) == -1 and fcs.foldopen or fcs.foldclose
+end
+
 return {
     {
         "hoob3rt/lualine.nvim",
@@ -90,5 +99,31 @@ return {
         opts = {
             icons = require("utils.icons").kinds
         }
+    },
+    {
+        "luukvbaal/statuscol.nvim",
+        config = function()
+            local builtin = require("statuscol.builtin")
+            require("statuscol").setup({
+                relculright = true,
+                bt_ignore = { 'terminal' },
+                ft_ignore = { 'oil' },
+                segments = {
+                    {
+                        text = { get_fold },
+                        click = "v:lua.ScFa"
+                    },
+                    {
+                        sign = { namespace = { "diagnostic" }, colwidth = 1, maxwidth = 1, auto = true },
+                        click = "v:lua.ScSa"
+                    },
+                    { text = { builtin.lnumfunc, " " }, click = "v:lua.ScLa", },
+                    {
+                        sign = { namespace = { "gitsigns" }, colwidth = 1, auto = true, wrap = true },
+                        click = "v:lua.ScSa"
+                    },
+                }
+            })
+        end,
     }
 }
