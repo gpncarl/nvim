@@ -110,14 +110,15 @@ return {
                 segments = {
                     {
                         text = { get_fold },
+                        hl = "Folded",
                         click = "v:lua.ScFa"
                     },
                     {
-                        sign = { namespace = { "diagnostic" }, colwidth = 1, maxwidth = 1, auto = false },
+                        sign = { namespace = { "gitsigns" }, fillchar = "│", colwidth = 1, wrap = true },
                         click = "v:lua.ScSa"
                     },
                     {
-                        sign = { namespace = { "gitsigns" }, fillchar = "│", colwidth = 1, wrap = true },
+                        sign = { namespace = { ".*" }, maxwidth = 1, colwidth = 1, wrap = true },
                         click = "v:lua.ScSa"
                     },
                     { text = { "%=%{v:relnum}", " " }, click = "v:lua.ScLa", },

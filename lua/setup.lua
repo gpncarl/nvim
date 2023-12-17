@@ -87,6 +87,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
     end
 })
 
+local theme = vim.api.nvim_create_augroup('theme', { clear = true })
+vim.api.nvim_create_autocmd("ColorScheme", {
+    group = theme,
+    callback = function()
+        local fg_add = "guifg=" .. (vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("DiffAdd")), "bg", "gui") or "fg")
+        vim.cmd.highlight({ "diffAdded", fg_add })
+
+        local fg_change = "guifg=" .. vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("DiffChange")), "bg", "gui")
+        vim.cmd.highlight({ "diffChanged", fg_change })
+    end,
+})
+
 vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
 vim.g.netrw_winsize = 20
 vim.g.netrw_altfile = true
