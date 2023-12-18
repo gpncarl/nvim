@@ -49,3 +49,4 @@ vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 vim.opt.showcmdloc = "statusline"
 vim.opt.matchpairs:append({ "<:>" })
+vim.opt.jumpoptions = "stack"

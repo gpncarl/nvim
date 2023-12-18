@@ -106,7 +106,7 @@ return {
             require("statuscol").setup({
                 relculright = true,
                 bt_ignore = { 'terminal' },
-                ft_ignore = { 'oil', 'alpha', 'qf', '' },
+                ft_ignore = { 'oil', 'alpha', 'lazy', 'qf', '' },
                 segments = {
                     {
                         text = { get_fold },
