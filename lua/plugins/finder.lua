@@ -37,7 +37,7 @@ return {
             { "<space>fo",  "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
             { "<space>ff",  "<cmd>Telescope find_files<cr>",                     desc = "fuzzy files" },
             { "<space>gf",  "<cmd>Telescope git_files show_untracked=false<cr>", desc = "fuzzy git files" },
-            { "<space>m",   "<cmd>Telescope oldfiles<cr>",                       desc = "fuzzy oldfiles" },
+            -- { "<space>m",   "<cmd>Telescope oldfiles<cr>",                       desc = "fuzzy oldfiles" },
             { "<space>b",   "<cmd>Telescope buffers<cr>",                        desc = "fuzzy buffers" },
             { "<leader>gr", "<cmd>Telescope grep_string<cr>",                    desc = "fuzzy string" },
             { "<space>gr",  "<cmd>Telescope live_grep<cr>",                      desc = "live fuzzy string" },
@@ -48,7 +48,6 @@ return {
             { "<space>ab",  "<cmd>Telescope builtin<cr>",                        desc = "fuzzy all built-in" },
         },
         dependencies = {
-            -- "ThePrimeagen/harpoon"
             {
                 "nvim-telescope/telescope-fzf-native.nvim",
                 build =
@@ -56,6 +55,15 @@ return {
             },
         },
         config = telescope_config
+    },
+    {
+        "nvim-telescope/telescope-frecency.nvim",
+        cond = (config.finder == "telescope"),
+        keys = { { "<space>m", "<Cmd>Telescope frecency<CR>", desc = "fuzzy files by frecency" } },
+        dependencies = { "nvim-telescope/telescope.nvim" },
+        config = function()
+            require("telescope").load_extension "frecency"
+        end,
     },
     {
         "ibhagwan/fzf-lua",

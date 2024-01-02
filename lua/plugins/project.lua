@@ -1,7 +1,7 @@
 return {
     {
         "ThePrimeagen/harpoon",
-        keys = "<space>",
+        keys = { "<space>ha", "<space>hl", "<space>hn", "<space>hp" },
         dependencies = { "nvim-lua/plenary.nvim" },
         config = function()
             vim.keymap.set("n", "<space>ha",
