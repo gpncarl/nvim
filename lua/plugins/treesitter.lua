@@ -16,6 +16,13 @@ local function treesitter_config()
             smart_rename = { enable = true, keymaps = { smart_rename = "<leader><leader>r" } },
             navigation = { enable = true }
         },
+        incremental_selection = {
+            enable = true,
+            keymaps = {
+                node_incremental = "<TAB>",
+                node_decremental = "<S-TAB>",
+            },
+        },
         textobjects = {
             select = {
                 enable = true,
