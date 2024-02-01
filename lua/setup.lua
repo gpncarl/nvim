@@ -22,7 +22,7 @@ local function switchHeader()
 end
 
 vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
-vim.keymap.set("n", "K", vim.diagnostic.open_float, { desc = "current line diagnostic" })
+vim.keymap.set("n", "gK", vim.diagnostic.open_float, { desc = "current line diagnostic" })
 
 vim.diagnostic.config {
     underline = true,

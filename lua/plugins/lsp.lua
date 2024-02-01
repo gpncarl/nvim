@@ -2,14 +2,15 @@ local function lsp_setup()
     local lspconfig = require("lspconfig")
     local function on_attach(client, bufnr)
         vim.bo[bufnr].tagfunc = nil
-        local function ref(opts)
-            return vim.lsp.buf.references(opts, nil)
-        end
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
-        vim.keymap.set("n", "gr", ref, { buffer = bufnr, desc = "goto ref" })
+        vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
+        vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "goto ref" })
         vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
         vim.keymap.set("n", "ga", vim.lsp.buf.code_action, { buffer = bufnr, desc = "code action" })
         vim.keymap.set({ "n", "v" }, "<space>fm", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
+        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, { buffer = bufnr, desc = "rename" })
+        vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
+        vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
         if client.server_capabilities.documentSymbolProvider then
             require("nvim-navic").attach(client, bufnr)
@@ -58,8 +59,9 @@ local function lsp_setup()
             lspconfig.clangd.setup {
                 on_attach = function(client, bufnr)
                     on_attach(client, bufnr)
-                    require("clangd_extensions.inlay_hints").setup_autocmd()
-                    require("clangd_extensions.inlay_hints").set_inlay_hints()
+                    require("clangd_extensions").setup()
+                    -- require("clangd_extensions.inlay_hints").setup_autocmd()
+                    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
                     vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
                         { buffer = bufnr, desc = "switch header" })
                 end,
@@ -141,15 +143,6 @@ return {
         cmd = "Neoconf",
         dependencies = { "nvim-lspconfig" },
         opts = {}
-    },
-    {
-        "smjonas/inc-rename.nvim",
-        keys = { "<leader>rn" },
-        dependencies = { "nvim-lspconfig" },
-        config = function()
-            require "inc_rename".setup {}
-            vim.keymap.set("n", "<leader>rn", ":IncRename ")
-        end
     },
     { "p00f/clangd_extensions.nvim", lazy = true }
 
