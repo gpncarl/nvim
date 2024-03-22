@@ -31,5 +31,11 @@ return {
             require('orgmode').setup_ts_grammar()
             require('orgmode').setup {}
         end
-    }
+    },
+    {
+        "lukas-reineke/headlines.nvim",
+        ft = { "norg", "org", "markdown" },
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        opts = {}
+    },
 }
