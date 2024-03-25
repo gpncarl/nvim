@@ -102,6 +102,7 @@ return {
     },
     {
         "luukvbaal/statuscol.nvim",
+        cond = false,
         config = function()
             require("statuscol").setup({
                 relculright = true,
