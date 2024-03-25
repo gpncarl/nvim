@@ -1,6 +1,6 @@
 local config = require "config"
 return {
-    { "nvim-lua/plenary.nvim",           lazy = true },
+    { "nvim-lua/plenary.nvim", lazy = true },
     {
         "dstein64/vim-startuptime",
         cmd = "StartupTime",
@@ -28,5 +28,10 @@ return {
         "tiagovla/scope.nvim",
         cond = config.scope_buffer,
         opts = {}
-    }
+    },
+    {
+        "vhyrro/luarocks.nvim",
+        priority = 1000,
+        opts = {}
+    },
 }
