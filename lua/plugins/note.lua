@@ -39,6 +39,10 @@ return {
         "lukas-reineke/headlines.nvim",
         ft = { "norg", "org", "markdown" },
         dependencies = "nvim-treesitter/nvim-treesitter",
-        opts = {}
+        opts = {
+            markdown = { fat_headline_lower_string = "▔" },
+            org = { fat_headline_lower_string = "▔" },
+            norg = { fat_headline_lower_string = "▔" },
+        }
     },
 }
