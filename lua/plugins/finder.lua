@@ -14,7 +14,12 @@ local function telescope_config()
         defaults = {
             prompt_prefix = " ",
             selection_caret = " ",
-            mappings = { i = { ["<C-_>"] = actions.toggle_preview } },
+            mappings = {
+                i = {
+                    ["<C-_>"] = actions.toggle_preview,
+                    ["<C-/>"] = actions.toggle_preview,
+                },
+            },
             sorting_strategy = "ascending",
             -- layout_strategy = "horizontal",
             -- layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
@@ -96,6 +101,7 @@ return {
             keymap = {
                 builtin = {
                     ["<C-_>"] = "toggle-preview",
+                    ["<C-/>"] = "toggle-preview",
                 },
             },
             fzf_opts = {
