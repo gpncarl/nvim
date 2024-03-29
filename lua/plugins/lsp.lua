@@ -13,7 +13,6 @@ local function lsp_setup()
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
         if client.server_capabilities.documentSymbolProvider then
-            require("nvim-navic").attach(client, bufnr)
             require("nvim-navbuddy").attach(client, bufnr)
             vim.keymap.set("n", "<space>o", require("nvim-navbuddy").open,
                 { buffer = bufnr, desc = "open navbuddy" })
@@ -34,14 +33,6 @@ local function lsp_setup()
         dynamicRegistration = false,
         lineFoldingOnly = true
     }
-    -- vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    --     vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-    --         {
-    --             underline = true,
-    --             virtual_text = true,
-    --             signs = true,
-    --             update_in_insert = false
-    --         })
 
     local handlers = {
         -- The first entry (without a key) will be the default handler
@@ -172,6 +163,15 @@ return {
         dependencies = { "nvim-lspconfig" },
         opts = {}
     },
-    { "p00f/clangd_extensions.nvim", lazy = true }
+    { "p00f/clangd_extensions.nvim", lazy = true },
+    {
+        "SmiteshP/nvim-navbuddy",
+        cmd = { "Navbuddy" },
+        dependencies = {
+            "SmiteshP/nvim-navic",
+            "MunifTanjim/nui.nvim",
+        },
+        opts = {}
+    }
 
 }

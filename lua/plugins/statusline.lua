@@ -94,13 +94,6 @@ return {
         }
     },
     {
-        "SmiteshP/nvim-navic",
-        lazy = true,
-        opts = {
-            icons = require("utils.icons").kinds
-        }
-    },
-    {
         "luukvbaal/statuscol.nvim",
         cond = false,
         config = function()
