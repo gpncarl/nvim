@@ -62,7 +62,7 @@ return {
     },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",
-        lazy = true,
+        event = "ModeChanged *:no",
         dependencies = { "nvim-treesitter/nvim-treesitter" }
     },
     {
