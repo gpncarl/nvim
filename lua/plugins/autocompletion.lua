@@ -45,6 +45,8 @@ local function cmp_config()
             { name = 'luasnip' },
             { name = 'cmp_tabnine' },
             { name = 'neorg',      ft = 'norg' },
+            { name = 'orgmode',    ft = 'org' },
+
         },
 
         formatting = {

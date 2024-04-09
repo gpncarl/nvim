@@ -29,11 +29,7 @@ return {
     {
         "nvim-orgmode/orgmode",
         ft = { "org" },
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        config = function()
-            require('orgmode').setup_ts_grammar()
-            require('orgmode').setup {}
-        end
+        opts = {},
     },
     {
         "lukas-reineke/headlines.nvim",
