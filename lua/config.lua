@@ -11,4 +11,5 @@ return {
     popup_notify = false,
     undotree = false,
     context = false,
+    leetcode = true,
 }
