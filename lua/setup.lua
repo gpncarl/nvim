@@ -64,7 +64,7 @@ vim.api.nvim_create_autocmd("StdinReadPre", {
 
 local config = require "config"
 local enter = vim.api.nvim_create_augroup('enter', { clear = true })
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd("UIEnter", {
     group = enter,
     callback = function()
         if HasStdin then
@@ -77,6 +77,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
                 require "alpha".start(true)
             elseif config.dashboard == "mini.starter" then
                 require "mini.starter".open()
+            elseif config.dashboard == "dashboard" then
+                require "dashboard":instance()
             end
         end
 

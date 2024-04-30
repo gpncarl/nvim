@@ -34,5 +34,11 @@ return {
         opts = {
             autoopen = false,
         }
+    },
+    {
+        "nvimdev/dashboard-nvim",
+        cond = (config.dashboard == "dashboard"),
+        cmd = "Dashboard",
+        opts = {},
     }
 }

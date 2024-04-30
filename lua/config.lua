@@ -1,5 +1,5 @@
 return {
-    dashboard = "alpha", -- "alpha", "mini.starter"
+    dashboard = "dashboard", -- "alpha", "mini.starter"
     colorscheme = "tokyonight",    -- "onedark", "gruvbox", "tokyonight"
     code_runner = false,
     which_key = false,
