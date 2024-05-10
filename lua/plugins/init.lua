@@ -34,4 +34,9 @@ return {
         priority = 1000,
         opts = {}
     },
+    {
+        "echasnovski/mini.bufremove",
+        event = { "BufReadPost", "BufNewFile" },
+        opts = {}
+    },
 }
