@@ -17,9 +17,9 @@ return {
         opts = {
             label = {
                 uppercase = false,
-                -- after = { 0, 3 },
             },
             modes = {
+                search = { enabled = true },
                 char = { enabled = false },
             }
         },
