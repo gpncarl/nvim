@@ -6,8 +6,8 @@ return {
     bufferline = true,
     dropbar = true,
     finder = "telescope", -- "telescope", "fzf"
-    popup_cmdline = false,
-    popup_notify = false,
+    popup_cmdline = true,
+    popup_notify = true,
     undotree = false,
     context = false,
     leetcode = true,
