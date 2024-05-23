@@ -17,6 +17,19 @@ local function lsp_setup()
             vim.keymap.set("n", "<space>o", require("nvim-navbuddy").open,
                 { buffer = bufnr, desc = "open navbuddy" })
         end
+
+        if client.supports_method("textDocument/inlayHint") then
+            vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+        end
+
+        if client.supports_method("textDocument/codeLens") then
+            vim.lsp.codelens.refresh()
+            --- autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
+            vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+                buffer = bufnr,
+                callback = vim.lsp.codelens.refresh,
+            })
+        end
     end
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities.textDocument.completion.completionItem = {
@@ -40,8 +53,14 @@ local function lsp_setup()
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
             require("lspconfig")[server_name].setup {
-                on_attach = on_attach,
+                inlay_hints = { enabled = true, },
+                codelens = { enabled = true, },
+                format = {
+                    formatting_options = nil,
+                    timeout_ms = nil,
+                },
                 capabilities = capabilities,
+                on_attach = on_attach,
             }
         end,
         -- Next, you can provide a dedicated handler for specific servers.
@@ -51,8 +70,6 @@ local function lsp_setup()
                 on_attach = function(client, bufnr)
                     on_attach(client, bufnr)
                     require("clangd_extensions").setup()
-                    -- require("clangd_extensions.inlay_hints").setup_autocmd()
-                    -- require("clangd_extensions.inlay_hints").set_inlay_hints()
                     vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
                         { buffer = bufnr, desc = "switch header" })
                 end,
@@ -67,6 +84,9 @@ local function lsp_setup()
                     Lua = {
                         diagnostics = {
                             globals = { 'vim' }
+                        },
+                        codeLens = {
+                            enable = true,
                         }
                     }
                 }
@@ -134,9 +154,7 @@ return {
         "williamboman/mason.nvim",
         cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
         build = ":MasonUpdate",
-        config = function()
-            require("mason").setup {}
-        end
+        opts = {}
     },
     {
         "williamboman/mason-lspconfig.nvim",

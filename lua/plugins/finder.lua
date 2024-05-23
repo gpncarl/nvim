@@ -39,7 +39,7 @@ return {
         cond = (config.finder == "telescope"),
         cmd = "Telescope",
         keys = {
-            { "<space>fo",  "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
+            { "go",         "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
             { "<space>ff",  "<cmd>Telescope find_files<cr>",                     desc = "fuzzy files" },
             { "<space>gf",  "<cmd>Telescope git_files show_untracked=false<cr>", desc = "fuzzy git files" },
             -- { "<space>m",   "<cmd>Telescope oldfiles<cr>",                       desc = "fuzzy oldfiles" },
