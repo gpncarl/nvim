@@ -15,10 +15,6 @@ return {
     },
     {
         "echasnovski/mini.ai",
-        -- keys = {
-        --   { "a", mode = { "x", "o" } },
-        --   { "i", mode = { "x", "o" } },
-        -- },
         event = "ModeChanged *:no",
         dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
         opts = function()
