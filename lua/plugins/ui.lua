@@ -9,11 +9,6 @@ return {
         opts = { top_down = false }
     },
     {
-        'stevearc/stickybuf.nvim',
-        event = "VeryLazy",
-        opts = {},
-    },
-    {
         "folke/noice.nvim",
         cond = config.popup_cmdline,
         dependencies = {
