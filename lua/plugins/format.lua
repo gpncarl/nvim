@@ -1,5 +1,4 @@
 return {
-    { "godlygeek/tabular", lazy = true },
     {
         "Wansmer/treesj",
         keys = { "<leader>J" },
