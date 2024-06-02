@@ -143,7 +143,6 @@ return {
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
             "folke/neoconf.nvim",
-            "folke/neodev.nvim",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
         },
@@ -160,8 +159,6 @@ return {
         cmd = { "LspInstall", "LspUninstall" },
         dependencies = {
             "williamboman/mason.nvim",
-            "folke/neodev.nvim",
-            "folke/neoconf.nvim",
         },
     },
     {
@@ -170,9 +167,13 @@ return {
         opts = {}
     },
     {
-        "folke/neodev.nvim",
-        lazy = true,
-        opts = {}
+        "folke/lazydev.nvim",
+        ft = "lua",
+        opts = {
+            library = {
+                vim.env.LAZY .. "/luvit-meta/library",
+            },
+        },
     },
     {
         "folke/neoconf.nvim",

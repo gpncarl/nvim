@@ -46,13 +46,14 @@ local function cmp_config()
         },
 
         sources = {
-            { name = 'nvim_lsp' },
-            { name = 'buffer' },
-            { name = 'path' },
-            { name = 'snippets' },
-            { name = 'cmp_tabnine' },
-            { name = 'neorg',      ft = 'norg' },
-            { name = 'orgmode',    ft = 'org' },
+            { name = "nvim_lsp" },
+            { name = "buffer" },
+            { name = "path" },
+            { name = "snippets" },
+            { name = "cmp_tabnine" },
+            { name = "neorg",      ft = "norg" },
+            { name = "orgmode",    ft = "org" },
+            { name = "lazydev",    ft = "lua" },
 
         },
 
