@@ -32,9 +32,9 @@ return {
             },
             presets = {
                 bottom_search = true,         -- use a classic bottom cmdline for search
-                command_palette = true,        -- position the cmdline and popupmenu together
+                command_palette = true,       -- position the cmdline and popupmenu together
                 long_message_to_split = true, -- long messages will be sent to a split
-                lsp_doc_border = true,         -- add a border to hover docs and signature help
+                lsp_doc_border = true,        -- add a border to hover docs and signature help
             },
         }
     },
@@ -52,6 +52,35 @@ return {
         "echasnovski/mini.animate",
         cond = config.animate,
         event = "VeryLazy",
-        opts = {}
+        opts = function()
+            -- don't use animate when scrolling with the mouse
+            local mouse_scrolled = false
+            for _, scroll in ipairs({ "Up", "Down" }) do
+                local key = "<ScrollWheel" .. scroll .. ">"
+                vim.keymap.set({ "", "i" }, key, function()
+                    mouse_scrolled = true
+                    return key
+                end, { expr = true })
+            end
+
+            local animate = require("mini.animate")
+            return {
+                resize = {
+                    timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
+                },
+                scroll = {
+                    timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
+                    subscroll = animate.gen_subscroll.equal({
+                        predicate = function(total_scroll)
+                            if mouse_scrolled then
+                                mouse_scrolled = false
+                                return false
+                            end
+                            return total_scroll > 1
+                        end,
+                    }),
+                },
+            }
+        end,
     },
 }
