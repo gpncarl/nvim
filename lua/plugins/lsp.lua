@@ -12,12 +12,6 @@ local function lsp_setup()
         vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
         vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
-        if client.server_capabilities.documentSymbolProvider then
-            require("nvim-navbuddy").attach(client, bufnr)
-            vim.keymap.set("n", "<space>o", require("nvim-navbuddy").open,
-                { buffer = bufnr, desc = "open navbuddy" })
-        end
-
         if client.supports_method("textDocument/inlayHint") then
             vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
         end
@@ -171,7 +165,7 @@ return {
         ft = "lua",
         opts = {
             library = {
-                vim.env.LAZY .. "/luvit-meta/library",
+                "luvit-meta/library",
             },
         },
     },
@@ -182,14 +176,4 @@ return {
         opts = {}
     },
     { "p00f/clangd_extensions.nvim", lazy = true },
-    {
-        "SmiteshP/nvim-navbuddy",
-        cmd = { "Navbuddy" },
-        dependencies = {
-            "SmiteshP/nvim-navic",
-            "MunifTanjim/nui.nvim",
-        },
-        opts = {}
-    }
-
 }
