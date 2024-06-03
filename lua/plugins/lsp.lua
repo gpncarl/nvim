@@ -1,7 +1,6 @@
 local function lsp_setup()
     local lspconfig = require("lspconfig")
     local function on_attach(client, bufnr)
-        vim.bo[bufnr].tagfunc = nil
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
         vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
         vim.keymap.set("n", "gr", vim.lsp.buf.references, { buffer = bufnr, desc = "goto ref" })
@@ -25,22 +24,7 @@ local function lsp_setup()
             })
         end
     end
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
-    capabilities.textDocument.completion.completionItem = {
-        snippetSupport = true,
-        preselectSupport = true,
-        insertReplaceSupport = true,
-        labelDetailsSupport = true,
-        deprecatedSupport = true,
-        commitCharactersSupport = true,
-        tagSupport = { valueSet = { 1 } },
-        resolveSupport = { properties = { "documentation", "detail", "additionalTextEdits" } }
-    }
-    capabilities.textDocument.foldingRange = {
-        dynamicRegistration = false,
-        lineFoldingOnly = true
-    }
-
+    local capabilities = require('cmp_nvim_lsp').default_capabilities()
     local handlers = {
         -- The first entry (without a key) will be the default handler
         -- and will be called for each installed server that doesn't have
@@ -49,6 +33,7 @@ local function lsp_setup()
             require("lspconfig")[server_name].setup {
                 inlay_hints = { enabled = true, },
                 codelens = { enabled = true, },
+                document_highlight = { enabled = true, },
                 format = {
                     formatting_options = nil,
                     timeout_ms = nil,
