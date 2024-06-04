@@ -121,6 +121,7 @@ return {
         dependencies = { "rafamadriz/friendly-snippets" },
         opts = {
             friendly_snippets = true,
+            ignored_filetypes = { "norg" },
             global_snippets = { "all", "global" },
         },
     }
