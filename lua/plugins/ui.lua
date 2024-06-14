@@ -29,6 +29,11 @@ return {
                     throttle = 1000 / 30, -- frequency to update lsp progress message
                     view = "mini",
                 },
+                override = {
+                    ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+                    ["vim.lsp.util.stylize_markdown"] = true,
+                    ["cmp.entry.get_documentation"] = true, -- requires hrsh7th/nvim-cmp
+                },
             },
             presets = {
                 bottom_search = true,         -- use a classic bottom cmdline for search
