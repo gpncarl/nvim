@@ -52,6 +52,32 @@ return {
             { "<space>l",   "<cmd>Telescope loclist<cr>",                        desc = "fuzzy loclist" },
             { "<space>re",  "<cmd>Telescope resume<cr>",                         desc = "fuzzy resume" },
             { "<space>ab",  "<cmd>Telescope builtin<cr>",                        desc = "fuzzy all built-in" },
+            {
+                "<space>h",
+                function()
+                    local ok, harpoon = pcall(require, 'harpoon')
+                    if not ok then
+                        return vim.fn.throw("load harpoon failed")
+                    end
+
+                    local harpoon_files = harpoon:list()
+                    local file_paths = {}
+                    for _, item in ipairs(harpoon_files.items) do
+                        table.insert(file_paths, item.value)
+                    end
+
+                    local opts = require("telescope.config").values
+                    require("telescope.pickers").new(opts, {
+                        prompt_title = "Harpoon",
+                        finder = require("telescope.finders").new_table({
+                            results = file_paths,
+                        }),
+                        previewer = opts:file_previewer(),
+                        sorter = opts:generic_sorter(),
+                    }):find()
+                end,
+                desc = "Open harpoon window",
+            }
         },
         dependencies = {
             {

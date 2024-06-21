@@ -2,7 +2,7 @@ return {
     dashboard = "dashboard", -- "alpha", "mini.starter"
     colorscheme = "tokyonight",    -- "onedark", "gruvbox", "tokyonight"
     which_key = false,
-    scope_buffer = true,
+    scope_buffer = false,
     bufferline = true,
     dropbar = true,
     finder = "telescope", -- "telescope", "fzf"

@@ -32,7 +32,7 @@ return {
         "akinsho/toggleterm.nvim",
         keys = {
             { "<c-\\><c-\\>" },
-            { "<leader>g",   lazygit_toggle, mode = "n", noremap = true, silent = true, desc = "open lazygit" },
+            { "<leader>g",   lazygit_toggle, desc = "open lazygit" },
         },
         cmd = {
             "ToggleTerm",
