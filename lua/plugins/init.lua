@@ -36,7 +36,9 @@ return {
     },
     {
         "echasnovski/mini.bufremove",
-        event = { "BufReadPost", "BufNewFile" },
+        keys = {
+            { "BD", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
+        },
         opts = {}
     },
 }
