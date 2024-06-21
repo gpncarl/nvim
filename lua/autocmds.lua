@@ -140,8 +140,6 @@ vim.api.nvim_create_autocmd("UIEnter", {
         if argc == 0 then
             if config.dashboard == "alpha" then
                 require "alpha".start(true)
-            elseif config.dashboard == "mini.starter" then
-                require "mini.starter".open()
             elseif config.dashboard == "dashboard" then
                 require "dashboard":instance()
             end

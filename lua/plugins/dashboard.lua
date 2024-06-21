@@ -28,14 +28,6 @@ return {
         end
     },
     {
-        "echasnovski/mini.starter",
-        cond = (config.dashboard == "mini.starter"),
-        lazy = true,
-        opts = {
-            autoopen = false,
-        }
-    },
-    {
         "nvimdev/dashboard-nvim",
         cond = (config.dashboard == "dashboard"),
         cmd = "Dashboard",

@@ -1,5 +1,5 @@
 return {
-    dashboard = "dashboard", -- "alpha", "mini.starter"
+    dashboard = "dashboard", -- "alpha"
     colorscheme = "tokyonight",    -- "onedark", "gruvbox", "tokyonight"
     which_key = false,
     scope_buffer = false,
@@ -9,7 +9,6 @@ return {
     popup_cmdline = true,
     popup_notify = true,
     undotree = false,
-    context = false,
     leetcode = true,
     animate = true,
 }
