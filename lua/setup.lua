@@ -54,3 +54,5 @@ vim.g.netrw_winsize = 20
 vim.g.netrw_altfile = true
 vim.g.loaded_netrw = true
 vim.g.loaded_netrwPlugin = true
+vim.g.mapleader = nil
+vim.g.maplocalleader = nil

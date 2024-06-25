@@ -2,10 +2,7 @@ return {
     {
         "nvim-neorg/neorg",
         ft = { "norg" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "vhyrro/luarocks.nvim",
-        },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {
             lazy_loading = true,
             load = {

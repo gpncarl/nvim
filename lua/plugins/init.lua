@@ -30,11 +30,6 @@ return {
         opts = {}
     },
     {
-        "vhyrro/luarocks.nvim",
-        priority = 1000,
-        opts = {}
-    },
-    {
         "echasnovski/mini.bufremove",
         keys = {
             { "BD", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
