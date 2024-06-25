@@ -5,12 +5,12 @@ return {
     { "MunifTanjim/nui.nvim",        lazy = true },
     {
         "rcarriga/nvim-notify",
-        cond = config.popup_notify,
+        enabled = config.popup_notify,
         opts = { top_down = false }
     },
     {
         "folke/noice.nvim",
-        cond = config.popup_cmdline,
+        enabled = config.popup_cmdline,
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",
@@ -55,7 +55,7 @@ return {
     },
     {
         "echasnovski/mini.animate",
-        cond = config.animate,
+        enabled = config.animate,
         event = "VeryLazy",
         opts = function()
             -- don't use animate when scrolling with the mouse

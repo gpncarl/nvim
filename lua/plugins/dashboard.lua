@@ -2,7 +2,7 @@ local config = require("config")
 return {
     {
         "goolord/alpha-nvim",
-        cond = (config.dashboard == "alpha"),
+        enabled = (config.dashboard == "alpha"),
         cmd = { "Alpha", "AlphaRedraw" },
         dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
@@ -29,7 +29,7 @@ return {
     },
     {
         "nvimdev/dashboard-nvim",
-        cond = (config.dashboard == "dashboard"),
+        enabled = (config.dashboard == "dashboard"),
         cmd = "Dashboard",
         opts = {},
     }

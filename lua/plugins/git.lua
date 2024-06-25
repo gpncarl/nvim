@@ -68,7 +68,7 @@ return {
     },
     {
         "echasnovski/mini-git",
-        cond = false,
+        enabled = false,
         main = "mini.git",
         opts = {},
     }

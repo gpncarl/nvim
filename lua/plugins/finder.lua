@@ -36,7 +36,7 @@ end
 return {
     {
         "nvim-telescope/telescope.nvim",
-        cond = (config.finder == "telescope"),
+        enabled = (config.finder == "telescope"),
         cmd = "Telescope",
         keys = {
             { "go",         "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
@@ -90,7 +90,7 @@ return {
     },
     {
         "nvim-telescope/telescope-frecency.nvim",
-        cond = (config.finder == "telescope"),
+        enabled = (config.finder == "telescope"),
         keys = { { "<space>m", "<Cmd>Telescope frecency<CR>", desc = "fuzzy files by frecency" } },
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
@@ -99,7 +99,7 @@ return {
     },
     {
         "ibhagwan/fzf-lua",
-        cond = (config.finder == "fzf"),
+        enabled = (config.finder == "fzf"),
         cmd = "FzfLua",
         keys = {
             { "<space>fo",  "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },

@@ -49,7 +49,7 @@ return {
     {
         "akinsho/bufferline.nvim",
         event = "ColorScheme",
-        cond = config.bufferline,
+        enabled = config.bufferline,
         opts = {
             options = {
                 mode = "buffers",
@@ -62,7 +62,7 @@ return {
     {
         "Bekaboo/dropbar.nvim",
         event = { "BufReadPost", "BufNewFile" },
-        cond = config.dropbar,
+        enabled = config.dropbar,
         opts = {
             bar = {
                 sources =
@@ -95,7 +95,7 @@ return {
     },
     {
         "luukvbaal/statuscol.nvim",
-        cond = false,
+        enabled = false,
         config = function()
             require("statuscol").setup({
                 relculright = true,

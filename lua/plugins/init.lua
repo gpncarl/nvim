@@ -10,7 +10,7 @@ return {
     },
     {
         "folke/which-key.nvim",
-        cond = config.which_key,
+        enabled = config.which_key,
         -- keys = { "`", "'", "\"", "<space>", "<leader>" },
         opts = {
             plugins = {
@@ -26,13 +26,13 @@ return {
     },
     {
         "tiagovla/scope.nvim",
-        cond = config.scope_buffer,
+        enabled = config.scope_buffer,
         opts = {}
     },
     {
         "echasnovski/mini.bufremove",
         keys = {
-            { "BD", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
+            { "ZB", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
         },
         opts = {}
     },
