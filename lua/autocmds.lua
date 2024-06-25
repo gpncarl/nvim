@@ -136,12 +136,12 @@ vim.api.nvim_create_autocmd("UIEnter", {
         end
 
         local argc = vim.fn.argc()
-        local config = require "config"
+        local config = require("config")
         if argc == 0 then
             if config.dashboard == "alpha" then
-                require "alpha".start(true)
+                require("alpha").start(true)
             elseif config.dashboard == "dashboard" then
-                require "dashboard":instance()
+                require("dashboard"):instance()
             end
         end
 

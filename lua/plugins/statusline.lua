@@ -1,4 +1,4 @@
-local config = require "config"
+local config = require("config")
 local function setup()
     local lualine = require("lualine")
     return lualine.setup({

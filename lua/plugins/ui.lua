@@ -1,4 +1,4 @@
-local config = require "config"
+local config = require("config")
 return {
     { "nvim-lua/popup.nvim",         lazy = true },
     { "nvim-tree/nvim-web-devicons", lazy = true },

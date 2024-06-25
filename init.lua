@@ -1,4 +1,5 @@
-require "options"
-require "setup"
-require "manager"
+require("options")
+require("autocmds")
+require("setup")
+require("manager")
 vim.cmd.colorscheme(require("config").colorscheme)

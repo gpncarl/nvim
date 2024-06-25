@@ -1,10 +1,10 @@
 local function lazygit_toggle()
     local Terminal = require("toggleterm.terminal").Terminal
-    local lazygit  = Terminal:new {
+    local lazygit  = Terminal:new({
         cmd = "lazygit",
         hidden = true,
         direction = "float",
-    }
+    })
     lazygit:toggle()
 end
 
@@ -19,11 +19,11 @@ local function glow_toggle(opts)
         return
     end
 
-    local glow = Terminal:new {
+    local glow = Terminal:new({
         cmd = "glow -p " .. filename,
         hidden = true,
         direction = "float",
-    }
+    })
     glow:toggle()
 end
 
@@ -47,9 +47,9 @@ return {
             "Glow",
         },
         config = function()
-            require("toggleterm").setup {
+            require("toggleterm").setup({
                 open_mapping = "<c-\\><c-\\>"
-            }
+            })
             vim.api.nvim_create_user_command("LazyGit", lazygit_toggle, {})
             vim.api.nvim_create_user_command("Glow", glow_toggle, { complete = "file", nargs = "?" })
         end

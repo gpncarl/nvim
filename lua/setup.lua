@@ -1,5 +1,3 @@
-require "autocmds"
-
 local function switchHeader()
     local alt_exts = {
         c = { "h" },

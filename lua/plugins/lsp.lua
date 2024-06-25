@@ -30,7 +30,7 @@ local function lsp_setup()
         -- and will be called for each installed server that doesn't have
         -- a dedicated handler.
         function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup {
+            require("lspconfig")[server_name].setup({
                 inlay_hints = { enabled = true, },
                 codelens = { enabled = true, },
                 document_highlight = { enabled = true, },
@@ -40,12 +40,12 @@ local function lsp_setup()
                 },
                 capabilities = capabilities,
                 on_attach = on_attach,
-            }
+            })
         end,
         -- Next, you can provide a dedicated handler for specific servers.
         -- For example, a handler override for the `rust_analyzer`:
         clangd = function()
-            lspconfig.clangd.setup {
+            lspconfig.clangd.setup({
                 on_attach = function(client, bufnr)
                     on_attach(client, bufnr)
                     require("clangd_extensions").setup()
@@ -53,10 +53,10 @@ local function lsp_setup()
                         { buffer = bufnr, desc = "switch header" })
                 end,
                 capabilities = capabilities,
-            }
+            })
         end,
         lua_ls = function()
-            lspconfig.lua_ls.setup {
+            lspconfig.lua_ls.setup({
                 on_attach = on_attach,
                 capabilities = capabilities,
                 settings = {
@@ -69,14 +69,14 @@ local function lsp_setup()
                         }
                     }
                 }
-            }
+            })
         end
     }
 
-    require("mason-lspconfig").setup {
+    require("mason-lspconfig").setup({
         ensure_installed = { "clangd", "lua_ls" },
         handlers = handlers,
-    }
+    })
 end
 
 return {

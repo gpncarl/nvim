@@ -1,7 +1,7 @@
-local config = require "config"
+local config = require("config")
 local function telescope_config()
-    local telescope = require "telescope"
-    local actions = require "telescope.actions.layout"
+    local telescope = require("telescope")
+    local actions = require("telescope.actions.layout")
     telescope.setup {
         extensions = {
             fzf = {
@@ -94,7 +94,7 @@ return {
         keys = { { "<space>m", "<Cmd>Telescope frecency<CR>", desc = "fuzzy files by frecency" } },
         dependencies = { "nvim-telescope/telescope.nvim" },
         config = function()
-            require("telescope").load_extension "frecency"
+            require("telescope").load_extension("frecency")
         end,
     },
     {

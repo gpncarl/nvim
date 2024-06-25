@@ -2,7 +2,13 @@ return {
     {
         "stevearc/oil.nvim",
         keys = {
-            { "-", [[<cmd>lua require("oil").open()<cr>]], desc = "Open parent directory" },
+            {
+                "-",
+                function()
+                    require("oil").open()
+                end,
+                desc = "Open parent directory"
+            },
         },
         event = "User OpenDirectory",
         opts = {}
