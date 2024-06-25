@@ -1,3 +1,4 @@
+vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
 vim.opt.fixendofline = false
