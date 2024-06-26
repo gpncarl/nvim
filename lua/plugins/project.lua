@@ -24,5 +24,16 @@ return {
                 save_on_toggle = true,
             },
         },
+        config = function(_, opts)
+            local harpoon = require("harpoon")
+            harpoon:extend({
+                UI_CREATE = function(cx)
+                    vim.keymap.set("n", "<C-CR>", function()
+                        harpoon.ui:select_menu_item()
+                    end, { buffer = cx.bufnr })
+                end,
+            })
+            harpoon:setup(opts)
+        end
     }
 }
