@@ -1,18 +1,15 @@
 return {
     {
         "navarasu/onedark.nvim",
-        lazy = true,
-        priority = 1000
+        event = "VeryLazy",
     },
     {
         "rebelot/kanagawa.nvim",
-        lazy = true,
-        priority = 1000
+        event = "VeryLazy",
     },
     {
         "ellisonleao/gruvbox.nvim",
-        lazy = true,
-        priority = 1000,
+        event = "VeryLazy",
         opts = {
             undercurl = true,
             underline = true,
@@ -35,15 +32,13 @@ return {
     },
     {
         "folke/tokyonight.nvim",
-        lazy = true,
-        priority = 1000,
+        event = "VeryLazy",
         opts = {},
     },
     {
         "catppuccin/nvim",
         name = "catppuccin",
-        lazy = true,
-        priority = 1000,
+        event = "VeryLazy",
         opts = {},
     }
 }
