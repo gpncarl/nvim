@@ -6,11 +6,13 @@ return {
     {
         "rcarriga/nvim-notify",
         enabled = config.popup_notify,
+        event = "VeryLazy",
         opts = { top_down = false }
     },
     {
         "folke/noice.nvim",
         enabled = config.popup_cmdline,
+        event = "VeryLazy",
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",
