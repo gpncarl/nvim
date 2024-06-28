@@ -82,6 +82,14 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("no_wrap"),
+    pattern = { "markdown", "vimwiki", "latex", "norg", "org" },
+    callback = function()
+        vim.opt_local.wrap = false
+    end,
+})
+
 -- Fix conceallevel for json files
 vim.api.nvim_create_autocmd({ "FileType" }, {
     group = augroup("json_conceal"),
