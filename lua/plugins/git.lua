@@ -58,7 +58,12 @@ return {
             "DiffviewFocusFiles",
             "DiffviewFileHistory",
         },
-        opts = {}
+        opts = {
+            default_args = {
+                DiffviewOpen = { "-uno" },
+                DiffviewFileHistory = {},
+            },
+        }
     },
     {
         "NeogitOrg/neogit",
