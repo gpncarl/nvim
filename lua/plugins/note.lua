@@ -20,7 +20,7 @@ return {
     },
     {
         "lukas-reineke/headlines.nvim",
-        ft = { "norg", "org", "markdown" },
+        ft = { "norg", "org" },
         dependencies = "nvim-treesitter/nvim-treesitter",
         opts = {
             markdown = { fat_headline_lower_string = "▔" },
@@ -28,4 +28,14 @@ return {
             norg = { fat_headline_lower_string = "▔" },
         }
     },
+    {
+        "MeanderingProgrammer/markdown.nvim",
+        name = "render-markdown",
+        ft = { "latex", "markdown" },
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+            "nvim-tree/nvim-web-devicons",
+        },
+        opts = {},
+    }
 }
