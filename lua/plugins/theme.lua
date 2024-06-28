@@ -40,5 +40,20 @@ return {
         name = "catppuccin",
         event = "VeryLazy",
         opts = {},
+    },
+    {
+        "projekt0n/github-nvim-theme",
+        main = "github-theme",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "EdenEast/nightfox.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "shaunsingh/nord.nvim",
+        event = "VeryLazy",
     }
 }

@@ -7,7 +7,7 @@ return {
         build = ":TSUpdate",
         opts = {
             ensure_installed = { "bash", "lua", "c", "cpp", "python", "vim", "comment", "vimdoc" },
-            indent = { enable = false },
+            indent = { enable = true },
             highlight = { enable = true, use_languagetree = true },
             refactor = {
                 highlight_definitions = { enable = true },

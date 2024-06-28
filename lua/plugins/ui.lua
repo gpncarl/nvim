@@ -7,7 +7,10 @@ return {
         "rcarriga/nvim-notify",
         enabled = config.popup_notify,
         event = "VeryLazy",
-        opts = { top_down = false }
+        opts = {
+            render = "default",
+            top_down = false,
+        }
     },
     {
         "folke/noice.nvim",
@@ -16,7 +19,6 @@ return {
         dependencies = {
             "rcarriga/nvim-notify",
             "MunifTanjim/nui.nvim",
-            "nvim-treesitter/nvim-treesitter"
         },
         opts = {
             lsp = {
