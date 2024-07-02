@@ -1,29 +1,6 @@
 local config = require("config")
 return {
     {
-        "luckasRanarison/nvim-devdocs",
-        cmd = {
-            "DevdocsFetch",
-            "DevdocsInstall",
-            "DevdocsUninstall",
-            "DevdocsOpen",
-            "DevdocsOpenFloat",
-            "DevdocsOpenCurrent",
-            "DevdocsOpenCurrentFloat",
-            "DevdocsUpdate",
-            "DevdocsUpdateAll"
-        },
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-telescope/telescope.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        },
-        opts = {
-            -- previewer_cmd = "glow",
-            -- cmd_args = { "-s", "dark", "-w", "80" },
-        },
-    },
-    {
         "kawre/leetcode.nvim",
         enabled = config.leetcode,
         cmd = "Leet",
