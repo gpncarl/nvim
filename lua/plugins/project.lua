@@ -35,5 +35,10 @@ return {
             })
             harpoon:setup(opts)
         end
+    },
+    {
+        "echasnovski/mini.sessions",
+        event = "SessionLoadPost",
+        opts = {}
     }
 }
