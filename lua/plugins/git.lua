@@ -71,10 +71,4 @@ return {
         dependencies = "sindrets/diffview.nvim",
         opts = {}
     },
-    {
-        "echasnovski/mini-git",
-        enabled = false,
-        main = "mini.git",
-        opts = {},
-    }
 }
