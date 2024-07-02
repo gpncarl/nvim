@@ -1,36 +1,4 @@
 local config = require("config")
-local function setup()
-    local lualine = require("lualine")
-    return lualine.setup({
-        options = {
-            icons_enabled = true,
-            theme = "auto",
-            disabled_filetypes = { statusline = {}, winbar = {} },
-            ignore_focus = {},
-            always_divide_middle = true,
-            refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
-            globalstatus = true
-        },
-        sections = {
-            lualine_a = { "mode" },
-            lualine_b = { "branch", "diff", "diagnostics" },
-            lualine_c = { "filename" },
-            lualine_x = { "%S", "searchcount", "encoding", "fileformat", "filetype" },
-            lualine_y = { "progress" },
-            lualine_z = { "location" }
-        },
-        inactive_sections = {
-            lualine_a = {},
-            lualine_b = {},
-            lualine_c = { "filename" },
-            lualine_x = { "location" },
-            lualine_y = {},
-            lualine_z = {}
-        },
-        extensions = { "quickfix", "fugitive" }
-    })
-end
-
 local function get_fold()
     local fcs = vim.opt.fillchars:get()
     local lnum = vim.v.lnum
@@ -44,7 +12,37 @@ return {
     {
         "hoob3rt/lualine.nvim",
         event = "ColorScheme",
-        config = setup
+        opts = {
+            options = {
+                icons_enabled = true,
+                theme = "auto",
+                disabled_filetypes = { statusline = {}, winbar = {} },
+                ignore_focus = {},
+                always_divide_middle = true,
+                refresh = { statusline = 1000, tabline = 1000, winbar = 1000 },
+                globalstatus = true,
+                component_separators = '',
+                -- section_separators = { left = '', right = ' ' },
+                section_separators = { left = '', right = '' },
+            },
+            sections = {
+                lualine_a = { "mode" },
+                lualine_b = { "branch", "diff", "diagnostics" },
+                lualine_c = { "filename" },
+                lualine_x = { "%S", "searchcount", "encoding", "fileformat", "filetype" },
+                lualine_y = { "progress" },
+                lualine_z = { "location" },
+            },
+            inactive_sections = {
+                lualine_a = {},
+                lualine_b = {},
+                lualine_c = { "filename" },
+                lualine_x = { "location" },
+                lualine_y = {},
+                lualine_z = {}
+            },
+            extensions = { "quickfix", "fugitive" }
+        }
     },
     {
         "akinsho/bufferline.nvim",
