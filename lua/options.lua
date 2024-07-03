@@ -43,7 +43,7 @@ vim.opt.shortmess:append({ I = true })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
-vim.opt.foldcolumn = '0'
+vim.opt.foldcolumn = "0"
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }

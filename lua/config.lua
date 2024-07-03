@@ -10,5 +10,6 @@ return {
     popup_notify = true,
     undotree = false,
     leetcode = true,
-    animate = true,
+    animate = false,
+    statuscol = true,
 }
