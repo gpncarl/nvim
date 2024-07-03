@@ -1,4 +1,3 @@
-local config = require("config")
 return {
     {
         "nvim-treesitter/nvim-treesitter",
@@ -25,7 +24,7 @@ return {
         },
         config = function(_, opts)
             vim.opt.foldmethod = "expr"
-            vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+            vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
             require("nvim-treesitter.configs").setup(opts)
         end
     },
@@ -67,11 +66,5 @@ return {
             vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t_expr, { expr = true })
             vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
         end
-    },
-    {
-        "JoosepAlviste/nvim-ts-context-commentstring",
-        event = "ModeChanged *:no",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        opts = {},
     },
 }
