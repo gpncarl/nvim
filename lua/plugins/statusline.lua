@@ -82,25 +82,4 @@ return {
             }
         }
     },
-    {
-        "luukvbaal/statuscol.nvim",
-        enabled = config.statuscol,
-        config = function()
-            vim.opt.foldcolumn = "1"
-            local builtin = require("statuscol.builtin");
-            require("statuscol").setup({
-                relculright = true,
-                bt_ignore = { 'terminal' },
-                ft_ignore = { 'oil', 'alpha', 'lazy', 'qf', '' },
-                segments = {
-                    {
-                        sign = { namespace = { ".*" }, maxwidth = 1, colwidth = 1, wrap = true },
-                        click = "v:lua.ScSa"
-                    },
-                    { text = { "%l" }, click = "v:lua.ScLa", },
-                    { text = { " ", builtin.foldfunc, " " }, click = "v:lua.ScFa" },
-                }
-            })
-        end,
-    }
 }

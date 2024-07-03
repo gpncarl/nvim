@@ -1,3 +1,23 @@
+_G.Statuscolumn = function()
+    local stc = "%s%=%l "
+    local fold = "  "
+    if vim.v.virtnum ~= 0 then
+        return stc .. fold
+    end
+
+    if vim.fn.foldclosed(vim.v.lnum) >= 0 then
+        fold = "%#Folded#" .. vim.opt.fillchars:get().foldclose .. " %*"
+    elseif tostring(vim.treesitter.foldexpr(vim.v.lnum)):sub(1, 1) == ">" then
+        if vim.v.relnum == 0 then
+            fold = "%#CursorLineNr#" .. vim.opt.fillchars:get().foldopen .. " %*"
+        else
+            fold = vim.opt.fillchars:get().foldopen .. " "
+        end
+    end
+    return stc .. fold
+end
+
+vim.opt.statuscolumn = "%!v:lua.Statuscolumn()"
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
@@ -43,7 +63,8 @@ vim.opt.shortmess:append({ I = true })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
-vim.opt.foldcolumn = "0"
+vim.opt.foldcolumn = "1"
+vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }

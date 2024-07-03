@@ -11,5 +11,4 @@ return {
     undotree = false,
     leetcode = true,
     animate = false,
-    statuscol = true,
 }
