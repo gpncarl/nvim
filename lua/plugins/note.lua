@@ -32,10 +32,7 @@ return {
         "MeanderingProgrammer/markdown.nvim",
         name = "render-markdown",
         ft = { "latex", "markdown" },
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-            "nvim-tree/nvim-web-devicons",
-        },
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         opts = {},
     }
 }
