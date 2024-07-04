@@ -1,22 +1,40 @@
-_G.Statuscolumn = function()
-    local stc = "%s%=%l "
-    local fold = "  "
-    if vim.v.virtnum ~= 0 then
-        return stc .. fold
-    end
-
-    if vim.fn.foldclosed(vim.v.lnum) >= 0 then
-        fold = "%#Folded#" .. vim.opt.fillchars:get().foldclose .. " %*"
-    elseif tostring(vim.treesitter.foldexpr(vim.v.lnum)):sub(1, 1) == ">" then
-        if vim.v.relnum == 0 then
-            fold = "%#CursorLineNr#" .. vim.opt.fillchars:get().foldopen .. " %*"
-        else
-            fold = vim.opt.fillchars:get().foldopen .. " "
-        end
-    end
-    return stc .. fold
+local closed = function(line) return vim.fn.foldclosed(line) >= 0 end
+local opened = function(line)
+    return tostring(vim.treesitter.foldexpr(line)):sub(1, 1) == ">"
 end
 
+_G.ClickFold = function()
+    local mousepos = vim.fn.getmousepos()
+    vim.api.nvim_set_current_win(mousepos.winid)
+    vim.api.nvim_win_set_cursor(0, {mousepos.line, 0})
+    if closed(mousepos.line) then
+        vim.fn.execute("norm! zo")
+    elseif opened(mousepos.line) then
+        vim.fn.execute("norm! zc")
+    end
+end
+
+_G.Statuscolumn = function()
+    local hl = ""
+    local text = vim.opt.fillchars:get().foldsep
+    if vim.v.virtnum ~= 0 then
+    elseif closed(vim.v.lnum) then
+        text = vim.opt.fillchars:get().foldclose
+        hl = "Folded"
+    elseif opened(vim.v.lnum) then
+        text = vim.opt.fillchars:get().foldopen
+        if vim.v.relnum == 0 then
+            hl = "CursorLineNr"
+        end
+    end
+    return "%s%=%l %@v:lua.ClickFold@%#" .. hl .. "#" .. text .. " %*%T"
+end
+
+vim.opt.foldcolumn = "1"
+vim.opt.foldtext = ""
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 vim.opt.statuscolumn = "%!v:lua.Statuscolumn()"
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
@@ -63,11 +81,6 @@ vim.opt.shortmess:append({ I = true })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
-vim.opt.foldcolumn = "1"
-vim.opt.foldtext = ""
-vim.opt.foldlevelstart = 99
-vim.opt.foldenable = true
-vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 vim.opt.showcmdloc = "statusline"
 vim.opt.matchpairs:append({ "<:>" })
 vim.opt.jumpoptions = "stack"
