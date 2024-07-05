@@ -4,6 +4,7 @@ return {
         "goolord/alpha-nvim",
         enabled = (config.dashboard == "alpha"),
         cmd = { "Alpha", "AlphaRedraw" },
+        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local alpha = require("alpha")
             local startify = require("alpha.themes.startify")

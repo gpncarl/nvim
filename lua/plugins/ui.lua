@@ -1,20 +1,8 @@
 local config = require("config")
 return {
-    { "nvim-lua/popup.nvim",  lazy = true },
-    { "MunifTanjim/nui.nvim", lazy = true },
-    {
-        "echasnovski/mini.icons",
-        lazy = true,
-        init = function()
-            package.preload["nvim-web-devicons"] = function()
-                -- needed since it will be false when loading and mini will fail
-                package.loaded["nvim-web-devicons"] = {}
-                require("mini.icons").mock_nvim_web_devicons()
-                return package.loaded["nvim-web-devicons"]
-            end
-        end,
-        opts = {},
-    },
+    { "nvim-lua/popup.nvim",         lazy = true },
+    { "nvim-tree/nvim-web-devicons", lazy = true },
+    { "MunifTanjim/nui.nvim",        lazy = true },
     {
         "rcarriga/nvim-notify",
         enabled = config.popup_notify,
