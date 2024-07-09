@@ -14,6 +14,13 @@ vim.api.nvim_create_autocmd({ "FocusGained", "TermClose", "TermLeave" }, {
     end,
 })
 
+vim.api.nvim_create_autocmd("TermOpen", {
+    group = augroup("termopen"),
+    callback = function()
+        vim.bo.bufhidden = "hide"
+    end,
+})
+
 -- Highlight on yank
 vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
