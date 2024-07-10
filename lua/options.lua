@@ -14,7 +14,7 @@ _G.ClickFold = function()
     end
 end
 
-_G.Statuscolumn = function()
+_G.StatusColumn = function()
     local hl = ""
     local text = vim.opt.fillchars:get().foldsep
     if vim.v.virtnum ~= 0 then
@@ -30,12 +30,12 @@ _G.Statuscolumn = function()
     return "%s%=%l %@v:lua.ClickFold@%#" .. hl .. "#" .. text .. " %*%T"
 end
 
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
-vim.opt.statuscolumn = "%!v:lua.Statuscolumn()"
+vim.opt.statuscolumn = "%!v:lua.StatusColumn()"
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
@@ -60,8 +60,8 @@ vim.opt.colorcolumn = ""
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.smartindent = true
-vim.opt.breakindent = false
-vim.opt.breakindentopt = "shift:4"
+vim.opt.breakindent = true
+vim.opt.breakindentopt = ""
 vim.opt.autochdir = false
 vim.opt.signcolumn = "yes"
 vim.opt.number = false
