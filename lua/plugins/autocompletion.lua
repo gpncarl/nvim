@@ -44,7 +44,7 @@ local function cmp_config()
             { name = "cmp_tabnine" },
             { name = "neorg",      ft = "norg" },
             { name = "orgmode",    ft = "org" },
-            { name = "lazydev",    ft = "lua" },
+            { name = "lazydev",    ft = "lua", group_index = 0 },
 
         },
 

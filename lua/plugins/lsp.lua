@@ -16,10 +16,11 @@ local function lsp_setup()
         end
 
         if client.supports_method("textDocument/codeLens") then
-            vim.lsp.codelens.refresh()
+            local refresh = function() vim.lsp.codelens.refresh({ bufnr = bufnr }) end
+            refresh()
             vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
                 buffer = bufnr,
-                callback = vim.lsp.codelens.refresh,
+                callback = refresh,
             })
         end
     end
@@ -136,14 +137,14 @@ return {
         ft = "lua",
         opts = {
             library = {
-                "luvit-meta/library",
+                { path = "luvit-meta/library", words = { "vim%.uv" } },
             },
         },
     },
+    { "Bilal2453/luvit-meta",        lazy = true },
     {
         "folke/neoconf.nvim",
         cmd = "Neoconf",
-        dependencies = { "nvim-lspconfig" },
         opts = {}
     },
     { "p00f/clangd_extensions.nvim", lazy = true },
