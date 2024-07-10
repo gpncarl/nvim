@@ -17,65 +17,50 @@ local function lsp_setup()
 
         if client.supports_method("textDocument/codeLens") then
             vim.lsp.codelens.refresh()
-            --- autocmd BufEnter,CursorHold,InsertLeave <buffer> lua vim.lsp.codelens.refresh()
             vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
                 buffer = bufnr,
                 callback = vim.lsp.codelens.refresh,
             })
         end
     end
-    local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    local handlers = {
-        -- The first entry (without a key) will be the default handler
-        -- and will be called for each installed server that doesn't have
-        -- a dedicated handler.
-        function(server_name) -- default handler (optional)
-            require("lspconfig")[server_name].setup({
-                inlay_hints = { enabled = true, },
-                codelens = { enabled = true, },
-                document_highlight = { enabled = true, },
-                format = {
-                    formatting_options = nil,
-                    timeout_ms = nil,
-                },
-                capabilities = capabilities,
-                on_attach = on_attach,
-            })
-        end,
-        -- Next, you can provide a dedicated handler for specific servers.
-        -- For example, a handler override for the `rust_analyzer`:
-        clangd = function()
-            lspconfig.clangd.setup({
-                on_attach = function(client, bufnr)
-                    on_attach(client, bufnr)
-                    require("clangd_extensions").setup()
-                    vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
-                        { buffer = bufnr, desc = "switch header" })
-                end,
-                capabilities = capabilities,
-            })
-        end,
-        lua_ls = function()
-            lspconfig.lua_ls.setup({
-                on_attach = on_attach,
-                capabilities = capabilities,
-                settings = {
-                    Lua = {
-                        diagnostics = {
-                            globals = { 'vim' }
-                        },
-                        codeLens = {
-                            enable = true,
-                        }
-                    }
-                }
-            })
-        end
+
+    local default_opts = {
+        inlay_hints = { enabled = true, },
+        codelens = { enabled = true, },
+        document_highlight = { enabled = true, },
+        format = {
+            formatting_options = nil,
+            timeout_ms = nil,
+        },
+        capabilities = require('cmp_nvim_lsp').default_capabilities(),
+        on_attach = on_attach,
     }
 
     require("mason-lspconfig").setup({
         ensure_installed = { "clangd", "lua_ls" },
-        handlers = handlers,
+        handlers = {
+            function(server_name) lspconfig[server_name].setup(default_opts) end,
+            clangd = function()
+                lspconfig.clangd.setup(vim.tbl_extend("force", default_opts, {
+                    on_attach = function(client, bufnr)
+                        on_attach(client, bufnr)
+                        require("clangd_extensions").setup()
+                        vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+                            { buffer = bufnr, desc = "switch header" })
+                    end,
+                }))
+            end,
+            lua_ls = function()
+                lspconfig.lua_ls.setup(vim.tbl_extend("force", default_opts, {
+                    settings = {
+                        Lua = {
+                            diagnostics = { globals = { "vim" } },
+                            codeLens = { enable = true, }
+                        }
+                    }
+                }))
+            end
+        }
     })
 end
 
