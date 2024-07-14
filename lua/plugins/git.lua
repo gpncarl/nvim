@@ -40,9 +40,9 @@ return {
             view = {
                 style = "sign",
                 signs = {
-                    add = "▎",
-                    change = "▎",
-                    delete = "",
+                    add = require("utils.icons").git.added,
+                    change = require("utils.icons").git.modified,
+                    delete = require("utils.icons").git.removed,
                 },
             },
         },

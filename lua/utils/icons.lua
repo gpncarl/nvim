@@ -1,4 +1,5 @@
 return {
+    indent = "│",
     dap = {
         Stopped = { "󰁕 ", "DiagnosticWarn", "DapStoppedLine" },
         Breakpoint = " ",
@@ -13,9 +14,9 @@ return {
         INFO = " ",
     },
     git = {
-        added = " ",
-        modified = " ",
-        removed = " ",
+        added = "▎",
+        modified = "▎",
+        removed = "",
     },
     kinds = {
         Array = " ",
