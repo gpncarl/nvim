@@ -1,28 +1,3 @@
-local function switchHeader()
-    local alt_exts = {
-        c = { "h" },
-        cpp = { "h", "hpp" },
-        cc = { "h", "hpp" },
-        hpp = { "cc", "cpp" },
-        h = { "cc", "cpp", "c" }
-    }
-    local ext = vim.fn.expand("%:e")
-    local basename = vim.fn.expand("%:t:r")
-    local alt_ext = alt_exts[ext]
-    local pattern_ext = vim.fn.join(alt_ext, "|")
-    local cmdstring = ("fd -tf -1 --strip-cwd-prefix -s \"^" .. basename .. "\\.(" .. pattern_ext .. ")$\"|xargs printf %s")
-    local pathname = vim.fn.system(cmdstring)
-    if (pathname == "") then
-        return vim.fn.throw("pathname is empty")
-    elseif (vim.fn.bufexists(pathname) == 1) then
-        return vim.fn.execute(("buffer " .. pathname), "slient")
-    else
-        return vim.fn.execute(("edit " .. pathname), "slient")
-    end
-end
-
-vim.keymap.set("n", "<space>sh", switchHeader, { desc = "switch header" })
-
 vim.diagnostic.config {
     underline = true,
     update_in_insert = false,
