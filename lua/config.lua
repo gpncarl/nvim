@@ -1,7 +1,7 @@
 return {
     dashboard = "dashboard", -- "alpha"
     colorscheme = "tokyonight",    -- "onedark", "gruvbox", "tokyonight"
-    which_key = false,
+    which_key = true,
     scope_buffer = false,
     bufferline = true,
     dropbar = true,

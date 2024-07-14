@@ -12,17 +12,18 @@ return {
     {
         "folke/which-key.nvim",
         enabled = config.which_key,
-        -- keys = { "`", "'", "\"", "<space>", "<leader>" },
+        event = "VeryLazy",
+        keys = {
+            {
+                "<space>?",
+                function()
+                    require("which-key").show({ global = false })
+                end,
+                desc = "Buffer Local Keymaps (which-key)",
+            },
+        },
         opts = {
-            plugins = {
-                marks = false,
-                registers = false,
-                presets = {
-                    motions = false,
-                    text_objects = false,
-                    operators = false
-                }
-            }
+            preset = "helix",
         }
     },
     {
@@ -41,9 +42,9 @@ return {
         "chentoast/marks.nvim",
         event = { "BufReadPost", "BufNewFile" },
         config = function()
-           require"marks".setup({})
-           vim.api.nvim_set_hl(0, "MarkSignHL", { link = "CursorLineNr"})
-           vim.api.nvim_set_hl(0, "MarkSignNumHL", { link = "Identifier"})
+            require "marks".setup({})
+            vim.api.nvim_set_hl(0, "MarkSignHL", { link = "CursorLineNr" })
+            vim.api.nvim_set_hl(0, "MarkSignNumHL", { link = "Identifier" })
         end
     },
 }
