@@ -8,7 +8,6 @@ return {
     finder = "telescope", -- "telescope", "fzf"
     popup_cmdline = true,
     popup_notify = true,
-    undotree = false,
     leetcode = true,
     animate = false,
 }
