@@ -121,40 +121,29 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        cmd = { "LspInstall", "LspUninstall" },
-        dependencies = {
-            "williamboman/mason.nvim",
-        },
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = { "williamboman/mason.nvim", },
         opts = {}
     },
     {
         "jay-babu/mason-null-ls.nvim",
-        cmd = { "NullLsInstall", "NullLsUninstall" },
+        event = { "BufReadPre", "BufNewFile" },
+        dependencies = {
+            "williamboman/mason.nvim",
+            "nvimtools/none-ls.nvim",
+        },
+        opts = {
+            ensure_installed = {},
+            handlers = {},
+        }
+    },
+    {
+        "nvimtools/none-ls.nvim",
+        lazy = true,
         opts = {}
     },
     {
-        "jose-elias-alvarez/null-ls.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        dependencies = { "williamboman/mason.nvim", "jose-elias-alvarez/null-ls.nvim" },
-        config = function()
-            local nl = require("null-ls")
-            return nl.setup {
-                sources = { nl.builtins.formatting.fnlfmt },
-                on_attach = function(_, buffer)
-                    vim.keymap.set({ "n", "v" },
-                        "<space>fm",
-                        vim.lsp.buf.format,
-                        {
-                            buffer = buffer,
-                            desc = "format"
-                        })
-                end
-            }
-        end
-    },
-    {
         "j-hui/fidget.nvim",
-        tag = "legacy",
         event = "LspAttach",
         opts = {}
     },
