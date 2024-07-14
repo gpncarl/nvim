@@ -3,13 +3,6 @@ return {
     { "nvim-lua/plenary.nvim", lazy = true },
     { "aklt/plantuml-syntax" },
     {
-        "vim-scripts/a.vim",
-        init = function()
-            vim.keymap.set("n", "<space>sh", "<cmd>A<CR>", { desc = "switch header" })
-        end,
-        cmd = { "A", "AS", "AV", "AT", "AN" }
-    },
-    {
         "dstein64/vim-startuptime",
         cmd = "StartupTime",
         config = function()
