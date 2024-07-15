@@ -132,10 +132,11 @@ return {
       "nvimtools/none-ls.nvim",
     },
     opts = function()
+      local null_ls = require("null-ls")
       return {
         ensure_installed = {},
         handlers = {
-          nil,           -- use default handler
+          nil, -- use default handler
         },
       }
     end
