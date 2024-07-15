@@ -16,13 +16,13 @@ end
 
 _G.StatusColumn = function()
   local hl = ""
-  local text = vim.opt.fillchars:get().foldsep
+  local text = vim.opt.fillchars:get().foldsep or ""
   if vim.v.virtnum ~= 0 then
   elseif closed(vim.v.lnum) then
-    text = vim.opt.fillchars:get().foldclose
+    text = vim.opt.fillchars:get().foldclose or ""
     hl = "Folded"
   elseif opened(vim.v.lnum) then
-    text = vim.opt.fillchars:get().foldopen
+    text = vim.opt.fillchars:get().foldopen or ""
     if vim.v.relnum == 0 then
       hl = "CursorLineNr"
     end
