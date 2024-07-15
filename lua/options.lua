@@ -1,33 +1,33 @@
 local closed = function(line) return vim.fn.foldclosed(line) >= 0 end
 local opened = function(line)
-    return tostring(vim.treesitter.foldexpr(line)):sub(1, 1) == ">"
+  return tostring(vim.treesitter.foldexpr(line)):sub(1, 1) == ">"
 end
 
 _G.ClickFold = function()
-    local mousepos = vim.fn.getmousepos()
-    vim.api.nvim_set_current_win(mousepos.winid)
-    vim.api.nvim_win_set_cursor(0, {mousepos.line, 0})
-    if closed(mousepos.line) then
-        vim.fn.execute("norm! zo")
-    elseif opened(mousepos.line) then
-        vim.fn.execute("norm! zc")
-    end
+  local mousepos = vim.fn.getmousepos()
+  vim.api.nvim_set_current_win(mousepos.winid)
+  vim.api.nvim_win_set_cursor(0, { mousepos.line, 0 })
+  if closed(mousepos.line) then
+    vim.fn.execute("norm! zo")
+  elseif opened(mousepos.line) then
+    vim.fn.execute("norm! zc")
+  end
 end
 
 _G.StatusColumn = function()
-    local hl = ""
-    local text = vim.opt.fillchars:get().foldsep
-    if vim.v.virtnum ~= 0 then
-    elseif closed(vim.v.lnum) then
-        text = vim.opt.fillchars:get().foldclose
-        hl = "Folded"
-    elseif opened(vim.v.lnum) then
-        text = vim.opt.fillchars:get().foldopen
-        if vim.v.relnum == 0 then
-            hl = "CursorLineNr"
-        end
+  local hl = ""
+  local text = vim.opt.fillchars:get().foldsep
+  if vim.v.virtnum ~= 0 then
+  elseif closed(vim.v.lnum) then
+    text = vim.opt.fillchars:get().foldclose
+    hl = "Folded"
+  elseif opened(vim.v.lnum) then
+    text = vim.opt.fillchars:get().foldopen
+    if vim.v.relnum == 0 then
+      hl = "CursorLineNr"
     end
-    return "%s%=%l %@v:lua.ClickFold@%#" .. hl .. "#" .. text .. " %*%T"
+  end
+  return "%s%=%l %@v:lua.ClickFold@%#" .. hl .. "#" .. text .. " %*%T"
 end
 
 vim.opt.foldcolumn = "0"
