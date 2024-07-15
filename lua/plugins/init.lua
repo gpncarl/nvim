@@ -3,13 +3,6 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "aklt/plantuml-syntax" },
   {
-    "dstein64/vim-startuptime",
-    cmd = "StartupTime",
-    config = function()
-      vim.g.startuptime_tries = 10
-    end,
-  },
-  {
     "folke/which-key.nvim",
     enabled = config.which_key,
     event = "VeryLazy",
