@@ -54,31 +54,30 @@ return {
     enabled = config.dropbar,
     opts = {
       bar = {
-        sources =
-            function(buf, _)
-              local sources = require('dropbar.sources')
-              local utils = require('dropbar.utils')
-              if vim.bo[buf].ft == 'markdown' then
-                return {
-                  utils.source.fallback({
-                    sources.treesitter,
-                    sources.markdown,
-                    sources.lsp,
-                  }),
-                }
-              end
-              if vim.bo[buf].buftype == 'terminal' then
-                return {
-                  sources.terminal,
-                }
-              end
-              return {
-                utils.source.fallback({
-                  sources.lsp,
-                  sources.treesitter,
-                }),
-              }
-            end
+        sources = function(buf, _)
+          local sources = require('dropbar.sources')
+          local utils = require('dropbar.utils')
+          if vim.bo[buf].ft == 'markdown' then
+            return {
+              utils.source.fallback({
+                sources.treesitter,
+                sources.markdown,
+                sources.lsp,
+              }),
+            }
+          end
+          if vim.bo[buf].buftype == 'terminal' then
+            return {
+              sources.terminal,
+            }
+          end
+          return {
+            utils.source.fallback({
+              sources.lsp,
+              sources.treesitter,
+            }),
+          }
+        end
       }
     }
   },
