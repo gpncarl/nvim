@@ -1,40 +1,12 @@
 return {
   {
-    "ThePrimeagen/harpoon",
-    branch = "harpoon2",
+    "cbochs/grapple.nvim",
+    cmd = "Grapple",
     keys = {
-      {
-        "<C-S-H>",
-        function()
-          require("harpoon"):list():add()
-        end,
-        desc = "Harpoon File",
-      },
-      {
-        "<C-H>",
-        function()
-          local harpoon = require("harpoon")
-          harpoon.ui:toggle_quick_menu(harpoon:list())
-        end,
-        desc = "Harpoon Quick Menu",
-      },
+      { "<C-S-H>", "<cmd>Grapple tag<cr>",         desc = "Grapple add tag" },
+      { "<C-H>",   "<cmd>Grapple toggle_tags<cr>", desc = "Grapple open tags window" },
     },
-    opts = {
-      settings = {
-        save_on_toggle = true,
-      },
-    },
-    config = function(_, opts)
-      local harpoon = require("harpoon")
-      harpoon:extend({
-        UI_CREATE = function(cx)
-          vim.keymap.set("n", "<C-CR>", function()
-            harpoon.ui:select_menu_item()
-          end, { buffer = cx.bufnr })
-        end,
-      })
-      harpoon:setup(opts)
-    end
+    opts = {},
   },
   {
     "echasnovski/mini.sessions",

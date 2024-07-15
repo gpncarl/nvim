@@ -42,7 +42,6 @@ return {
       { "go",         "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
       { "<space>ff",  "<cmd>Telescope find_files<cr>",                     desc = "fuzzy files" },
       { "<space>gf",  "<cmd>Telescope git_files show_untracked=false<cr>", desc = "fuzzy git files" },
-      -- { "<space>m",   "<cmd>Telescope oldfiles<cr>",                       desc = "fuzzy oldfiles" },
       { "<space>b",   "<cmd>Telescope buffers<cr>",                        desc = "fuzzy buffers" },
       { "<leader>gr", "<cmd>Telescope grep_string<cr>",                    desc = "fuzzy string" },
       { "<space>gr",  "<cmd>Telescope live_grep<cr>",                      desc = "live fuzzy string" },
@@ -52,32 +51,6 @@ return {
       { "<space>l",   "<cmd>Telescope loclist<cr>",                        desc = "fuzzy loclist" },
       { "<space>re",  "<cmd>Telescope resume<cr>",                         desc = "fuzzy resume" },
       { "<space>ab",  "<cmd>Telescope builtin<cr>",                        desc = "fuzzy all built-in" },
-      {
-        "<space>h",
-        function()
-          local ok, harpoon = pcall(require, 'harpoon')
-          if not ok then
-            return vim.fn.throw("load harpoon failed")
-          end
-
-          local harpoon_files = harpoon:list()
-          local file_paths = {}
-          for _, item in ipairs(harpoon_files.items) do
-            table.insert(file_paths, item.value)
-          end
-
-          local opts = require("telescope.config").values
-          require("telescope.pickers").new(opts, {
-            prompt_title = "Harpoon",
-            finder = require("telescope.finders").new_table({
-              results = file_paths,
-            }),
-            previewer = opts:file_previewer(),
-            sorter = opts:generic_sorter(),
-          }):find()
-        end,
-        desc = "Open harpoon window",
-      }
     },
     dependencies = {
       {
