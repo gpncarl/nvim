@@ -22,15 +22,15 @@ return {
     end,
     opts = {
       mappings = {
-        add = "gsa",                    -- Add surrounding in Normal and Visual modes
-        delete = "gsd",                 -- Delete surrounding
-        find = "gsf",                   -- Find surrounding (to the right)
-        find_left = "gsF",              -- Find surrounding (to the left)
-        highlight = "gsh",              -- Highlight surrounding
-        replace = "gsr",                -- Replace surrounding
-        update_n_lines = "gsn",         -- Update `n_lines`
-        suffix_last = 'l',              -- Suffix to search with "prev" method
-        suffix_next = 'n',              -- Suffix to search with "next" method
+        add = "gsa",            -- Add surrounding in Normal and Visual modes
+        delete = "gsd",         -- Delete surrounding
+        find = "gsf",           -- Find surrounding (to the right)
+        find_left = "gsF",      -- Find surrounding (to the left)
+        highlight = "gsh",      -- Highlight surrounding
+        replace = "gsr",        -- Replace surrounding
+        update_n_lines = "gsn", -- Update `n_lines`
+        suffix_last = 'l',      -- Suffix to search with "prev" method
+        suffix_next = 'n',      -- Suffix to search with "next" method
       },
     },
   },
@@ -53,4 +53,22 @@ return {
       }
     end,
   },
+  {
+    "anuvyklack/hydra.nvim",
+    config = function()
+      local Hydra = require('hydra')
+
+      Hydra({
+        hint = false,
+        mode = "n",
+        body = "<c-w>",
+        heads = {
+          { "h", "<c-w>h" },
+          { "j", "<c-w>j" },
+          { "k", "<c-w>k" },
+          { "l", "<c-w>l" },
+        }
+      })
+    end
+  }
 }
