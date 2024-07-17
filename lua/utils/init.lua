@@ -9,6 +9,7 @@ local function opened(line)
 end
 
 function M.clickfold()
+  print(111)
   local mousepos = vim.fn.getmousepos()
   vim.api.nvim_set_current_win(mousepos.winid)
   vim.api.nvim_win_set_cursor(0, { mousepos.line, 0 })
@@ -32,7 +33,7 @@ function M.statuscolumn()
       hl = "CursorLineNr"
     end
   end
-  return [[%s%=%l %@%!v:lua.require("utils").clickfold()@%#]] .. hl .. "#" .. text .. " %*%T"
+  return "%s%=%l %@v:lua.require'utils'.clickfold@%#" .. hl .. "#" .. text .. " %*%T"
 end
 
 function M.foldexpr()

@@ -4,8 +4,8 @@ vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 vim.opt.foldmethod = "expr"
-vim.opt.foldexpr = [[%!v:lua.require("utils").foldexpr()]]
-vim.opt.statuscolumn = [[%!v:lua.require("utils").statuscolumn()]]
+vim.opt.foldexpr = "v:lua.require'utils'.foldexpr()"
+vim.opt.statuscolumn = "%!v:lua.require'utils'.statuscolumn()"
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
