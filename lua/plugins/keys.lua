@@ -54,21 +54,28 @@ return {
     end,
   },
   {
-    "anuvyklack/hydra.nvim",
-    config = function()
-      local Hydra = require('hydra')
-
-      Hydra({
-        hint = false,
-        mode = "n",
-        body = "<c-w>",
-        heads = {
-          { "h", "<c-w>h" },
-          { "j", "<c-w>j" },
-          { "k", "<c-w>k" },
-          { "l", "<c-w>l" },
-        }
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    opts = {
+      preset = "helix",
+    },
+    config = function(_, opts)
+      local wk = require("which-key")
+      wk.add({
+        {
+          "<space>?",
+          function()
+            require("which-key").show({ global = false })
+          end,
+          desc = "Buffer Local Keymaps (which-key)",
+        },
+        {
+          "gb",
+          group = "buffers",
+          expand = require("which-key.extras").expand.buf,
+        },
       })
+      wk.setup(opts)
     end
-  }
+  },
 }

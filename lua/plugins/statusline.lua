@@ -51,13 +51,12 @@ return {
   {
     "Bekaboo/dropbar.nvim",
     event = { "BufReadPost", "BufNewFile" },
-    enabled = config.dropbar,
     opts = {
       bar = {
         sources = function(buf, _)
-          local sources = require('dropbar.sources')
-          local utils = require('dropbar.utils')
-          if vim.bo[buf].ft == 'markdown' then
+          local sources = require("dropbar.sources")
+          local utils = require("dropbar.utils")
+          if vim.bo[buf].ft == "markdown" then
             return {
               utils.source.fallback({
                 sources.treesitter,
@@ -66,7 +65,7 @@ return {
               }),
             }
           end
-          if vim.bo[buf].buftype == 'terminal' then
+          if vim.bo[buf].buftype == "terminal" then
             return {
               sources.terminal,
             }
