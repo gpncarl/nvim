@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    main = "nvim-treesitter.configs",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "TSUpdateSync", "TSUpdate", "TSUninstall" },
     build = ":TSUpdate",
@@ -22,11 +23,6 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      vim.opt.foldmethod = "expr"
-      vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-      require("nvim-treesitter.configs").setup(opts)
-    end
   },
   {
     "nvim-treesitter/nvim-treesitter-textobjects",

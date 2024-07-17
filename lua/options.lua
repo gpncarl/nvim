@@ -1,46 +1,17 @@
-local closed = function(line) return vim.fn.foldclosed(line) >= 0 end
-local opened = function(line)
-  return tostring(vim.treesitter.foldexpr(line)):sub(1, 1) == ">"
-end
-
-_G.ClickFold = function()
-  local mousepos = vim.fn.getmousepos()
-  vim.api.nvim_set_current_win(mousepos.winid)
-  vim.api.nvim_win_set_cursor(0, { mousepos.line, 0 })
-  if closed(mousepos.line) then
-    vim.fn.execute("norm! zo")
-  elseif opened(mousepos.line) then
-    vim.fn.execute("norm! zc")
-  end
-end
-
-_G.StatusColumn = function()
-  local hl = ""
-  local text = vim.opt.fillchars:get().foldsep or ""
-  if vim.v.virtnum ~= 0 then
-  elseif closed(vim.v.lnum) then
-    text = vim.opt.fillchars:get().foldclose or ""
-    hl = "Folded"
-  elseif opened(vim.v.lnum) then
-    text = vim.opt.fillchars:get().foldopen or ""
-    if vim.v.relnum == 0 then
-      hl = "CursorLineNr"
-    end
-  end
-  return "%s%=%l %@v:lua.ClickFold@%#" .. hl .. "#" .. text .. " %*%T"
-end
-
 vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
-vim.opt.statuscolumn = "%!v:lua.StatusColumn()"
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = [[%!v:lua.require("utils").foldexpr()]]
+vim.opt.statuscolumn = [[%!v:lua.require("utils").statuscolumn()]]
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 0
 vim.opt.updatetime = 100
 vim.opt.fixendofline = false
 vim.opt.scrolloff = 10
+vim.opt.smoothscroll = true
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.inccommand = "nosplit"
@@ -49,6 +20,7 @@ vim.opt.laststatus = 3
 vim.opt.showtabline = 2
 vim.opt.hlsearch = true
 vim.opt.showmode = true
+vim.opt.wrap = false
 vim.opt.wrapscan = true
 vim.opt.termguicolors = true
 vim.opt.incsearch = true
