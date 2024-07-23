@@ -2,6 +2,10 @@ return {
   { "nvim-lua/plenary.nvim", lazy = true },
   { "aklt/plantuml-syntax" },
   {
+    "pteroctopus/faster.nvim",
+    opts = {}
+  },
+  {
     "echasnovski/mini.bufremove",
     keys = {
       { "ZB", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
