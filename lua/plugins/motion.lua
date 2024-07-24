@@ -15,11 +15,7 @@ return {
     "folke/flash.nvim",
     event = "CmdlineEnter",
     opts = {
-      label = {
-        uppercase = false,
-      },
       modes = {
-        search = { enabled = true },
         char = { enabled = false },
       }
     },
@@ -28,26 +24,33 @@ return {
         "<leader>s",
         mode = { "n", "x", "o" },
         function()
-          -- default options: exact mode, multi window, all directions, with a backdrop
+          require("flash").toggle()
+        end,
+        desc = "Flash",
+      },
+      {
+        "<c-s>",
+        mode = { "n", "x", "o" },
+        function()
           require("flash").jump()
         end,
         desc = "Flash",
       },
       {
-        "<leader>S",
+        "g/",
+        mode = { "n", "x", "o" },
+        function()
+          require("flash").jump()
+        end,
+        desc = "Flash",
+      },
+      {
+        "gV",
         mode = { "n", "o", "x" },
         function()
           require("flash").treesitter()
         end,
         desc = "Flash Treesitter",
-      },
-      {
-        "<leader>r",
-        mode = "o",
-        function()
-          require("flash").remote()
-        end,
-        desc = "Remote Flash",
       },
     },
   }
