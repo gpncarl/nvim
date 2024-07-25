@@ -38,12 +38,12 @@ return {
       config = {
         week_header = { enable = true, },
         shortcut = {
-          { action = "ene | startinsert", desc = " New File", icon = " ", key = "i" },
+          { action = "ene | startinsert", desc = " New File", icon = " ", key = "I" },
           { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "L" },
-          { action = "Mason", desc = " Mason", icon = " ", key = "m" },
-          { action = "Leet", desc = " Leetcode", icon = " ", key = "l" },
-          { action = function() require("mini.sessions").select() end, desc = " Restore Session", icon = " ", key = "s" },
-          { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q" },
+          { action = "Mason", desc = " Mason", icon = " ", key = "M" },
+          { action = "Leet", desc = " Leetcode", icon = " ", key = "C" },
+          { action = function() require("mini.sessions").select() end, desc = " Restore Session", icon = " ", key = "S" },
+          { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "Q" },
         },
       }
     },
