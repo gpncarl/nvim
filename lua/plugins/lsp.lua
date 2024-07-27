@@ -37,6 +37,37 @@ local get_default_opts = function()
   }
 end
 
+local default_lsp_handler = function(server_name)
+  require("lspconfig")[server_name].setup(get_default_opts())
+end
+
+local get_lsp_handler = function()
+  local default_opts = get_default_opts()
+  local lspconfig = require("lspconfig")
+  return {
+    clangd = function()
+      lspconfig.clangd.setup(vim.tbl_extend("force", default_opts, {
+        on_attach = function(client, bufnr)
+          on_attach(client, bufnr)
+          require("clangd_extensions").setup()
+          vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
+            { buffer = bufnr, desc = "switch header" })
+        end,
+      }))
+    end,
+    lua_ls = function()
+      lspconfig.lua_ls.setup(vim.tbl_extend("force", default_opts, {
+        settings = {
+          Lua = {
+            diagnostics = { globals = { "vim" } },
+            codeLens = { enable = true, }
+          }
+        }
+      }))
+    end
+  }
+end
+
 return {
   {
     "folke/trouble.nvim",
@@ -93,35 +124,25 @@ return {
       "williamboman/mason.nvim",
       "neovim/nvim-lspconfig",
     },
-    opts = function()
-      local default_opts = get_default_opts()
-      local lspconfig = require("lspconfig")
-      return {
-        ensure_installed = { "clangd", "lua_ls" },
-        handlers = {
-          function(server_name) lspconfig[server_name].setup(default_opts) end,
-          clangd = function()
-            lspconfig.clangd.setup(vim.tbl_extend("force", default_opts, {
-              on_attach = function(client, bufnr)
-                on_attach(client, bufnr)
-                require("clangd_extensions").setup()
-                vim.keymap.set("n", "<space>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
-                  { buffer = bufnr, desc = "switch header" })
-              end,
-            }))
-          end,
-          lua_ls = function()
-            lspconfig.lua_ls.setup(vim.tbl_extend("force", default_opts, {
-              settings = {
-                Lua = {
-                  diagnostics = { globals = { "vim" } },
-                  codeLens = { enable = true, }
-                }
-              }
-            }))
-          end
-        }
-      }
+    config = function()
+      local manual_installed = { "clangd" }
+      local ensure_installed = { "lua_ls" }
+      local handlers = get_lsp_handler()
+      for _, server_name in ipairs(manual_installed) do
+        ensure_installed[server_name] = nil
+        if handlers[server_name] ~= nil then
+          handlers[server_name]()
+          handlers[server_name] = nil
+        else
+          default_lsp_handler(server_name)
+        end
+      end
+
+      handlers[1] = default_lsp_handler
+      require("mason-lspconfig").setup({
+        ensure_installed = ensure_installed,
+        handlers = handlers,
+      })
     end
   },
   {
