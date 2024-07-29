@@ -1,6 +1,5 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
-  { "aklt/plantuml-syntax" },
   {
     "pteroctopus/faster.nvim",
     opts = {}
