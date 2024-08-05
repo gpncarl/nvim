@@ -71,4 +71,35 @@ return {
     dependencies = "sindrets/diffview.nvim",
     opts = {}
   },
+  {
+    "isakbm/gitgraph.nvim",
+    cmd = "GitGraph",
+    init = function()
+      vim.api.nvim_create_user_command("GitGraph", function()
+        require("gitgraph").draw({}, { all = true, max_count = 5000 })
+      end, {})
+    end,
+    opts = {
+      symbols = {
+        -- commit = '○',
+        -- commit_end = '○',
+        -- merge_commit = '●',
+        -- merge_commit_end = '●',
+      },
+      format = {
+        timestamp = '%Y-%m-%d %H:%M:%S',
+        fields = { 'hash', 'timestamp', 'author', 'branch_name', 'tag' },
+      },
+      hooks = {
+        -- Check diff of a commit
+        on_select_commit = function(commit)
+          vim.cmd(":DiffviewOpen " .. commit.hash .. "^!")
+        end,
+        -- Check diff from commit a -> commit b
+        on_select_range_commit = function(from, to)
+          vim.cmd(":DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
+        end,
+      },
+    },
+  },
 }
