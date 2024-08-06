@@ -19,26 +19,6 @@ return {
     opts = {},
   },
   {
-    "lukas-reineke/headlines.nvim",
-    ft = { "norg", "org" },
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    opts = {
-      markdown = { fat_headline_lower_string = "▔" },
-      org = { fat_headline_lower_string = "▔" },
-      norg = { fat_headline_lower_string = "▔" },
-    }
-  },
-  {
-    "MeanderingProgrammer/markdown.nvim",
-    name = "render-markdown",
-    ft = { "latex" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-    opts = {},
-  },
-  {
     "OXY2DEV/markview.nvim",
     ft = { "markdown" },
     dependencies = {
