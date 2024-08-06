@@ -1,5 +1,5 @@
 local function cmp_config()
-  local cmp = require('cmp')
+  local cmp = require("cmp")
   cmp.setup {
     snippet = {
       expand = function(args)
@@ -7,7 +7,7 @@ local function cmp_config()
       end
     },
     completion = {
-      completeopt = 'menuone,noinsert,noselect',
+      completeopt = "menuone,noinsert,noselect",
     },
     mapping = {
       ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
@@ -16,6 +16,15 @@ local function cmp_config()
       ["<C-d>"] = cmp.mapping.scroll_docs(4),
       ["<C-Space>"] = cmp.mapping.complete(),
       ["<C-e>"] = cmp.mapping.abort(),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<C-CR>"] = cmp.mapping.confirm({
+        behavior = cmp.ConfirmBehavior.Replace,
+        select = true,
+      }),
+      ["<S-CR>"] = function(fallback)
+        cmp.abort()
+        fallback()
+      end,
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
@@ -50,7 +59,7 @@ local function cmp_config()
 
     formatting = {
       expandable_indicator = true,
-      fields = { 'abbr', 'kind', 'menu' },
+      fields = { "abbr", "kind", "menu" },
       format = function(entry, vim_item)
         vim_item.kind = require("utils.icons").kinds[vim_item.kind]
         vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
