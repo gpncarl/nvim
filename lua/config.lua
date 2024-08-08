@@ -7,4 +7,5 @@ return {
   popup_notify = true,
   leetcode = true,
   animate = false,
+  copilot = true,
 }

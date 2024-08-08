@@ -1,3 +1,4 @@
+local config = require("config")
 local function cmp_config()
   local cmp = require("cmp")
   cmp.setup {
@@ -85,28 +86,6 @@ local function cmp_config()
 end
 
 return {
-  { "hrsh7th/cmp-path",             lazy = true },
-  { "hrsh7th/cmp-buffer",           lazy = true },
-  { "hrsh7th/cmp-nvim-lsp",         lazy = true },
-  { "rafamadriz/friendly-snippets", lazy = true },
-  {
-    "tzachar/cmp-tabnine",
-    build = "bash install.sh",
-    lazy = true
-  },
-  {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    dependencies = {
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "tzachar/cmp-tabnine",
-      "garymjr/nvim-snippets",
-      "hrsh7th/cmp-nvim-lsp",
-      "zbirenbaum/copilot-cmp",
-    },
-    config = cmp_config
-  },
   {
     "echasnovski/mini.pairs",
     event = "InsertEnter",
@@ -117,27 +96,38 @@ return {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    lazy = true,
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    }
-  },
-  {
-    "zbirenbaum/copilot-cmp",
-    lazy = true,
-    dependencies = { "zbirenbaum/copilot.lua" },
-    opts = {}
-  },
-  {
-    "garymjr/nvim-snippets",
-    lazy = true,
-    dependencies = { "rafamadriz/friendly-snippets" },
-    opts = {
-      friendly_snippets = true,
-      ignored_filetypes = { "norg" },
-      global_snippets = { "all", "global" },
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      "hrsh7th/cmp-path",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      {
+        "garymjr/nvim-snippets",
+        dependencies = "rafamadriz/friendly-snippets",
+        opts = {
+          friendly_snippets = true,
+          ignored_filetypes = { "norg" },
+          global_snippets = { "all", "global" },
+        },
+      },
+      {
+        "tzachar/cmp-tabnine",
+        build = "bash install.sh",
+      },
+      {
+        "zbirenbaum/copilot-cmp",
+        cond = config.copilot,
+        dependencies = {
+          "zbirenbaum/copilot.lua",
+          opts = {
+            suggestion = { enabled = false },
+            panel = { enabled = false },
+          }
+        },
+        opts = {}
+      },
     },
-  }
+    config = cmp_config
+  },
 }
