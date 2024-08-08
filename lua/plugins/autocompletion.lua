@@ -48,13 +48,13 @@ local function cmp_config()
     sources = {
       { name = "nvim_lsp" },
       { name = "buffer" },
+      { name = "copilot" },
       { name = "path" },
       { name = "snippets" },
       { name = "cmp_tabnine" },
       { name = "neorg",      ft = "norg" },
       { name = "orgmode",    ft = "org" },
       { name = "lazydev",    ft = "lua", group_index = 0 },
-
     },
 
     formatting = {
@@ -69,11 +69,11 @@ local function cmp_config()
           snippets = "[S]",
           nvim_lsp = "[L]",
           cmp_tabnine = "[T]",
+          copilot = "[C]",
         })[entry.source.name]
         return vim_item
       end,
     },
-
     view = {
       -- entries = "native",
     },
@@ -103,6 +103,7 @@ return {
       "tzachar/cmp-tabnine",
       "garymjr/nvim-snippets",
       "hrsh7th/cmp-nvim-lsp",
+      "zbirenbaum/copilot-cmp",
     },
     config = cmp_config
   },
@@ -114,6 +115,20 @@ return {
         ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\`].", register = { cr = false } },
       },
     },
+  },
+  {
+    "zbirenbaum/copilot.lua",
+    lazy = true,
+    opts = {
+      suggestion = { enabled = false },
+      panel = { enabled = false },
+    }
+  },
+  {
+    "zbirenbaum/copilot-cmp",
+    lazy = true,
+    dependencies = { "zbirenbaum/copilot.lua" },
+    opts = {}
   },
   {
     "garymjr/nvim-snippets",
