@@ -107,11 +107,6 @@ return {
     opts = {}
   },
   {
-    "neovim/nvim-lspconfig",
-    lazy = true,
-    dependencies = { "folke/neoconf.nvim", },
-  },
-  {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
     build = ":MasonUpdate",
@@ -121,8 +116,14 @@ return {
     "williamboman/mason-lspconfig.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason.nvim",
-      "neovim/nvim-lspconfig",
+      { "williamboman/mason.nvim" },
+      {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+          { "p00f/clangd_extensions.nvim" },
+          { "folke/neoconf.nvim",         opts = {} },
+        },
+      },
     },
     config = function()
       local manual_installed = { "clangd" }
@@ -149,8 +150,8 @@ return {
     "jay-babu/mason-null-ls.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
-      "williamboman/mason.nvim",
-      "nvimtools/none-ls.nvim",
+      { "williamboman/mason.nvim" },
+      { "nvimtools/none-ls.nvim", opts = {} },
     },
     opts = function()
       local null_ls = require("null-ls")
@@ -163,11 +164,6 @@ return {
     end
   },
   {
-    "nvimtools/none-ls.nvim",
-    lazy = true,
-    opts = {}
-  },
-  {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {}
@@ -175,17 +171,11 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
+    dependencies = { "Bilal2453/luvit-meta" },
     opts = {
       library = {
         { path = "luvit-meta/library", words = { "vim%.uv" } },
       },
     },
   },
-  { "Bilal2453/luvit-meta",        lazy = true },
-  {
-    "folke/neoconf.nvim",
-    cmd = "Neoconf",
-    opts = {}
-  },
-  { "p00f/clangd_extensions.nvim", lazy = true },
 }

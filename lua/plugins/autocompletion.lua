@@ -99,12 +99,12 @@ return {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
     dependencies = {
-      "hrsh7th/cmp-path",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
+      { "hrsh7th/cmp-path" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-nvim-lsp" },
       {
         "garymjr/nvim-snippets",
-        dependencies = "rafamadriz/friendly-snippets",
+        dependencies = { "rafamadriz/friendly-snippets" },
         opts = {
           friendly_snippets = true,
           ignored_filetypes = { "norg" },
@@ -119,10 +119,12 @@ return {
         "zbirenbaum/copilot-cmp",
         cond = config.copilot,
         dependencies = {
-          "zbirenbaum/copilot.lua",
-          opts = {
-            suggestion = { enabled = false },
-            panel = { enabled = false },
+          {
+            "zbirenbaum/copilot.lua",
+            opts = {
+              suggestion = { enabled = false },
+              panel = { enabled = false },
+            },
           }
         },
         opts = {}

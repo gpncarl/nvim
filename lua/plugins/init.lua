@@ -1,9 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
-  {
-    "pteroctopus/faster.nvim",
-    opts = {}
-  },
+  { "pteroctopus/faster.nvim", opts = {} },
   {
     "echasnovski/mini.bufremove",
     keys = {

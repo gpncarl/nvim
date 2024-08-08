@@ -31,10 +31,6 @@ return {
   {
     "echasnovski/mini.indentscope",
     event = { "BufReadPost", "BufNewFile" },
-    opts = {
-      symbol = require("utils.icons").indent,
-      options = { try_as_border = true },
-    },
     init = function()
       vim.api.nvim_create_autocmd("FileType", {
         pattern = {
@@ -56,5 +52,9 @@ return {
         end,
       })
     end,
+    opts = {
+      symbol = require("utils.icons").indent,
+      options = { try_as_border = true },
+    },
   },
 }
