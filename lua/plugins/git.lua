@@ -59,6 +59,11 @@ return {
       "DiffviewFileHistory",
     },
     opts = {
+      view = {
+        merge_tool = {
+          layout = "diff3_mixed",
+        },
+      },
       default_args = {
         DiffviewOpen = { "-uno" },
         DiffviewFileHistory = {},
