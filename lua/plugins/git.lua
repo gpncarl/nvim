@@ -74,11 +74,6 @@ return {
   {
     "isakbm/gitgraph.nvim",
     cmd = "GitGraph",
-    init = function()
-      vim.api.nvim_create_user_command("GitGraph", function()
-        require("gitgraph").draw({}, { all = true, max_count = 5000 })
-      end, {})
-    end,
     opts = {
       symbols = {
         -- commit = '○',
@@ -101,5 +96,12 @@ return {
         end,
       },
     },
+    config = function(_, opts)
+      require("gitgraph").setup(opts)
+      vim.api.nvim_create_user_command("GitGraph", function()
+        vim.cmd("tabnew")
+        require("gitgraph").draw({}, { all = true, max_count = 5000 })
+      end, {})
+    end
   },
 }
