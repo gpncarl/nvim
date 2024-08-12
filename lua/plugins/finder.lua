@@ -39,7 +39,7 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     enabled = (config.finder == "telescope"),
-    cmd = "Telescope",
+    cmd = { "Telescope" },
     keys = {
       { "go",         "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
       { "<space>ff",  "<cmd>Telescope find_files<cr>",                     desc = "fuzzy files" },
@@ -66,16 +66,20 @@ return {
   {
     "nvim-telescope/telescope-frecency.nvim",
     enabled = (config.finder == "telescope"),
-    keys = { { "<space>m", "<Cmd>Telescope frecency<CR>", desc = "fuzzy files by frecency" } },
+    cmd = { "Mru" },
+    keys = { { "<space>m", "<cmd>Mru<cr>", desc = "fuzzy files by frecency" } },
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").load_extension("frecency")
+      vim.api.nvim_create_user_command("Mru", function()
+        vim.cmd("Telescope frecency")
+      end, {})
     end,
   },
   {
     "ibhagwan/fzf-lua",
     enabled = (config.finder == "fzf"),
-    cmd = "FzfLua",
+    cmd = { "FzfLua" },
     keys = {
       { "<space>fo",  "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },
       { "<space>ff",  "<cmd>FzfLua files<cr>",                desc = "fuzzy files" },
