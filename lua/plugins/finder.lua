@@ -41,18 +41,40 @@ return {
     enabled = (config.finder == "telescope"),
     cmd = { "Telescope" },
     keys = {
-      { "go",         "<cmd>Telescope treesitter buffer=0<cr>",            desc = "fuzzy outline" },
-      { "<space>ff",  "<cmd>Telescope find_files<cr>",                     desc = "fuzzy files" },
-      { "<space>gf",  "<cmd>Telescope git_files show_untracked=false<cr>", desc = "fuzzy git files" },
-      { "<space>b",   "<cmd>Telescope buffers<cr>",                        desc = "fuzzy buffers" },
-      { "<leader>gr", "<cmd>Telescope grep_string<cr>",                    desc = "fuzzy string" },
-      { "<space>gr",  "<cmd>Telescope live_grep<cr>",                      desc = "live fuzzy string" },
-      { "<space>j",   "<cmd>Telescope jumplist<cr>",                       desc = "fuzzy jumplist" },
-      { "<space>t",   "<cmd>Telescope tagstack<cr>",                       desc = "fuzzy tagstack" },
-      { "<space>q",   "<cmd>Telescope quickfix<cr>",                       desc = "fuzzy quickfix" },
-      { "<space>l",   "<cmd>Telescope loclist<cr>",                        desc = "fuzzy loclist" },
-      { "<space>re",  "<cmd>Telescope resume<cr>",                         desc = "fuzzy resume" },
-      { "<space>ab",  "<cmd>Telescope builtin<cr>",                        desc = "fuzzy all built-in" },
+      { "go",        "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
+      { "<space>fF", "<cmd>Telescope find_files<cr>",          desc = "fuzzy files" },
+      {
+        "<space>ff",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("telescope.builtin").find_files({ cwd = root })
+          else
+            require("telescope.builtin").find_files()
+          end
+        end,
+        desc = "fuzzy files(root)"
+      },
+      { "<space>b",  "<cmd>Telescope buffers<cr>",   desc = "fuzzy buffers" },
+      { "<space>fG", "<cmd>Telescope live_grep<cr>", desc = "live fuzzy string" },
+      {
+        "<space>fg",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("telescope.builtin").live_grep({ cwd = root })
+          else
+            require("telescope.builtin").live_grep()
+          end
+        end,
+        desc = "live fuzzy string(root)"
+      },
+      { "<space>j",  "<cmd>Telescope jumplist<cr>", desc = "fuzzy jumplist" },
+      { "<space>t",  "<cmd>Telescope tagstack<cr>", desc = "fuzzy tagstack" },
+      { "<space>q",  "<cmd>Telescope quickfix<cr>", desc = "fuzzy quickfix" },
+      { "<space>l",  "<cmd>Telescope loclist<cr>",  desc = "fuzzy loclist" },
+      { "<space>re", "<cmd>Telescope resume<cr>",   desc = "fuzzy resume" },
+      { "<space>ab", "<cmd>Telescope builtin<cr>",  desc = "fuzzy all built-in" },
     },
     dependencies = {
       {
