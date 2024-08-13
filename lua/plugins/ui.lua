@@ -14,7 +14,21 @@ return {
         return package.loaded["nvim-web-devicons"]
       end
     end,
-    opts = {},
+    opts = {
+      extension = {
+        h = { glyph = "" },
+        hh = { glyph = "" },
+        hpp = { glyph = "" },
+        c = { glyph = "" },
+        cc = { glyph = "" },
+        cpp = { glyph = "" },
+        cppm = { glyph = "" },
+      },
+      lsp = {
+        tabnine = { glyph = "⌬" },
+        copilot = { glyph = "" },
+      }
+    },
   },
   {
     "rcarriga/nvim-notify",
