@@ -30,7 +30,7 @@ return {
   {
     "nvimdev/dashboard-nvim",
     enabled = (config.dashboard == "dashboard"),
-    cmd = "Dashboard",
+    cmd = { "Dashboard" },
     opts = {
       theme = "hyper",
       shortcut_type = "number",
@@ -43,7 +43,7 @@ return {
           { action = "Mason", desc = " Mason", icon = " ", key = "M" },
           { action = "Leet", desc = " Leetcode", icon = " ", key = "C" },
           { action = function() require("mini.sessions").select() end, desc = " Restore Session", icon = " ", key = "S" },
-          { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "Q" },
+          { action = function() vim.api.nvim_input("<cmd>qa<cr>") end, desc = " Quit", icon = " ", key = "q" },
         },
       }
     },
