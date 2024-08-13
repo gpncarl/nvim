@@ -1,7 +1,13 @@
 local config = require("config")
 return {
-  { "nvim-lua/popup.nvim",         lazy = true },
-  { "MunifTanjim/nui.nvim",        lazy = true },
+  { "nvim-lua/popup.nvim",  lazy = true },
+  { "MunifTanjim/nui.nvim", lazy = true },
+  {
+    "OXY2DEV/helpview.nvim",
+    ft = { "help" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {}
+  },
   {
     "echasnovski/mini.icons",
     lazy = true,
