@@ -1,11 +1,15 @@
 local config = require("config")
 local function cmp_config()
   local cmp = require("cmp")
-  cmp.setup {
+  cmp.setup({
     snippet = {
       expand = function(args)
         vim.snippet.expand(args.body)
       end
+    },
+    window = {
+      completion = cmp.config.window.bordered(),
+      documentation = cmp.config.window.bordered(),
     },
     completion = {
       completeopt = "menuone,noinsert,noselect",
@@ -82,7 +86,24 @@ local function cmp_config()
     experimental = {
       ghost_text = false,
     }
-  }
+  })
+
+  cmp.setup.cmdline("/", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = {
+      { name = "buffer" }
+    }
+  })
+
+  cmp.setup.cmdline(":", {
+    mapping = cmp.mapping.preset.cmdline(),
+    sources = cmp.config.sources({
+      { name = "path" }
+    }, {
+      { name = "cmdline" }
+    }),
+    matching = { disallow_symbol_nonprefix_matching = false }
+  })
 end
 
 return {
@@ -102,6 +123,7 @@ return {
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
       { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-cmdline" },
       {
         "garymjr/nvim-snippets",
         dependencies = { "rafamadriz/friendly-snippets" },
