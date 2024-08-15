@@ -29,7 +29,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     keys = {
       {
-        "<space>go",
+        "<leader>d",
         function()
           require("mini.diff").toggle_overlay(0)
         end,

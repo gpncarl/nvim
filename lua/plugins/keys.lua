@@ -63,7 +63,7 @@ return {
       local wk = require("which-key")
       wk.add({
         {
-          "<space>?",
+          "<leader>?",
           function()
             require("which-key").show({ global = false })
           end,
@@ -74,6 +74,11 @@ return {
           group = "buffers",
           expand = require("which-key.extras").expand.buf,
         },
+        { "<leader>f", group = "fuzzy" },
+        { "<leader>t", group = "trouble" },
+        { "<leader><leader>", group = "neo-tree" },
+        { "gr", group = "lsp" },
+        { "gs", group = "surround" },
       })
       wk.setup(opts)
     end

@@ -21,22 +21,6 @@ return {
     },
     keys = {
       {
-        "<leader>s",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").toggle()
-        end,
-        desc = "Flash",
-      },
-      {
-        "<c-s>",
-        mode = { "n", "x", "o" },
-        function()
-          require("flash").jump()
-        end,
-        desc = "Flash",
-      },
-      {
         "g/",
         mode = { "n", "x", "o" },
         function()

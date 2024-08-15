@@ -41,10 +41,11 @@ return {
     enabled = (config.finder == "telescope"),
     cmd = { "Telescope" },
     keys = {
-      { "go",        "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
-      { "<space>fF", "<cmd>Telescope find_files<cr>",          desc = "fuzzy files" },
+      { "go",         "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
+      { "<leader>fo", "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
+      { "<leader>fF", "<cmd>Telescope find_files<cr>",          desc = "fuzzy files" },
       {
-        "<space>ff",
+        "<leader>ff",
         function()
           local root = vim.fs.root(0, '.git')
           if root ~= nil then
@@ -55,10 +56,10 @@ return {
         end,
         desc = "fuzzy files(root)"
       },
-      { "<space>b",  "<cmd>Telescope buffers<cr>",   desc = "fuzzy buffers" },
-      { "<space>fG", "<cmd>Telescope live_grep<cr>", desc = "live fuzzy string" },
+      { "<leader>fb", "<cmd>Telescope buffers<cr>",   desc = "fuzzy buffers" },
+      { "<leader>fG", "<cmd>Telescope live_grep<cr>", desc = "live fuzzy string" },
       {
-        "<space>fg",
+        "<leader>fg",
         function()
           local root = vim.fs.root(0, '.git')
           if root ~= nil then
@@ -69,12 +70,12 @@ return {
         end,
         desc = "live fuzzy string(root)"
       },
-      { "<space>j",  "<cmd>Telescope jumplist<cr>", desc = "fuzzy jumplist" },
-      { "<space>t",  "<cmd>Telescope tagstack<cr>", desc = "fuzzy tagstack" },
-      { "<space>q",  "<cmd>Telescope quickfix<cr>", desc = "fuzzy quickfix" },
-      { "<space>l",  "<cmd>Telescope loclist<cr>",  desc = "fuzzy loclist" },
-      { "<space>re", "<cmd>Telescope resume<cr>",   desc = "fuzzy resume" },
-      { "<space>ab", "<cmd>Telescope builtin<cr>",  desc = "fuzzy all built-in" },
+      { "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "fuzzy jumplist" },
+      { "<leader>ft", "<cmd>Telescope tagstack<cr>", desc = "fuzzy tagstack" },
+      { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "fuzzy quickfix" },
+      { "<leader>fl", "<cmd>Telescope loclist<cr>",  desc = "fuzzy loclist" },
+      { "<leader>fr", "<cmd>Telescope resume<cr>",   desc = "fuzzy resume" },
+      { "<leader>fa", "<cmd>Telescope builtin<cr>",  desc = "fuzzy all built-in" },
     },
     dependencies = {
       {
@@ -89,7 +90,7 @@ return {
     "nvim-telescope/telescope-frecency.nvim",
     enabled = (config.finder == "telescope"),
     cmd = { "Mru" },
-    keys = { { "<space>m", "<cmd>Mru<cr>", desc = "fuzzy files by frecency" } },
+    keys = { { "<leader>fm", "<cmd>Mru<cr>", desc = "fuzzy files by frecency" } },
     dependencies = { "nvim-telescope/telescope.nvim" },
     config = function()
       require("telescope").load_extension("frecency")
@@ -103,19 +104,17 @@ return {
     enabled = (config.finder == "fzf"),
     cmd = { "FzfLua" },
     keys = {
-      { "<space>fo",  "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },
-      { "<space>ff",  "<cmd>FzfLua files<cr>",                desc = "fuzzy files" },
-      { "<space>gf",  "<cmd>FzfLua git_files<cr>",            desc = "fuzzy git files" },
-      { "<space>m",   "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
-      { "<space>t",   "<cmd>FzfLua tagstack<cr>",             desc = "fuzzy tagstack" },
-      { "<space>b",   "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
-      { "<leader>gr", "<cmd>FzfLua grep<cr>",                 desc = "fuzzy string" },
-      { "<space>gr",  "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
-      { "<space>j",   "<cmd>FzfLua jumps<cr>",                desc = "fuzzy jumplist" },
-      { "<space>q",   "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
-      { "<space>l",   "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
-      { "<space>re",  "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
-      { "<space>ab",  "<cmd>FzfLua builtin<cr>",              desc = "fuzzy all built-in" },
+      { "<leader>fo", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },
+      { "<leader>ff", "<cmd>FzfLua files<cr>",                desc = "fuzzy files" },
+      { "<leader>fm",  "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
+      { "<leader>ft",  "<cmd>FzfLua tagstack<cr>",             desc = "fuzzy tagstack" },
+      { "<leader>fb",  "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
+      { "<leader>fg", "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
+      { "<leader>fj",  "<cmd>FzfLua jumps<cr>",                desc = "fuzzy jumplist" },
+      { "<leader>fq",  "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
+      { "<leader>fl",  "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
+      { "<leader>fr", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
+      { "<leader>fa", "<cmd>FzfLua builtin<cr>",              desc = "fuzzy all built-in" },
     },
     opts = {
       "telescope",
