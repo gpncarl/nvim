@@ -15,22 +15,22 @@ local function cmp_config()
       completeopt = "menuone,noinsert,noselect",
     },
     mapping = {
-      ["<C-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ["<C-u>"] = cmp.mapping.scroll_docs(-4),
-      ["<C-d>"] = cmp.mapping.scroll_docs(4),
-      ["<C-Space>"] = cmp.mapping.complete(),
-      ["<C-e>"] = cmp.mapping.abort(),
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
-      ["<C-CR>"] = cmp.mapping.confirm({
+      ["<c-n>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<c-p>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+      ["<c-u>"] = cmp.mapping.scroll_docs(-4),
+      ["<c-d>"] = cmp.mapping.scroll_docs(4),
+      ["<c-space>"] = cmp.mapping.complete(),
+      ["<c-e>"] = cmp.mapping.abort(),
+      ["<cr>"] = cmp.mapping.confirm({ select = true }),
+      ["<c-cr>"] = cmp.mapping.confirm({
         behavior = cmp.ConfirmBehavior.Replace,
         select = true,
       }),
-      ["<S-CR>"] = function(fallback)
+      ["<s-cr>"] = function(fallback)
         cmp.abort()
         fallback()
       end,
-      ["<Tab>"] = cmp.mapping(function(fallback)
+      ["<tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert })
         elseif vim.snippet.active({ direction = 1 }) then
@@ -39,7 +39,7 @@ local function cmp_config()
           fallback()
         end
       end, { "i", "s" }),
-      ["<S-Tab>"] = cmp.mapping(function(fallback)
+      ["<s-tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert })
         elseif vim.snippet.active({ direction = -1 }) then

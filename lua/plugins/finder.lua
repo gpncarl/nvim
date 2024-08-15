@@ -26,15 +26,16 @@ local function telescope_config()
       },
       mappings = {
         i = {
-          ["<C-_>"] = actions.toggle_preview,
-          ["<C-/>"] = actions.toggle_preview,
-          ["<C-h>"] = function(bufnr)
+          ["<c-_>"] = actions.toggle_preview,
+          ["<c-/>"] = actions.toggle_preview,
+          ["<c-h>"] = function(bufnr)
             telescope.extensions.hop._hop(bufnr, {
               callback = function()
                 vim.api.nvim_input("<cr>")
               end
             })
-          end
+          end,
+          ["<c-s-h>"] = telescope.extensions.hop.hop,
         },
         n = { ["q"] = require("telescope.actions").close },
       },
@@ -139,8 +140,8 @@ return {
       },
       keymap = {
         builtin = {
-          ["<C-_>"] = "toggle-preview",
-          ["<C-/>"] = "toggle-preview",
+          ["<c-_>"] = "toggle-preview",
+          ["<c-/>"] = "toggle-preview",
         },
       },
       fzf_opts = {

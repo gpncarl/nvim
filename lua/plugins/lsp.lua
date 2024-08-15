@@ -4,7 +4,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
   vim.keymap.set({ "n", "v" }, "grf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
+  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
   if client.supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
