@@ -12,22 +12,29 @@ local function telescope_config()
       }
     },
     defaults = {
-      prompt_prefix = " ",
-      selection_caret = " ",
+      prompt_prefix = "   ",
+      selection_caret = " ",
+      entry_prefix = " ",
+      sorting_strategy = "ascending",
+      layout_config = {
+        horizontal = {
+          prompt_position = "top",
+          preview_width = 0.55,
+        },
+        width = 0.87,
+        height = 0.80,
+      },
       mappings = {
         i = {
           ["<C-_>"] = actions.toggle_preview,
           ["<C-/>"] = actions.toggle_preview,
           ["<C-h>"] = telescope.extensions.hop.hop,
         },
+        n = { ["q"] = require("telescope.actions").close },
       },
-      sorting_strategy = "ascending",
-      -- layout_strategy = "horizontal",
-      -- layout_config = { prompt_position = "top", preview_width = 0.6, height = 0.5, width = 0.8 },
-      layout_config = { prompt_position = "top" },
-      -- layout_config = { prompt_position = "top", mirror = true, anchor = "N" },
-      border = true,
-      preview = { hide_on_startup = true }
+      path_display = { "filename_first" },
+      borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+      -- preview = { hide_on_startup = true }
     }
   }
 
@@ -106,13 +113,13 @@ return {
     keys = {
       { "<leader>fo", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },
       { "<leader>ff", "<cmd>FzfLua files<cr>",                desc = "fuzzy files" },
-      { "<leader>fm",  "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
-      { "<leader>ft",  "<cmd>FzfLua tagstack<cr>",             desc = "fuzzy tagstack" },
-      { "<leader>fb",  "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
+      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
+      { "<leader>ft", "<cmd>FzfLua tagstack<cr>",             desc = "fuzzy tagstack" },
+      { "<leader>fb", "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
       { "<leader>fg", "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
-      { "<leader>fj",  "<cmd>FzfLua jumps<cr>",                desc = "fuzzy jumplist" },
-      { "<leader>fq",  "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
-      { "<leader>fl",  "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
+      { "<leader>fj", "<cmd>FzfLua jumps<cr>",                desc = "fuzzy jumplist" },
+      { "<leader>fq", "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
+      { "<leader>fl", "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
       { "<leader>fr", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
       { "<leader>fa", "<cmd>FzfLua builtin<cr>",              desc = "fuzzy all built-in" },
     },
