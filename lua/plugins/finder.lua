@@ -28,7 +28,13 @@ local function telescope_config()
         i = {
           ["<C-_>"] = actions.toggle_preview,
           ["<C-/>"] = actions.toggle_preview,
-          ["<C-h>"] = telescope.extensions.hop.hop,
+          ["<C-h>"] = function(bufnr)
+            telescope.extensions.hop._hop(bufnr, {
+              callback = function()
+                vim.api.nvim_input("<cr>")
+              end
+            })
+          end
         },
         n = { ["q"] = require("telescope.actions").close },
       },
