@@ -2,13 +2,13 @@ return {
   {
     "bkad/CamelCaseMotion",
     keys = {
-      { "<leader>w",  "<Plug>CamelCaseMotion_w",  desc = "camel case w" },
-      { "<leader>b",  "<Plug>CamelCaseMotion_b",  desc = "camel case b" },
-      { "<leader>e",  "<Plug>CamelCaseMotion_e",  desc = "camel case e" },
-      { "<leader>ge", "<Plug>CamelCaseMotion_ge", desc = "camel case ge" },
-      { "i<leader>w", "<Plug>CamelCaseMotion_iw", mode = { "x", "o" } },
-      { "i<leader>b", "<Plug>CamelCaseMotion_ib", mode = { "x", "o" } },
-      { "i<leader>e", "<Plug>CamelCaseMotion_ie", mode = { "x", "o" } },
+      { "\\w",  "<Plug>CamelCaseMotion_w",  desc = "camel case w" },
+      { "\\b",  "<Plug>CamelCaseMotion_b",  desc = "camel case b" },
+      { "\\e",  "<Plug>CamelCaseMotion_e",  desc = "camel case e" },
+      { "\\ge", "<Plug>CamelCaseMotion_ge", desc = "camel case ge" },
+      { "i\\w", "<Plug>CamelCaseMotion_iw", mode = { "x", "o" } },
+      { "i\\b", "<Plug>CamelCaseMotion_ib", mode = { "x", "o" } },
+      { "i\\e", "<Plug>CamelCaseMotion_ie", mode = { "x", "o" } },
     },
   },
   {

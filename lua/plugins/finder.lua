@@ -1,7 +1,8 @@
 local config = require("config")
 local function telescope_config()
   local telescope = require("telescope")
-  local actions = require("telescope.actions.layout")
+  local actions = require("telescope.actions")
+  local layout = require("telescope.actions.layout")
   telescope.setup {
     extensions = {
       fzf = {
@@ -26,8 +27,9 @@ local function telescope_config()
       },
       mappings = {
         i = {
-          ["<c-_>"] = actions.toggle_preview,
-          ["<c-/>"] = actions.toggle_preview,
+          ["<c-_>"] = layout.toggle_preview,
+          ["<c-/>"] = layout.toggle_preview,
+          ["<c-o>"] = actions.move_selection_better + actions.toggle_selection,
           ["<c-h>"] = function(bufnr)
             telescope.extensions.hop._hop(bufnr, {
               callback = function()
@@ -37,7 +39,10 @@ local function telescope_config()
           end,
           ["<c-s-h>"] = telescope.extensions.hop.hop,
         },
-        n = { ["q"] = require("telescope.actions").close },
+        n = {
+          ["q"] = require("telescope.actions").close,
+          ["<c-o>"] = actions.move_selection_better + actions.toggle_selection,
+        },
       },
       path_display = { "filename_first" },
       borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
