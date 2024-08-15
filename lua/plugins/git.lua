@@ -29,7 +29,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     keys = {
       {
-        "<leader>d",
+        "<leader>gd",
         function()
           require("mini.diff").toggle_overlay(0)
         end,
@@ -58,6 +58,7 @@ return {
       "DiffviewFocusFiles",
       "DiffviewFileHistory",
     },
+    keys = { { "<leader>gv", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" } },
     opts = {
       view = {
         merge_tool = {
@@ -68,17 +69,30 @@ return {
         DiffviewOpen = { "-uno" },
         DiffviewFileHistory = {},
       },
-    }
+    },
+    config = function(_, opts)
+      require("diffview").setup(opts)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("vimaugroup_tclose_with_q", { clear = true }),
+        pattern = { "DiffviewFiles" },
+        callback = function(event)
+          vim.bo[event.buf].buflisted = false
+          vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = event.buf, silent = true })
+        end,
+      })
+    end,
   },
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
+    keys = { { "<leader>gg", "<cmd>Neogit<cr>", desc = "Open Neogit" } },
     dependencies = { "sindrets/diffview.nvim" },
     opts = {}
   },
   {
     "isakbm/gitgraph.nvim",
     cmd = "GitGraph",
+    keys = { { "<leader>gG", "<cmd>GitGraph<cr>", desc = "Open GitGraph" } },
     opts = {
       symbols = {
         -- commit = '○',
@@ -87,17 +101,17 @@ return {
         -- merge_commit_end = '●',
       },
       format = {
-        timestamp = '%Y-%m-%d %H:%M:%S',
-        fields = { 'hash', 'timestamp', 'author', 'branch_name', 'tag' },
+        timestamp = "%Y-%m-%d %H:%M:%S",
+        fields = { "hash", "timestamp", "author", "branch_name", "tag" },
       },
       hooks = {
         -- Check diff of a commit
         on_select_commit = function(commit)
-          vim.cmd(":DiffviewOpen " .. commit.hash .. "^!")
+          vim.cmd("DiffviewOpen " .. commit.hash .. "^!")
         end,
         -- Check diff from commit a -> commit b
         on_select_range_commit = function(from, to)
-          vim.cmd(":DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
+          vim.cmd("DiffviewOpen " .. from.hash .. "~1.." .. to.hash)
         end,
       },
     },

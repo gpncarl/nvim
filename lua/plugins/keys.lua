@@ -76,6 +76,7 @@ return {
         },
         { "<leader>f", group = "fuzzy" },
         { "<leader>t", group = "trouble" },
+        { "<leader>g", group = "git" },
         { "<leader><leader>", group = "neo-tree" },
         { "gr", group = "lsp" },
         { "gs", group = "surround" },
