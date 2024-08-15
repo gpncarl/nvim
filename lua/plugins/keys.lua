@@ -69,17 +69,32 @@ return {
           end,
           desc = "Buffer Local Keymaps (which-key)",
         },
+        { "<leader>f",        group = "fuzzy" },
+        { "<leader>t",        group = "trouble" },
+        { "<leader>g",        group = "git" },
+        { "<leader>n",        group = "neotree" },
+        { "gr",               group = "lsp" },
+        { "gs",               group = "surround" },
+        { "<leader><leader>", group = "extra" },
         {
-          "gb",
+          "<leader><leader>b",
           group = "buffers",
           expand = require("which-key.extras").expand.buf,
         },
-        { "<leader>f", group = "fuzzy" },
-        { "<leader>t", group = "trouble" },
-        { "<leader>g", group = "git" },
-        { "<leader><leader>", group = "neo-tree" },
-        { "gr", group = "lsp" },
-        { "gs", group = "surround" },
+        {
+          "<leader><leader>w",
+          group = "windows",
+          function()
+            wk.show({ keys = "<c-w>", loop = true })
+          end,
+        },
+        {
+          "<leader><leader>z",
+          group = "horizontal scroll",
+          function()
+            wk.show({ keys = "z", loop = true })
+          end,
+        },
       })
       wk.setup(opts)
     end
