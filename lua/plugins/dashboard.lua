@@ -38,7 +38,15 @@ return {
       config = {
         week_header = { enable = true, },
         shortcut = {
-          { action = "ene | startinsert", desc = " New File", icon = " ", key = "I" },
+          { action = "ene | startinsert", desc = " New File", icon = " ", key = "i" },
+          {
+            action = function()
+              require("telescope.builtin").find_files({ cwd = vim.fn.stdpath("config") })
+            end,
+            desc = " Config",
+            icon = "󰒓 ",
+            key = "c"
+          },
           { action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "L" },
           { action = "Mason", desc = " Mason", icon = " ", key = "M" },
           { action = "Leet", desc = " Leetcode", icon = " ", key = "C" },
