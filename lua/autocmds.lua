@@ -74,6 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
     "checkhealth",
     "neotest-summary",
     "neotest-output-panel",
+    "fugitiveblame",
   },
   callback = function(event)
     vim.bo[event.buf].buflisted = false
@@ -187,7 +188,7 @@ vim.api.nvim_create_autocmd("BufRead", {
           and last_known_line > 1
           and last_known_line <= vim.api.nvim_buf_line_count(opts.buf)
         then
-          vim.cmd([[normal! g`"]])
+          vim.cmd([[normal! g`"zv]])
         end
       end,
     })

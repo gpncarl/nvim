@@ -22,7 +22,11 @@ return {
       "Gdiffsplit",
       "Gvdiffsplit",
       "Ghdiffsplit",
-    }
+    },
+    keys = {
+      { "<leader>gb", "<cmd>Git blame<cr>", desc = "git blame" },
+      { "<leader>gD", "<cmd>Gdiffsplit<cr>", desc = "git diff split" }
+    },
   },
   {
     "echasnovski/mini.diff",
