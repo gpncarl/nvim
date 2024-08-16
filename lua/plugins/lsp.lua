@@ -35,7 +35,7 @@ local get_default_opts = function()
       formatting_options = nil,
       timeout_ms = nil,
     },
-    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    capabilities = require("cmp_nvim_lsp").default_capabilities(),
     on_attach = on_attach,
   }
 end
