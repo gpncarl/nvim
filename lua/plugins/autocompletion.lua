@@ -109,7 +109,7 @@ end
 return {
   {
     "echasnovski/mini.pairs",
-    event = "InsertEnter",
+    event = { "InsertEnter" },
     opts = {
       mappings = {
         ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\`].", register = { cr = false } },
@@ -118,7 +118,7 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
       { "hrsh7th/cmp-path" },
       { "hrsh7th/cmp-buffer" },
