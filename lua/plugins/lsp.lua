@@ -2,9 +2,15 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
   vim.keymap.set("n", "gi", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
-  vim.keymap.set({ "n", "v" }, "grf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
-  vim.keymap.set('n', '<c-k>', vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
+  vim.keymap.set('n', "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
+
+  vim.keymap.set("n", "grd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
+  vim.keymap.set("n", "grD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
+  vim.keymap.set("n", "gri", vim.lsp.buf.implementation, { buffer = bufnr, desc = "goto implementation" })
+  vim.keymap.set({ "n", "v" }, "grf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
+  vim.keymap.set("n", "grk", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
+  vim.keymap.set('n', "grK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
   if client.supports_method("textDocument/inlayHint") then
     vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
@@ -47,6 +53,8 @@ local get_lsp_handler = function()
         on_attach = function(client, bufnr)
           on_attach(client, bufnr)
           require("clangd_extensions").setup()
+          vim.keymap.set("n", "grh", "<cmd>ClangdSwitchSourceHeader<cr>",
+            { buffer = bufnr, desc = "switch header" })
           vim.keymap.set("n", "<leader>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
             { buffer = bufnr, desc = "switch header" })
         end,
