@@ -130,7 +130,6 @@ return {
         ensure_installed[server_name] = nil
         if handlers[server_name] ~= nil then
           handlers[server_name]()
-          handlers[server_name] = nil
         else
           default_lsp_handler(server_name)
         end
