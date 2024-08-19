@@ -74,17 +74,6 @@ return {
         DiffviewFileHistory = {},
       },
     },
-    config = function(_, opts)
-      require("diffview").setup(opts)
-      vim.api.nvim_create_autocmd("FileType", {
-        group = vim.api.nvim_create_augroup("vimaugroup_tclose_with_q", { clear = true }),
-        pattern = { "DiffviewFiles" },
-        callback = function(event)
-          vim.bo[event.buf].buflisted = false
-          vim.keymap.set("n", "q", "<cmd>tabclose<cr>", { buffer = event.buf, silent = true })
-        end,
-      })
-    end,
   },
   {
     "NeogitOrg/neogit",

@@ -3,33 +3,36 @@ return {
   {
     "goolord/alpha-nvim",
     enabled = (config.dashboard == "alpha"),
+    event = { "User OpenDashboard" },
     cmd = { "Alpha", "AlphaRedraw" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local alpha = require("alpha")
-      local startify = require("alpha.themes.theta")
-      -- startify.nvim_web_devicons.enabled = true
-      -- vim.api.nvim_create_autocmd("User", {
-      --   pattern = "AlphaReady",
-      --   desc = "disable tabline for alpha",
-      --   callback = function()
-      --     vim.opt.showtabline = 0
-      --   end,
-      -- })
-      -- vim.api.nvim_create_autocmd("User", {
-      --   pattern = "AlphaClosed",
-      --   desc = "enable tabline after alpha",
-      --   callback = function()
-      --     vim.opt.showtabline = 2
-      --   end,
-      -- })
+      local startify = require("alpha.themes.startify")
+      startify.nvim_web_devicons.enabled = true
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "AlphaReady",
+        desc = "disable tabline for alpha",
+        callback = function()
+          vim.opt.showtabline = 0
+        end,
+      })
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "AlphaClosed",
+        desc = "enable tabline after alpha",
+        callback = function()
+          vim.opt.showtabline = 2
+        end,
+      })
 
       alpha.setup(startify.config)
+      require("alpha").start(true)
     end
   },
   {
     "nvimdev/dashboard-nvim",
     enabled = (config.dashboard == "dashboard"),
+    event = { "User OpenDashboard" },
     cmd = { "Dashboard" },
     opts = {
       theme = "hyper",
@@ -55,5 +58,10 @@ return {
         },
       }
     },
+    config = function(_, opts)
+      local dashboard = require("dashboard")
+      dashboard.setup(opts)
+      dashboard:instance()
+    end
   }
 }

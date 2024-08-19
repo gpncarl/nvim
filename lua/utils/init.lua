@@ -58,4 +58,8 @@ function M.foldexpr()
   return "0"
 end
 
+function M.augroup(name)
+  return vim.api.nvim_create_augroup("vimaugroup_" .. name, { clear = true })
+end
+
 return M
