@@ -33,6 +33,7 @@ return {
       lsp = {
         tabnine = { glyph = "⌬" },
         copilot = { glyph = "" },
+        supermaven = { glyph = "" },
       }
     },
   },
