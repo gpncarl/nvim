@@ -119,13 +119,6 @@ return {
     },
   },
   {
-    "zbirenbaum/copilot.lua",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     event = { "InsertEnter", "CmdlineEnter" },
     dependencies = {
