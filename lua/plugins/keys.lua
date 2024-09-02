@@ -69,6 +69,7 @@ return {
           end,
           desc = "Buffer Local Keymaps (which-key)",
         },
+        { "<leader>a",        group = "ai" },
         { "<leader>f",        group = "fuzzy" },
         { "<leader>t",        group = "trouble" },
         { "<leader>g",        group = "git" },
