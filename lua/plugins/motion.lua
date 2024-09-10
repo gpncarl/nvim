@@ -13,12 +13,6 @@ return {
   },
   {
     "folke/flash.nvim",
-    event = "CmdlineEnter",
-    opts = {
-      modes = {
-        char = { enabled = false },
-      }
-    },
     keys = {
       {
         "g/",
@@ -35,6 +29,11 @@ return {
           require("flash").treesitter()
         end,
         desc = "Flash Treesitter",
+      },
+    },
+    opts = {
+      modes = {
+        char = { enabled = false },
       },
     },
   }
