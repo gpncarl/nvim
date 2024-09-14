@@ -5,10 +5,13 @@ local on_attach = function(client, bufnr)
   vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
   vim.keymap.set('n', "<c-k>", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
 
-  vim.keymap.set("n", "grd", function() require("telescope.builtin").lsp_definitions() end, { buffer = bufnr, desc = "goto define" })
-  vim.keymap.set("n", "grr", function() require("telescope.builtin").lsp_references() end, { buffer = bufnr, desc = "goto references" })
+  vim.keymap.set("n", "grd", function() require("telescope.builtin").lsp_definitions() end,
+    { buffer = bufnr, desc = "goto define" })
+  vim.keymap.set("n", "grr", function() require("telescope.builtin").lsp_references() end,
+    { buffer = bufnr, desc = "goto references" })
   vim.keymap.set("n", "grD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
-  vim.keymap.set("n", "gri", function() require("telescope.builtin").lsp_implementations() end, { buffer = bufnr, desc = "goto implementation" })
+  vim.keymap.set("n", "gri", function() require("telescope.builtin").lsp_implementations() end,
+    { buffer = bufnr, desc = "goto implementation" })
   vim.keymap.set({ "n", "v" }, "grf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
   vim.keymap.set("n", "grk", vim.lsp.buf.hover, { buffer = bufnr, desc = "code hover" })
   vim.keymap.set('n', "grK", vim.lsp.buf.signature_help, { buffer = bufnr, desc = "code signature" })
@@ -59,6 +62,7 @@ local get_lsp_handler = function()
           vim.keymap.set("n", "<leader>sh", "<cmd>ClangdSwitchSourceHeader<cr>",
             { buffer = bufnr, desc = "switch header" })
         end,
+        cmd = { "clangd", "--offset-encoding=utf-16" },
       }))
     end,
     lua_ls = function()
