@@ -82,7 +82,9 @@ local function cmp_config()
       end,
     },
     view = {
-      -- entries = "native",
+      entries = {
+        follow_cursor = true
+      }
     },
 
     experimental = {
