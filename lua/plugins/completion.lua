@@ -67,7 +67,7 @@ local function cmp_config()
       expandable_indicator = true,
       fields = { "abbr", "kind", "menu" },
       format = function(entry, vim_item)
-        vim_item.kind = require("mini.icons").get("lsp", vim_item.kind)
+        vim_item.kind = require("mini.icons").get("lsp", vim_item.kind or "default")
         vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
         vim_item.menu = ({
           buffer = "[B]",
