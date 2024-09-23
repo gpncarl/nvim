@@ -11,7 +11,7 @@ return {
   },
   {
     "stevearc/quicker.nvim",
-    event = "VeryLazy",
+    ft = "qf",
     opts = {},
   }
 }
