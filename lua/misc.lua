@@ -25,11 +25,6 @@ function M.setup()
 
   vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
 
-  vim.g.netrw_list_hide = "\\(^\\|\\s\\s\\)\\zs\\.\\S\\+"
-  vim.g.netrw_winsize = 20
-  vim.g.netrw_altfile = true
-  vim.g.loaded_netrw = true
-  vim.g.loaded_netrwPlugin = true
   vim.g.mapleader = " "
   vim.g.maplocalleader = " "
 end

@@ -16,5 +16,20 @@ require("lazy").setup({
   },
   install = { colorscheme = { colorscheme } },
   checker = { enabled = false },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        -- "matchit",
+        -- "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
+
 })
 vim.cmd.colorscheme(colorscheme)
