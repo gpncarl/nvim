@@ -55,4 +55,10 @@ return {
       { "<leader>fo", "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
     },
   },
+  {
+    "goolord/alpha-nvim",
+    config = function()
+      require("alpha").setup(require("alpha.themes.startify").opts)
+    end,
+  }
 }
