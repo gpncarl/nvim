@@ -54,7 +54,6 @@ local function cmp_config()
       { name = "nvim_lsp" },
       { name = "buffer" },
       { name = "copilot" },
-      { name = "supermaven" },
       { name = "path" },
       { name = "snippets" },
       { name = "cmp_tabnine" },
@@ -128,18 +127,6 @@ return {
         cond = config.copilot,
         dependencies = { "zbirenbaum/copilot.lua" },
         opts = {}
-      },
-      {
-        "supermaven-inc/supermaven-nvim",
-        opts = {
-          log_level = "warn",
-          disable_keymaps = true,
-          disable_inline_completion = true,
-        },
-        config = function(_, opts)
-          vim.api.nvim_set_hl(0, "CmpItemKindSupermaven", { fg = "#6CC644" })
-          require("supermaven-nvim").setup(opts)
-        end,
       },
     },
     config = cmp_config
