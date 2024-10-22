@@ -1,11 +1,5 @@
 return {
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      filesystem = { hijack_netrw_behavior = "disabled" },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     opts = {
       completion = {
@@ -52,7 +46,11 @@ return {
   {
     "nvim-telescope/telescope.nvim",
     keys = {
-      { "<leader>fo", "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
+      {
+        "<leader>fo",
+        "<cmd>Telescope treesitter buffer=0<cr>",
+        desc = "Symbols (treesitter)",
+      },
     },
   },
   {
@@ -60,5 +58,5 @@ return {
     config = function()
       require("alpha").setup(require("alpha.themes.startify").opts)
     end,
-  }
+  },
 }
