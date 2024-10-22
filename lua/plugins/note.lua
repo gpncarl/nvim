@@ -18,14 +18,4 @@ return {
     ft = { "org" },
     opts = {},
   },
-  {
-    "OXY2DEV/markview.nvim",
-    ft = { "markdown", "Avante" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    opts = {
-      filetypes = { "markdown", "Avante" },
-    }
-  }
 }
