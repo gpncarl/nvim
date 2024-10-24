@@ -60,4 +60,16 @@ return {
       require("alpha").setup(require("alpha.themes.startify").opts)
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      diagnostics = {
+        virtual_text = {
+          severity = {
+            vim.diagnostic.severity.ERROR,
+          },
+        },
+      },
+    },
+  },
 }
