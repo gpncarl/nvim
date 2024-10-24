@@ -15,7 +15,6 @@ return {
     end,
   },
   { "tpope/vim-rsi", event = { "InsertEnter", "CmdlineEnter" } },
-  { "echasnovski/mini.bracketed", keys = { "[", "]" }, opts = {} },
   {
     "bkad/CamelCaseMotion",
     keys = {
