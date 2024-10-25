@@ -24,6 +24,8 @@ end
 
 del({"n","x"}, "j")
 del({"n","x"}, "k")
+del({"n", "o", "x"}, "n")
+del({"n", "o", "x"}, "N")
 del({"n", "t"}, "<C-H>")
 del({"n", "t"}, "<C-J>")
 del({"n", "t"}, "<C-K>")
