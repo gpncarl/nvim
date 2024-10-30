@@ -14,6 +14,9 @@ return {
     "folke/which-key.nvim",
     opts = {
       preset = "helix",
+      spec = {
+        { "<leader>O", group = "orgmode" },
+      },
     },
   },
   {
@@ -85,5 +88,5 @@ return {
         },
       },
     },
-  }
+  },
 }
