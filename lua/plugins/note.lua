@@ -1,15 +1,14 @@
 return {
   {
     "nvim-neorg/neorg",
+    event = "BufReadPre *.norg",
     opts = {
-      lazy_loading = true,
       load = {
         ["core.defaults"] = {},
         ["core.concealer"] = {},
         ["core.export"] = {},
-        ["core.completion"] = { config = { engine = "nvim-cmp" } },
-      }
-    }
+      },
+    },
   },
   {
     "nvim-orgmode/orgmode",
