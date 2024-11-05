@@ -12,6 +12,7 @@ return {
   },
   {
     "nvim-orgmode/orgmode",
+    dependencies = { "tpope/vim-repeat" },
     ft = { "org" },
     keys = {
       {
