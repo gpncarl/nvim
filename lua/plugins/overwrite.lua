@@ -1,5 +1,20 @@
 return {
   {
+    "folke/snacks.nvim",
+    opts = {
+      terminal = {
+        win = {
+          keys = {
+            nav_h = false,
+            nav_j = false,
+            nav_k = false,
+            nav_l = false,
+          },
+        },
+      },
+    },
+  },
+  {
     "hrsh7th/nvim-cmp",
     opts = {
       completion = {
