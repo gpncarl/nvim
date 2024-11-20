@@ -73,12 +73,6 @@ return {
     },
   },
   {
-    "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.startify").opts)
-    end,
-  },
-  {
     "neovim/nvim-lspconfig",
     opts = {
       diagnostics = {
@@ -100,6 +94,41 @@ return {
           node_incremental = "<Tab>",
           scope_incremental = false,
           node_decremental = "<S-Tab>",
+        },
+      },
+    },
+  },
+  {
+    "folke/snacks.nvim",
+    opts = {
+      dashboard = {
+        preset = {
+          keys = {
+            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+          },
+          header = [[
+███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
+████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
+██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
+██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
+██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
+╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+        },
+        formats = {
+          key = function(item)
+            return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
+          end,
+        },
+        sections = {
+          { section = "header" },
+          { section = "startup", padding = 1 },
+          { title = "MRU ", file = vim.fn.fnamemodify(".", ":~") },
+          { section = "recent_files", cwd = true, limit = 8, padding = 1 },
+          { title = "MRU" },
+          { section = "recent_files", limit = 8, padding = 1 },
+          { title = "Sessions" },
+          { section = "projects", padding = 1 },
+          { section = "keys" },
         },
       },
     },
