@@ -1,21 +1,7 @@
 return {
   {
-    "folke/snacks.nvim",
-    opts = {
-      terminal = {
-        win = {
-          keys = {
-            nav_h = false,
-            nav_j = false,
-            nav_k = false,
-            nav_l = false,
-          },
-        },
-      },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
+    optional = true,
     opts = {
       completion = {
         completeopt = "menuone,noinsert,noselect",
@@ -27,6 +13,7 @@ return {
   },
   {
     "folke/which-key.nvim",
+    optional = true,
     opts = {
       preset = "helix",
       spec = {
@@ -36,6 +23,7 @@ return {
   },
   {
     "folke/flash.nvim",
+    optional = true,
     keys = {
       { "s", mode = { "n", "x", "o" }, false },
       { "S", mode = { "n", "x", "o" }, false },
@@ -64,6 +52,7 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
+    optional = true,
     keys = {
       {
         "<leader>fo",
@@ -74,6 +63,7 @@ return {
   },
   {
     "neovim/nvim-lspconfig",
+    optional = true,
     opts = {
       diagnostics = {
         virtual_text = {
@@ -86,6 +76,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter",
+    optional = true,
     opts = {
       incremental_selection = {
         enable = true,
@@ -100,12 +91,20 @@ return {
   },
   {
     "folke/snacks.nvim",
+    optional = true,
     opts = {
+      terminal = {
+        win = {
+          keys = {
+            nav_h = false,
+            nav_j = false,
+            nav_k = false,
+            nav_l = false,
+          },
+        },
+      },
       dashboard = {
         preset = {
-          keys = {
-            { icon = " ", key = "q", desc = "Quit", action = ":qa" },
-          },
           header = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
 ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
@@ -113,22 +112,6 @@ return {
 ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
 ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
 ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
-        },
-        formats = {
-          key = function(item)
-            return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
-          end,
-        },
-        sections = {
-          { section = "header" },
-          { section = "startup", padding = 1 },
-          { title = "MRU ", file = vim.fn.fnamemodify(".", ":~") },
-          { section = "recent_files", cwd = true, limit = 8, padding = 1 },
-          { title = "MRU" },
-          { section = "recent_files", limit = 8, padding = 1 },
-          { title = "Sessions" },
-          { section = "projects", padding = 1 },
-          { section = "keys" },
         },
       },
     },
