@@ -51,6 +51,17 @@ return {
     },
   },
   {
+    "ibhagwan/fzf-lua",
+    optional = true,
+    keys = {
+      {
+        "<leader>fo",
+        "<cmd>FzfLua treesitter<cr>",
+        desc = "Symbols (treesitter)",
+      },
+    },
+  },
+  {
     "nvim-telescope/telescope.nvim",
     optional = true,
     keys = {
