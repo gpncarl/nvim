@@ -51,8 +51,23 @@ return {
   {
     "NeogitOrg/neogit",
     cmd = "Neogit",
-    keys = { { "<leader>gg", "<cmd>Neogit<cr>", desc = "Open Neogit" } },
+    keys = {
+      {
+        "<leader>gg",
+        function()
+          require("neogit").open({ cwd = vim.fs.root(0, ".git") })
+        end,
+        desc = "Open Neogit",
+      },
+      {
+        "<leader>gG",
+        function()
+          require("neogit").open()
+        end,
+        desc = "Open Neogit (cwd)",
+      },
+    },
     dependencies = { "sindrets/diffview.nvim" },
-    opts = {}
+    opts = {},
   },
 }
