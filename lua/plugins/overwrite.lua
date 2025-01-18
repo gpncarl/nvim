@@ -12,6 +12,20 @@ return {
     },
   },
   {
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      completion = {
+        list = { selection = { preselect = false, auto_insert = true } },
+        ghost_text = { enabled = false },
+      },
+      signature = { enabled = true },
+      keymap = {
+        preset = "enter",
+      },
+    },
+  },
+  {
     "folke/which-key.nvim",
     optional = true,
     opts = {
