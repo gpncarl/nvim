@@ -1,5 +1,12 @@
 return {
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    optional = true,
+    opts = {
+      filesystem = { hijack_netrw_behavior = "disabled" },
+    },
+  },
+  {
     "stevearc/overseer.nvim",
     optional = true,
     cmd = {
