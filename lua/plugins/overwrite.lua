@@ -25,6 +25,13 @@ return {
       "OverseerClearCache",
     },
     keys = {
+      { "<leader>ow", false },
+      { "<leader>oo", false },
+      { "<leader>oq", false },
+      { "<leader>oi", false },
+      { "<leader>ob", false },
+      { "<leader>ot", false },
+      { "<leader>oc", false },
       { "<leader>Ow", "<cmd>OverseerToggle<cr>", desc = "Task list" },
       { "<leader>Oo", "<cmd>OverseerRun<cr>", desc = "Run task" },
       { "<leader>Oq", "<cmd>OverseerQuickAction<cr>", desc = "Action recent task" },
