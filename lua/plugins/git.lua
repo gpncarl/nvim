@@ -55,9 +55,9 @@ return {
         DiffviewFileHistory = {},
       },
       hooks = {
-        view_opened = function()
-          require("diffview.actions").toggle_files()
-        end,
+        -- view_opened = function()
+        --   require("diffview.actions").toggle_files()
+        -- end,
       },
     },
   },
@@ -80,7 +80,10 @@ return {
         desc = "Open Neogit (cwd)",
       },
     },
-    dependencies = { "sindrets/diffview.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "sindrets/diffview.nvim",
+    },
     opts = {},
   },
 }
