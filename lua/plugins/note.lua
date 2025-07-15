@@ -16,14 +16,14 @@ return {
     ft = { "org" },
     keys = {
       {
-        "<leader>Oa",
+        "<leader>oa",
         function()
           require("orgmode").action("agenda.prompt")
         end,
         desc = "org agenda",
       },
       {
-        "<leader>Oc",
+        "<leader>oc",
         function()
           require("orgmode").action("capture.prompt")
         end,
@@ -31,7 +31,6 @@ return {
       },
     },
     opts = {
-      mappings = { prefix = "<leader>O" },
       org_agenda_files = "~/org/*",
       org_default_notes_file = "~/org/notes.org",
       org_startup_indented = true,
