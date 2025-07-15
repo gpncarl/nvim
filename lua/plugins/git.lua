@@ -37,6 +37,14 @@ return {
     },
     keys = { { "<leader>gv", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" } },
     opts = {
+      keymaps = {
+        view = {
+          { "n", "<leader>gv", "<cmd>w<cr><cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+        },
+        file_panel = {
+          { "n", "<leader>gv", "<cmd>w<cr><cmd>DiffviewClose<cr>", { desc = "Close Diffview" } },
+        },
+      },
       view = {
         merge_tool = {
           layout = "diff3_mixed",
@@ -45,6 +53,11 @@ return {
       default_args = {
         DiffviewOpen = { "-uno" },
         DiffviewFileHistory = {},
+      },
+      hooks = {
+        view_opened = function()
+          require("diffview.actions").toggle_files()
+        end,
       },
     },
   },
