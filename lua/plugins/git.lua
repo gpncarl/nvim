@@ -55,9 +55,9 @@ return {
         DiffviewFileHistory = {},
       },
       hooks = {
-        -- view_opened = function()
-        --   require("diffview.actions").toggle_files()
-        -- end,
+        view_opened = vim.schedule_wrap(function()
+          require("diffview.actions").toggle_files()
+        end),
       },
     },
   },
