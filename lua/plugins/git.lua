@@ -84,6 +84,10 @@ return {
       "nvim-lua/plenary.nvim",
       "sindrets/diffview.nvim",
     },
-    opts = {},
+    opts = {
+      commit_editor = {
+        spell_check = false,
+      },
+    },
   },
 }
