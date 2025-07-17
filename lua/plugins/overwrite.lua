@@ -1,5 +1,14 @@
 return {
   {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    opts = {
+      options = {
+        theme = "auto",
+      },
+    },
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = {
