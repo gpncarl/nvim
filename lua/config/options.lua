@@ -5,7 +5,7 @@ local g = vim.g
 local opt = vim.opt
 
 g.autoformat = false
-g.snacks_animate = true
+g.snacks_animate = false
 
 opt.number = false
 opt.relativenumber = true

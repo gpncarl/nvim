@@ -91,15 +91,20 @@ return {
   {
     "neovim/nvim-lspconfig",
     optional = true,
-    opts = {
-      diagnostics = {
+    opts = function(_, opts)
+      -- TODO: set up on_list and tagstack
+      -- local keys = require("lazyvim.plugins.lsp.keymaps").get()
+      -- keys[#keys + 1] = { "gr", false }
+
+      opts["diagnostics"] = {
         virtual_text = {
           severity = {
             vim.diagnostic.severity.ERROR,
           },
         },
-      },
-    },
+      }
+      return opts
+    end,
   },
   {
     "nvim-treesitter/nvim-treesitter",
@@ -129,6 +134,12 @@ return {
             nav_l = false,
           },
         },
+      },
+      notifier = {
+        enabled = false,
+      },
+      dashboard = {
+        enabled = false,
       },
     },
   },

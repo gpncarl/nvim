@@ -13,7 +13,6 @@ del({"n"}, "<C-J>")
 del({"n"}, "<C-K>")
 del({"n"}, "<C-L>")
 
-set("t", "<C-W>", "<C-\\><C-N><C-W>")
 set("n", "<C-L>", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", {
   desc = ":help CTRL-L-default",
 })
