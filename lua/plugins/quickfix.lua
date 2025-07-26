@@ -9,9 +9,4 @@ return {
       auto_resize_height = false
     }
   },
-  {
-    "stevearc/quicker.nvim",
-    ft = "qf",
-    opts = {},
-  }
 }

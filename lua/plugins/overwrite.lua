@@ -4,50 +4,14 @@ return {
     optional = true,
     opts = {
       options = {
-        theme = "auto",
+        theme = function()
+          if vim.g.colors_name == "default" then
+            return "iceberg"
+          else
+            return "auto"
+          end
+        end,
       },
-    },
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
-    opts = {
-      filesystem = { hijack_netrw_behavior = "disabled" },
-    },
-  },
-  {
-    "stevearc/overseer.nvim",
-    optional = true,
-    cmd = {
-      "OverseerOpen",
-      "OverseerClose",
-      "OverseerToggle",
-      "OverseerSaveBundle",
-      "OverseerLoadBundle",
-      "OverseerDeleteBundle",
-      "OverseerRunCmd",
-      "OverseerRun",
-      "OverseerInfo",
-      "OverseerBuild",
-      "OverseerQuickAction",
-      "OverseerTaskAction",
-      "OverseerClearCache",
-    },
-    keys = {
-      { "<leader>ow", false },
-      { "<leader>oo", false },
-      { "<leader>oq", false },
-      { "<leader>oi", false },
-      { "<leader>ob", false },
-      { "<leader>ot", false },
-      { "<leader>oc", false },
-      { "<leader>Ow", "<cmd>OverseerToggle<cr>", desc = "Task list" },
-      { "<leader>Oo", "<cmd>OverseerRun<cr>", desc = "Run task" },
-      { "<leader>Oq", "<cmd>OverseerQuickAction<cr>", desc = "Action recent task" },
-      { "<leader>Oi", "<cmd>OverseerInfo<cr>", desc = "Overseer Info" },
-      { "<leader>Ob", "<cmd>OverseerBuild<cr>", desc = "Task builder" },
-      { "<leader>Ot", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
-      { "<leader>Oc", "<cmd>OverseerClearCache<cr>", desc = "Clear cache" },
     },
   },
   {
@@ -73,17 +37,6 @@ return {
       signature = { enabled = true },
       keymap = {
         preset = "enter",
-      },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      preset = "helix",
-      spec = {
-        { "<leader>o", group = "orgmode" },
-        { "<leader>O", group = "overseer" },
       },
     },
   },

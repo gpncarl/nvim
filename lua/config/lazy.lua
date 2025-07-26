@@ -1,3 +1,5 @@
+local colorscheme = "default"
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.uv.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
@@ -17,7 +19,7 @@ require("lazy").setup({
       "LazyVim/LazyVim",
       import = "lazyvim.plugins",
       opts = {
-        colorscheme = "tokyonight",
+        colorscheme = colorscheme,
       },
     },
     -- import any extras modules here
@@ -36,7 +38,7 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  install = { colorscheme = { "tokyonight" } },
+  install = { colorscheme = { colorscheme } },
   checker = { enabled = false }, -- automatically check for plugin updates
   performance = {
     rtp = {
