@@ -4,7 +4,13 @@ return {
     optional = true,
     opts = {
       options = {
-        theme = "auto",
+        theme = function()
+          if vim.g.colors_name == "default" then
+            return "iceberg"
+          else
+            return "auto"
+          end
+        end
       },
     },
   },
