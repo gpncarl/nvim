@@ -132,6 +132,8 @@ return {
             nav_j = false,
             nav_k = false,
             nav_l = false,
+            term_normal = false,
+            q = false,
           },
         },
       },
