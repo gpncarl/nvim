@@ -12,6 +12,9 @@ del({"n"}, "<C-H>")
 del({"n"}, "<C-J>")
 del({"n"}, "<C-K>")
 del({"n"}, "<C-L>")
+del("v", "<")
+del("v", ">")
+del({ "i", "x", "n", "s" }, "<C-s>")
 
 set("n", "<C-L>", "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>", {
   desc = ":help CTRL-L-default",
