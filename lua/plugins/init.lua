@@ -18,6 +18,7 @@ return {
     keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } },
     opts = {},
   },
+  { "typicode/bg.nvim" },
   {
     "chentoast/marks.nvim",
     event = { "BufReadPost", "BufNewFile" },
