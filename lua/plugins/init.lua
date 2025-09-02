@@ -18,6 +18,7 @@ return {
     keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } },
     opts = {},
   },
+  { "typicode/bg.nvim" },
   { "tpope/vim-rsi", event = { "InsertEnter", "CmdlineEnter" } },
   {
     "bkad/CamelCaseMotion",
