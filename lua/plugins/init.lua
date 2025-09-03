@@ -3,7 +3,7 @@ return {
   {
     "echasnovski/mini.bufremove",
     keys = {
-      { "ZB", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
+      { "<leader>bd", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
     },
     opts = {}
   },
