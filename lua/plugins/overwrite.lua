@@ -15,6 +15,18 @@ return {
     },
   },
   {
+    "akinsho/bufferline.nvim",
+    optional = true,
+    opts = {
+      options = {
+        mode = "buffers",
+        numbers = "buffer_id",
+        separator_style = "slant",
+        sort_by = "id",
+      }
+    }
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     optional = true,
     opts = {
