@@ -34,6 +34,18 @@ return {
     },
   },
   {
+    "akinsho/bufferline.nvim",
+    optional = true,
+    opts = {
+      options = {
+        mode = "buffers",
+        numbers = "buffer_id",
+        separator_style = "slant",
+        sort_by = "id",
+      }
+    }
+  },
+  {
     "hrsh7th/nvim-cmp",
     optional = true,
     opts = {
