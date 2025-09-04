@@ -6,6 +6,7 @@ local opt = vim.opt
 
 g.autoformat = false
 g.snacks_animate = false
+g.trouble_lualine = false
 
 opt.number = false
 opt.relativenumber = true
