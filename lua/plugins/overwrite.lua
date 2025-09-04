@@ -163,6 +163,25 @@ return {
     },
   },
   {
+    "goolord/alpha-nvim",
+    optional = true,
+    config = function()
+      local dashboard = require("alpha.themes.startify")
+      -- close Lazy and re-open when the dashboard is ready
+      if vim.o.filetype == "lazy" then
+        vim.cmd.close()
+        vim.api.nvim_create_autocmd("User", {
+          once = true,
+          pattern = "AlphaReady",
+          callback = function()
+            require("lazy").show()
+          end,
+        })
+      end
+      require("alpha").setup(dashboard.opts)
+    end,
+  },
+  {
     "folke/snacks.nvim",
     optional = true,
     opts = {
@@ -170,6 +189,7 @@ return {
         enabled = false,
       },
       dashboard = {
+        enabled = false,
         preset = {
           header = [[
 ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
