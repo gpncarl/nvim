@@ -10,7 +10,7 @@ return {
     opts = {}
   },
   {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     lazy = true,
     specs = {
       { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
@@ -103,7 +103,7 @@ return {
     opts = {}
   },
   {
-    "echasnovski/mini.animate",
+    "nvim-mini/mini.animate",
     enabled = config.animate,
     event = "VeryLazy",
     opts = function()

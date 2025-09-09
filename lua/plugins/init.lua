@@ -1,7 +1,7 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   {
-    "echasnovski/mini.bufremove",
+    "nvim-mini/mini.bufremove",
     keys = {
       { "<leader>bd", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
     },

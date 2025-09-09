@@ -9,7 +9,7 @@ return {
     opts = {},
   },
   {
-    "echasnovski/mini.sessions",
+    "nvim-mini/mini.sessions",
     event = "SessionLoadPost",
     opts = {}
   }

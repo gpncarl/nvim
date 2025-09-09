@@ -1,8 +1,6 @@
 return {
-  { "tpope/vim-rsi",              event = { "InsertEnter", "CmdlineEnter" } },
-  { "echasnovski/mini.bracketed", keys = { "[", "]" },                      opts = {} },
   {
-    "echasnovski/mini.surround",
+    "nvim-mini/mini.surround",
     keys = function(_, keys)
       local plugin = require("lazy.core.config").spec.plugins["mini.surround"]
       local opts = require("lazy.core.plugin").values(plugin, "opts", false)
@@ -35,7 +33,7 @@ return {
     },
   },
   {
-    "echasnovski/mini.ai",
+    "nvim-mini/mini.ai",
     event = "ModeChanged *:no",
     dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts = function()
