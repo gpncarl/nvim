@@ -123,8 +123,20 @@ return {
     enabled = (config.finder == "fzf"),
     cmd = { "FzfLua" },
     keys = {
-      { "<leader>fo", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy outline" },
-      { "<leader>ff", "<cmd>FzfLua files<cr>",                desc = "fuzzy files" },
+      { "<leader>fo", "<cmd>FzfLua treesitter<cr>",           desc = "fuzzy treesitter" },
+      {
+        "<leader>ff",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("fzf-lua").find_files({ cwd = root })
+          else
+            require("fzf-lua").find_files()
+          end
+        end,
+        desc = "fuzzy files(root)"
+      },
+      { "<leader>fF", "<cmd>FzfLua files<cr>",                desc = "fuzzy files(cwd)" },
       { "<leader>fm", "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
       { "<leader>ft", "<cmd>FzfLua tagstack<cr>",             desc = "fuzzy tagstack" },
       { "<leader>fb", "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
@@ -132,12 +144,13 @@ return {
       { "<leader>fj", "<cmd>FzfLua jumps<cr>",                desc = "fuzzy jumplist" },
       { "<leader>fq", "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
       { "<leader>fl", "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
-      { "<leader>fr", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
       { "<leader>fa", "<cmd>FzfLua builtin<cr>",              desc = "fuzzy all built-in" },
+      { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy lsp_document_symbols" },
+      { "<leader>sr", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
+      { "<leader>sw", "<cmd>FzfLua grep_cword<cr>",           desc = "fuzzy grep_cword" },
+      { "<leader>sW", "<cmd>FzfLua grep_cWORD<cr>",           desc = "fuzzy grep_cWORD" },
     },
     opts = {
-      "telescope",
-      prompt = " ",
       winopts = {
         preview = {
           hidden = "hidden",
@@ -148,10 +161,6 @@ return {
           ["<c-_>"] = "toggle-preview",
           ["<c-/>"] = "toggle-preview",
         },
-      },
-      fzf_opts = {
-        ["--layout"] = "reverse",
-        ["--info"] = "hidden",
       },
     }
   }
