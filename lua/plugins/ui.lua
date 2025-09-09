@@ -4,6 +4,7 @@ return {
   { "MunifTanjim/nui.nvim", lazy = true },
   {
     "OXY2DEV/helpview.nvim",
+    enabled = false,
     ft = { "help" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {}
