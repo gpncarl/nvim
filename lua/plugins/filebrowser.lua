@@ -2,17 +2,21 @@ return {
   {
     "stevearc/oil.nvim",
     cmd = "Oil",
-    keys = {
-      {
-        "-",
-        function()
-          require("oil").open()
+    init = function()
+      vim.api.nvim_create_autocmd("VimEnter", {
+        group = vim.api.nvim_create_augroup("Oil_start_directory", { clear = true }),
+        desc = "Start Oil with directory",
+        once = true,
+        callback = function()
+          local stats = vim.uv.fs_stat(vim.fn.argv(0))
+          if stats and stats.type == "directory" then
+            require("oil")
+          end
         end,
-        desc = "Open parent directory"
-      },
-    },
-    event = "User OpenDirectory",
-    opts = {}
+      })
+    end,
+    keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } },
+    opts = {},
   },
   {
     "nvim-neo-tree/neo-tree.nvim",

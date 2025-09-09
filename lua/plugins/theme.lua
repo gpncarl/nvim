@@ -1,4 +1,5 @@
 return {
+  { "typicode/bg.nvim" },
   {
     "navarasu/onedark.nvim",
     event = "VeryLazy",

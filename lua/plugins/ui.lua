@@ -43,7 +43,7 @@ return {
     event = "VeryLazy",
     opts = {
       render = "default",
-      top_down = false,
+      top_down = true,
     }
   },
   {
