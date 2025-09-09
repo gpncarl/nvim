@@ -129,9 +129,9 @@ return {
         function()
           local root = vim.fs.root(0, '.git')
           if root ~= nil then
-            require("fzf-lua").find_files({ cwd = root })
+            require("fzf-lua").files({ cwd = root })
           else
-            require("fzf-lua").find_files()
+            require("fzf-lua").files()
           end
         end,
         desc = "fuzzy files(root)"
