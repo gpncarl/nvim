@@ -21,9 +21,12 @@ return {
           theme = "auto",
           disabled_filetypes = {
             statusline = {
-              "alpha"
+              "alpha",
             },
-            winbar = {}
+            winbar = {
+              "alpha",
+              "qf",
+            }
           },
           ignore_focus = {},
           always_divide_middle = true,
