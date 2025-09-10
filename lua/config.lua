@@ -1,8 +1,7 @@
 return {
   dashboard = "alpha",
-  colorscheme = "default", -- "onedark", "gruvbox", "tokyonight"
-  bufferline = true,
-  finder = "fzf",       -- "telescope", "fzf"
+  colorscheme = "default",
+  finder = "fzf",
   popup_cmdline = false,
   popup_notify = false,
   leetcode = false,
