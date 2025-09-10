@@ -41,7 +41,7 @@ return {
   {
     "rcarriga/nvim-notify",
     enabled = config.popup_notify,
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {
       render = "default",
       top_down = true,
@@ -50,7 +50,7 @@ return {
   {
     "folke/noice.nvim",
     enabled = config.popup_cmdline,
-    event = "VeryLazy",
+    event = "UIEnter",
     dependencies = {
       "rcarriga/nvim-notify",
       "MunifTanjim/nui.nvim",
@@ -84,7 +84,7 @@ return {
   },
   {
     "stevearc/dressing.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {},
   },
   {
@@ -105,7 +105,7 @@ return {
   {
     "nvim-mini/mini.animate",
     enabled = config.animate,
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = function()
       -- don't use animate when scrolling with the mouse
       local mouse_scrolled = false

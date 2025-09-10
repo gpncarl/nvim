@@ -1,16 +1,19 @@
 return {
-  { "typicode/bg.nvim" },
+  {
+    "typicode/bg.nvim",
+    event = "UIEnter",
+  },
   {
     "navarasu/onedark.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
   },
   {
     "rebelot/kanagawa.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
   },
   {
     "ellisonleao/gruvbox.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {
       undercurl = true,
       underline = true,
@@ -33,28 +36,28 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {},
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {},
   },
   {
     "projekt0n/github-nvim-theme",
     main = "github-theme",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {},
   },
   {
     "EdenEast/nightfox.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
     opts = {},
   },
   {
     "shaunsingh/nord.nvim",
-    event = "VeryLazy",
+    event = "UIEnter",
   }
 }
