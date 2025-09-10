@@ -1,9 +1,3 @@
-local on_attach = function(client, bufnr)
-  vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
-  vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
-end
-
 return {
   {
     "folke/trouble.nvim",
@@ -60,7 +54,9 @@ return {
         callback = function(ev)
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           for bufnr, _ in pairs(client.attached_buffers) do
-            on_attach(client, bufnr)
+            vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
+            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
+            vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
           end
         end
       })
