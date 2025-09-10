@@ -62,6 +62,9 @@ return {
   {
     "akinsho/bufferline.nvim",
     event = "ColorScheme",
+    keys = {
+      { "gb", "<Cmd>BufferLinePick<CR>", desc = "BufferLine Pick" },
+    },
     opts = {
       options = {
         mode = "buffers",
