@@ -1,5 +1,4 @@
 return {
-  dashboard = "alpha",
   colorscheme = "default",
   finder = "fzf",
   popup_cmdline = false,

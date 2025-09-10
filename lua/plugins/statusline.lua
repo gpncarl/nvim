@@ -1,4 +1,3 @@
-local config = require("config")
 return {
   {
     "nvim-lualine/lualine.nvim",
@@ -20,7 +19,12 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          disabled_filetypes = { statusline = {}, winbar = {} },
+          disabled_filetypes = {
+            statusline = {
+              "alpha"
+            },
+            winbar = {}
+          },
           ignore_focus = {},
           always_divide_middle = true,
           always_show_tabline = true,

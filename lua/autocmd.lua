@@ -141,23 +141,6 @@ function M.setup()
     end
   })
 
-  vim.api.nvim_create_autocmd("UIEnter", {
-    group = augroup("enter"),
-    callback = function()
-      if M.has_stdin then
-        return
-      end
-
-      if vim.fn.argc() == 0 then
-        vim.api.nvim_exec_autocmds("User", { pattern = "OpenDashboard" })
-      end
-
-      if vim.fn.isdirectory(vim.fn.argv(0)) == 1 then
-        vim.api.nvim_exec_autocmds("User", { pattern = "OpenDirectory" })
-      end
-    end
-  })
-
   vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
     group = augroup("pad_margin_enter"),
     callback = function()
