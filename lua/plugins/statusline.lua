@@ -26,6 +26,9 @@ return {
             winbar = {
               "alpha",
               "qf",
+              "toggleterm",
+              "gitcommit",
+              "neo-tree",
             }
           },
           ignore_focus = {},
