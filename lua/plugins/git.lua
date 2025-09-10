@@ -29,21 +29,26 @@ return {
     },
   },
   {
-    "lewis6991/gitsigns.nvim",
+    "nvim-mini/mini.diff",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {
-      signs = {
-        add = { text = "│" },
-        change = { text = "│" },
-        delete = { text = "│" },
-        topdelete = { text = "│" },
-        -- delete = { text = "" },
-        -- topdelete = { text = "" },
-        changedelete = { text = "│" },
-        untracked = { text = "│" },
+    keys = {
+      {
+        "<leader>go",
+        function()
+          require("mini.diff").toggle_overlay(0)
+        end,
+        desc = "Toggle mini.diff overlay",
       },
-      trouble = false,
-      attach_to_untracked = false
-    }
+    },
+    opts = {
+      view = {
+        style = "sign",
+        signs = {
+          add = require("utils.icons").git.added,
+          change = require("utils.icons").git.modified,
+          delete = require("utils.icons").git.removed,
+        },
+      },
+    },
   },
 }
