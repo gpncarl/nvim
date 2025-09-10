@@ -1,16 +1,5 @@
 return {
-  {
-    "typicode/bg.nvim",
-    event = "UIEnter",
-  },
-  {
-    "navarasu/onedark.nvim",
-    event = "UIEnter",
-  },
-  {
-    "rebelot/kanagawa.nvim",
-    event = "UIEnter",
-  },
+  { "typicode/bg.nvim" },
   {
     "ellisonleao/gruvbox.nvim",
     event = "UIEnter",
@@ -45,19 +34,4 @@ return {
     event = "UIEnter",
     opts = {},
   },
-  {
-    "projekt0n/github-nvim-theme",
-    main = "github-theme",
-    event = "UIEnter",
-    opts = {},
-  },
-  {
-    "EdenEast/nightfox.nvim",
-    event = "UIEnter",
-    opts = {},
-  },
-  {
-    "shaunsingh/nord.nvim",
-    event = "UIEnter",
-  }
 }

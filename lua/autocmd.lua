@@ -141,22 +141,6 @@ function M.setup()
     end
   })
 
-  vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
-    group = augroup("pad_margin_enter"),
-    callback = function()
-      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
-      if not normal.bg then return end
-      io.write(string.format("\027Ptmux;\027\027]11;#%06x\007\027\\", normal.bg))
-    end,
-  })
-
-  vim.api.nvim_create_autocmd("UILeave", {
-    group = augroup("pad_margin_leave"),
-    callback = function()
-      io.write("\027Ptmux;\027\027]111;\007\027\\")
-    end,
-  })
-
   vim.api.nvim_create_autocmd("BufRead", {
     group = augroup("last_place"),
     callback = function(opts)
