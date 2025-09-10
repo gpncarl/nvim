@@ -83,11 +83,6 @@ return {
     }
   },
   {
-    "stevearc/dressing.nvim",
-    event = "UIEnter",
-    opts = {},
-  },
-  {
     "folke/twilight.nvim",
     cmd = {
       "Twilight",
