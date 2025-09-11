@@ -1,6 +1,6 @@
 return {
   colorscheme = "default",
-  finder = "snacks",
+  finder = "fzf",
   popup_cmdline = false,
   popup_notify = false,
   leetcode = false,

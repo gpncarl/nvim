@@ -60,7 +60,6 @@ return {
     enabled = (config.finder == "telescope"),
     cmd = { "Telescope" },
     keys = {
-      { "go",         "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
       { "<leader>fo", "<cmd>Telescope treesitter buffer=0<cr>", desc = "fuzzy outline" },
       { "<leader>fF", "<cmd>Telescope find_files<cr>",          desc = "fuzzy files" },
       {
@@ -76,9 +75,9 @@ return {
         desc = "fuzzy files(root)"
       },
       { "<leader>fb", "<cmd>Telescope buffers<cr>",   desc = "fuzzy buffers" },
-      { "<leader>fG", "<cmd>Telescope live_grep<cr>", desc = "live fuzzy string" },
+      { "<leader>sG", "<cmd>Telescope live_grep<cr>", desc = "live fuzzy string" },
       {
-        "<leader>fg",
+        "<leader>sg",
         function()
           local root = vim.fs.root(0, '.git')
           if root ~= nil then
@@ -89,12 +88,25 @@ return {
         end,
         desc = "live fuzzy string(root)"
       },
-      { "<leader>fj", "<cmd>Telescope jumplist<cr>", desc = "fuzzy jumplist" },
-      { "<leader>ft", "<cmd>Telescope tagstack<cr>", desc = "fuzzy tagstack" },
-      { "<leader>fq", "<cmd>Telescope quickfix<cr>", desc = "fuzzy quickfix" },
-      { "<leader>fl", "<cmd>Telescope loclist<cr>",  desc = "fuzzy loclist" },
-      { "<leader>fr", "<cmd>Telescope resume<cr>",   desc = "fuzzy resume" },
-      { "<leader>fa", "<cmd>Telescope builtin<cr>",  desc = "fuzzy all built-in" },
+      {
+        "<leader>/",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("telescope.builtin").live_grep({ cwd = root })
+          else
+            require("telescope.builtin").live_grep()
+          end
+        end,
+        desc = "live fuzzy string(root)"
+      },
+      { "<leader>fr", "<cmd>Telescope resume<cr>",               desc = "fuzzy resume" },
+      { "<leader>fa", "<cmd>Telescope builtin<cr>",              desc = "fuzzy all built-in" },
+      { "gd",         "<cmd>Telescope lsp_definitions<cr>",      desc = "Goto Definition" },
+      { "gD",         "<cmd>Telescope lsp_definitions<cr>",      desc = "Goto Declaration" },
+      { "grr",        "<cmd>Telescope lsp_references<cr>",       nowait = true,                  desc = "References" },
+      { "gri",        "<cmd>Telescope lsp_implementations<cr>",  desc = "Goto Implementation" },
+      { "grt",        "<cmd>Telescope lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition" },
     },
     dependencies = {
       {
@@ -121,6 +133,7 @@ return {
   {
     "ibhagwan/fzf-lua",
     enabled = (config.finder == "fzf"),
+    event = { "UIEnter" },
     cmd = { "FzfLua" },
     keys = {
       { "<leader>fo", "<cmd>FzfLua treesitter<cr>",           desc = "fuzzy treesitter" },
@@ -137,16 +150,44 @@ return {
         desc = "fuzzy files(root)"
       },
       { "<leader>fF", "<cmd>FzfLua files<cr>",                desc = "fuzzy files(cwd)" },
-      { "<leader>fm", "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
+      { "<leader>fr", "<cmd>FzfLua oldfiles<cr>",             desc = "fuzzy oldfiles" },
       { "<leader>fb", "<cmd>FzfLua buffers<cr>",              desc = "fuzzy buffers" },
-      { "<leader>fq", "<cmd>FzfLua quickfix<cr>",             desc = "fuzzy quickfix" },
-      { "<leader>fl", "<cmd>FzfLua loclist<cr>",              desc = "fuzzy loclist" },
       { "<leader>fa", "<cmd>FzfLua builtin<cr>",              desc = "fuzzy all built-in" },
-      { "<leader>sg", "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
+      { "<leader>/",  "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
+      {
+        "<leader>/",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("fzf-lua").live_grep({ cwd = root })
+          else
+            require("fzf-lua").live_grep()
+          end
+        end,
+        desc = "fuzzy files(root)"
+      },
+      {
+        "<leader>sg",
+        function()
+          local root = vim.fs.root(0, '.git')
+          if root ~= nil then
+            require("fzf-lua").live_grep({ cwd = root })
+          else
+            require("fzf-lua").live_grep()
+          end
+        end,
+        desc = "fuzzy files(root)"
+      },
+      { "<leader>sG", "<cmd>FzfLua live_grep<cr>",            desc = "live fuzzy string" },
       { "<leader>ss", "<cmd>FzfLua lsp_document_symbols<cr>", desc = "fuzzy lsp_document_symbols" },
-      { "<leader>sr", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
+      { "<leader>sR", "<cmd>FzfLua resume<cr>",               desc = "fuzzy resume" },
       { "<leader>sw", "<cmd>FzfLua grep_cword<cr>",           desc = "fuzzy grep_cword" },
       { "<leader>sW", "<cmd>FzfLua grep_cWORD<cr>",           desc = "fuzzy grep_cWORD" },
+      { "gd",         "<cmd>FzfLua lsp_definitions<cr>",      desc = "Goto Definition" },
+      { "gD",         "<cmd>FzfLua lsp_definitions<cr>",      desc = "Goto Declaration" },
+      { "grr",        "<cmd>FzfLua lsp_references<cr>",       nowait = true,                      desc = "References" },
+      { "gri",        "<cmd>FzfLua lsp_implementations<cr>",  desc = "Goto Implementation" },
+      { "grt",        "<cmd>FzfLua lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition" },
     },
     opts = {
       winopts = {
@@ -160,7 +201,14 @@ return {
           ["<c-/>"] = "toggle-preview",
         },
       },
-    }
+    },
+    config = function(_, opts)
+      require("fzf-lua").setup(opts)
+      vim.ui.select = function(...)
+        require("fzf-lua").register_ui_select(opts.ui_select or nil)
+        return vim.ui.select(...)
+      end
+    end,
   },
   {
     "folke/snacks.nvim",
@@ -169,7 +217,7 @@ return {
       picker = {}
     },
     keys = {
-      { "<leader>fl", function() Snacks.picker.picker_layouts() end,   desc = "" },
+      { "<leader>fo", function() Snacks.picker.treesitter() end,   desc = "Find Treesitter Node" },
       -- Top Pickers & Explorer
       { "<leader><enter>", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
       { "<leader>,",       function() Snacks.picker.buffers() end, desc = "Buffers" },
