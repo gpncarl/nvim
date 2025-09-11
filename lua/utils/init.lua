@@ -1,4 +1,30 @@
-local M = {}
+local M = { cached_lsp_root = {} }
+
+function M.setup()
+  vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(ev)
+      local client = vim.lsp.get_client_by_id(ev.data.client_id)
+      local bufnr = ev.buf
+      local root_dir = client.root_dir
+      if client and root_dir then
+        M.cached_lsp_root[bufnr] = root_dir
+      end
+    end,
+  })
+end
+
+function M.root(buf)
+  local bufnr = buf or vim.api.nvim_get_current_buf()
+  local lsp_root = M.cached_lsp_root[bufnr]
+  if lsp_root then
+    return lsp_root
+  end
+  local marker_root = vim.fs.root(bufnr, { ".git" })
+  if marker_root then
+    return marker_root
+  end
+  return vim.uv.cwd()
+end
 
 local function closed(line)
   return vim.fn.foldclosed(line) >= 0

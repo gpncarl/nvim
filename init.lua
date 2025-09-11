@@ -1,6 +1,7 @@
 require("options")
 require("autocmd").setup()
 require("misc").setup()
+require("utils").setup()
 
 local colorscheme = require("config").colorscheme
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"

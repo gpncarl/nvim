@@ -65,12 +65,7 @@ return {
       {
         "<leader>ff",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("telescope.builtin").find_files({ cwd = root })
-          else
-            require("telescope.builtin").find_files()
-          end
+          require("telescope.builtin").find_files({ cwd = require("utils").root() })
         end,
         desc = "fuzzy files(root)"
       },
@@ -79,24 +74,14 @@ return {
       {
         "<leader>sg",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("telescope.builtin").live_grep({ cwd = root })
-          else
-            require("telescope.builtin").live_grep()
-          end
+          require("telescope.builtin").live_grep({ cwd = require("utils").root() })
         end,
         desc = "live fuzzy string(root)"
       },
       {
         "<leader>/",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("telescope.builtin").live_grep({ cwd = root })
-          else
-            require("telescope.builtin").live_grep()
-          end
+          require("telescope.builtin").live_grep({ cwd = require("utils").root() })
         end,
         desc = "live fuzzy string(root)"
       },
@@ -139,12 +124,7 @@ return {
       {
         "<leader>ff",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("fzf-lua").files({ cwd = root })
-          else
-            require("fzf-lua").files()
-          end
+          require("fzf-lua").files({ cwd = require("utils").root() })
         end,
         desc = "fuzzy files(root)"
       },
@@ -156,24 +136,14 @@ return {
       {
         "<leader>/",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("fzf-lua").live_grep({ cwd = root })
-          else
-            require("fzf-lua").live_grep()
-          end
+          require("fzf-lua").live_grep({ cwd = require("utils").root() })
         end,
         desc = "fuzzy files(root)"
       },
       {
         "<leader>sg",
         function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            require("fzf-lua").live_grep({ cwd = root })
-          else
-            require("fzf-lua").live_grep()
-          end
+          require("fzf-lua").live_grep({ cwd = require("utils").root() })
         end,
         desc = "fuzzy files(root)"
       },
@@ -217,74 +187,27 @@ return {
     "folke/snacks.nvim",
     enabled = (config.finder == "snacks"),
     keys = {
-      { "<leader>fo", function() Snacks.picker.treesitter() end,   desc = "Find Treesitter Node" },
-      -- Top Pickers & Explorer
-      { "<leader><enter>", function() Snacks.picker.smart() end,   desc = "Smart Find Files" },
-      { "<leader>,",       function() Snacks.picker.buffers() end, desc = "Buffers" },
-      {
-        "<leader>/",
-        function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            Snacks.picker.grep({ cwd = root })
-          else
-            Snacks.picker.grep()
-          end
-        end,
-        desc = "Grep"
-      },
-      -- find
-      { "<leader>fb", function() Snacks.picker.buffers() end, desc = "Buffers" },
-      {
-        "<leader>ff",
-        function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            Snacks.picker.files({ cwd = root })
-          else
-            Snacks.picker.files()
-          end
-        end,
-        desc = "Find Files(root)"
-      },
-      { "<leader>fF", function() Snacks.picker.files() end,   desc = "Find Files(cwd)" },
-      { "<leader>fr", function() Snacks.picker.recent() end,  desc = "Recent" },
-      -- Grep
-      {
-        "<leader>sg",
-        function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            Snacks.picker.grep({ cwd = root })
-          else
-            Snacks.picker.grep()
-          end
-        end,
-        desc = "Grep"
-      },
-      { "<leader>sg", function() Snacks.picker.grep() end,                  desc = "Grep" },
-      {
-        "<leader>sw",
-        function()
-          local root = vim.fs.root(0, '.git')
-          if root ~= nil then
-            Snacks.picker.grep_word({ cwd = root })
-          else
-            Snacks.picker.grep_word()
-          end
-        end,
-        desc = "Visual selection or word()",
-        mode = { "n", "x" }
-      },
-      { "<leader>sW", function() Snacks.picker.grep_word() end,             desc = "Visual selection or word(cwd)", mode = { "n", "x" } },
-      -- LSP
-      { "gd",         function() Snacks.picker.lsp_definitions() end,       desc = "Goto Definition" },
-      { "gD",         function() Snacks.picker.lsp_declarations() end,      desc = "Goto Declaration" },
-      { "grr",        function() Snacks.picker.lsp_references() end,        nowait = true,                          desc = "References" },
-      { "gri",        function() Snacks.picker.lsp_implementations() end,   desc = "Goto Implementation" },
-      { "grt",        function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
-      { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
-      { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+      { "<leader>fl",      function() Snacks.picker.picker_layouts() end,                         desc = "" },
+      { "<leader>fo",      function() Snacks.picker.treesitter() end,                             desc = "" },
+      { "<leader><enter>", function() Snacks.picker.smart() end,                                  desc = "Smart Find Files" },
+      { "<leader>,",       function() Snacks.picker.buffers() end,                                desc = "Buffers" },
+      { "<leader>/",       function() Snacks.picker.grep({ cwd = require("utils").root() }) end,  desc = "Grep(root)" },
+      { "<leader>fb",      function() Snacks.picker.buffers() end,                                desc = "Buffers" },
+      { "<leader>ff",      function() Snacks.picker.files({ cwd = require("utils").root() }) end, desc = "Find Files(root)" },
+      { "<leader>fF",      function() Snacks.picker.files() end,                                  desc = "Find Files(cwd)" },
+      { "<leader>fr",      function() Snacks.picker.recent() end,                                 desc = "Recent" },
+      { "<leader>sg",      function() Snacks.picker.grep({ cwd = require("utils").root() }) end,  desc = "Grep(root)" },
+      { "<leader>sG",      function() Snacks.picker.grep() end,                                   desc = "Grep(cwd)" },
+      { "<leader>sR",      function() Snacks.picker.resume() end,                                 desc = "Resume" },
+      { "<leader>sw",      function() Snacks.picker.grep({ cwd = require("utils").root() }) end,  desc = "Visual selection or word(root)",    mode = { "n", "x" } },
+      { "<leader>sW",      function() Snacks.picker.grep_word() end,                              desc = "Visual selection or word(cwd)", mode = { "n", "x" } },
+      { "gd",              function() Snacks.picker.lsp_definitions() end,                        desc = "Goto Definition" },
+      { "gD",              function() Snacks.picker.lsp_declarations() end,                       desc = "Goto Declaration" },
+      { "grr",             function() Snacks.picker.lsp_references() end,                         nowait = true,                          desc = "References" },
+      { "gri",             function() Snacks.picker.lsp_implementations() end,                    desc = "Goto Implementation" },
+      { "grt",             function() Snacks.picker.lsp_type_definitions() end,                   desc = "Goto T[y]pe Definition" },
+      { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                            desc = "LSP Symbols" },
+      { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                  desc = "LSP Workspace Symbols" },
     },
     init = function()
       vim.api.nvim_create_autocmd({ "UIEnter" }, {
