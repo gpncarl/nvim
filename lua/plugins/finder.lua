@@ -133,7 +133,6 @@ return {
   {
     "ibhagwan/fzf-lua",
     enabled = (config.finder == "fzf"),
-    event = { "UIEnter" },
     cmd = { "FzfLua" },
     keys = {
       { "<leader>fo", "<cmd>FzfLua treesitter<cr>",           desc = "fuzzy treesitter" },
@@ -189,6 +188,17 @@ return {
       { "gri",        "<cmd>FzfLua lsp_implementations<cr>",  desc = "Goto Implementation" },
       { "grt",        "<cmd>FzfLua lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition" },
     },
+    init = function()
+      vim.api.nvim_create_autocmd({ "UIEnter" }, {
+        group = require("utils").augroup ("select_ui"),
+        callback = function()
+          vim.ui.select = function(...)
+            require("fzf-lua").register_ui_select()
+            return vim.ui.select(...)
+          end
+        end,
+      })
+    end,
     opts = {
       winopts = {
         preview = {
@@ -202,20 +212,10 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("fzf-lua").setup(opts)
-      vim.ui.select = function(...)
-        require("fzf-lua").register_ui_select(opts.ui_select or nil)
-        return vim.ui.select(...)
-      end
-    end,
   },
   {
     "folke/snacks.nvim",
     enabled = (config.finder == "snacks"),
-    opts = {
-      picker = {}
-    },
     keys = {
       { "<leader>fo", function() Snacks.picker.treesitter() end,   desc = "Find Treesitter Node" },
       -- Top Pickers & Explorer
@@ -285,6 +285,20 @@ return {
       { "grt",        function() Snacks.picker.lsp_type_definitions() end,  desc = "Goto T[y]pe Definition" },
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end,           desc = "LSP Symbols" },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP Workspace Symbols" },
+    },
+    init = function()
+      vim.api.nvim_create_autocmd({ "UIEnter" }, {
+        group = require("utils").augroup("select_ui"),
+        callback = function()
+          vim.ui.select = function(...)
+            require("snacks")
+            return vim.ui.select(...)
+          end
+        end,
+      })
+    end,
+    opts = {
+      picker = {}
     },
   }
 }
