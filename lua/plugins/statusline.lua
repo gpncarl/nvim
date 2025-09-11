@@ -9,10 +9,8 @@ return {
         groups = {},
         title = false,
         filter = { range = true },
-        format = "{kind_icon}{symbol.name:Normal}",
-        -- The following line is needed to fix the background color
-        -- Set it to the lualine section you want to use
-        -- hl_group = "lualine_c_normal",
+        format = " {kind_icon}{symbol.name:Normal}",
+        hl_group = "Normal",
       })
 
       return {
@@ -30,6 +28,7 @@ return {
               "gitcommit",
               "neo-tree",
               "fugitive",
+              "help",
             }
           },
           ignore_focus = {},
@@ -59,7 +58,18 @@ return {
         },
         winbar = {
           lualine_c = {
-            { symbols.get, cond = symbols.has, }
+            {
+              function() return "Symbols" end,
+              draw_empty = true,
+              color = "WinBar",
+              padding = 0,
+              cond = vim.lsp.buf_is_attached,
+            },
+            {
+              symbols.get,
+              cond = symbols.has,
+              color = "WinBar",
+            }
           },
         },
         extensions = { "quickfix", "fugitive", "lazy", "mason", "neo-tree", "oil", "trouble" }
