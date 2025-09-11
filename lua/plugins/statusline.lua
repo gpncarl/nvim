@@ -29,6 +29,7 @@ return {
               "toggleterm",
               "gitcommit",
               "neo-tree",
+              "fugitive",
             }
           },
           ignore_focus = {},
