@@ -29,25 +29,30 @@ return {
       { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                  desc = "LSP Workspace Symbols" },
 
 
-      { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete Buffer" },
+      { "<leader>bd",      function() Snacks.bufdelete() end,                                     desc = "Delete Buffer" },
+      { "<c-\\><c-\\>",    function() Snacks.terminal.toggle() end,                               desc = "Terminal",                       mode = { "n", "t" } },
+      { "<c-n>",           function() Snacks.words.jump(1, true) end,                             desc = "Words next" },
+      { "<c-p>",           function() Snacks.words.jump(-1, true) end,                            desc = "Words previous" },
     },
     opts = {
-      bigfile = { enabled = true },
-      dashboard = { enabled = false },
-      explorer = { enabled = false },
-      image = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      picker = { enabled = true },
-      notifier = { enabled = false },
-      quickfile = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = true },
       statuscolumn = { enabled = false },
-      words = { enabled = true },
+      bigfile = {},
+      image = {},
+      indent = {},
+      input = {},
+      picker = {},
+      quickfile = {},
+      words = {},
+      terminal = {
+        win = {
+          keys = {
+            term_normal = false,
+            q = false,
+          },
+        },
+      },
     },
     config = function(_, opts)
-      vim.g.snacks_animate = false
       require("snacks").setup(opts)
 
       vim.api.nvim_create_autocmd("User", {
