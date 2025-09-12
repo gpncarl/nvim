@@ -40,15 +40,16 @@ return {
     "williamboman/mason.nvim",
     cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
     build = ":MasonUpdate",
+    init = function()
+      vim.env.PATH =  vim.env.PATH .. ":" .. vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin")
+    end,
     opts = {
-      PATH = "append",
+      install_root_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "mason"),
+      PATH = "skip",
     }
   },
   {
     "neovim/nvim-lspconfig",
-    dependencies = {
-      { "williamboman/mason.nvim" },
-    },
     config = function()
       vim.lsp.enable({
         "lua_ls",
@@ -63,7 +64,6 @@ return {
   },
   {
     "folke/lazydev.nvim",
-    enabled = false,
     ft = "lua",
     dependencies = { "Bilal2453/luvit-meta" },
     opts = {
