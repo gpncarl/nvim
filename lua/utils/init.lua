@@ -34,19 +34,15 @@ function M.foldexpr()
   end
 
   local ignore_filetypes = { "", "snacks_picker_preview" }
-  for _, ft in ipairs(ignore_filetypes) do
-    if vim.bo[buf].filetype == ft then
-      return "0"
-    end
+  if vim.list_contains(ignore_filetypes, vim.bo[buf].filetype) then
+    return "0"
   end
 
-  local ok = pcall(vim.treesitter.get_parser, buf)
-
-  if ok then
-    return vim.treesitter.foldexpr()
+  if vim.b[buf].use_ts_foldexpr == nil then
+    vim.b[buf].use_ts_foldexpr = pcall(vim.treesitter.get_parser, buf)
   end
 
-  return "0"
+  return vim.b[buf].use_ts_foldexpr and vim.treesitter.foldexpr() or "0"
 end
 
 function M.augroup(name)
