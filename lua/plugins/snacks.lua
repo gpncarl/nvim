@@ -29,7 +29,7 @@ return {
       { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                  desc = "LSP Workspace Symbols" },
     },
     opts = {
-      bigfile = { enabled = false },
+      bigfile = { enabled = true },
       dashboard = { enabled = false },
       explorer = { enabled = false },
       indent = { enabled = false },
