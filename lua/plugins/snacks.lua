@@ -17,7 +17,7 @@ return {
       { "<leader>sg",      function() Snacks.picker.grep({ cwd = require("utils").root() }) end,  desc = "Grep(root)" },
       { "<leader>sG",      function() Snacks.picker.grep() end,                                   desc = "Grep(cwd)" },
       { "<leader>sR",      function() Snacks.picker.resume() end,                                 desc = "Resume" },
-      { "<leader>sw",      function() Snacks.picker.grep({ cwd = require("utils").root() }) end,  desc = "Visual selection or word(root)", mode = { "n", "x" } },
+      { "<leader>sw",      function() Snacks.picker.grep_word({ cwd = require("utils").root() }) end,  desc = "Visual selection or word(root)", mode = { "n", "x" } },
       { "<leader>sW",      function() Snacks.picker.grep_word() end,                              desc = "Visual selection or word(cwd)",  mode = { "n", "x" } },
       { "gd",              function() Snacks.picker.lsp_definitions() end,                        desc = "Goto Definition" },
       { "gD",              function() Snacks.picker.lsp_declarations() end,                       desc = "Goto Declaration" },
