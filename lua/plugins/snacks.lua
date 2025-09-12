@@ -35,6 +35,7 @@ return {
       bigfile = { enabled = true },
       dashboard = { enabled = false },
       explorer = { enabled = false },
+      image = { enabled = true },
       indent = { enabled = true },
       input = { enabled = true },
       picker = { enabled = true },
@@ -45,5 +46,19 @@ return {
       statuscolumn = { enabled = false },
       words = { enabled = true },
     },
+    config = function(_, opts)
+      vim.g.snacks_animate = false
+      require("snacks").setup(opts)
+
+      vim.api.nvim_create_autocmd("User", {
+        pattern = "OilActionsPost",
+        callback = function(event)
+          if event.data.actions.type == "move" then
+            Snacks.rename.on_rename_file(event.data.actions.src_url, event.data.actions.dest_url)
+          end
+        end,
+      })
+      vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
+    end,
   }
 }
