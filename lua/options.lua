@@ -48,7 +48,7 @@ vim.opt.virtualedit = "block"
 vim.opt.background = "dark"
 vim.opt.guifont = "FiraCode Nerd Font Mono:h14"
 vim.opt.completeopt = { "menuone", "noinsert", "noselect" }
-vim.opt.shortmess:append({ I = true })
+vim.opt.shortmess:append({ I = false })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")

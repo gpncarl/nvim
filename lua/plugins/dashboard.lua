@@ -1,6 +1,8 @@
+local config = require("config")
 return {
   {
     "goolord/alpha-nvim",
+    enabled = (config.dashboard == "alpha"),
     event = { "VimEnter" },
     cmd = { "Alpha", "AlphaRedraw" },
     dependencies = { "nvim-tree/nvim-web-devicons" },
