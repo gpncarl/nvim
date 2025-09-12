@@ -16,7 +16,7 @@ return {
   },
   {
     "saghen/blink.cmp",
-    event = { "InsertEnter", "CmdlineEnter" },
+    event = { "InsertEnter" },
     version = "1.*",
     dependencies = {
       { "rafamadriz/friendly-snippets" },
@@ -30,7 +30,6 @@ return {
           copilot = {
             name = "copilot",
             module = "blink-cmp-copilot",
-            kind = "Copilot",
             score_offset = 100,
             async = true,
           },
