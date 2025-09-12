@@ -33,7 +33,7 @@ return {
   {
     "folke/noice.nvim",
     enabled = config.popup_cmdline,
-    event = "UIEnter",
+    event = "VeryLazy",
     dependencies = {
       "MunifTanjim/nui.nvim",
     },

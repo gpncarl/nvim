@@ -59,7 +59,7 @@ return {
   },
   {
     "local/lspost",
-    event = { "VimEnter "},
+    event = { "VeryLazy" },
     dev = true,
     dependencies = { "neovim/nvim-lspconfig" },
     config = function()
