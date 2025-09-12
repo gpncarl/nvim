@@ -1,8 +1,7 @@
 return {
-  { "typicode/bg.nvim" },
   {
     "ellisonleao/gruvbox.nvim",
-    event = "UIEnter",
+    lazy = true,
     opts = {
       undercurl = true,
       underline = true,
@@ -25,13 +24,13 @@ return {
   },
   {
     "folke/tokyonight.nvim",
-    event = "UIEnter",
+    lazy = true,
     opts = {},
   },
   {
     "catppuccin/nvim",
     name = "catppuccin",
-    event = "UIEnter",
+    lazy = true,
     opts = {},
   },
 }

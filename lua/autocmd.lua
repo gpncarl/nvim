@@ -127,30 +127,30 @@ function M.setup()
     end,
   })
 
-  -- vim.filetype.add({
-  --   pattern = {
-  --     [".*"] = {
-  --       function(path, buf)
-  --         return vim.bo[buf]
-  --             and vim.bo[buf].filetype ~= "bigfile"
-  --             and path
-  --             and vim.fn.getfsize(path) > 5 * 1024 * 1024 -- 5MB
-  --             and "bigfile"
-  --             or nil
-  --       end,
-  --     },
-  --   },
-  -- })
-  --
-  -- vim.api.nvim_create_autocmd({ "FileType" }, {
-  --   group = augroup("bigfile"),
-  --   pattern = "bigfile",
-  --   callback = function(ev)
-  --     vim.schedule(function()
-  --       vim.bo[ev.buf].syntax = vim.filetype.match({ buf = ev.buf }) or ""
-  --     end)
-  --   end,
-  -- })
+
+  vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
+    callback = function()
+      local normal = vim.api.nvim_get_hl(0, { name = "Normal" })
+      if not normal.bg then
+        return
+      end
+      if vim.env.TMUX then
+        io.write(string.format("\027Ptmux;\027\027]11;#%06x\007\027\\", normal.bg))
+      else
+        io.write(string.format("\027\027]11;#%06x\007\027\\", normal.bg))
+      end
+    end,
+  })
+
+  vim.api.nvim_create_autocmd("UILeave", {
+    callback = function()
+      if vim.env.TMUX then
+        io.write("\027Ptmux;\027\027]111;\007\027\\")
+      else
+        io.write("\027\027]111;\007\027\\")
+      end
+    end,
+  })
 end
 
 return M
