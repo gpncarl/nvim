@@ -59,8 +59,8 @@ return {
                     groups = {},
                     title = false,
                     filter = { range = true },
-                    format = " {kind_icon}{symbol.name:Normal}",
-                    hl_group = "Normal",
+                    format = " {kind_icon}{symbol.name:WinBar}",
+                    hl_group = "WinBar",
                   })
                 end
 
