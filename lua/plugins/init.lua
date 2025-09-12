@@ -1,13 +1,6 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   {
-    "nvim-mini/mini.bufremove",
-    keys = {
-      { "<leader>bd", function() require("mini.bufremove").delete() end, desc = "Delete Buffer" },
-    },
-    opts = {}
-  },
-  {
     "chentoast/marks.nvim",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
