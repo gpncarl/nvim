@@ -33,8 +33,11 @@ function M.foldexpr()
     return "0"
   end
 
-  if vim.bo[buf].filetype == "" then
-    return "0"
+  local ignore_filetypes = { "", "snacks_picker_preview" }
+  for _, ft in ipairs(ignore_filetypes) do
+    if vim.bo[buf].filetype == ft then
+      return "0"
+    end
   end
 
   local ok = pcall(vim.treesitter.get_parser, buf)
