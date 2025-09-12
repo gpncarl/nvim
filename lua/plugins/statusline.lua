@@ -29,6 +29,7 @@ return {
               "neo-tree",
               "fugitive",
               "help",
+              "git",
             }
           },
           ignore_focus = {},
@@ -63,11 +64,15 @@ return {
               draw_empty = true,
               color = "WinBar",
               padding = 0,
-              cond = vim.lsp.buf_is_attached,
+              cond = function ()
+                return vim.lsp.buf_is_attached(0)
+              end,
             },
             {
               symbols.get,
-              cond = symbols.has,
+              cond = function ()
+                return vim.lsp.buf_is_attached(0) and symbols.has()
+              end,
               color = "WinBar",
             }
           },
