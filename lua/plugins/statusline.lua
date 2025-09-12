@@ -86,13 +86,17 @@ return {
     event = "ColorScheme",
     keys = {
       { "gb", "<cmd>BufferLinePick<cr>", desc = "BufferLine Pick" },
+      { "gB", "<cmd>BufferLinePickClose<cr>", desc = "BufferLine Pick Close" },
     },
     opts = {
       options = {
+        close_command = function(n) Snacks.bufdelete(n) end,
+        right_mouse_command = function(n) Snacks.bufdelete(n) end,
         mode = "buffers",
         numbers = "buffer_id",
         separator_style = "slant",
         sort_by = "id",
+        always_show_bufferline = false,
       }
     }
   },
