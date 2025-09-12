@@ -18,12 +18,14 @@ return {
       "Gdrop",
       "Gread",
       "Gwrite",
+      "Gw",
       "Gwq",
       "Gdiffsplit",
       "Gvdiffsplit",
       "Ghdiffsplit",
     },
     keys = {
+      { "<leader>gg", "<cmd>Git<cr>", desc = "git summary" },
       { "<leader>gb", "<cmd>Git blame<cr>", desc = "git blame" },
       { "<leader>gD", "<cmd>Gdiffsplit<cr>", desc = "git diff split" }
     },
