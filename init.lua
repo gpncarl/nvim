@@ -15,6 +15,11 @@ require("lazy").setup({
   spec = {
     { import = "plugins" },
   },
+  dev = {
+    path = vim.fs.joinpath(vim.fn.stdpath("config"), "plugins"),
+    patterns = {},
+    fallback = false,
+  },
   install = { colorscheme = { colorscheme } },
   checker = { enabled = false },
   performance = {

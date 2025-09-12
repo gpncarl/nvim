@@ -58,6 +58,18 @@ return {
     end
   },
   {
+    "local/lspost",
+    event = { "VimEnter "},
+    dev = true,
+    dependencies = { "neovim/nvim-lspconfig" },
+    config = function()
+      vim.lsp.enable({
+        "lua_ls",
+        "clangd",
+      })
+    end
+  },
+  {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {}
