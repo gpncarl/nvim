@@ -186,6 +186,7 @@ return {
   {
     "folke/snacks.nvim",
     enabled = (config.finder == "snacks"),
+    lazy = false,
     keys = {
       { "<leader>fl",      function() Snacks.picker.picker_layouts() end,                         desc = "" },
       { "<leader>fo",      function() Snacks.picker.treesitter() end,                             desc = "" },
@@ -209,17 +210,6 @@ return {
       { "<leader>ss",      function() Snacks.picker.lsp_symbols() end,                            desc = "LSP Symbols" },
       { "<leader>sS",      function() Snacks.picker.lsp_workspace_symbols() end,                  desc = "LSP Workspace Symbols" },
     },
-    init = function()
-      vim.api.nvim_create_autocmd({ "UIEnter" }, {
-        group = require("utils").augroup("select_ui"),
-        callback = function()
-          vim.ui.select = function(...)
-            require("snacks")
-            return vim.ui.select(...)
-          end
-        end,
-      })
-    end,
     opts = {
       picker = {}
     },
