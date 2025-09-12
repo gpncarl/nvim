@@ -49,15 +49,6 @@ return {
     }
   },
   {
-    "neovim/nvim-lspconfig",
-    config = function()
-      vim.lsp.enable({
-        "lua_ls",
-        "clangd",
-      })
-    end
-  },
-  {
     "local/lspost",
     event = { "VeryLazy" },
     dev = true,
