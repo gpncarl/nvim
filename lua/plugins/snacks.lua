@@ -30,6 +30,8 @@ return {
 
       { "<leader>bd",      function() Snacks.bufdelete() end,                                     desc = "Delete Buffer" },
       { "<c-\\><c-\\>",    function() Snacks.terminal.toggle() end,                               desc = "Terminal",                       mode = { "n", "t" } },
+      { "<c-n>",           function() Snacks.words.jump(1, true) end,                             desc = "Words next" },
+      { "<c-p>",           function() Snacks.words.jump(-1, true) end,                            desc = "Words previous" },
     },
     opts = {
       animate = {
@@ -55,6 +57,7 @@ return {
         },
         refresh = 50,
       },
+      words = {},
       terminal = {
         win = {
           keys = {
