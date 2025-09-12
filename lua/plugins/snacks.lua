@@ -2,7 +2,6 @@ local config = require("config")
 return {
   {
     "folke/snacks.nvim",
-    enabled = (config.finder == "snacks"),
     priority = 1000,
     lazy = false,
     keys = {
@@ -35,11 +34,16 @@ return {
       { "<c-p>",           function() Snacks.words.jump(-1, true) end,                            desc = "Words previous" },
     },
     opts = {
+      animate = {
+        enabled = config.animate
+      },
       bigfile = {},
       image = {},
       indent = {},
       input = {},
-      picker = {},
+      picker = {
+        enabled = (config.finder == "snacks"),
+      },
       quickfile = {},
       statuscolumn = {
         left = { "mark", "sign", "git" },

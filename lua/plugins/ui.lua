@@ -1,14 +1,6 @@
 local config = require("config")
 return {
-  { "nvim-lua/popup.nvim",  lazy = true },
   { "MunifTanjim/nui.nvim", lazy = true },
-  {
-    "OXY2DEV/helpview.nvim",
-    enabled = false,
-    ft = { "help" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
-    opts = {}
-  },
   {
     "nvim-mini/mini.icons",
     lazy = true,
@@ -39,20 +31,10 @@ return {
     },
   },
   {
-    "rcarriga/nvim-notify",
-    enabled = config.popup_notify,
-    event = "UIEnter",
-    opts = {
-      render = "default",
-      top_down = true,
-    }
-  },
-  {
     "folke/noice.nvim",
     enabled = config.popup_cmdline,
     event = "UIEnter",
     dependencies = {
-      "rcarriga/nvim-notify",
       "MunifTanjim/nui.nvim",
     },
     opts = {
@@ -96,40 +78,5 @@ return {
     cmd = { "ZenMode" },
     dependencies = { "folke/twilight.nvim" },
     opts = {}
-  },
-  {
-    "nvim-mini/mini.animate",
-    enabled = config.animate,
-    event = "UIEnter",
-    opts = function()
-      -- don't use animate when scrolling with the mouse
-      local mouse_scrolled = false
-      for _, scroll in ipairs({ "Up", "Down" }) do
-        local key = "<ScrollWheel" .. scroll .. ">"
-        vim.keymap.set({ "", "i" }, key, function()
-          mouse_scrolled = true
-          return key
-        end, { expr = true })
-      end
-
-      local animate = require("mini.animate")
-      return {
-        resize = {
-          timing = animate.gen_timing.linear({ duration = 50, unit = "total" }),
-        },
-        scroll = {
-          timing = animate.gen_timing.linear({ duration = 150, unit = "total" }),
-          subscroll = animate.gen_subscroll.equal({
-            predicate = function(total_scroll)
-              if mouse_scrolled then
-                mouse_scrolled = false
-                return false
-              end
-              return total_scroll > 1
-            end,
-          }),
-        },
-      }
-    end,
   },
 }
