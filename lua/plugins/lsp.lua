@@ -50,16 +50,6 @@ return {
       { "williamboman/mason.nvim" },
     },
     config = function()
-      vim.api.nvim_create_autocmd('LspAttach', {
-        callback = function(ev)
-          local client = vim.lsp.get_client_by_id(ev.data.client_id)
-          for bufnr, _ in pairs(client.attached_buffers) do
-            vim.keymap.set("n", "gd", vim.lsp.buf.definition, { buffer = bufnr, desc = "goto define" })
-            vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = bufnr, desc = "goto declaration" })
-            vim.keymap.set({ "n", "v" }, "<leader>cf", vim.lsp.buf.format, { buffer = bufnr, desc = "format" })
-          end
-        end
-      })
       vim.lsp.enable({
         "lua_ls",
         "clangd",

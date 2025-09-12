@@ -72,6 +72,7 @@ return {
         { "<leader>t",        group = "trouble" },
         { "<leader>g",        group = "git" },
         { "<leader>n",        group = "neotree" },
+        { "<leader>s",        group = "search" },
         { "gr",               group = "lsp" },
         { "gs",               group = "surround" },
         { "<leader><leader>", group = "extra" },
