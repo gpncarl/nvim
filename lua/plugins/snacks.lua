@@ -35,13 +35,24 @@ return {
       { "<c-p>",           function() Snacks.words.jump(-1, true) end,                            desc = "Words previous" },
     },
     opts = {
-      statuscolumn = { enabled = false },
       bigfile = {},
       image = {},
       indent = {},
       input = {},
       picker = {},
       quickfile = {},
+      statuscolumn = {
+        left = { "mark", "sign", "git" },
+        right = { "fold" },
+        folds = {
+          open = true,
+          git_hl = false,
+        },
+        git = {
+          patterns = { "GitSign", "MiniDiffSign" },
+        },
+        refresh = 50,
+      },
       words = {},
       terminal = {
         win = {
