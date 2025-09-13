@@ -1,5 +1,10 @@
 return {
   {
+    "local/termbg",
+    dev = true,
+    opts = {},
+  },
+  {
     "ellisonleao/gruvbox.nvim",
     lazy = true,
     opts = {
