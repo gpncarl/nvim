@@ -1,6 +1,8 @@
 return {
   {
     "local/termbg",
+    priority = 1000,
+    lazy = false,
     dev = true,
     opts = {},
   },

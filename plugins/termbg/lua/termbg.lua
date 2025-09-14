@@ -52,28 +52,35 @@ end
 
 local function sync(old, new)
   if new ~= nil and new ~= old then
-    write_seq('\027]11;' .. new .. '\007')
+    vim.schedule(function()
+      write_seq('\027]11;' .. new .. '\007')
+    end)
   end
 end
 
 function M.setup()
-  vim.api.nvim_create_autocmd('TermResponse', {
+  local augroup, auid = require('utils').augroup('Termbg'), nil
+  auid = vim.api.nvim_create_autocmd('TermResponse', {
     nested = true,
+    group = augroup,
     callback = function(args)
       local r, g, b = parseosc11(args.data.sequence)
       if not (r and g and b) then
         return
       end
+      pcall(vim.api.nvim_del_autocmd, auid)
 
       local termbg = colorstr(r, g, b)
       sync(termbg, bgcolor())
 
-      vim.api.nvim_create_autocmd({ 'UIEnter', 'ColorScheme' }, {
+      vim.api.nvim_create_autocmd({ 'VimResume', 'ColorScheme' }, {
+        group = augroup,
         callback = function()
           sync(termbg, bgcolor())
         end
       })
-      vim.api.nvim_create_autocmd({ 'UILeave' }, {
+      vim.api.nvim_create_autocmd({ 'VimSuspend', 'VimLeavePre' }, {
+        group = augroup,
         callback = function()
           sync(bgcolor(), termbg)
         end
@@ -81,7 +88,9 @@ function M.setup()
     end,
   })
 
-  write_seq('\027]11;?\007')
+  vim.schedule(function()
+    io.stdout:write('\027]11;?\007')
+  end)
 end
 
 return M
