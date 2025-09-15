@@ -41,7 +41,7 @@ return {
     cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
     build = ":MasonUpdate",
     init = function()
-      vim.env.PATH =  vim.env.PATH .. ":" .. vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin")
+      vim.env.PATH = vim.fs.joinpath(vim.fn.stdpath("data"), "mason", "bin") .. ":" .. vim.env.PATH
     end,
     opts = {
       install_root_dir = vim.fs.joinpath(vim.fn.stdpath("data"), "mason"),
