@@ -3,8 +3,11 @@ local M = {}
 function M.setup()
   vim.api.nvim_create_autocmd("LspAttach", {
     callback = function(ev)
+      local ignore_clients = {
+        "copilot",
+      }
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
-      if client and client.root_dir then
+      if client and not vim.tbl_contains(ignore_clients, client.name) and client.root_dir then
         vim.b[ev.buf].lsp_root_dir = client.root_dir
       end
     end,
