@@ -9,12 +9,6 @@ return {
       ensure_installed = { "bash", "lua", "c", "cpp", "python", "vim", "comment", "vimdoc" },
       indent = { enable = true },
       highlight = { enable = true, use_languagetree = true },
-      refactor = {
-        highlight_definitions = { enable = true },
-        highlight_current_scope = { enable = false },
-        smart_rename = { enable = true, keymaps = { smart_rename = "<leader><leader>r" } },
-        navigation = { enable = true }
-      },
       incremental_selection = {
         enable = true,
         keymaps = {
