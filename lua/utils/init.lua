@@ -7,7 +7,7 @@ function M.setup()
         "copilot",
       }
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
-      if client and not vim.tbl_contains(ignore_clients, client.name) and client.root_dir then
+      if client and not vim.list_contains(ignore_clients, client.name) and client.root_dir then
         vim.b[ev.buf].lsp_root_dir = client.root_dir
       end
     end,
@@ -34,7 +34,10 @@ function M.foldexpr()
     return "0"
   end
 
-  local ignore_filetypes = { "", "snacks_picker_preview" }
+  local ignore_filetypes = {
+    "",
+    "snacks_picker_preview"
+  }
   if vim.list_contains(ignore_filetypes, vim.bo[buf].filetype) then
     return "0"
   end
