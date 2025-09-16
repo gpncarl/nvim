@@ -22,11 +22,11 @@ return {
       { "rafamadriz/friendly-snippets" },
       { "giuxtaposition/blink-cmp-copilot" },
     },
+    opts_extend = { "sources.default" },
     opts = {
-      opts_extend = { "sources.default" },
       keymap = { preset = "enter" },
       sources = {
-        default = { "copilot" },
+        default = { "copilot", "lsp", "path", "snippets", "buffer" },
         providers = {
           copilot = {
             name = "copilot",
