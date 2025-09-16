@@ -52,7 +52,10 @@ return {
     "local/lspost",
     event = { "VeryLazy" },
     dev = true,
-    dependencies = { "neovim/nvim-lspconfig" },
+    dependencies = {
+      { "neovim/nvim-lspconfig" },
+      { "saghen/blink.cmp" },
+    },
     config = function()
       vim.lsp.enable({
         "lua_ls",
