@@ -42,7 +42,12 @@ return {
       },
       bigfile = {},
       image = {},
-      indent = {},
+      scope = {},
+      indent = {
+        chunk = {
+          enabled = false,
+        }
+      },
       input = {},
       picker = {
         enabled = (config.finder == "snacks"),

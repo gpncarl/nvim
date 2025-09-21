@@ -42,11 +42,11 @@ function M.foldexpr()
     return "0"
   end
 
-  if vim.b[buf].use_ts_foldexpr == nil then
-    vim.b[buf].use_ts_foldexpr = pcall(vim.treesitter.get_parser, buf)
+  if vim.b[buf].ts_enabled == nil then
+    vim.b[buf].ts_enabled = pcall(vim.treesitter.get_parser, buf)
   end
 
-  return vim.b[buf].use_ts_foldexpr and vim.treesitter.foldexpr() or "0"
+  return vim.b[buf].ts_enabled and vim.treesitter.foldexpr() or "0"
 end
 
 function M.augroup(name)
