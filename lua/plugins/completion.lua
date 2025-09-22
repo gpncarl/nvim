@@ -1,12 +1,8 @@
 return {
   {
     "nvim-mini/mini.pairs",
-    event = { "InsertEnter" },
-    opts = {
-      mappings = {
-        ["`"] = { action = "closeopen", pair = "``", neigh_pattern = "[^\\`].", register = { cr = false } },
-      },
-    },
+    event = { "VeryLazy" },
+    opts = {},
   },
   {
     "saghen/blink.compat",
