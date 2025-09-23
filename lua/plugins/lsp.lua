@@ -37,7 +37,7 @@ return {
     opts = {}
   },
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cmd = { "Mason", "MasonUpdate", "MasonLog", "MasonInstall", "MasonUninstall", "MasonUninstallAll" },
     build = ":MasonUpdate",
     init = function()
