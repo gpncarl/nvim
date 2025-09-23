@@ -14,6 +14,7 @@ return {
         callback = function()
           local ok = pcall(function() vim.treesitter.start() end)
           if ok then
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
           end
         end,

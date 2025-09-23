@@ -27,28 +27,6 @@ function M.root(buf)
   return vim.uv.cwd()
 end
 
-function M.foldexpr()
-  local buf = vim.api.nvim_get_current_buf()
-
-  if vim.bo[buf].buftype ~= "" then
-    return "0"
-  end
-
-  local ignore_filetypes = {
-    "",
-    "snacks_picker_preview"
-  }
-  if vim.list_contains(ignore_filetypes, vim.bo[buf].filetype) then
-    return "0"
-  end
-
-  if vim.b[buf].ts_enabled == nil then
-    vim.b[buf].ts_enabled = pcall(vim.treesitter.get_parser, buf)
-  end
-
-  return vim.b[buf].ts_enabled and vim.treesitter.foldexpr() or "0"
-end
-
 function M.augroup(name)
   return vim.api.nvim_create_augroup("vimaugroup_" .. name, { clear = true })
 end
