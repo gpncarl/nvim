@@ -37,6 +37,9 @@ return {
     event = "VeryLazy",
     opts = {
       preset = "helix",
+      defer = function(ctx)
+        return ctx.mode == "v" or ctx.mode == "V" or ctx.mode == "<C-V>"
+      end,
     },
     config = function(_, opts)
       local wk = require("which-key")
