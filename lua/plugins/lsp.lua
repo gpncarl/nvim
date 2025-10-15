@@ -75,6 +75,12 @@ return {
   {
     "j-hui/fidget.nvim",
     event = "LspAttach",
+    cmd = { "Fidget" },
+    init = function()
+      vim.notify = function(...)
+        require("fidget").notify(...)
+      end
+    end,
     opts = {}
   },
   {
