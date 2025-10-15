@@ -1,18 +1,8 @@
 return {
   {
-    "nvim-neorg/neorg",
-    event = "BufReadPre *.norg",
-    opts = {
-      load = {
-        ["core.defaults"] = {},
-        ["core.concealer"] = {},
-        ["core.export"] = {},
-      },
-    },
-  },
-  {
     "nvim-orgmode/orgmode",
     dependencies = { "tpope/vim-repeat" },
+    cmd = { "Org" },
     ft = { "org" },
     keys = {
       {
