@@ -24,6 +24,9 @@ function M.setup()
   }
 
   vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
+  vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
+  vim.keymap.set("n", "[p", "<Cmd>exe 'put! ' . v:register<CR>", { desc = "Paste Above" })
+  vim.keymap.set("n", "]p", "<Cmd>exe 'put '  . v:register<CR>", { desc = "Paste Below" })
 
   vim.g.mapleader = " "
   vim.g.maplocalleader = " "
