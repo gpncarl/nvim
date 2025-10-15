@@ -99,6 +99,9 @@ return {
     optional = true,
     opts = {
       preset = "helix",
+      defer = function(ctx)
+        return ctx.mode == "v" or ctx.mode == "V" or ctx.mode == "<C-V>"
+      end,
       spec = {
         { "<leader>o", group = "orgmode" },
         { "<leader>O", group = "overseer" },
