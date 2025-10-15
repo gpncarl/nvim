@@ -31,15 +31,22 @@ return {
   { "tpope/vim-rsi", event = { "InsertEnter", "CmdlineEnter" } },
   {
     "bkad/CamelCaseMotion",
-    keys = {
-      { "\\w", "<Plug>CamelCaseMotion_w", desc = "camel case w" },
-      { "\\b", "<Plug>CamelCaseMotion_b", desc = "camel case b" },
-      { "\\e", "<Plug>CamelCaseMotion_e", desc = "camel case e" },
-      { "\\ge", "<Plug>CamelCaseMotion_ge", desc = "camel case ge" },
-      { "i\\w", "<Plug>CamelCaseMotion_iw", mode = { "x", "o" } },
-      { "i\\b", "<Plug>CamelCaseMotion_ib", mode = { "x", "o" } },
-      { "i\\e", "<Plug>CamelCaseMotion_ie", mode = { "x", "o" } },
-    },
+    keys = function()
+      vim.g.camelcasemotion_key = "\\"
+      local key_spec = {}
+      for _, key in ipairs({ "w", "b", "e", "ge" }) do
+        key_spec[#key_spec + 1] = {
+          vim.g.camelcasemotion_key .. key,
+          mode = { "n", "v", "o" },
+          desc = "camel case " .. key
+        }
+        key_spec[#key_spec + 1] = {
+          "i" .. vim.g.camelcasemotion_key .. key,
+          mode = { "v", "o" }
+        }
+      end
+      return key_spec
+    end
   },
   {
     "cbochs/grapple.nvim",
