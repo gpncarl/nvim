@@ -3,7 +3,23 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "ColorScheme",
     opts = function()
-      local symbols
+      local symbols = setmetatable({ cache = {} }, {
+        __index = function(self, method)
+          if vim.tbl_isempty(self.cache) then
+            local trouble = require("trouble")
+            local config = {
+              mode = "lsp_document_symbols",
+              groups = {},
+              title = false,
+              filter = { range = true },
+              format = " {kind_icon}{symbol.name:WinBar}",
+              hl_group = "WinBar",
+            }
+            self.cache = trouble.statusline(config)
+          end
+          return self.cache[method]
+        end
+      })
       return {
         options = {
           icons_enabled = true,
@@ -52,26 +68,10 @@ return {
           lualine_c = {
             {
               function()
-                if not symbols then
-                  local trouble = require("trouble")
-                  symbols = trouble.statusline({
-                    mode = "lsp_document_symbols",
-                    groups = {},
-                    title = false,
-                    filter = { range = true },
-                    format = " {kind_icon}{symbol.name:WinBar}",
-                    hl_group = "WinBar",
-                  })
-                end
-
-                local head = "Symbols"
-                if symbols.has() then
-                  head = head .. symbols.get()
-                end
-                return head
+                return "Symbols" .. symbols.get()
               end,
               cond = function()
-                return vim.lsp.buf_is_attached(0)
+                return vim.lsp.buf_is_attached(0) and symbols.has()
               end,
               color = "WinBar",
             }
