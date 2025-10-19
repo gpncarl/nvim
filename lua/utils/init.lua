@@ -31,4 +31,15 @@ function M.augroup(name)
   return vim.api.nvim_create_augroup("vimaugroup_" .. name, { clear = true })
 end
 
+function M.lazywrap(fun)
+  return setmetatable({ module = {} }, {
+    __index = function(self, method)
+      if vim.tbl_isempty(self.module) then
+        self.module = fun()
+      end
+      return self.module[method]
+    end
+  })
+end
+
 return M

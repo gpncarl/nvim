@@ -3,23 +3,16 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "ColorScheme",
     opts = function()
-      local symbols = setmetatable({ cache = {} }, {
-        __index = function(self, method)
-          if vim.tbl_isempty(self.cache) then
-            local trouble = require("trouble")
-            local config = {
-              mode = "lsp_document_symbols",
-              groups = {},
-              title = false,
-              filter = { range = true },
-              format = " {kind_icon}{symbol.name:WinBar}",
-              hl_group = "WinBar",
-            }
-            self.cache = trouble.statusline(config)
-          end
-          return self.cache[method]
-        end
-      })
+      local symbols = require("utils").lazywrap(function()
+        return require("trouble").statusline({
+          mode = "lsp_document_symbols",
+          groups = {},
+          title = false,
+          filter = { range = true },
+          format = " {kind_icon}{symbol.name:WinBar}",
+          hl_group = "WinBar",
+        })
+      end)
       return {
         options = {
           icons_enabled = true,
