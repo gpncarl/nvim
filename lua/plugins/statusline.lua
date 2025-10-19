@@ -68,7 +68,7 @@ return {
           lualine_c = {
             {
               function()
-                return "Symbols" .. symbols.get()
+                return "Symbols " .. symbols.get()
               end,
               cond = function()
                 return vim.lsp.buf_is_attached(0) and symbols.has()
