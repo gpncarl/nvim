@@ -12,21 +12,32 @@ return {
     "yetone/avante.nvim",
     enabled = false,
     keys = {
-      { "<leader>aa", "<Plug>(AvanteAsk)",     mode = { "n", "v" }, desc = "avante ask" },
-      { "<leader>ae", "<Plug>(AvanteEdit)",    mode = { "v" },      desc = "avante edit" },
-      { "<leader>ar", "<Plug>(AvanteRefresh)", mode = { "n" },      desc = "avante refresh" },
+      {
+        "<leader>a",
+        vim.schedule_wrap(function()
+          vim.keymap.del({ "n", "v" }, "<leader>a")
+          vim.api.nvim_input(vim.keycode("<leader>a"))
+        end),
+        mode = { "n", "v" }
+      },
     },
     build = ":AvanteBuild",
     dependencies = {
-      "stevearc/dressing.nvim",
       "nvim-lua/plenary.nvim",
       "MunifTanjim/nui.nvim",
       "zbirenbaum/copilot.lua",
     },
     opts = {
-      provider = "copilot",
-      hints = { enabled = false },
-      behavior = { auto_set_keymaps = false },
+      provider = "cursor-agent",
+      acp_providers = {
+        ["cursor-agent"] = {
+          command = "node",
+          args = { vim.fs.abspath("~/cursor-acp/dist/index.js") },
+          env = {},
+        },
+      },
+      input = { provider = "snacks" },
+      selecter = { provider = "snacks" },
     },
   },
   {
@@ -84,5 +95,5 @@ return {
       },
     },
     opts = {},
-  }
+  },
 }
