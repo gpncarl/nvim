@@ -35,7 +35,9 @@ return {
       "nvim-tree/nvim-web-devicons"
     },
     opts = {
-      filetypes = { "markdown", "Avante" },
+      preview = {
+        filetypes = { "markdown", "Avante" },
+      }
     }
   }
 }
