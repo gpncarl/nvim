@@ -19,25 +19,12 @@ return {
     end
   },
   {
-    "folke/flash.nvim",
-    keys = {
-      {
-        "g/",
-        function() require("flash").jump() end,
-        mode = { "n", "x", "o" },
-        desc = "Flash",
-      },
-      {
-        "gV",
-        function() require("flash").treesitter() end,
-        mode = { "n", "x", "o" },
-        desc = "Flash Treesitter",
-      },
-    },
-    opts = {
-      modes = {
-        char = { enabled = false },
-      },
-    },
+    "https://codeberg.org/andyg/leap.nvim",
+    event = { "VeryLazy" },
+    config = function()
+      vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
+      vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
+      require('leap.user').set_repeat_keys('<enter>', '<backspace>')
+    end,
   }
 }
