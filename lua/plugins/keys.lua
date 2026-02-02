@@ -34,7 +34,7 @@ return {
   },
   {
     "folke/which-key.nvim",
-    event = "VeryLazy",
+    event = { "VeryLazy" },
     opts = {
       preset = "helix",
       defer = function(ctx)
