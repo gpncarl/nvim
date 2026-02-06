@@ -20,11 +20,16 @@ return {
   },
   {
     "https://codeberg.org/andyg/leap.nvim",
-    event = { "VeryLazy" },
+    keys = {
+      { "s", "<Plug>(leap-forward)", mode = { "n", "x", "o" }, desc = "Leap forward", },
+      { "S", "<Plug>(leap-backward)", mode = { "n", "x", "o" }, desc = "Leap backward", },
+    },
+    dependencies = { "tpope/vim-repeat" },
     config = function()
-      vim.keymap.set({'n', 'x', 'o'}, 's', '<Plug>(leap)')
-      vim.keymap.set('n',             'S', '<Plug>(leap-from-window)')
-      require('leap.user').set_repeat_keys('<enter>', '<backspace>')
+      local opts = require("leap").opts
+      opts.keys.next_target = { ";" }
+      opts.keys.prev_target = { "," }
+      opts.preview = false
     end,
   }
 }
