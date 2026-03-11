@@ -24,11 +24,6 @@ return {
       "Gvdiffsplit",
       "Ghdiffsplit",
     },
-    keys = {
-      { "<leader>gg", "<cmd>Git<cr>", desc = "git summary" },
-      { "<leader>gb", "<cmd>Git blame<cr>", desc = "git blame" },
-      { "<leader>gD", "<cmd>Gdiffsplit<cr>", desc = "git diff split" }
-    },
   },
   {
     "nvim-mini/mini.diff",
@@ -53,4 +48,22 @@ return {
       },
     },
   },
+  {
+    "esmuellert/codediff.nvim",
+    cmd = { "CodeDiff" },
+    opts = {}
+  },
+  {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "esmuellert/codediff.nvim",
+      "folke/snacks.nvim",
+    },
+    cmd = { "Neogit" },
+    keys = {
+      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
+    },
+    opts = {},
+  }
 }
