@@ -1,7 +1,7 @@
 local M = {}
 
 function M.setup()
-  vim.diagnostic.config {
+  vim.diagnostic.config({
     underline = true,
     update_in_insert = false,
     severity_sort = true,
@@ -21,7 +21,7 @@ function M.setup()
         [vim.diagnostic.severity.HINT] = require("utils.icons").diagnostics.HINT,
       }
     },
-  }
+  })
 
   vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
   vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
