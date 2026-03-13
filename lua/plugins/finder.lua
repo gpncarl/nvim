@@ -159,20 +159,18 @@ return {
       { "grt",        "<cmd>FzfLua lsp_type_definitions<cr>", desc = "Goto T[y]pe Definition" },
     },
     init = function()
-      vim.api.nvim_create_autocmd({ "VeryLazy" }, {
-        group = require("utils").augroup ("select_ui"),
-        callback = function()
-          vim.ui.select = function(...)
-            require("fzf-lua").register_ui_select()
-            return vim.ui.select(...)
-          end
-        end,
-      })
+      vim.ui.select = function(...)
+        require("fzf-lua").register_ui_select()
+        return vim.ui.select(...)
+      end
     end,
     opts = {
+      fzf_opts = {
+        ["--cycle"] = true
+      },
       winopts = {
         preview = {
-          hidden = "hidden",
+          -- hidden = "hidden",
         }
       },
       keymap = {
