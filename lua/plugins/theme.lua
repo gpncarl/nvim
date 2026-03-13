@@ -35,10 +35,4 @@ return {
     lazy = true,
     opts = {},
   },
-  {
-    "catppuccin/nvim",
-    name = "catppuccin",
-    lazy = true,
-    opts = {},
-  },
 }
