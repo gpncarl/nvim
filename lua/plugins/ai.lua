@@ -10,13 +10,9 @@ return {
   },
   {
     "carlos-algms/agentic.nvim",
+    enabled = false,
     opts = {
       provider = "claude-agent-acp",
-      diff_preview = {
-        enabled = true,
-        layout = "inline",
-        center_on_navigate_hunks = true,
-      },
     },
     keys = {
       {
@@ -50,7 +46,6 @@ return {
   },
   {
     "folke/sidekick.nvim",
-    enabled = false,
     cmd = { "Sidekick" },
     keys = {
       {
