@@ -73,17 +73,6 @@ return {
     end
   },
   {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    cmd = { "Fidget" },
-    init = function()
-      vim.notify = function(...)
-        require("fidget").notify(...)
-      end
-    end,
-    opts = {}
-  },
-  {
     "folke/lazydev.nvim",
     ft = "lua",
     dependencies = { "Bilal2453/luvit-meta" },
