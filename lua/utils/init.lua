@@ -5,6 +5,7 @@ function M.setup()
     callback = function(ev)
       local ignore_clients = {
         "copilot",
+        "copilot_ls",
       }
       local client = vim.lsp.get_client_by_id(ev.data.client_id)
       if client and not vim.list_contains(ignore_clients, client.name) and client.root_dir then
