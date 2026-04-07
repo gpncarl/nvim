@@ -1,14 +1,5 @@
 return {
   {
-    "zbirenbaum/copilot.lua",
-    cmd = { "Copilot" },
-    build = ":Copilot auth",
-    opts = {
-      suggestion = { enabled = false },
-      panel = { enabled = false },
-    },
-  },
-  {
     "carlos-algms/agentic.nvim",
     enabled = false,
     opts = {
