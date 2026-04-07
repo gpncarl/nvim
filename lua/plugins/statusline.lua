@@ -61,10 +61,10 @@ return {
           lualine_c = {
             {
               function()
-                return "Symbols " .. symbols.get()
+                return "Symbols " .. (symbols.has() and symbols.get() or "")
               end,
               cond = function()
-                return vim.lsp.buf_is_attached(0) and symbols.has()
+                return vim.lsp.buf_is_attached(0)
               end,
               color = "WinBar",
             }
