@@ -21,8 +21,21 @@ return {
   {
     "https://codeberg.org/andyg/leap.nvim",
     keys = {
-      { "s", "<Plug>(leap-forward)", mode = { "n", "x", "o" }, desc = "Leap forward", },
+      { "s", "<Plug>(leap-forward)",  mode = { "n", "x", "o" }, desc = "Leap forward", },
       { "S", "<Plug>(leap-backward)", mode = { "n", "x", "o" }, desc = "Leap backward", },
+      {
+        "<cr>",
+        function()
+          vim.v.hlsearch = false
+          require("leap").leap({
+            pattern = vim.fn.getreg("/"),
+            backward = vim.v.searchforward == 0,
+            opts = { vim_opts = { ["go.smartcase"] = true, }, }
+          })
+        end,
+        mode = { "n", "x", "o" },
+        desc = "Leap last search",
+      },
     },
     dependencies = { "tpope/vim-repeat" },
     config = function()
