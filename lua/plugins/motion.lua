@@ -38,6 +38,14 @@ return {
       },
     },
     dependencies = { "tpope/vim-repeat" },
+    init = function()
+      local au = function(event, pattern, callback, desc)
+        vim.api.nvim_create_autocmd(event, { pattern = pattern, group = require("utils").augroup("leap_last_search"), callback = callback, desc = desc })
+      end
+      local revert_cr = function() vim.keymap.set('n', '<cr>', '<cr>', { buffer = true }) end
+      au('FileType', 'qf', revert_cr, 'Revert <cr>')
+      au('CmdwinEnter', '*', revert_cr, 'Revert <cr>')
+    end,
     config = function()
       local opts = require("leap").opts
       opts.keys.next_target = { ";" }
