@@ -3,7 +3,7 @@ local LABELS = vim.split('fjdkslgha;rueiwotyqpvbcnxmzFJDKSLGHARUEIWOTYQPVBCNXMZ'
 
 local M = {}
 
-function M.jump(pattern)
+function M.jump(pattern, forward)
   if not pattern or #pattern == 0 then
     return
   end
@@ -23,7 +23,11 @@ function M.jump(pattern)
     local search_pattern = is_case_sensitive and pattern or string.lower(pattern)
     local line_idx = lines_i + line_idx_start - 1
 
-    if vim.fn.foldclosed(line_idx) == -1 then
+    local cursor_line, cursor_col = unpack(vim.api.nvim_win_get_cursor(0))
+
+    local skip = (forward == true and line_idx < cursor_line) or (forward == false and line_idx > cursor_line)
+
+    if not skip and vim.tbl_contains({line_idx, -1}, vim.fn.foldclosed(line_idx)) then
       local col = 1
       while true do
         local start, stop = search_line:find(search_pattern, col, true)
@@ -32,7 +36,21 @@ function M.jump(pattern)
         end
         col = stop + 1
 
-        if char_idx <= #LABELS then
+        local keep_match = function()
+          if line_idx ~= cursor_line then
+            return true
+          end
+          local offset = start - 1 - cursor_col
+          if forward == nil then
+            return offset ~= 0
+          elseif forward then
+            return offset > 0
+          else
+            return offset < 0
+          end
+        end
+
+        if keep_match() and char_idx <= #LABELS then
           local overlay_char = LABELS[char_idx]
           local linenr = line_idx_start + lines_i - 2
           local id = vim.api.nvim_buf_set_extmark(bufnr, NS, linenr, start - 1, {
