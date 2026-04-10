@@ -113,9 +113,6 @@ function M.jump(pattern, opts)
   vim.schedule(function()
     if label_idx >= 2 then
       local next_char = vim.fn.nr2char(vim.fn.getchar())
-      if opts.forward ~= nil and next_char == vim.keycode('<cr>') then
-        next_char = LABELS[1]
-      end
       local pos = extmarks[next_char]
       if pos then
         vim.cmd("normal! m'")
