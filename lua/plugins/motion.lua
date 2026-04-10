@@ -38,6 +38,14 @@ return {
           require("jumph").jump(vim.fn.getreg("/"), false)
         end,
         mode = { "n", "x", "o" },
+        desc = "Jumph: add count lable to last search",
+      },
+      {
+        "<cr>",
+        function()
+          require("jumph").count_label(vim.fn.getreg("/"))
+        end,
+        mode = { "n", "x", "o" },
         desc = "Jumph: backward jump to last search",
       },
     },
@@ -45,6 +53,7 @@ return {
   },
   {
     "https://codeberg.org/andyg/leap.nvim",
+    enabled = false,
     keys = {
       {
         "<cr>",

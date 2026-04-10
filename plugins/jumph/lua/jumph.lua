@@ -43,7 +43,7 @@ local function do_match(pat, forward)
 
   local top_lnum = vim.fn.line('w0')
   local bottom_lnum = vim.fn.line('w$')
-  local start_line = forward == false and top_lnum or cursor_lnum
+  local start_line = forward == true and cursor_lnum or top_lnum
   local end_line = forward == false and cursor_lnum or bottom_lnum
 
   for lnum = start_line, end_line do
@@ -73,13 +73,13 @@ end
 
 jit.off(do_match, true)
 
-local function do_jump(pat, forward)
-  local matchs = do_match(pat, forward)
+local function do_label(matchs, labels)
   local extmarks = {}
   local bufnr = vim.api.nvim_get_current_buf()
-  for i = 1, math.min(#LABELS, #matchs) do
+  local len = labels and math.min(#labels, #matchs) or #matchs
+  for i = 1, len do
     local item = matchs[i]
-    local label = LABELS[i]
+    local label = labels and labels[i] or tostring(i)
     local lnum = item.pos[1]
     local col = item.pos[2]
     local id = vim.api.nvim_buf_set_extmark(bufnr, NS, lnum - 1, col, {
@@ -93,12 +93,10 @@ local function do_jump(pat, forward)
   return extmarks
 end
 
--- Disable JIT for the FFI-calling function
-jit.off(do_jump, true)
-
 function M.jump(pattern, forward)
   if not pattern or #pattern == 0 then return end
-  local extmarks = do_jump(pattern, forward)
+  local matchs = do_match(pattern, forward)
+  local extmarks = do_label(matchs, LABELS)
   vim.schedule(function()
     if not vim.tbl_isempty(extmarks) then
       local next_char = vim.fn.nr2char(vim.fn.getchar())
@@ -114,6 +112,24 @@ end
 
 function M.matcher(pat, forward)
   return do_match(pat, forward)
+end
+
+function M.labeler(matchs, labels)
+  return do_label(matchs, labels)
+end
+
+function M.count_label(pattern)
+  local forward_matchs = require("jumph").matcher(pattern, true)
+  local backward_matchs = require("jumph").matcher(pattern, false)
+  require("jumph").labeler(forward_matchs)
+  require("jumph").labeler(backward_matchs)
+  vim.api.nvim_create_autocmd("CursorMoved", {
+    once = true,
+    group = vim.api.nvim_create_augroup("jumph", { clear = true }),
+    callback = function()
+      vim.api.nvim_buf_clear_namespace(0, NS, 0, -1)
+    end,
+  })
 end
 
 function M.setup(opts)
