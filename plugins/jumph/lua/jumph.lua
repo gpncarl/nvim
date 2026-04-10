@@ -1,77 +1,120 @@
 local NS = vim.api.nvim_create_namespace('jumph')
 local LABELS = vim.split('fjdkslgha;rueiwotyqpvbcnxmzFJDKSLGHARUEIWOTYQPVBCNXMZ', '')
 
+local cffi = require('jumph.ffi')
+local ffi = cffi.ffi
+local C = cffi.C
+local build_regmatch = cffi.build_regmatch
+local get_buf_len = cffi.get_buf_len
+
 local M = {}
 
-function M.jump(pattern, forward)
-  if not pattern or #pattern == 0 then
+local function do_jump(pat, opts)
+  opts = opts or {}
+  local forward = opts.forward
+
+  local bufnr = vim.api.nvim_get_current_buf()
+  local winid = vim.api.nvim_get_current_win()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local cursor_lnum = cursor[1] -- 1-based
+  local cursor_col = cursor[2]  -- 0-based
+
+  local line_start = vim.fn.line('w0')
+  local line_end = vim.fn.line('w$')
+
+  vim.api.nvim_buf_clear_namespace(bufnr, NS, 0, -1)
+
+  local regm = build_regmatch(pat)
+  if not regm then
     return
   end
 
-  vim.v.hlsearch = false
-  local bufnr = vim.api.nvim_get_current_buf()
-  local line_idx_start, line_idx_end = vim.fn.line('w0'), vim.fn.line('w$')
-  vim.api.nvim_buf_clear_namespace(bufnr, NS, 0, -1)
+  local err = ffi.new('Error')
+  local buf = C.find_buffer_by_handle(bufnr, err)
+  local wp = C.find_window_by_handle(winid, err)
 
   local char_idx = 1
   local extmarks = {}
-  local lines = vim.api.nvim_buf_get_lines(bufnr, line_idx_start - 1, line_idx_end, false)
-  local is_case_sensitive = pattern ~= string.lower(pattern)
 
-  for lines_i, line_text in ipairs(lines) do
-    local search_line = is_case_sensitive and line_text or string.lower(line_text)
-    local search_pattern = is_case_sensitive and pattern or string.lower(pattern)
-    local line_idx = lines_i + line_idx_start - 1
+  for lnum = line_start, line_end do
+    local skip = (forward == true and lnum < cursor_lnum)
+      or (forward == false and lnum > cursor_lnum)
 
-    local cursor_line, cursor_col = unpack(vim.api.nvim_win_get_cursor(0))
+    if not skip and vim.tbl_contains({lnum, -1}, vim.fn.foldclosed(lnum)) then
+      local col = 0
+      while C.vim_regexec_multi(regm, wp, buf, lnum, col, nil, nil) > 0 do
+        local s = regm.startpos[0]
+        local e = regm.endpos[0]
+        local s_lnum = tonumber(s.lnum)
+        local s_col = tonumber(s.col)   -- 0-based
+        local e_lnum = tonumber(e.lnum)
+        local e_col = tonumber(e.col)
 
-    local skip = (forward == true and line_idx < cursor_line) or (forward == false and line_idx > cursor_line)
+        -- Only handle matches on the current line (skip multi-line spans)
+        if s_lnum == 0 then
+          local match_lnum = lnum       -- 1-based
+          local match_col = s_col       -- 0-based
 
-    if not skip and vim.tbl_contains({line_idx, -1}, vim.fn.foldclosed(line_idx)) then
-      local col = 1
-      while true do
-        local start, stop = search_line:find(search_pattern, col, true)
-        if not start then
+          local keep = true
+          if match_lnum == cursor_lnum then
+            local offset =  match_col - cursor_col
+            if forward == nil then
+              keep = offset ~= 0
+            elseif forward then
+              keep = offset > 0
+            else
+              keep = offset < 0
+            end
+          end
+
+          if keep and char_idx <= #LABELS then
+            local overlay_char = LABELS[char_idx]
+            local linenr = match_lnum - 1 -- 0-based for extmark
+            local id = vim.api.nvim_buf_set_extmark(bufnr, NS, linenr, match_col, {
+              virt_text = { { overlay_char, 'CurSearch' } },
+              virt_text_pos = 'overlay',
+              hl_mode = 'replace',
+            })
+            extmarks[overlay_char] = { line = linenr, col = match_col, id = id }
+            char_idx = char_idx + 1
+          end
+        end
+
+        -- Advance past this match
+        if e_lnum > 0 then
           break
         end
-        col = stop + 1
-
-        local keep_match = function()
-          if line_idx ~= cursor_line then
-            return true
-          end
-          local offset = start - 1 - cursor_col
-          if forward == nil then
-            return offset ~= 0
-          elseif forward then
-            return offset > 0
-          else
-            return offset < 0
-          end
-        end
-
-        if keep_match() and char_idx <= #LABELS then
-          local overlay_char = LABELS[char_idx]
-          local linenr = line_idx_start + lines_i - 2
-          local id = vim.api.nvim_buf_set_extmark(bufnr, NS, linenr, start - 1, {
-            virt_text = { { overlay_char, 'CurSearch' } },
-            virt_text_pos = 'overlay',
-            hl_mode = 'replace',
-          })
-          extmarks[overlay_char] = { line = linenr, col = start - 1, id = id }
-          char_idx = char_idx + 1
+        col = e_col + (col == e_col and 1 or 0)
+        if col > get_buf_len(buf, lnum) then
+          break
         end
       end
     end
   end
 
+  return char_idx, extmarks
+end
+
+-- Disable JIT for the FFI-calling function
+jit.off(do_jump, true)
+
+function M.jump(pattern, opts)
+  if not pattern or #pattern == 0 then
+    return
+  end
+
+  vim.v.hlsearch = false
+  local char_idx, extmarks = do_jump(pattern, opts)
+  if not char_idx then
+    return
+  end
+
   vim.schedule(function()
-    if char_idx == 2 then
-      local pos = extmarks[LABELS[1]]
-      vim.cmd("normal! m'")
-      vim.api.nvim_win_set_cursor(0, { pos.line + 1, pos.col })
-    elseif char_idx > 2 then
+    if char_idx >= 2 then
       local next_char = vim.fn.nr2char(vim.fn.getchar())
+      if forward ~= nil and next_char == vim.keycode("<cr>") then
+        next_char = LABELS[1]
+      end
       if extmarks[next_char] then
         local pos = extmarks[next_char]
         vim.cmd("normal! m'")

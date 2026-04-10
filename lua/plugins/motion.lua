@@ -24,9 +24,9 @@ return {
     keys = {
       {
         "<cr>",
-        function() require("jumph").jump(vim.fn.getreg("/"), vim.v.searchforward == 1) end,
+        function() require("jumph").jump(vim.fn.getreg("/"), { forward = vim.v.searchforward == 1 }) end,
         mode = { "n", "x", "o" },
-        desc = "Jumph: jump to last search",
+        desc = "Jumph: forward jump to last search",
       },
     },
     init = function()
