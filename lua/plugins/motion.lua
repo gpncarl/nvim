@@ -23,20 +23,46 @@ return {
     dev = true,
     keys = {
       {
-        "<cr>",
-        function() require("jumph").jump(vim.fn.getreg("/"), { forward = vim.v.searchforward == 1 }) end,
+        "s",
+        function()
+          vim.v.hlsearch = false
+          require("jumph").jump(vim.fn.getreg("/"), true)
+        end,
         mode = { "n", "x", "o" },
         desc = "Jumph: forward jump to last search",
       },
+      {
+        "S",
+        function()
+          vim.v.hlsearch = false
+          require("jumph").jump(vim.fn.getreg("/"), false)
+        end,
+        mode = { "n", "x", "o" },
+        desc = "Jumph: backward jump to last search",
+      },
     },
-    init = function()
-      local au = function(event, pattern, callback, desc)
-        vim.api.nvim_create_autocmd(event, { pattern = pattern, group = require("utils").augroup("jumph"), callback = callback, desc = desc })
-      end
-      local revert_cr = function() vim.keymap.set('', '<cr>', '<cr>', { buffer = true }) end
-      au('FileType', 'qf', revert_cr, 'Revert <cr>')
-      au('CmdwinEnter', '*', revert_cr, 'Revert <cr>')
-    end,
     opts = {},
+  },
+  {
+    "https://codeberg.org/andyg/leap.nvim",
+    keys = {
+      {
+        "<cr>",
+        function()
+          local pattern = vim.fn.getreg("/")
+          local forward = vim.v.searchforward == 1
+          require("leap").leap({
+            targets = vim.tbl_map(function(item)
+              return { pos = { item.pos[1], item.pos[2] + 1 } }
+            end, require("jumph").matcher(pattern, forward))
+          })
+        end,
+        mode = { "n", "x", "o" },
+        desc = "Flash: forward jump to last search",
+      },
+    },
+    opts = {
+      safe_labels = ''
+    }
   }
 }
