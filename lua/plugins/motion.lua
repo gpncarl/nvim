@@ -23,55 +23,15 @@ return {
     dev = true,
     keys = {
       {
-        "s",
+        "<cr>",
         function()
           vim.v.hlsearch = false
-          require("jumph").jump(vim.fn.getreg("/"), true)
-        end,
-        mode = { "n", "x", "o" },
-        desc = "Jumph: forward jump to last search",
-      },
-      {
-        "S",
-        function()
-          vim.v.hlsearch = false
-          require("jumph").jump(vim.fn.getreg("/"), false)
+          require("jumph").count_label(vim.fn.getreg("/"))
         end,
         mode = { "n", "x", "o" },
         desc = "Jumph: add count lable to last search",
       },
-      {
-        "<cr>",
-        function()
-          require("jumph").count_label(vim.fn.getreg("/"))
-        end,
-        mode = { "n", "x", "o" },
-        desc = "Jumph: backward jump to last search",
-      },
     },
     opts = {},
   },
-  {
-    "https://codeberg.org/andyg/leap.nvim",
-    enabled = false,
-    keys = {
-      {
-        "<cr>",
-        function()
-          local pattern = vim.fn.getreg("/")
-          local forward = vim.v.searchforward == 1
-          require("leap").leap({
-            targets = vim.tbl_map(function(item)
-              return { pos = { item.pos[1], item.pos[2] + 1 } }
-            end, require("jumph").matcher(pattern, forward))
-          })
-        end,
-        mode = { "n", "x", "o" },
-        desc = "Flash: forward jump to last search",
-      },
-    },
-    opts = {
-      safe_labels = ''
-    }
-  }
 }
