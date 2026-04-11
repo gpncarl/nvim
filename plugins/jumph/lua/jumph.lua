@@ -119,17 +119,18 @@ function M.labeler(matchs, labels)
 end
 
 function M.count_label(pattern)
+  local hls = vim.v.hlsearch
+  vim.v.hlsearch = false
   local forward_matchs = require("jumph").matcher(pattern, true)
   local backward_matchs = require("jumph").matcher(pattern, false)
   require("jumph").labeler(forward_matchs)
   require("jumph").labeler(backward_matchs)
-  vim.api.nvim_create_autocmd("CursorMoved", {
-    once = true,
-    group = vim.api.nvim_create_augroup("jumph", { clear = true }),
-    callback = function()
-      vim.api.nvim_buf_clear_namespace(0, NS, 0, -1)
-    end,
-  })
+
+  vim.on_key(function()
+    vim.on_key(nil, NS)
+    vim.api.nvim_buf_clear_namespace(0, NS, 0, -1)
+    vim.v.hlsearch = hls
+  end, NS)
 end
 
 function M.setup(opts)

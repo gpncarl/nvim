@@ -25,7 +25,6 @@ return {
       {
         "<cr>",
         function()
-          vim.v.hlsearch = false
           require("jumph").count_label(vim.fn.getreg("/"))
         end,
         mode = { "n", "x", "o" },
