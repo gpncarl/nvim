@@ -19,8 +19,7 @@ return {
     end
   },
   {
-    "local/jumph",
-    dev = true,
+    "gpncarl/jumph.nvim",
     keys = {
       {
         "<cr>",
