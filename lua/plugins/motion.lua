@@ -26,10 +26,30 @@ return {
         function()
           require("jumph").count_label(vim.fn.getreg("/"))
         end,
-        mode = { "n", "x", "o" },
+        mode = { "n", "x" },
         desc = "Jumph: add count lable to last search",
       },
     },
+    init = function()
+      local jumph_group = vim.api.nvim_create_augroup("jumph", { clear = true })
+      vim.api.nvim_create_autocmd("FileType", {
+          pattern = "qf",
+          group = jumph_group,
+          callback = function()
+            vim.keymap.set('', '<cr>', '<cr>', { buffer = true })
+          end,
+          desc = "Revert <cr>"
+      })
+
+      vim.api.nvim_create_autocmd("CmdwinEnter", {
+          pattern = "*",
+          group = jumph_group,
+          callback = function()
+            vim.keymap.set('', '<cr>', '<cr>', { buffer = true })
+          end,
+          desc = "Revert <cr>"
+      })
+    end,
     opts = {},
   },
 }

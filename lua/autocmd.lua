@@ -126,24 +126,6 @@ function M.setup()
       })
     end,
   })
-
-  vim.api.nvim_create_autocmd("FileType", {
-      pattern = "qf",
-      group = augroup("revert_cr"),
-      callback = function()
-        vim.keymap.set('', '<cr>', '<cr>', { buffer = true })
-      end,
-      desc = "Revert <cr>"
-  })
-
-  vim.api.nvim_create_autocmd("CmdwinEnter", {
-      pattern = "*",
-      group = augroup("revert_cr"),
-      callback = function()
-        vim.keymap.set('', '<cr>', '<cr>', { buffer = true })
-      end,
-      desc = "Revert <cr>"
-  })
 end
 
 return M
