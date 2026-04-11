@@ -1,5 +1,4 @@
 local NS = vim.api.nvim_create_namespace('jumph')
-local LABELS = vim.split('fjdkslgha;rueiwotyqpvbcnxmzFJDKSLGHARUEIWOTYQPVBCNXMZ', '')
 
 local cffi = require('jumph.ffi')
 local ffi = cffi.ffi
@@ -9,13 +8,11 @@ local get_buf_len = cffi.get_buf_len
 
 local M = {}
 
---- Check if a line is visible (not inside a closed fold).
 local function line_visible(lnum)
   local fold = vim.fn.foldclosed(lnum)
   return fold == -1 or fold == lnum
 end
 
---- Check if a match at (lnum, col) should be kept relative to cursor.
 local function match_past_cursor(match_lnum, match_col, cursor_lnum, cursor_col, forward)
   if match_lnum ~= cursor_lnum then return true end
   local offset = match_col - cursor_col
@@ -93,38 +90,13 @@ local function do_label(matchs, labels)
   return extmarks
 end
 
-function M.jump(pattern, forward)
-  if not pattern or #pattern == 0 then return end
-  local matchs = do_match(pattern, forward)
-  local extmarks = do_label(matchs, LABELS)
-  vim.schedule(function()
-    if not vim.tbl_isempty(extmarks) then
-      local next_char = vim.fn.nr2char(vim.fn.getchar())
-      local pos = extmarks[next_char]
-      if pos then
-        vim.cmd("normal! m'")
-        vim.api.nvim_win_set_cursor(0, { pos.line, pos.col })
-      end
-    end
-    vim.api.nvim_buf_clear_namespace(0, NS, 0, -1)
-  end)
-end
-
-function M.matcher(pat, forward)
-  return do_match(pat, forward)
-end
-
-function M.labeler(matchs, labels)
-  return do_label(matchs, labels)
-end
-
 function M.count_label(pattern)
   local hls = vim.v.hlsearch
   vim.v.hlsearch = false
-  local forward_matchs = require("jumph").matcher(pattern, true)
-  local backward_matchs = require("jumph").matcher(pattern, false)
-  require("jumph").labeler(forward_matchs)
-  require("jumph").labeler(backward_matchs)
+  local forward_matchs = do_match(pattern, true)
+  local backward_matchs = do_match(pattern, false)
+  do_label(forward_matchs)
+  do_label(backward_matchs)
 
   vim.on_key(function()
     vim.on_key(nil, NS)
@@ -134,9 +106,6 @@ function M.count_label(pattern)
 end
 
 function M.setup(opts)
-  if opts and opts.labels then
-    LABELS = vim.split(opts.labels, '')
-  end
 end
 
 return M
