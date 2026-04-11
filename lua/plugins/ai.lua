@@ -102,6 +102,12 @@ return {
         ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw" },
       },
     },
-    opts = {},
+    opts = {
+      focus_after_send = true,
+      diff_opts = {
+        open_in_new_tab = true,
+        hide_terminal_in_new_tab = true,
+      }
+    },
   },
 }
