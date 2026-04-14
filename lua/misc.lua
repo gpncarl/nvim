@@ -23,13 +23,20 @@ function M.setup()
     },
   })
 
+  vim.g.mapleader = " "
+  vim.g.maplocalleader = " "
+
   vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
   vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
   vim.keymap.set("n", "[p", "<cmd>exe 'put! ' . v:register<cr>", { desc = "Paste Above" })
   vim.keymap.set("n", "]p", "<cmd>exe 'put '  . v:register<cr>", { desc = "Paste Below" })
 
-  vim.g.mapleader = " "
-  vim.g.maplocalleader = " "
+  vim.keymap.set("n", "<leader>ch", function()
+    local success, _ = pcall(vim.cmd, "LspClangdSwitchSourceHeader")
+    if not success then
+      vim.cmd("A")
+    end
+  end, { desc = "Switch source/header" })
 end
 
 return M

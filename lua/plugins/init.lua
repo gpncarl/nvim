@@ -1,6 +1,10 @@
 return {
   { "nvim-lua/plenary.nvim", lazy = true },
   {
+    "vim-scripts/a.vim",
+    cmd = { "A", "AS", "AV", "AT", "AN", "IH", "IHS", "IHV", "IHT", "IHN" },
+  },
+  {
     "chentoast/marks.nvim",
     event = { "BufReadPost", "BufNewFile" },
     config = function()
