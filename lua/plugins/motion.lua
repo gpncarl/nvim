@@ -20,6 +20,7 @@ return {
   },
   {
     "gpncarl/jumph.nvim",
+    dev = true,
     keys = {
       {
         "<cr>",

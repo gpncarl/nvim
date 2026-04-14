@@ -16,9 +16,9 @@ require("lazy").setup({
     { import = "plugins" },
   },
   dev = {
-    path = vim.fs.joinpath(vim.fn.stdpath("config"), "plugins"),
+    path = "~/nvim-plugins",
     patterns = {},
-    fallback = false,
+    fallback = true,
   },
   install = { colorscheme = { colorscheme } },
   checker = { enabled = false },
