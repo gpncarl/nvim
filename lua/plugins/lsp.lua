@@ -49,11 +49,9 @@ return {
     }
   },
   {
-    "local/lspost",
+    "neovim/nvim-lspconfig",
     event = { "VeryLazy" },
-    dev = true,
     dependencies = {
-      { "neovim/nvim-lspconfig" },
       { "saghen/blink.cmp" },
     },
     config = function()
