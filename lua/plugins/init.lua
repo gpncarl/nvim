@@ -9,4 +9,10 @@ return {
       vim.api.nvim_set_hl(0, "MarkSignNumHL", { link = "Identifier" })
     end
   },
+  {
+    "wsdjeg/vim-fetch",
+    config = function()
+      vim.keymap.del({"n", "x"}, "gF")
+    end
+  }
 }
