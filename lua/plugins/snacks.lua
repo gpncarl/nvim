@@ -91,5 +91,13 @@ return {
       })
       vim.api.nvim_create_user_command("LazyGit", function() Snacks.lazygit() end, {})
     end,
+    init = function()
+      vim.api.nvim_create_autocmd("ColorScheme", {
+        pattern = "default",
+        callback = function()
+          vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { link = "CursorLine" })
+        end,
+      })
+    end
   }
 }
