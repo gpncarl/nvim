@@ -37,7 +37,6 @@ return {
   },
   {
     "folke/sidekick.nvim",
-    enabled = false,
     cmd = { "Sidekick" },
     keys = {
       {
@@ -83,6 +82,7 @@ return {
   },
   {
     "coder/claudecode.nvim",
+    enabled = false,
     dependencies = { "folke/snacks.nvim" },
     cmd = {
       "ClaudeCode",
