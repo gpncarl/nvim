@@ -95,6 +95,30 @@ return {
     }
   },
   {
+    "sindrets/diffview.nvim",
+    cmd = {
+      "DiffviewOpen",
+      "DiffviewClose",
+      "DiffviewLog",
+      "DiffviewRefresh",
+      "DiffviewToggleFiles",
+      "DiffviewFocusFiles",
+      "DiffviewFileHistory",
+    },
+    keys = { { "<leader>gv", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" } },
+    opts = {
+      view = {
+        merge_tool = {
+          layout = "diff3_mixed",
+        },
+      },
+      default_args = {
+        DiffviewOpen = { "-uno" },
+        DiffviewFileHistory = {},
+      },
+    },
+  },
+  {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
