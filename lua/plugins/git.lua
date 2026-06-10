@@ -51,7 +51,11 @@ return {
   {
     "esmuellert/codediff.nvim",
     cmd = { "CodeDiff" },
-    opts = {}
+    opts = {
+      explorer = {
+        hidden = true,
+      }
+    }
   },
   {
     "NeogitOrg/neogit",
