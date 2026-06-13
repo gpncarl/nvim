@@ -95,9 +95,10 @@ return {
     }
   },
   {
-    "sindrets/diffview.nvim",
+    "dlyongemallo/diffview-plus.nvim",
     cmd = {
       "DiffviewOpen",
+      "DiffviewToggle",
       "DiffviewClose",
       "DiffviewLog",
       "DiffviewRefresh",
@@ -105,7 +106,7 @@ return {
       "DiffviewFocusFiles",
       "DiffviewFileHistory",
     },
-    keys = { { "<leader>gv", "<cmd>DiffviewOpen<cr>", desc = "Open Diffview" } },
+    keys = { { "<leader>gv", "<cmd>DiffviewToggle<cr>", desc = "Toggle Diffview" } },
     opts = {
       view = {
         merge_tool = {
