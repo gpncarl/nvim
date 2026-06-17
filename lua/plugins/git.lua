@@ -130,6 +130,8 @@ return {
     keys = {
       { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
     },
-    opts = {},
+    opts = {
+      graph_style = "kitty",
+    },
   }
 }
