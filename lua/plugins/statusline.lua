@@ -67,7 +67,7 @@ return {
                 return "Symbols " .. (symbols.has() and symbols.get() or "")
               end,
               cond = function()
-                return vim.lsp.buf_is_attached(0)
+                return not vim.wo.diff and vim.lsp.buf_is_attached(0)
               end,
               color = "WinBar",
             }
