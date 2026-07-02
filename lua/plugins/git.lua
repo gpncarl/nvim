@@ -108,6 +108,10 @@ return {
     },
     keys = { { "<leader>gv", "<cmd>DiffviewToggle<cr>", desc = "Toggle Diffview" } },
     opts = {
+      file_panel = {
+        listing_style = "list",
+        show = false,
+      },
       view = {
         merge_tool = {
           layout = "diff3_mixed",
