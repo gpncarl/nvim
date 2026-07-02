@@ -126,6 +126,15 @@ function M.setup()
       })
     end,
   })
+
+  vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("delete_directory"),
+    pattern = { "directory" },
+    callback = function()
+      vim.bo.bufhidden = "delete"
+    end,
+  })
+
 end
 
 return M

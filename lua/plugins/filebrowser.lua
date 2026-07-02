@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    enabled = not pcall(require, "nvim.dir"),
     cmd = "Oil",
     init = function()
       vim.api.nvim_create_autocmd("VimEnter", {
