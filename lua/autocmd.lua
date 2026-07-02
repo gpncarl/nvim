@@ -60,8 +60,8 @@ function M.setup()
   vim.api.nvim_create_autocmd("FileType", {
     group = augroup("man_unlisted"),
     pattern = { "man" },
-    callback = function(event)
-      vim.bo[event.buf].buflisted = false
+    callback = function()
+      vim.bo.buflisted = false
     end,
   })
 
