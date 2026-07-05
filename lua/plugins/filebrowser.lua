@@ -1,9 +1,11 @@
+local config = require("config")
 return {
   {
     "stevearc/oil.nvim",
-    enabled = not pcall(require, "nvim.dir"),
+    enabled = not (config.enable_nvim_dir_plugin and pcall(require, "nvim.dir")),
     cmd = "Oil",
     init = function()
+      vim.g.loaded_nvim_dir_plugin = true
       vim.api.nvim_create_autocmd("VimEnter", {
         group = vim.api.nvim_create_augroup("Oil_start_directory", { clear = true }),
         desc = "Start Oil with directory",
