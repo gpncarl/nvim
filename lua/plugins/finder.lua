@@ -30,14 +30,6 @@ local function telescope_config()
           ["<c-_>"] = layout.toggle_preview,
           ["<c-/>"] = layout.toggle_preview,
           ["<c-o>"] = actions.move_selection_better + actions.toggle_selection,
-          ["<c-h>"] = function(bufnr)
-            telescope.extensions.hop._hop(bufnr, {
-              callback = function()
-                vim.api.nvim_input("<cr>")
-              end
-            })
-          end,
-          ["<c-s-h>"] = telescope.extensions.hop.hop,
         },
         n = {
           ["q"] = require("telescope.actions").close,
@@ -51,7 +43,6 @@ local function telescope_config()
   }
 
   telescope.load_extension("fzf")
-  telescope.load_extension("hop")
 end
 
 return {
@@ -98,7 +89,6 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release --fresh && cmake --build build --config Release"
       },
-      { "nvim-telescope/telescope-hop.nvim" },
     },
     config = telescope_config
   },
