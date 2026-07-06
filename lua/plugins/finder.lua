@@ -11,6 +11,15 @@ return {
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release --fresh && cmake --build build --config Release"
       },
     },
+    init = function()
+      require("utils.picker").register("telescope", {
+        resolve = function(name) return require("telescope.builtin")[name] end,
+        overrides = {
+          files            = "find_files",
+          lsp_declarations = function() vim.lsp.buf.declaration() end,
+        },
+      })
+    end,
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
@@ -58,6 +67,15 @@ return {
     "ibhagwan/fzf-lua",
     enabled = (config.finder == "fzf_lua"),
     cmd = { "FzfLua" },
+    init = function()
+      require("utils.picker").register("fzf_lua", {
+        resolve = function(name) return require("fzf-lua")[name] end,
+        overrides = {
+          grep_string          = "grep_cword",
+          lsp_type_definitions = "lsp_typedefs",
+        },
+      })
+    end,
     opts = {
       fzf_opts = {
         ["--cycle"] = true
@@ -75,37 +93,4 @@ return {
       },
     },
   },
-  {
-    "2KAbhishek/pickme.nvim",
-    cmd = { "PickMe" },
-    keys = function()
-      local pickme = require("pickme")
-      return {
-        { "<leader>,",  function() pickme.pick("buffers") end,                                        desc = "Buffers" },
-        { "<leader>/",  function() pickme.pick("live_grep", { cwd = require("utils").root() }) end,   desc = "Grep(root)" },
-        { "<leader>fo", function() pickme.pick("treesitter") end,                                     desc = "Treesitter" },
-        { "<leader>fb", function() pickme.pick("buffers") end,                                        desc = "Buffers" },
-        { "<leader>ff", function() pickme.pick("files", { cwd = require("utils").root() }) end,       desc = "Find Files(root)" },
-        { "<leader>fF", function() pickme.pick("files") end,                                          desc = "Find Files(cwd)" },
-        { "<leader>fr", function() pickme.pick("oldfiles") end,                                       desc = "Recent" },
-        { "<leader>sg", function() pickme.pick("live_grep", { cwd = require("utils").root() }) end,   desc = "Grep(root)" },
-        { "<leader>sG", function() pickme.pick("live_grep") end,                                      desc = "Grep(cwd)" },
-        { "<leader>sR", function() pickme.pick("resume") end,                                         desc = "Resume" },
-        { "<leader>sw", function() pickme.pick("grep_string", { cwd = require("utils").root() }) end, desc = "Visual selection or word(root)", mode = { "n", "x" } },
-        { "<leader>sW", function() pickme.pick("grep_string") end,                                    desc = "Visual selection or word(cwd)",  mode = { "n", "x" } },
-        { "gd",         function() pickme.pick("lsp_definitions") end,                                desc = "Goto Definition" },
-        { "gD",         function() pickme.pick("lsp_declarations") end,                               desc = "Goto Declaration" },
-        { "grr",        function() pickme.pick("lsp_references") end,                                 nowait = true,                           desc = "References" },
-        { "gri",        function() pickme.pick("lsp_implementations") end,                            desc = "Goto Implementation" },
-        { "grt",        function() pickme.pick("lsp_type_definitions") end,                           desc = "Goto T[y]pe Definition" },
-        { "<leader>ss", function() pickme.pick("lsp_document_symbols") end,                           desc = "LSP Symbols" },
-        { "<leader>sS", function() pickme.pick("lsp_workspace_symbols") end,                          desc = "LSP Workspace Symbols" },
-      }
-    end,
-    opts = {
-      picker_provider = config.finder,
-      detect_provider = false,
-      add_default_keybindings = false,
-    }
-  }
 }

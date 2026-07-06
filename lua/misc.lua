@@ -26,17 +26,42 @@ function M.setup()
   vim.g.mapleader = " "
   vim.g.maplocalleader = " "
 
-  vim.keymap.set("t", "<c-w>", "<c-\\><c-n><c-w>")
-  vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>")
-  vim.keymap.set("n", "[p", "<cmd>exe 'put! ' . v:register<cr>", { desc = "Paste Above" })
-  vim.keymap.set("n", "]p", "<cmd>exe 'put '  . v:register<cr>", { desc = "Paste Below" })
+  local map = vim.keymap.set
 
-  vim.keymap.set("n", "<leader>ch", function()
+  map("t", "<c-w>", "<c-\\><c-n><c-w>")
+  map("t", "<esc><esc>", "<c-\\><c-n>")
+  map("n", "[p", "<cmd>exe 'put! ' . v:register<cr>", { desc = "Paste Above" })
+  map("n", "]p", "<cmd>exe 'put '  . v:register<cr>", { desc = "Paste Below" })
+
+  map("n", "<leader>ch", function()
     local success, _ = pcall(vim.cmd, "LspClangdSwitchSourceHeader")
     if not success then
       vim.cmd("A")
     end
   end, { desc = "Switch source/header" })
+
+  local pick = require("utils.picker").pick
+  local root = function() return require("utils").root() end
+
+  map("n", "<leader>,",  function() pick("buffers") end,                                { desc = "Buffers" })
+  map("n", "<leader>/",  function() pick("live_grep", { cwd = root() }) end,            { desc = "Grep(root)" })
+  map("n", "<leader>fo", function() pick("treesitter") end,                             { desc = "Treesitter" })
+  map("n", "<leader>fb", function() pick("buffers") end,                                { desc = "Buffers" })
+  map("n", "<leader>ff", function() pick("files", { cwd = root() }) end,                { desc = "Find Files(root)" })
+  map("n", "<leader>fF", function() pick("files") end,                                  { desc = "Find Files(cwd)" })
+  map("n", "<leader>fr", function() pick("oldfiles") end,                               { desc = "Recent" })
+  map("n", "<leader>sg", function() pick("live_grep", { cwd = root() }) end,            { desc = "Grep(root)" })
+  map("n", "<leader>sG", function() pick("live_grep") end,                              { desc = "Grep(cwd)" })
+  map("n", "<leader>sR", function() pick("resume") end,                                 { desc = "Resume" })
+  map({ "n", "x" }, "<leader>sw", function() pick("grep_string", { cwd = root() }) end, { desc = "Selection or word(root)" })
+  map({ "n", "x" }, "<leader>sW", function() pick("grep_string") end,                   { desc = "Selection or word(cwd)" })
+  map("n", "gd",  function() pick("lsp_definitions") end,                               { desc = "Goto Definition" })
+  map("n", "gD",  function() pick("lsp_declarations") end,                              { desc = "Goto Declaration" })
+  map("n", "grr", function() pick("lsp_references") end,                                { desc = "References", nowait = true })
+  map("n", "gri", function() pick("lsp_implementations") end,                           { desc = "Goto Implementation" })
+  map("n", "grt", function() pick("lsp_type_definitions") end,                          { desc = "Goto Type Definition" })
+  map("n", "<leader>ss", function() pick("lsp_document_symbols") end,                   { desc = "LSP Symbols" })
+  map("n", "<leader>sS", function() pick("lsp_workspace_symbols") end,                  { desc = "LSP Workspace Symbols" })
 end
 
 return M

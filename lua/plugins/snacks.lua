@@ -80,6 +80,15 @@ return {
           vim.api.nvim_set_hl(0, "SnacksPickerListCursorLine", { link = "CursorLine" })
         end,
       })
+      require("utils.picker").register("snacks", {
+        resolve = function(name) return require("snacks").picker[name] end,
+        overrides = {
+          oldfiles             = "recent",
+          live_grep            = "grep",
+          grep_string          = "grep_word",
+          lsp_document_symbols = "lsp_symbols",
+        },
+      })
     end
   }
 }
