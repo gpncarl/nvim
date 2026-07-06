@@ -72,10 +72,10 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    enabled = (vim.g.user_picker == "fzf_lua"),
+    enabled = (vim.g.user_picker == "fzf-lua"),
     cmd = { "FzfLua" },
     init = function()
-      require("utils.picker").register("fzf_lua", {
+      require("utils.picker").register("fzf-lua", {
         resolve = function(name) return require("fzf-lua")[name] end,
         overrides = {
           grep_string          = "grep_cword",
