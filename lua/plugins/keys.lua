@@ -12,11 +12,6 @@ return {
     opts = {},
   },
   {
-    "nvim-mini/mini.ai",
-    event = "ModeChanged *:no",
-    opts = {},
-  },
-  {
     "folke/which-key.nvim",
     event = { "VeryLazy" },
     opts = {

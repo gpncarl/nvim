@@ -1,10 +1,5 @@
 return {
   {
-    "nvim-mini/mini.pairs",
-    event = { "VeryLazy" },
-    opts = {},
-  },
-  {
     "saghen/blink.compat",
     version = "2.*",
     lazy = true,

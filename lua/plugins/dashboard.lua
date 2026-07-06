@@ -4,7 +4,6 @@ return {
     enabled = (vim.g.user_dashboard == "alpha"),
     event = { "VimEnter" },
     cmd = { "Alpha", "AlphaRedraw" },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
       local alpha = require("alpha")
       local startify = require("alpha.themes.startify")

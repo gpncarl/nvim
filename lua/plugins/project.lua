@@ -9,11 +9,6 @@ return {
     opts = {},
   },
   {
-    "nvim-mini/mini.sessions",
-    event = "SessionLoadPost",
-    opts = {}
-  },
-  {
     "tpope/vim-projectionist",
     config = function()
       vim.g.projectionist_heuristics = {

@@ -1,35 +1,6 @@
 return {
   { "MunifTanjim/nui.nvim", lazy = true },
   {
-    "nvim-mini/mini.icons",
-    lazy = true,
-    specs = {
-      { "nvim-tree/nvim-web-devicons", enabled = false, optional = true },
-    },
-    init = function()
-      package.preload["nvim-web-devicons"] = function()
-        require("mini.icons").mock_nvim_web_devicons()
-        return package.loaded["nvim-web-devicons"]
-      end
-    end,
-    opts = {
-      extension = {
-        h = { glyph = "" },
-        hh = { glyph = "" },
-        hpp = { glyph = "" },
-        c = { glyph = "" },
-        cc = { glyph = "" },
-        cpp = { glyph = "" },
-        cppm = { glyph = "" },
-      },
-      lsp = {
-        tabnine = { glyph = "⌬" },
-        copilot = { glyph = "" },
-        supermaven = { glyph = "" },
-      }
-    },
-  },
-  {
     "folke/noice.nvim",
     enabled = vim.g.user_popup_cmdline,
     event = { "VeryLazy" },
