@@ -89,12 +89,19 @@ return {
     end,
     opts = {
       fzf_opts = {
-        ["--cycle"] = true
+        ["--cycle"] = true,
+        ["--layout"] = "default",
       },
       winopts = {
+        border = "none",
+        height = 1 - 0.618,
+        width = 1,
+        row = 1,
+        col = 0,
         preview = {
-          -- hidden = "hidden",
-        }
+          hidden = true,
+          border = "none",
+        },
       },
       keymap = {
         builtin = {
