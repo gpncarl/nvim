@@ -14,5 +14,10 @@ return {
     config = function()
       vim.keymap.del({"n", "x"}, "gF")
     end
-  }
+  },
+  {
+    "nvim-mini/mini.extra",
+    lazy = true,
+    opts = {},
+  },
 }

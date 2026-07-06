@@ -104,4 +104,60 @@ return {
       },
     },
   },
+  {
+    "nvim-mini/mini.pick",
+    enabled = (vim.g.user_picker == "mini.pick"),
+    lazy = true,
+    dependencies = { "nvim-mini/mini.extra" },
+    init = function()
+      local function src(opts)
+        return opts.cwd and { source = { cwd = opts.cwd } } or {}
+      end
+      local function extra(name, local_opts)
+        return function(opts)
+          require("mini.pick")
+          return require("mini.extra").pickers[name](local_opts, src(opts))
+        end
+      end
+      require("utils.picker").register("mini.pick", {
+        resolve = function(name)
+          return function(opts) return require("mini.pick").builtin[name](nil, src(opts)) end
+        end,
+        overrides = {
+          live_grep             = "grep_live",
+          grep_string           = function(opts)
+            return require("mini.pick").builtin.grep({ pattern = vim.fn.expand("<cword>") }, src(opts))
+          end,
+          resume                = function() return require("mini.pick").builtin.resume() end,
+          oldfiles              = extra("oldfiles"),
+          treesitter            = extra("treesitter"),
+          lsp_definitions       = extra("lsp", { scope = "definition" }),
+          lsp_declarations      = extra("lsp", { scope = "declaration" }),
+          lsp_references        = extra("lsp", { scope = "references" }),
+          lsp_implementations   = extra("lsp", { scope = "implementation" }),
+          lsp_type_definitions  = extra("lsp", { scope = "type_definition" }),
+          lsp_document_symbols  = extra("lsp", { scope = "document_symbol" }),
+          lsp_workspace_symbols = extra("lsp", { scope = "workspace_symbol" }),
+        },
+      })
+      vim.ui.select = function(...)
+        return require("mini.pick").ui_select(...)
+      end
+    end,
+    opts = {
+      window = {
+        config = function()
+          local height = math.floor((1 - 0.618) * vim.o.lines)
+          local width = vim.o.columns
+          return {
+            anchor = 'NW',
+            height = height,
+            width = width + 1,
+            row = math.floor(vim.o.lines - height),
+            col = 0,
+          }
+        end
+      },
+    }
+  },
 }
