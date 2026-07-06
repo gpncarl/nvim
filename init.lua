@@ -1,6 +1,6 @@
 vim.g.user_colorscheme = "default"
 vim.g.user_dashboard = ""
-vim.g.user_finder = "snacks"
+vim.g.user_picker = "snacks"
 vim.g.user_popup_cmdline = false
 vim.g.user_leetcode = false
 vim.g.user_animate = false

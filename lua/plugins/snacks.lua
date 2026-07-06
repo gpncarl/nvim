@@ -25,7 +25,7 @@ return {
       },
       input = {},
       picker = {
-        enabled = (vim.g.user_finder == "snacks"),
+        enabled = (vim.g.user_picker == "snacks"),
         win = {
           input = {
             keys = {
