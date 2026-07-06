@@ -1,9 +1,7 @@
-local config = require("config")
-
 return {
   {
     "nvim-telescope/telescope.nvim",
-    enabled = (config.finder == "telescope"),
+    enabled = (vim.g.user_finder == "telescope"),
     cmd = { "Telescope" },
     dependencies = {
       {
@@ -74,7 +72,7 @@ return {
   },
   {
     "ibhagwan/fzf-lua",
-    enabled = (config.finder == "fzf_lua"),
+    enabled = (vim.g.user_finder == "fzf_lua"),
     cmd = { "FzfLua" },
     init = function()
       require("utils.picker").register("fzf_lua", {

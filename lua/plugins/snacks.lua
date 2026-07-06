@@ -1,4 +1,3 @@
-local config = require("config")
 return {
   {
     "folke/snacks.nvim",
@@ -14,7 +13,7 @@ return {
     },
     opts = {
       animate = {
-        enabled = config.animate
+        enabled = vim.g.user_animate
       },
       bigfile = {},
       image = {},
@@ -26,7 +25,7 @@ return {
       },
       input = {},
       picker = {
-        enabled = (config.finder == "snacks"),
+        enabled = (vim.g.user_finder == "snacks"),
         win = {
           input = {
             keys = {

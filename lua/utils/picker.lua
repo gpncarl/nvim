@@ -16,7 +16,7 @@ end
 
 function M.pick(source, opts)
   opts = opts or {}
-  local provider = require("config").finder
+  local provider = vim.g.user_finder
   local spec = adapters[provider]
   if not spec then
     vim.notify(("picker: provider '%s' is not registered"):format(tostring(provider)), vim.log.levels.WARN)

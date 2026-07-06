@@ -1,4 +1,3 @@
-local config = require("config")
 return {
   { "MunifTanjim/nui.nvim", lazy = true },
   {
@@ -32,7 +31,7 @@ return {
   },
   {
     "folke/noice.nvim",
-    enabled = config.popup_cmdline,
+    enabled = vim.g.user_popup_cmdline,
     event = { "VeryLazy" },
     dependencies = {
       "MunifTanjim/nui.nvim",

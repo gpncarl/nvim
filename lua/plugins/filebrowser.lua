@@ -1,8 +1,7 @@
-local config = require("config")
 return {
   {
     "stevearc/oil.nvim",
-    enabled = not (config.enable_nvim_dir_plugin and pcall(require, "nvim.dir")),
+    enabled = not (vim.g.user_enable_nvim_dir_plugin and pcall(require, "nvim.dir")),
     cmd = "Oil",
     init = function()
       vim.g.loaded_nvim_dir_plugin = true

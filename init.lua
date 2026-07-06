@@ -1,9 +1,17 @@
+vim.g.user_colorscheme = "default"
+vim.g.user_dashboard = ""
+vim.g.user_finder = "snacks"
+vim.g.user_popup_cmdline = false
+vim.g.user_leetcode = false
+vim.g.user_animate = false
+vim.g.user_enable_nvim_dir_plugin = false
+
 require("options")
 require("autocmd").setup()
 require("misc").setup()
 require("utils").setup()
 
-local colorscheme = require("config").colorscheme
+local colorscheme = vim.g.user_colorscheme
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"

@@ -1,8 +1,7 @@
-local config = require("config")
 return {
   {
     "kawre/leetcode.nvim",
-    enabled = config.leetcode,
+    enabled = vim.g.user_leetcode,
     cmd = "Leet",
     build = ":TSUpdate html",
     dependencies = {
