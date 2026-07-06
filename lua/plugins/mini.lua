@@ -33,12 +33,15 @@ return {
               return {
                 anchor = "NW",
                 height = height,
-                width = width + 1,
+                width = width,
                 row = math.floor(vim.o.lines - height),
                 col = 0,
               }
             end,
           },
+          options = {
+            content_from_bottom = true,
+          }
         })
         local function src(opts)
           return opts.cwd and { source = { cwd = opts.cwd } } or {}
