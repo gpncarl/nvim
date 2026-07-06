@@ -15,6 +15,11 @@ function M.register(name, spec)
 end
 
 function M.pick(source, opts)
+  if not vim.tbl_contains(M.sources, source) then
+    vim.notify(("picker: source '%s' is not supported"):format(tostring(source)), vim.log.levels.WARN)
+    return
+  end
+
   opts = opts or {}
   local provider = vim.g.user_picker
   local spec = adapters[provider]
