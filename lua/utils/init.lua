@@ -29,7 +29,7 @@ function M.root(buf)
 end
 
 function M.augroup(name)
-  return vim.api.nvim_create_augroup("vimaugroup_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("user_augroup_" .. name, { clear = true })
 end
 
 function M.lazywrap(fun)
