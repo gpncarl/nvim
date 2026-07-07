@@ -60,7 +60,7 @@ return {
           lualine_y = {},
           lualine_z = {}
         },
-        winbar = {
+        winbar = not vim.g.user_enable_winbar and {} or {
           lualine_c = {
             {
               function()
