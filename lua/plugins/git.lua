@@ -127,7 +127,6 @@ return {
     "NeogitOrg/neogit",
     dependencies = {
       "nvim-lua/plenary.nvim",
-      "esmuellert/codediff.nvim",
       "folke/snacks.nvim",
     },
     cmd = { "Neogit" },
