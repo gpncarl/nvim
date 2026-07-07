@@ -86,4 +86,11 @@ return {
       vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T_expr, { expr = true })
     end,
   },
+  {
+    "nvim-treesitter/nvim-treesitter-context",
+    cond = vim.g.user_ts_context,
+    event = { "BufReadPost", "BufNewFile" },
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    opts = {},
+  },
 }
