@@ -88,7 +88,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
-    cond = vim.g.user_ts_context,
+    enabled = vim.g.user_ts_context,
     event = { "BufReadPost", "BufNewFile" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     opts = {},
