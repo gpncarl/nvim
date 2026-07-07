@@ -34,9 +34,9 @@ function M.setup()
   map("n", "]p", "<cmd>exe 'put '  . v:register<cr>", { desc = "Paste Below" })
 
   map("n", "<leader>ch", function()
-    local success, _ = pcall(vim.cmd, "LspClangdSwitchSourceHeader")
-    if not success then
-      vim.cmd("A")
+    local ok = pcall(vim.cmd.LspClangdSwitchSourceHeader) or pcall(vim.cmd.A)
+    if not ok then
+      vim.notify("Failed to switch source/header", vim.log.levels.ERROR)
     end
   end, { desc = "Switch source/header" })
 
