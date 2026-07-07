@@ -24,7 +24,11 @@ function M.setup()
   vim.api.nvim_create_autocmd("TextYankPost", {
     group = augroup("highlight_yank"),
     callback = function()
-      vim.hl.hl_op()
+      if vim.hl.hl_op then
+        vim.hl.hl_op()
+      else
+        vim.hl.on_yank()
+      end
     end,
   })
 
