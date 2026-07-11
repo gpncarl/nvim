@@ -6,7 +6,7 @@ vim.g.user_popup_cmdline = false
 vim.g.user_leetcode = false
 vim.g.user_animate = false
 vim.g.user_enable_winbar = false
-vim.g.user_enable_nvim_dir_plugin = false
+vim.g.user_enable_nvim_dir_plugin = true
 
 require("options")
 require("autocmd").setup()
