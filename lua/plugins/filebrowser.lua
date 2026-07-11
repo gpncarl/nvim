@@ -5,16 +5,26 @@ return {
     cmd = "Oil",
     init = function()
       vim.g.loaded_nvim_dir_plugin = true
+      local oil_group = require("utils").augroup("oil_start_directory")
+      local load_on_dir = function(path)
+        local stats = vim.uv.fs_stat(path)
+        if stats and stats.type == "directory" then
+          require("oil")
+          vim.api.nvim_del_augroup_by_id(oil_group)
+        end
+      end
       vim.api.nvim_create_autocmd("VimEnter", {
-        group = vim.api.nvim_create_augroup("Oil_start_directory", { clear = true }),
-        desc = "Start Oil with directory",
+        group = oil_group,
         once = true,
         callback = function()
-          local stats = vim.uv.fs_stat(vim.fn.argv(0))
-          if stats and stats.type == "directory" then
-            require("oil")
-          end
+          load_on_dir(vim.fn.argv(0))
         end,
+      })
+      vim.api.nvim_create_autocmd("BufNew", {
+        group = oil_group,
+        callback = function()
+          load_on_dir(vim.api.nvim_buf_get_name(0))
+        end
       })
     end,
     keys = { { "-", "<cmd>Oil<cr>", desc = "Open parent directory" } },
