@@ -62,6 +62,21 @@ function M.setup()
   map("n", "grt", function() pick("lsp_type_definitions") end,                          { desc = "Goto Type Definition" })
   map("n", "<leader>ss", function() pick("lsp_document_symbols") end,                   { desc = "LSP Symbols" })
   map("n", "<leader>sS", function() pick("lsp_workspace_symbols") end,                  { desc = "LSP Workspace Symbols" })
+
+  map({ "n", "x" }, "<s-cr>", function()
+    require("utils.jump").count_label()
+  end, { desc = "label last search" })
+
+  map("c", "<s-cr>", function()
+    vim.api.nvim_feedkeys(vim.keycode("<cr>"), "n", false)
+    local cmdtype = vim.fn.getcmdtype()
+    if cmdtype == "/" or cmdtype == "?" then
+      local forward = (cmdtype == "/")
+      vim.schedule(function()
+        require("utils.jump").count_label(forward)
+      end)
+    end
+  end, { desc = "label current search" })
 end
 
 return M
