@@ -30,8 +30,6 @@ function M.setup()
 
   map("t", "<c-w>", "<c-\\><c-n><c-w>")
   map("t", "<esc><esc>", "<c-\\><c-n>")
-  map("n", "[p", "<cmd>exe 'put! ' . v:register<cr>", { desc = "Paste Above" })
-  map("n", "]p", "<cmd>exe 'put '  . v:register<cr>", { desc = "Paste Below" })
 
   map("n", "<leader>ch", function()
     local ok = pcall(vim.cmd.LspClangdSwitchSourceHeader) or pcall(vim.cmd.A)
