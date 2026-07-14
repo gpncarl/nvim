@@ -32,6 +32,9 @@ function M.setup()
   map("t", "<esc><esc>", "<c-\\><c-n>")
 
   map("n", "<leader>ch", function()
+    if vim.o.autowrite then
+      vim.cmd.update()
+    end
     local ok = pcall(vim.cmd.LspClangdSwitchSourceHeader) or pcall(vim.cmd.A)
     if not ok then
       vim.notify("Failed to switch source/header", vim.log.levels.ERROR)
