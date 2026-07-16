@@ -139,6 +139,18 @@ function M.setup()
     end,
   })
 
+  vim.api.nvim_create_autocmd("LspAttach", {
+    group = augroup("lsp_detach_invalid_buffer"),
+    callback = function(ev)
+      local name = vim.api.nvim_buf_get_name(ev.buf)
+      if not require("utils").bufname_valid(name) then
+        vim.schedule(function()
+          vim.lsp.buf_detach_client(ev.buf, ev.data.client_id)
+        end)
+      end
+    end,
+  })
+
 end
 
 return M
