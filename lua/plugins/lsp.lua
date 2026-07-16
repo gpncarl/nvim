@@ -56,6 +56,7 @@ return {
     },
     config = function()
       vim.api.nvim_create_autocmd("LspProgress", {
+        group = require("utils").augroup("lsp_foldexpr"),
         callback = function(ev)
           local value = ev.data.params.value
           local client = vim.lsp.get_client_by_id(ev.data.client_id)

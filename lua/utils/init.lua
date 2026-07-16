@@ -2,6 +2,7 @@ local M = {}
 
 function M.setup()
   vim.api.nvim_create_autocmd("LspAttach", {
+    group = M.augroup("lsp_root_dir"),
     callback = function(ev)
       local ignore_clients = {
         "copilot",
