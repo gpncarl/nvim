@@ -55,4 +55,4 @@ vim.opt.path:append("**")
 vim.opt.showcmdloc = "statusline"
 vim.opt.matchpairs:append({ "<:>" })
 vim.opt.jumpoptions = "stack"
-vim.opt.diffopt:remove("linematch:40")
+vim.opt.diffopt = { "internal", "filler", "closeoff", "indent-heuristic", "inline:char", "foldcolumn:0" }
