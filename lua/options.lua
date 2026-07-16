@@ -1,5 +1,5 @@
 vim.opt.winborder = "none"
-vim.opt.foldcolumn = "1"
+vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
