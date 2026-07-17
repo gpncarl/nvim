@@ -65,13 +65,34 @@ return {
           end
         end,
       })
-      vim.lsp.enable({
+      local servers = {
         "lua_ls",
         "clangd",
         "gopls",
         "rust_analyzer",
         "copilot",
-      })
+      }
+      for _, server in ipairs(servers) do
+        local cfg = vim.lsp.config[server] or {}
+        local cfg_root_dir = cfg.root_dir
+        local cfg_root_markers = cfg.root_markers
+        vim.lsp.config(server, {
+          root_dir = function(bufnr, on_dir)
+            local name = vim.api.nvim_buf_get_name(bufnr)
+            if not require("utils").bufname_valid(name) then
+              return
+            end
+            if type(cfg_root_dir) == "function" then
+              cfg_root_dir(bufnr, on_dir)
+            elseif type(cfg_root_dir) == "string" then
+              on_dir(cfg_root_dir)
+            elseif cfg_root_markers then
+              on_dir(vim.fs.root(bufnr, cfg_root_markers))
+            end
+          end
+        })
+        vim.lsp.enable(server)
+      end
     end
   },
   {
