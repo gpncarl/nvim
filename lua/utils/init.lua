@@ -51,4 +51,20 @@ function M.bufname_valid(bufname)
   return false
 end
 
+function M.root_dir_wrapper(root_dir, root_markers)
+  return function(bufnr, on_dir)
+    local name = vim.api.nvim_buf_get_name(bufnr)
+    if not M.bufname_valid(name) then
+      return
+    end
+    if type(root_dir) == "function" then
+      root_dir(bufnr, on_dir)
+    elseif type(root_dir) == "string" then
+      on_dir(root_dir)
+    elseif root_markers then
+      on_dir(vim.fs.root(bufnr, root_markers))
+    end
+  end
+end
+
 return M

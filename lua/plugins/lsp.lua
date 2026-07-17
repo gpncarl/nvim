@@ -77,19 +77,7 @@ return {
         local cfg_root_dir = cfg.root_dir
         local cfg_root_markers = cfg.root_markers
         vim.lsp.config(server, {
-          root_dir = function(bufnr, on_dir)
-            local name = vim.api.nvim_buf_get_name(bufnr)
-            if not require("utils").bufname_valid(name) then
-              return
-            end
-            if type(cfg_root_dir) == "function" then
-              cfg_root_dir(bufnr, on_dir)
-            elseif type(cfg_root_dir) == "string" then
-              on_dir(cfg_root_dir)
-            elseif cfg_root_markers then
-              on_dir(vim.fs.root(bufnr, cfg_root_markers))
-            end
-          end
+          root_dir = require("utils").root_dir_wrapper(cfg_root_dir, cfg_root_markers)
         })
         vim.lsp.enable(server)
       end
@@ -98,6 +86,22 @@ return {
   {
     "folke/lazydev.nvim",
     ft = "lua",
-    opts = {},
+    opts = {
+      integrations = {
+        lspconfig = false,
+      }
+    },
+    config = function(_, opts)
+      require("lazydev").setup(opts)
+      for _, server in ipairs(require("lazydev.lsp").supported_clients) do
+        if vim.lsp.is_enabled(server) then
+          vim.lsp.config(server, {
+            root_dir = require("utils").root_dir_wrapper(function(bufnr, on_dir)
+              on_dir(require("lazydev").find_workspace(bufnr))
+            end),
+          })
+        end
+      end
+    end
   },
 }
