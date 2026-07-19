@@ -8,10 +8,8 @@ vim.g.user_animate = false
 vim.g.user_enable_winbar = false
 vim.g.user_enable_nvim_dir_plugin = true
 
-require("options")
-require("autocmd").setup()
-require("misc").setup()
-require("utils").setup()
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 local colorscheme = vim.g.user_colorscheme
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
