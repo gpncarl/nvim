@@ -3,16 +3,6 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "ColorScheme",
     opts = function()
-      local symbols = require("utils").lazywrap(function()
-        return require("trouble").statusline({
-          mode = "lsp_document_symbols",
-          groups = {},
-          title = false,
-          filter = { range = true },
-          format = " {kind_icon}{symbol.name:WinBar}",
-          hl_group = "WinBar",
-        })
-      end)
       return {
         options = {
           icons_enabled = true,
@@ -60,20 +50,18 @@ return {
           lualine_y = {},
           lualine_z = {}
         },
-        winbar = not vim.g.user_enable_winbar and {} or {
-          lualine_c = {
-            {
-              function()
-                return "Symbols " .. (symbols.has() and symbols.get() or "")
-              end,
-              cond = function()
-                return not vim.wo.diff and vim.lsp.buf_is_attached(0)
-              end,
-              color = "WinBar",
-            }
-          },
-        },
-        extensions = { "quickfix", "fugitive", "lazy", "mason", "neo-tree", "oil", "trouble" }
+        extensions = {
+          "quickfix",
+          "fugitive",
+          "lazy",
+          "mason",
+          "neo-tree",
+          "oil",
+          "trouble",
+          "overseer",
+          "toggleterm",
+          "man"
+        }
       }
     end
   },
@@ -93,6 +81,38 @@ return {
         separator_style = "slant",
         sort_by = "id",
         always_show_bufferline = true,
+      }
+    }
+  },
+  {
+    "Bekaboo/dropbar.nvim",
+    event = { "BufReadPost", "BufNewFile" },
+    opts = {
+      bar = {
+        sources = function(buf, _)
+          local sources = require("dropbar.sources")
+          local utils = require("dropbar.utils")
+          if vim.bo[buf].ft == "markdown" then
+            return {
+              utils.source.fallback({
+                sources.treesitter,
+                sources.markdown,
+                sources.lsp,
+              }),
+            }
+          end
+          if vim.bo[buf].buftype == "terminal" then
+            return {
+              sources.terminal,
+            }
+          end
+          return {
+            utils.source.fallback({
+              sources.lsp,
+              sources.treesitter,
+            }),
+          }
+        end
       }
     }
   },
