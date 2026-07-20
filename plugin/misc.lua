@@ -20,6 +20,13 @@ vim.diagnostic.config({
   },
 })
 
+require("vim._core.ui2").enable({
+  enable = true,
+  msg = {
+    targets = "msg",
+  }
+})
+
 local map = vim.keymap.set
 
 map("t", "<c-w>", "<c-\\><c-n><c-w>")
