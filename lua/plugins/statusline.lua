@@ -80,7 +80,7 @@ return {
         numbers = "buffer_id",
         separator_style = "slant",
         sort_by = "id",
-        always_show_bufferline = true,
+        always_show_bufferline = false,
       }
     }
   },
