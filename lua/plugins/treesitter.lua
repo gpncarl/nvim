@@ -31,7 +31,9 @@ return {
         ["af"] = "@function.outer",
         ["if"] = "@function.inner",
         ["ac"] = "@class.outer",
-        ["ic"] = "@class.inner"
+        ["ic"] = "@class.inner",
+        ["ia"] = "@parameter.inner",
+        ["aa"] = "@parameter.outer",
       }
       for key, query in pairs(select) do
         key_spec[#key_spec + 1] = {

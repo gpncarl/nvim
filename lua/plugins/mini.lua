@@ -3,7 +3,6 @@ return {
     "nvim-mini/mini.nvim",
     lazy = false,
     config = function()
-      require("mini.ai").setup()
       require("mini.pairs").setup()
       require("mini.extra").setup()
       require("mini.icons").setup({
