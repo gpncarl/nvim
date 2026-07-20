@@ -58,13 +58,37 @@ map("n", "<leader>sR", function() pick("resume") end, { desc = "Resume" })
 map({ "n", "x" }, "<leader>sw", function() pick("grep_string", { cwd = root() }) end,
   { desc = "Selection or word(root)" })
 map({ "n", "x" }, "<leader>sW", function() pick("grep_string") end, { desc = "Selection or word(cwd)" })
-map("n", "gd", function() pick("lsp_definitions") end, { desc = "Goto Definition" })
-map("n", "gD", function() pick("lsp_declarations") end, { desc = "Goto Declaration" })
-map("n", "grr", function() pick("lsp_references") end, { desc = "References", nowait = true })
-map("n", "gri", function() pick("lsp_implementations") end, { desc = "Goto Implementation" })
-map("n", "grt", function() pick("lsp_type_definitions") end, { desc = "Goto Type Definition" })
-map("n", "<leader>ss", function() pick("lsp_document_symbols") end, { desc = "LSP Symbols" })
-map("n", "<leader>sS", function() pick("lsp_workspace_symbols") end, { desc = "LSP Workspace Symbols" })
+
+local smap = Snacks.keymap.set
+smap("n", "gd", function() pick("lsp_definitions") end, {
+  lsp = { method = "textDocument/definition" },
+  desc = "Goto Definition"
+})
+smap("n", "gD", function() pick("lsp_declarations") end, {
+  lsp = { method = "textDocument/declaration" },
+  desc = "Goto Declaration"
+})
+smap("n", "grr", function() pick("lsp_references") end, {
+  lsp = { method = "textDocument/references" },
+  desc = "Goto References",
+  nowait = true
+})
+smap("n", "gri", function() pick("lsp_implementations") end, {
+  lsp = { method = "textDocument/implementation" },
+  desc = "Goto Implementation"
+})
+smap("n", "grt", function() pick("lsp_type_definitions") end, {
+  lsp = { method = "textDocument/typeDefinition" },
+  desc = "Goto Type Definition"
+})
+smap("n", "<leader>ss", function() pick("lsp_document_symbols") end, {
+  lsp = { method = "textDocument/documentSymbol" },
+  desc = "LSP Symbols"
+})
+smap("n", "<leader>sS", function() pick("lsp_workspace_symbols") end, {
+  lsp = { method = "workspace/symbol" },
+  desc = "LSP Workspace Symbols"
+})
 
 local label_last_search = function()
   require("utils.jump").count_label()
