@@ -86,55 +86,24 @@ return {
     }
   },
   {
-    "esmuellert/codediff.nvim",
-    cmd = { "CodeDiff" },
-    opts = {
-      explorer = {
-        hidden = true,
-      }
-    }
-  },
-  {
-    "dlyongemallo/diffview-plus.nvim",
-    cmd = {
-      "DiffviewOpen",
-      "DiffviewToggle",
-      "DiffviewClose",
-      "DiffviewLog",
-      "DiffviewRefresh",
-      "DiffviewToggleFiles",
-      "DiffviewFocusFiles",
-      "DiffviewFileHistory",
-    },
-    keys = { { "<leader>gv", "<cmd>DiffviewToggle<cr>", desc = "Toggle Diffview" } },
-    opts = {
-      file_panel = {
-        listing_style = "list",
-        show = false,
-      },
-      view = {
-        merge_tool = {
-          layout = "diff3_mixed",
+    "barrettruth/diffs.nvim",
+    init = function()
+      vim.g.diffs = {
+        integrations = {
+          fugitive = true,
+          gitsigns = true,
         },
-      },
-      default_args = {
-        DiffviewOpen = { "-uno" },
-        DiffviewFileHistory = {},
-      },
-    },
-  },
-  {
-    "NeogitOrg/neogit",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "folke/snacks.nvim",
-    },
-    cmd = { "Neogit" },
-    keys = {
-      { "<leader>gg", "<cmd>Neogit<cr>", desc = "Show Neogit UI" }
-    },
-    opts = {
-      graph_style = "kitty",
-    },
+        conflict = {
+          keymaps = {
+            ours = "<leader>co",
+            theirs = "<leader>ct",
+            both = "<leader>cb",
+            none = "<leader>c0",
+            next = "]x",
+            prev = "[x",
+          },
+        },
+      }
+    end
   }
 }
