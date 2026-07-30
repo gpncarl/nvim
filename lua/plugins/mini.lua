@@ -27,6 +27,7 @@ return {
         }
       })
       require("mini.icons").mock_nvim_web_devicons()
+      require("mini.tabline").setup()
 
       if vim.g.user_picker == "mini.pick" then
         require("mini.extra").setup()
