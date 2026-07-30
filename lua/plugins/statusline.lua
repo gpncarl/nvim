@@ -1,7 +1,6 @@
 return {
   {
     "nvim-lualine/lualine.nvim",
-    event = "ColorScheme",
     opts = function()
       return {
         options = {
@@ -67,7 +66,8 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
-    event = "ColorScheme",
+    enabled = false,
+    lazy = false,
     keys = {
       { "gb", "<cmd>BufferLinePick<cr>", desc = "BufferLine Pick" },
       { "gB", "<cmd>BufferLinePickClose<cr>", desc = "BufferLine Pick Close" },
