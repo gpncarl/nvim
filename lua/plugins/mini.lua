@@ -3,8 +3,13 @@ return {
     "nvim-mini/mini.nvim",
     lazy = false,
     config = function()
-      require("mini.pairs").setup()
-      require("mini.extra").setup()
+      vim.api.nvim_create_autocmd("InsertEnter", {
+        group = require("utils").augroup("mini.pairs"),
+        once = true,
+        callback = function()
+          require("mini.pairs").setup()
+        end,
+      })
       require("mini.icons").setup({
         extension = {
           h = { glyph = "" },
@@ -24,6 +29,7 @@ return {
       require("mini.icons").mock_nvim_web_devicons()
 
       if vim.g.user_picker == "mini.pick" then
+        require("mini.extra").setup()
         require("mini.pick").setup({
           window = {
             config = function()
