@@ -3,8 +3,8 @@ return {
     "nvim-mini/mini.nvim",
     lazy = false,
     config = function()
-      require("mini.misc").safely("event:InsertEnter", function ()
-          require("mini.pairs").setup()
+      require("mini.misc").safely("event:InsertEnter", function()
+        require("mini.pairs").setup()
       end)
       require("mini.icons").setup({
         extension = {
@@ -27,13 +27,31 @@ return {
       require("mini.tabline").setup()
 
       require("mini.misc").safely("later", function()
-        local hipatterns = require('mini.hipatterns')
+        require("mini.trailspace").setup()
+        require("mini.surround").setup({
+          mappings = {
+            add = "ys",
+            delete = "ds",
+            replace = "cs",
+            find = "",
+            find_left = "",
+            highlight = "",
+            suffix_last = "",
+            suffix_next = "",
+          },
+          search_method = "cover_or_next",
+        })
+        vim.keymap.del("x", "ys")
+        vim.keymap.set("x", "S", [[:<C-u>lua MiniSurround.add("visual")<CR>]], { silent = true })
+        vim.keymap.set("n", "yss", "ys_", { remap = true })
+
+        local hipatterns = require("mini.hipatterns")
         hipatterns.setup({
           highlighters = {
-            fixme     = { pattern = '%f[%w]()FIXME()%f[%W]', group = 'MiniHipatternsFixme' },
-            hack      = { pattern = '%f[%w]()HACK()%f[%W]', group = 'MiniHipatternsHack' },
-            todo      = { pattern = '%f[%w]()TODO()%f[%W]', group = 'MiniHipatternsTodo' },
-            note      = { pattern = '%f[%w]()NOTE()%f[%W]', group = 'MiniHipatternsNote' },
+            fixme     = { pattern = "%f[%w]()FIXME()%f[%W]", group = "MiniHipatternsFixme" },
+            hack      = { pattern = "%f[%w]()HACK()%f[%W]", group = "MiniHipatternsHack" },
+            todo      = { pattern = "%f[%w]()TODO()%f[%W]", group = "MiniHipatternsTodo" },
+            note      = { pattern = "%f[%w]()NOTE()%f[%W]", group = "MiniHipatternsNote" },
             hex_color = hipatterns.gen_highlighter.hex_color(),
           },
         })
