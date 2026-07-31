@@ -13,6 +13,7 @@ return {
   },
   {
     "folke/which-key.nvim",
+    enabled = false,
     event = { "VeryLazy" },
     opts = {
       preset = "helix",
@@ -38,7 +39,6 @@ return {
         { "<leader>n",        group = "neotree" },
         { "<leader>s",        group = "search" },
         { "gr",               group = "lsp" },
-        { "gs",               group = "surround" },
         { "<leader><leader>", group = "extra" },
         {
           "<leader><leader>b",
