@@ -6,7 +6,7 @@ vim.opt.foldenable = true
 vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", foldinner = vim.fn.has("nvim-0.12") == 1 and " " or nil }
 vim.opt.foldmethod = "expr"
 vim.opt.conceallevel = 2
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 vim.opt.updatetime = 100
 vim.opt.fixendofline = false
 vim.opt.scrolloff = 10
@@ -15,7 +15,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.inccommand = "nosplit"
 vim.opt.mouse = "nv"
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 vim.opt.hlsearch = true
 vim.opt.showmode = true

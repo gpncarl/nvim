@@ -21,7 +21,7 @@ vim.diagnostic.config({
 })
 
 require("vim._core.ui2").enable({
-  enable = true,
+  enable = false,
   msg = {
     targets = "msg",
   }
