@@ -70,7 +70,6 @@ return {
         "clangd",
         "gopls",
         "rust_analyzer",
-        "copilot",
       }
       for _, server in ipairs(servers) do
         local cfg = vim.lsp.config[server] or {}
