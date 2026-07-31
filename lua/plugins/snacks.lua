@@ -23,9 +23,10 @@ return {
           enabled = false,
         }
       },
-      input = {},
+      input = { enabled = false, },
       picker = {
         enabled = (vim.g.user_picker == "snacks"),
+        ui_select = false,
         win = {
           input = {
             keys = {

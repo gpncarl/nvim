@@ -88,6 +88,11 @@ return {
   {
     "Bekaboo/dropbar.nvim",
     event = { "BufReadPost", "BufNewFile" },
+    init = function()
+      vim.ui.select = function(...)
+        return require('dropbar.utils.menu').select(...)
+      end
+    end,
     opts = {
       bar = {
         sources = function(buf, _)

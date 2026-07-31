@@ -85,7 +85,6 @@ return {
               lsp_workspace_symbols = extra("lsp", { scope = "workspace_symbol" }),
             },
           })
-          vim.ui.select = require("mini.pick").ui_select
         end
       end)
     end,

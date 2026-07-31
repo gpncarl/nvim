@@ -8,7 +8,6 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release --fresh && cmake --build build --config Release"
       },
-      "nvim-telescope/telescope-ui-select.nvim",
     },
     init = function()
       require("utils.picker").register("telescope", {
@@ -18,10 +17,6 @@ return {
           lsp_declarations = function() vim.lsp.buf.declaration() end,
         },
       })
-      vim.ui.select = function(...)
-        require("telescope").load_extension("ui-select")
-        return vim.ui.select(...)
-      end
     end,
     config = function()
       local telescope = require("telescope")
@@ -35,9 +30,6 @@ return {
             override_file_sorter = true,
             case_mode = "smart_case"
           },
-          ["ui-select"] = {
-            require("telescope.themes").get_dropdown({})
-          }
         },
         defaults = {
           prompt_prefix = "   ",
@@ -67,7 +59,6 @@ return {
       }
 
       telescope.load_extension("fzf")
-      telescope.load_extension("ui-select")
     end
   },
   {
@@ -82,10 +73,6 @@ return {
           lsp_type_definitions = "lsp_typedefs",
         },
       })
-      vim.ui.select = function(...)
-        require("fzf-lua").register_ui_select()
-        return vim.ui.select(...)
-      end
     end,
     opts = {
       fzf_opts = {
