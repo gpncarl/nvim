@@ -30,6 +30,7 @@ return {
       "GMove",
       "GBrowse",
     },
+    dependencies = { "barrettruth/diffs.nvim" }
   },
   {
     "lewis6991/gitsigns.nvim",
@@ -93,6 +94,7 @@ return {
   },
   {
     "barrettruth/diffs.nvim",
+    lazy = true,
     init = function()
       vim.g.diffs = {
         integrations = {
