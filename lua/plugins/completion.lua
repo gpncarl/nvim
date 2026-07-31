@@ -13,7 +13,6 @@ return {
       { "rafamadriz/friendly-snippets" },
       { "fang2hou/blink-copilot" },
     },
-    opts_extend = { "sources.default" },
     opts = {
       keymap = { preset = "enter" },
       sources = {

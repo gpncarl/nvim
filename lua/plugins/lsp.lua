@@ -51,9 +51,6 @@ return {
   {
     "neovim/nvim-lspconfig",
     event = { "VeryLazy" },
-    dependencies = {
-      { "saghen/blink.cmp" },
-    },
     config = function()
       vim.api.nvim_create_autocmd("LspProgress", {
         group = require("utils").augroup("lsp_foldexpr"),
@@ -65,6 +62,7 @@ return {
           end
         end,
       })
+      vim.lsp.config("*", { capabilities = require("mini.completion").get_lsp_capabilities() })
       local servers = {
         "lua_ls",
         "clangd",
