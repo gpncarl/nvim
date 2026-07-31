@@ -9,15 +9,7 @@ vim.diagnostic.config({
     severity = {
       vim.diagnostic.severity.ERROR,
     }
-  },
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = require("utils.icons").diagnostics.ERROR,
-      [vim.diagnostic.severity.WARN] = require("utils.icons").diagnostics.WARN,
-      [vim.diagnostic.severity.INFO] = require("utils.icons").diagnostics.INFO,
-      [vim.diagnostic.severity.HINT] = require("utils.icons").diagnostics.HINT,
-    }
-  },
+  }
 })
 
 require("vim._core.ui2").enable({

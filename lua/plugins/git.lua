@@ -36,21 +36,6 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
-      signs = {
-        add = { text = require("utils.icons").git.added },
-        change = { text = require("utils.icons").git.modified },
-        delete = { text = require("utils.icons").git.removed },
-        topdelete = { text = require("utils.icons").git.removed },
-        changedelete = { text = require("utils.icons").git.removed },
-        untracked = { text = "" },
-      },
-      signs_staged = {
-        add = { text = require("utils.icons").git.added },
-        change = { text = require("utils.icons").git.modified },
-        delete = { text = require("utils.icons").git.removed },
-        topdelete = { text = require("utils.icons").git.removed },
-        changedelete = { text = require("utils.icons").git.removed },
-      },
       on_attach = function(bufnr)
         local gitsigns = require('gitsigns')
 
