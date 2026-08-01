@@ -1,16 +1,45 @@
-vim.diagnostic.config({
-  underline = true,
+local map = vim.keymap.set
+
+local diagnostic_opts = {
+  jump = {},
+  underline = {},
   update_in_insert = false,
   severity_sort = true,
   virtual_text = {
-    spacing = 4,
-    source = "if_many",
-    prefix = "●",
-    severity = {
-      vim.diagnostic.severity.ERROR,
-    }
-  }
-})
+    current_line = true,
+  },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '',
+      [vim.diagnostic.severity.WARN] = '',
+      [vim.diagnostic.severity.INFO] = '',
+      [vim.diagnostic.severity.HINT] = '',
+    },
+    numhl = {
+      [vim.diagnostic.severity.ERROR] = 'DiagnosticError',
+      [vim.diagnostic.severity.WARN] = 'DiagnosticWarn',
+      [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+      [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+    },
+  },
+}
+require("utils.diagnostic").setup(diagnostic_opts, vim.diagnostic.severity.ERROR)
+
+map("n", "<leader>]d", function()
+  require("utils.diagnostic").increase_severity()
+end, { desc = "increase diagnostic min severity" })
+
+map("n", "<leader>[d", function()
+  require("utils.diagnostic").decrease_severity()
+end, { desc = "decrease diagnostic min severity" })
+
+map("n", "<leader>]D", function()
+  require("utils.diagnostic").increase_severity(4)
+end, { desc = "increase diagnostic min severity to ERROR" })
+
+map("n", "<leader>[D", function()
+  require("utils.diagnostic").decrease_severity(4)
+end, { desc = "decrease diagnostic min severity to HINT" })
 
 require("vim._core.ui2").enable({
   enable = false,
@@ -18,8 +47,6 @@ require("vim._core.ui2").enable({
     targets = "msg",
   }
 })
-
-local map = vim.keymap.set
 
 map("t", "<c-w>", "<c-\\><c-n><c-w>")
 map("t", "<esc><esc>", "<c-\\><c-n>")
