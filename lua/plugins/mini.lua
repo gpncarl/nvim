@@ -1,8 +1,10 @@
 return {
   {
     "nvim-mini/mini.nvim",
+    priority = 1000,
     lazy = false,
     config = function()
+      require("mini.misc").setup()
       require("mini.misc").safely("event:InsertEnter", function()
         require("mini.pairs").setup()
       end)
