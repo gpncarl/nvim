@@ -1,14 +1,8 @@
 return {
   {
-    "saghen/blink.compat",
-    version = "2.*",
-    lazy = true,
-    opts = {},
-  },
-  {
     "saghen/blink.cmp",
     event = { "InsertEnter" },
-    version = "1.*",
+    sem_version = "1.*",
     dependencies = {
       { "rafamadriz/friendly-snippets" },
       { "fang2hou/blink-copilot" },
