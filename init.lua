@@ -25,5 +25,5 @@ vim.opt.rtp = rtp
 vim.opt.packpath = rtp
 
 vim.pack.add({ "https://github.com/zuqini/zpack.nvim" })
-require('zpack').setup()
+require("zpack").setup()
 vim.cmd.colorscheme(vim.g.user_colorscheme)
