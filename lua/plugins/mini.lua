@@ -11,6 +11,9 @@ return {
       require("mini.tabline").setup()
       require("mini.misc").safely("event:InsertEnter", function()
         require("mini.pairs").setup()
+        local map_multistep = require("mini.keymap").map_multistep
+        map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
+        map_multistep("i", "<BS>", { "minipairs_bs" })
       end)
       require("mini.misc").safely("later", function()
         require("mini.trailspace").setup()
