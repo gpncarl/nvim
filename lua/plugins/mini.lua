@@ -5,31 +5,42 @@ return {
     lazy = false,
     config = function()
       require("mini.misc").setup()
-      require("mini.misc").safely("event:InsertEnter", function()
-        require("mini.pairs").setup()
-      end)
-      require("mini.icons").setup({
-        extension = {
-          h = { glyph = "" },
-          hh = { glyph = "" },
-          hpp = { glyph = "" },
-          c = { glyph = "" },
-          cc = { glyph = "" },
-          cpp = { glyph = "" },
-          cppm = { glyph = "" },
-        },
-        lsp = {
-          tabnine = { glyph = "⌬" },
-          copilot = { glyph = "" },
-          supermaven = { glyph = "" },
-        }
-      })
+      require("mini.icons").setup()
       require("mini.icons").mock_nvim_web_devicons()
       require("mini.statusline").setup()
       require("mini.tabline").setup()
-
+      require("mini.misc").safely("event:InsertEnter", function()
+        require("mini.pairs").setup()
+      end)
       require("mini.misc").safely("later", function()
         require("mini.trailspace").setup()
+
+        local miniclue = require("mini.clue")
+        miniclue.setup({
+          triggers = {
+            { mode = { "n", "x" }, keys = "<leader>" },
+            { mode = "n",          keys = "[" },
+            { mode = "n",          keys = "]" },
+            { mode = "i",          keys = "<c-x>" },
+            { mode = { "n", "x" }, keys = "g" },
+            { mode = { "n", "x" }, keys = "'" },
+            { mode = { "n", "x" }, keys = "`" },
+            { mode = { "n", "x" }, keys = '"' },
+            { mode = { "i", "c" }, keys = "<c-r>" },
+            { mode = "n",          keys = "<c-w>" },
+            { mode = { "n", "x" }, keys = "z" },
+          },
+          clues = {
+            miniclue.gen_clues.square_brackets(),
+            miniclue.gen_clues.builtin_completion(),
+            miniclue.gen_clues.g(),
+            miniclue.gen_clues.marks(),
+            miniclue.gen_clues.registers(),
+            miniclue.gen_clues.windows(),
+            miniclue.gen_clues.z(),
+          },
+        })
+
         require("mini.surround").setup({
           mappings = {
             add = "ys",

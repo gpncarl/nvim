@@ -1,4 +1,4 @@
-vim.opt.winborder = "none"
+vim.opt.winborder = "single"
 vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
