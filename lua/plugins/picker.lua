@@ -8,7 +8,7 @@ return {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release --fresh && cmake --build build --config Release"
       },
-      "nvim-telescope/telescope-ui-select.nvim",
+      { "nvim-telescope/telescope-ui-select.nvim" }
     },
     init = function()
       require("utils.picker").register("telescope", {
