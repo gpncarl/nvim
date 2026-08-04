@@ -17,13 +17,17 @@ return {
       end)
       require("mini.misc").safely("later", function()
         require("mini.trailspace").setup()
+        require("mini.trailspace").setup({ track = { event = "" } })
         vim.keymap.set("n", "<leader>ha", function()
           local root = require("utils").root()
+          if vim.api.nvim_buf_get_name(0) == "" then
+            error("Current buffer is not for a regular file")
+          end
           require("mini.visits").add_label("default", nil, root)
         end, { desc = "Add to default" })
         vim.keymap.set("n", "<leader>hd", function()
           local root = require("utils").root()
-          require("mini.visits").remove_label("default", root)
+          require("mini.visits").remove_label("default", nil, root)
         end, { desc = "Remove from default" })
         vim.keymap.set("n", "<leader>hh", function()
           local root = require("utils").root()
