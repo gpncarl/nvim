@@ -17,6 +17,18 @@ return {
       end)
       require("mini.misc").safely("later", function()
         require("mini.trailspace").setup()
+        vim.keymap.set("n", "<leader>ha", function()
+          local root = require("utils").root()
+          require("mini.visits").add_label("default", nil, root)
+        end, { desc = "Add to default" })
+        vim.keymap.set("n", "<leader>hd", function()
+          local root = require("utils").root()
+          require("mini.visits").remove_label("default", root)
+        end, { desc = "Remove from default" })
+        vim.keymap.set("n", "<leader>hh", function()
+          local root = require("utils").root()
+          require("mini.visits").select_path(root, { filter = "default" })
+        end, { desc = "Select default" })
 
         local miniclue = require("mini.clue")
         miniclue.setup({
