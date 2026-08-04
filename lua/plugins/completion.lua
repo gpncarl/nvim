@@ -8,7 +8,7 @@ return {
       { "fang2hou/blink-copilot" },
     },
     opts = {
-      keymap = { preset = "enter" },
+      keymap = { preset = "none" },
       sources = {
         default = { "copilot", "lsp", "path", "snippets", "buffer" },
         providers = {

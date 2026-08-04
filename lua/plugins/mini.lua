@@ -12,8 +12,22 @@ return {
       require("mini.misc").safely("event:InsertEnter", function()
         require("mini.pairs").setup()
         local map_multistep = require("mini.keymap").map_multistep
-        map_multistep("i", "<CR>", { "pmenu_accept", "minipairs_cr" })
-        map_multistep("i", "<BS>", { "minipairs_bs" })
+        map_multistep("i", "<cr>", { "blink_accept", "pmenu_accept", "minipairs_cr" })
+        map_multistep("i", "<bs>", { "minipairs_bs" })
+        map_multistep("s", "<c-n>", { "vimsnippet_next", "pmenu_next" })
+        map_multistep("s", "<c-p>", { "vimsnippet_prev", "pmenu_prev" })
+        map_multistep("i", "<c-n>", {
+          "blink_next",
+          "vimsnippet_next",
+          "pmenu_next",
+          "jump_after_close",
+        })
+        map_multistep("i", "<c-p>", {
+          "blink_prev",
+          "vimsnippet_prev",
+          "pmenu_prev",
+          "jump_before_open",
+        })
       end)
       require("mini.misc").safely("later", function()
         require("mini.trailspace").setup()
