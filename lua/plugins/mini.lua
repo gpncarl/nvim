@@ -29,7 +29,7 @@ return {
             { mode = { "n", "x" }, keys = "'" },
             { mode = { "n", "x" }, keys = "`" },
             { mode = { "n", "x" }, keys = '"' },
-            { mode = { "i", "c" }, keys = "<c-r>" },
+            { mode = "i",          keys = "<c-r>" },
             { mode = "n",          keys = "<c-w>" },
             { mode = { "n", "x" }, keys = "z" },
           },
