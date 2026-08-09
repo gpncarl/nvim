@@ -95,8 +95,9 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd("QuickFixCmdPre", {
+vim.api.nvim_create_autocmd("Filetype", {
   group = augroup("quickfix"),
+  pattern = { "qf" },
   command = "packadd cfilter"
 })
 
