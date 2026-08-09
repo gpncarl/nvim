@@ -2,8 +2,6 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "main",
-    event = { "BufReadPost", "BufNewFile" },
-    cmd = { "TSInstall", "TSUninstall", "TSUpdate" },
     build = ":TSUpdate",
     config = function()
       local ensure_installed = { "bash", "lua", "c", "cpp", "python", "vim", "comment", "vimdoc" }
