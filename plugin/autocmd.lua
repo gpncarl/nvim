@@ -150,7 +150,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
     local client_name = client and client.name or "unknown"
     local value = ev.data.params.value
     local msg = (value.message or "done") .. string.format("(%s)", client_name)
-    vim.api.nvim_echo({ { msg } }, false, {
+    vim.api.nvim_echo({ { msg } }, value.kind == "end", {
       id = "lsp." .. ev.data.params.token,
       kind = "progress",
       source = "vim.lsp",
