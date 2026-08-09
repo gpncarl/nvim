@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 vim.g.user_colorscheme = "default"
 vim.g.user_dashboard = ""
 vim.g.user_picker = "snacks"
