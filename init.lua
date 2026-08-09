@@ -8,6 +8,9 @@ vim.g.user_animate = false
 vim.g.user_enable_winbar = false
 vim.g.user_enable_nvim_dir_plugin = true
 
+vim.g.loaded_netrw = true
+vim.g.loaded_netrwPlugin = true
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
