@@ -161,3 +161,17 @@ vim.api.nvim_create_autocmd("LspProgress", {
     })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = augroup("nvim_pack"),
+  pattern = { "nvim-pack" },
+  callback = function(opts)
+    vim.api.nvim_create_autocmd("BufDelete", {
+      once = true,
+      buffer = opts.buf,
+      callback = vim.schedule_wrap(function()
+        vim.cmd.redrawtabline()
+      end)
+    })
+  end,
+})
