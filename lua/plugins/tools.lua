@@ -5,11 +5,13 @@ return {
     cmd = "Leet",
     build = ":TSUpdate html",
     dependencies = {
-      "MunifTanjim/nui.nvim",
-      "nvim-treesitter/nvim-treesitter",
+      { "3rd/image.nvim", opts = {} },
+      { "MunifTanjim/nui.nvim", },
+      { "nvim-treesitter/nvim-treesitter", },
     },
     opts = {
       cn = { enabled = true },
+      image_support = true,
     },
   },
   {
