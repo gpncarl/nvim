@@ -3,7 +3,7 @@ vim.opt.foldcolumn = "0"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.foldenable = true
-vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", foldinner = vim.fn.has("nvim-0.12") == 1 and " " or nil }
+vim.opt.fillchars = { eob = " ", fold = " ", foldopen = "", foldsep = " ", foldclose = "", foldinner = " " }
 vim.opt.foldmethod = "expr"
 vim.opt.conceallevel = 2
 vim.opt.cmdheight = 1
