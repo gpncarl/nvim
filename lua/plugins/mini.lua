@@ -32,6 +32,7 @@ return {
         require("mini.icons").mock_nvim_web_devicons()
         require("mini.trailspace").setup()
         require("mini.trailspace").setup({ track = { event = "" } })
+        require("mini.visits").setup({ track = { event = "" } })
         vim.keymap.set("n", "<leader>ha", function()
           local root = require("utils").root()
           if vim.api.nvim_buf_get_name(0) == "" then
