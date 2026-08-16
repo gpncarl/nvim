@@ -29,14 +29,27 @@ return {
   },
   {
     "OXY2DEV/markview.nvim",
-    ft = { "markdown", "Avante" },
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
+    cmd = { "Markview" },
+    opts = {},
+  },
+  {
+    "obsidian-nvim/obsidian.nvim",
+    cmd = { "Obsidian" },
     opts = {
-      preview = {
-        filetypes = { "markdown", "Avante" },
-      }
-    }
-  }
+      legacy_commands = false,
+      picker = {
+        name = "snacks.picker",
+      },
+      workspaces = {
+        {
+          name = "personal",
+          path = "~/vaults/personal",
+        },
+        {
+          name = "work",
+          path = "~/vaults/work",
+        },
+      },
+    },
+  },
 }
