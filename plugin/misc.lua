@@ -29,4 +29,5 @@ MiniMisc.safely("later", function()
     },
   }
   require("utils.diagnostic").setup(diagnostic_opts, vim.diagnostic.severity.ERROR)
+  require("utils.timer").setup()
 end)
