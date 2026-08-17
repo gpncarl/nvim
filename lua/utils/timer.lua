@@ -48,6 +48,12 @@ function M.setup()
     end
     M:start(data.fargs[1])
   end), { nargs = "?", bang = true })
+  vim.api.nvim_create_autocmd("VimLeavePre", {
+    group = require("utils").augroup("close_timer"),
+    callback = function()
+      M:stop()
+    end
+  })
 end
 
 return M
