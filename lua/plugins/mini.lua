@@ -49,32 +49,6 @@ return {
           require("mini.visits").select_path(root, { filter = "default" })
         end, { desc = "Select default" })
 
-        local miniclue = require("mini.clue")
-        miniclue.setup({
-          triggers = {
-            { mode = { "n", "x" }, keys = "<leader>" },
-            { mode = "n",          keys = "[" },
-            { mode = "n",          keys = "]" },
-            { mode = "i",          keys = "<c-x>" },
-            { mode = { "n", "x" }, keys = "g" },
-            { mode = { "n", "x" }, keys = "'" },
-            { mode = { "n", "x" }, keys = "`" },
-            { mode = { "n", "x" }, keys = '"' },
-            { mode = "i",          keys = "<c-r>" },
-            { mode = "n",          keys = "<c-w>" },
-            { mode = { "n", "x" }, keys = "z" },
-          },
-          clues = {
-            miniclue.gen_clues.square_brackets(),
-            miniclue.gen_clues.builtin_completion(),
-            miniclue.gen_clues.g(),
-            miniclue.gen_clues.marks(),
-            miniclue.gen_clues.registers(),
-            miniclue.gen_clues.windows(),
-            miniclue.gen_clues.z(),
-          },
-        })
-
         require("mini.surround").setup({
           mappings = {
             add = "ys",
