@@ -1,12 +1,5 @@
 local augroup = require("utils").augroup
 
-vim.api.nvim_create_autocmd("TermOpen", {
-  group = augroup("termopen"),
-  callback = function()
-    vim.bo.bufhidden = "hide"
-  end,
-})
-
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
@@ -15,28 +8,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
     else
       vim.hl.on_yank()
     end
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("no_wrap"),
-  pattern = { "markdown", "vimwiki", "latex", "norg", "org" },
-  callback = function()
-    vim.wo.wrap = false
-  end,
-})
-
-vim.api.nvim_create_autocmd("Filetype", {
-  group = augroup("quickfix"),
-  pattern = { "qf" },
-  command = "packadd cfilter"
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("delete_directory"),
-  pattern = { "directory" },
-  callback = function()
-    vim.bo.bufhidden = "delete"
   end,
 })
 
@@ -68,20 +39,6 @@ vim.api.nvim_create_autocmd("LspProgress", {
       title = value.title,
       status = value.kind ~= "end" and "running" or "success",
       percent = value.percentage,
-    })
-  end,
-})
-
-vim.api.nvim_create_autocmd("FileType", {
-  group = augroup("nvim_pack"),
-  pattern = { "nvim-pack" },
-  callback = function(opts)
-    vim.api.nvim_create_autocmd("BufDelete", {
-      once = true,
-      buffer = opts.buf,
-      callback = vim.schedule_wrap(function()
-        vim.cmd.redrawtabline()
-      end)
     })
   end,
 })
