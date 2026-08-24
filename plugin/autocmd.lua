@@ -3,11 +3,7 @@ local augroup = require("utils").augroup
 vim.api.nvim_create_autocmd("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
-    if vim.hl.hl_op then
-      vim.hl.hl_op()
-    else
-      vim.hl.on_yank()
-    end
+    vim.hl.hl_op()
   end,
 })
 
