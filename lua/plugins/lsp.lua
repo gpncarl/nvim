@@ -58,7 +58,7 @@ return {
           local value = ev.data.params.value
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
           if value.kind == "end" and client and client:supports_method("textDocument/foldingRange") then
-            vim.wo.foldexpr = "v:lua.vim.lsp.foldexpr()"
+            vim.wo.foldexpr = vim.lsp.foldexpr
           end
         end,
       })
