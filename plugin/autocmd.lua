@@ -7,8 +7,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   end,
 })
 
+vim.api.nvim_create_autocmd("BufReadPost", {
+  group = augroup("git_bufdir"),
+  callback = function(ev)
+    local root = vim.fs.root(ev.buf, { ".git" })
+    if root then
+      vim.cmd.bcd(root)
+    end
+  end,
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
-  group = augroup("lsp_root_dir"),
+  group = augroup("lsp_bufdir"),
   callback = function(ev)
     local ignore_clients = {
       "copilot",
@@ -16,7 +26,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     }
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
     if client and not vim.list_contains(ignore_clients, client.name) and client.root_dir then
-      vim.b[ev.buf].lsp_root_dir = client.root_dir
+      vim.cmd.bcd(client.root_dir)
     end
   end,
 })
@@ -40,7 +50,7 @@ vim.api.nvim_create_autocmd("LspProgress", {
 })
 
 vim.api.nvim_create_autocmd("TermRequest", {
-  group = augroup("terminal_osc7"),
+  group = augroup("terminal_osc7_bufdir"),
   desc = "Handles OSC 7 dir change requests",
   callback = function(ev)
     local val, n = string.gsub(ev.data.sequence, "\027]7;file://[^/]*", "")

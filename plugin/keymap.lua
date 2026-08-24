@@ -30,21 +30,17 @@ MiniMisc.safely("later", function()
   end, { desc = "Switch source/header" })
 
   local pick = require("utils.picker").pick
-  local root = function() return require("utils").root() end
 
   map("n", "<leader>,", function() pick("buffers") end, { desc = "Buffers" })
-  map("n", "<leader>/", function() pick("live_grep", { cwd = root() }) end, { desc = "Grep(root)" })
+  map("n", "<leader>/", function() pick("live_grep", { cwd = vim.fn.getcwd() }) end, { desc = "Grep" })
   map("n", "<leader>fo", function() pick("treesitter") end, { desc = "Treesitter" })
   map("n", "<leader>fb", function() pick("buffers") end, { desc = "Buffers" })
-  map("n", "<leader>ff", function() pick("files", { cwd = root() }) end, { desc = "Find Files(root)" })
-  map("n", "<leader>fF", function() pick("files") end, { desc = "Find Files(cwd)" })
+  map("n", "<leader>ff", function() pick("files", { cwd = vim.fn.getcwd() }) end, { desc = "Find Files" })
   map("n", "<leader>fr", function() pick("oldfiles") end, { desc = "Recent" })
-  map("n", "<leader>sg", function() pick("live_grep", { cwd = root() }) end, { desc = "Grep(root)" })
-  map("n", "<leader>sG", function() pick("live_grep") end, { desc = "Grep(cwd)" })
+  map("n", "<leader>sg", function() pick("live_grep", { cwd = vim.fn.getcwd() }) end, { desc = "Grep" })
   map("n", "<leader>sR", function() pick("resume") end, { desc = "Resume" })
-  map({ "n", "x" }, "<leader>sw", function() pick("grep_string", { cwd = root() }) end,
-    { desc = "Selection or word(root)" })
-  map({ "n", "x" }, "<leader>sW", function() pick("grep_string") end, { desc = "Selection or word(cwd)" })
+  map({ "n", "x" }, "<leader>sw", function() pick("grep_string", { cwd = vim.fn.getcwd() }) end,
+    { desc = "Selection or word" })
 
   map("n", "gd", function() pick("lsp_definitions") end, { desc = "Goto Definition" })
   map("n", "gD", function() pick("lsp_declarations") end, { desc = "Goto Declaration" })

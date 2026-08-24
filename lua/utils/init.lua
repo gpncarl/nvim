@@ -1,18 +1,5 @@
 local M = {}
 
-function M.root(buf)
-  local bufnr = buf or vim.api.nvim_get_current_buf()
-  local lsp_root_dir = vim.b[bufnr].lsp_root_dir
-  if lsp_root_dir then
-    return lsp_root_dir
-  end
-  local marker_root = vim.fs.root(bufnr, { ".git" })
-  if marker_root then
-    return marker_root
-  end
-  return vim.uv.cwd()
-end
-
 function M.augroup(name)
   return vim.api.nvim_create_augroup("user_augroup_" .. name, { clear = true })
 end
