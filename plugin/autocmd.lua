@@ -38,3 +38,19 @@ vim.api.nvim_create_autocmd("LspProgress", {
     })
   end,
 })
+
+vim.api.nvim_create_autocmd("TermRequest", {
+  group = augroup("terminal_osc7"),
+  desc = "Handles OSC 7 dir change requests",
+  callback = function(ev)
+    local val, n = string.gsub(ev.data.sequence, "\027]7;file://[^/]*", "")
+    if n > 0 then
+      local dir = val
+      if vim.fn.isdirectory(dir) == 0 then
+        vim.notify("invalid dir: " .. dir)
+        return
+      end
+      vim.cmd.bcd(dir)
+    end
+  end
+})
