@@ -1,3 +1,5 @@
+vim.api.nvim_set_hl(0, "CursorLineNr", { link = "CursorLine" })
+
 MiniMisc.safely("later", function()
   require("vim._core.ui2").enable({
     enable = false,
