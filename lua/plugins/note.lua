@@ -26,6 +26,12 @@ return {
       org_startup_indented = true,
       org_startup_folded = "inherit",
     },
+    config = function(_, opts)
+      require("orgmode").setup(opts)
+      vim.schedule(function()
+        vim.lsp.enable("org")
+      end)
+    end
   },
   {
     "OXY2DEV/markview.nvim",
