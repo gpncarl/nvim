@@ -52,16 +52,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "VeryLazy" },
     config = function()
-      vim.api.nvim_create_autocmd("LspProgress", {
-        group = require("utils").augroup("lsp_foldexpr"),
-        callback = function(ev)
-          local value = ev.data.params.value
-          local client = vim.lsp.get_client_by_id(ev.data.client_id)
-          if value.kind == "end" and client and client:supports_method("textDocument/foldingRange") then
-            vim.wo.foldexpr = vim.lsp.foldexpr
-          end
-        end,
-      })
       vim.lsp.config("*", { capabilities = require("mini.completion").get_lsp_capabilities() })
       local servers = {
         "lua_ls",

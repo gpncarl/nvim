@@ -24,8 +24,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
       "copilot",
       "copilot_ls",
     }
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client and not vim.list_contains(ignore_clients, client.name) and client.root_dir then
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    if not vim.list_contains(ignore_clients, client.name) and client.root_dir then
       vim.cmd.bcd(client.root_dir)
     end
   end,
@@ -34,8 +34,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 vim.api.nvim_create_autocmd("LspProgress", {
   group = augroup("lsp_progress"),
   callback = function(ev)
-    local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    local client_name = client and client.name or "unknown"
+    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    local client_name = client.name or "unknown"
     local value = ev.data.params.value
     local msg = (value.message or "done") .. string.format("(%s)", client_name)
     vim.api.nvim_echo({ { msg } }, value.kind == "end", {
@@ -46,6 +46,9 @@ vim.api.nvim_create_autocmd("LspProgress", {
       status = value.kind ~= "end" and "running" or "success",
       percent = value.percentage,
     })
+    if value.kind == "end" and client:supports_method("textDocument/foldingRange") then
+      vim.wo.foldexpr = vim.lsp.foldexpr
+    end
   end,
 })
 
