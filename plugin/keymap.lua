@@ -33,24 +33,4 @@ MiniMisc.safely("later", function()
   map("n", "grt", function() pick("lsp_type_definitions") end, { desc = "Goto Type Definition" })
   map("n", "<leader>ss", function() pick("lsp_document_symbols") end, { desc = "LSP Symbols" })
   map("n", "<leader>sS", function() pick("lsp_workspace_symbols") end, { desc = "LSP Workspace Symbols" })
-
-  local label_last_search = function()
-    require("utils.jump").count_label()
-  end
-
-  local label_search = function()
-    vim.api.nvim_feedkeys(vim.keycode("<cr>"), "n", false)
-    local cmdtype = vim.fn.getcmdtype()
-    if cmdtype == "/" or cmdtype == "?" then
-      local forward = (cmdtype == "/")
-      vim.schedule(function()
-        require("utils.jump").count_label(forward)
-      end)
-    end
-  end
-
-  map({ "n", "x" }, "<s-cr>", label_last_search, { desc = "label last search" })
-  map({ "n", "x" }, "<c-j>", label_last_search, { desc = "label last search" })
-  map("c", "<s-cr>", label_search, { desc = "label current search" })
-  map("c", "<c-j>", label_search, { desc = "label current search" })
 end)
