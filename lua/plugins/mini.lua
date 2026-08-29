@@ -8,6 +8,13 @@ return {
       require("mini.icons").setup()
       require("mini.statusline").setup()
       require("mini.tabline").setup()
+      local statuscolumn = require("mini.statuscolumn")
+      statuscolumn.setup({
+        content = statuscolumn.gen_content.main({
+          { format = "s=lf", sep = " " },
+        }),
+        dim_inactive = false,
+      })
       require("mini.misc").safely("event:InsertEnter", function()
         require("mini.pairs").setup()
         local map_multistep = require("mini.keymap").map_multistep

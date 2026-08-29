@@ -37,6 +37,7 @@ return {
       },
       quickfile = {},
       statuscolumn = {
+        enabled = false,
         left = { "mark", "sign", "git" },
         right = { "fold" },
         folds = {
