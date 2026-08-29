@@ -1,21 +1,5 @@
 MiniMisc.safely("later", function()
   local map = vim.keymap.set
-  map("n", "<leader>]d", function()
-    require("utils.diagnostic").increase_severity()
-  end, { desc = "increase diagnostic min severity" })
-
-  map("n", "<leader>[d", function()
-    require("utils.diagnostic").decrease_severity()
-  end, { desc = "decrease diagnostic min severity" })
-
-  map("n", "<leader>]D", function()
-    require("utils.diagnostic").increase_severity(4)
-  end, { desc = "increase diagnostic min severity to ERROR" })
-
-  map("n", "<leader>[D", function()
-    require("utils.diagnostic").decrease_severity(4)
-  end, { desc = "decrease diagnostic min severity to HINT" })
-
   map("t", "<c-w>", "<c-\\><c-n><c-w>")
   map("t", "<esc><esc>", "<c-\\><c-n>")
 
