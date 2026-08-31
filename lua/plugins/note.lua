@@ -35,8 +35,12 @@ return {
   },
   {
     "OXY2DEV/markview.nvim",
-    cmd = { "Markview" },
-    opts = {},
+    ft = "markdown",
+    opts = {
+      preview = {
+        enable = false,
+      }
+    },
   },
   {
     "obsidian-nvim/obsidian.nvim",
