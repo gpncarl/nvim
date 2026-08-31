@@ -22,17 +22,17 @@ return {
         map_multistep("i", "<bs>", { "minipairs_bs" })
         map_multistep("s", "<c-n>", { "vimsnippet_next", "pmenu_next" })
         map_multistep("s", "<c-p>", { "vimsnippet_prev", "pmenu_prev" })
+        map_multistep("i", "<c-;>", { "jump_after_close", "jump_after_tsnode" })
+        map_multistep("i", "<c-,>", { "jump_before_open", "jump_before_tsnode" })
         map_multistep("i", "<c-n>", {
           "blink_next",
           "vimsnippet_next",
           "pmenu_next",
-          "jump_after_close",
         })
         map_multistep("i", "<c-p>", {
           "blink_prev",
           "vimsnippet_prev",
           "pmenu_prev",
-          "jump_before_open",
         })
       end)
       require("mini.misc").safely("later", function()
