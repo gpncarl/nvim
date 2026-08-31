@@ -11,7 +11,7 @@ return {
       local statuscolumn = require("mini.statuscolumn")
       statuscolumn.setup({
         content = statuscolumn.gen_content.main({
-          { format = "s=lf", sep = " " },
+          { format = "s=lf", sep = "▏" },
         }),
         dim_inactive = false,
       })
