@@ -4,12 +4,12 @@ return {
     priority = 1000,
     lazy = false,
     keys = {
-      { "<leader>z",       function() Snacks.zen() end,                                               desc = "Toggle Zen Mode" },
-      { "<leader>Z",       function() Snacks.zen.zoom() end,                                          desc = "Toggle Zoom" },
-      { "<leader>bd",      function() Snacks.bufdelete() end,                                         desc = "Delete Buffer" },
-      { "<c-\\><c-\\>",    function() Snacks.terminal.toggle() end,                                   desc = "Terminal",                       mode = { "n", "t" } },
-      { "<c-n>",           function() Snacks.words.jump(1, true) end,                                 desc = "Words next" },
-      { "<c-p>",           function() Snacks.words.jump(-1, true) end,                                desc = "Words previous" },
+      { "<leader>z",    function() Snacks.zen() end,                desc = "Toggle Zen Mode" },
+      { "<leader>Z",    function() Snacks.zen.zoom() end,           desc = "Toggle Zoom" },
+      { "<leader>bd",   function() Snacks.bufdelete() end,          desc = "Delete Buffer" },
+      { "<c-\\><c-\\>", function() Snacks.terminal.toggle() end,    desc = "Terminal",       mode = { "n", "t" } },
+      { "<c-n>",        function() Snacks.words.jump(1, true) end,  desc = "Words next" },
+      { "<c-p>",        function() Snacks.words.jump(-1, true) end, desc = "Words previous" },
     },
     opts = {
       animate = {
