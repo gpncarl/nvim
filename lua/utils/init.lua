@@ -38,4 +38,12 @@ function M.root_dir_wrapper(root_dir, root_markers)
   end
 end
 
+function M.get_hl(ns, opts)
+  local hl = vim.api.nvim_get_hl(ns, opts)
+  while hl.link ~= nil do
+    hl = vim.api.nvim_get_hl(ns, { name = hl.link })
+  end
+  return hl
+end
+
 return M

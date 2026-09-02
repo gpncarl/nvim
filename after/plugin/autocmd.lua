@@ -67,3 +67,26 @@ vim.api.nvim_create_autocmd("TermRequest", {
     end
   end
 })
+
+vim.api.nvim_create_autocmd("ModeChanged", {
+  group = augroup("visual_mode_enter"),
+  pattern = "[^vV\x16]:[vV\x16]",
+  callback = function()
+    local cln = vim.api.nvim_get_hl(0, { name = "CursorLineNr" })
+    local cls = vim.api.nvim_get_hl(0, { name = "CursorLineSign" })
+    local clf = vim.api.nvim_get_hl(0, { name = "CursorLineFold" })
+    vim.api.nvim_set_hl(0, "CursorLineNr", { link = "LineNr" })
+    vim.api.nvim_set_hl(0, "CursorLineSign", { link = "SignColumn" })
+    vim.api.nvim_set_hl(0, "CursorLineFold", { link = "FoldColumn" })
+    vim.api.nvim_create_autocmd("ModeChanged", {
+      group = augroup("visual_mode_leave"),
+      once = true,
+      pattern = "[vV\x16]:[^vV\x16]",
+      callback = function()
+        vim.api.nvim_set_hl(0, "CursorLineNr", cln)
+        vim.api.nvim_set_hl(0, "CursorLineSign", cls)
+        vim.api.nvim_set_hl(0, "CursorLineFold", clf)
+      end
+    })
+  end
+})
