@@ -6,6 +6,3 @@ local clf = require("utils").get_hl(0, { name = "CursorLineFold" })
 vim.api.nvim_set_hl(0, "CursorLineNr", { fg = ln.fg, bg = cl.bg })
 vim.api.nvim_set_hl(0, "CursorLineSign", { fg = cls.fg, bg = cl.bg })
 vim.api.nvim_set_hl(0, "CursorLineFold", { fg = clf.fg, bg = cl.bg })
-
-vim.api.nvim_set_hl(0, "MiniStatuscolumnSep", { link = "LineNr" })
-vim.api.nvim_set_hl(0, "MiniStatuscolumnSepCursor", { link = "LineNr" })
