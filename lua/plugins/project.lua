@@ -1,8 +1,7 @@
 return {
   {
     "tpope/vim-projectionist",
-    event = { "VeryLazy" },
-    config = function()
+    init = function()
       vim.g.projectionist_heuristics = {
         ["*"] = {
           ["*.cpp"] = {
