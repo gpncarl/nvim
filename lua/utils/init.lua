@@ -38,12 +38,21 @@ function M.root_dir_wrapper(root_dir, root_markers)
   end
 end
 
-function M.get_hl(ns, opts)
-  local hl = vim.api.nvim_get_hl(ns, opts)
-  while hl.link ~= nil do
-    hl = vim.api.nvim_get_hl(ns, { name = hl.link })
+function M.highlight_cursor_line()
+  local get_hl = function(ns, opts)
+    local hl = vim.api.nvim_get_hl(ns, opts)
+    while hl.link ~= nil do
+      hl = vim.api.nvim_get_hl(ns, { name = hl.link })
+    end
+    return hl
   end
-  return hl
+  local cl = get_hl(0, { name = "CursorLine" })
+  local ln = get_hl(0, { name = "LineNr" })
+  local cls = get_hl(0, { name = "CursorLineSign" })
+  local clf = get_hl(0, { name = "CursorLineFold" })
+  vim.api.nvim_set_hl(0, "CursorLineNr", { fg = ln.fg, bg = cl.bg })
+  vim.api.nvim_set_hl(0, "CursorLineSign", { fg = cls.fg, bg = cl.bg })
+  vim.api.nvim_set_hl(0, "CursorLineFold", { fg = clf.fg, bg = cl.bg })
 end
 
 return M

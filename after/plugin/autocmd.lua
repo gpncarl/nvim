@@ -90,3 +90,14 @@ vim.api.nvim_create_autocmd("ModeChanged", {
     })
   end
 })
+
+vim.api.nvim_create_autocmd("ColorScheme", {
+  group = augroup("set_cursor_line_hl_on_colorscheme_change"),
+  callback = require("utils").highlight_cursor_line
+})
+
+vim.api.nvim_create_autocmd("OptionSet", {
+  group = augroup("set_cursor_line_hl_on_backgroud_change"),
+  pattern = "background",
+  callback = require("utils").highlight_cursor_line
+})
