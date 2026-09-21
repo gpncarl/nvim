@@ -52,7 +52,7 @@ vim.opt.shortmess:append({ I = false })
 vim.opt.cpoptions:append({ n = true })
 vim.opt.sessionoptions:append("winpos")
 vim.opt.path:append("**")
-vim.opt.showcmdloc = "statusline"
+vim.opt.showcmdloc = "last"
 vim.opt.matchpairs:append({ "<:>" })
 vim.opt.jumpoptions = "stack"
 vim.opt.diffopt = { "internal", "filler", "closeoff", "indent-heuristic", "inline:char", "foldcolumn:0" }
