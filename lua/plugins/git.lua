@@ -96,6 +96,11 @@ return {
           },
         },
       }
+    end,
+    config = function()
+      vim.api.nvim_set_hl(0, "DiffsConflictOursNr", { link = "LineNr" })
+      vim.api.nvim_set_hl(0, "DiffsConflictTheirsNr", { link = "LineNr" })
+      vim.api.nvim_set_hl(0, "DiffsConflictBaseNr", { link = "LineNr" })
     end
   }
 }
