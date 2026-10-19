@@ -32,3 +32,4 @@ map("n", "gri", function() pick("lsp_implementations") end, { desc = "Goto Imple
 map("n", "grt", function() pick("lsp_type_definitions") end, { desc = "Goto Type Definition" })
 map("n", "<leader>ss", function() pick("lsp_document_symbols") end, { desc = "LSP Symbols" })
 map("n", "<leader>sS", function() pick("lsp_workspace_symbols") end, { desc = "LSP Workspace Symbols" })
+map("n", "-", "<Plug>(nvim-dir-up)")
