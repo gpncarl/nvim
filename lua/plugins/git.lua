@@ -76,31 +76,4 @@ return {
       end,
     }
   },
-  {
-    "https://forge.barrettruth.com/barrettruth/diffs.nvim",
-    ft = { "fugitive" },
-    init = function()
-      vim.g.diffs = {
-        integrations = {
-          fugitive = true,
-          gitsigns = false,
-        },
-        conflict = {
-          keymaps = {
-            ours = "<leader>co",
-            theirs = "<leader>ct",
-            both = "<leader>cb",
-            none = "<leader>c0",
-            next = "]x",
-            prev = "[x",
-          },
-        },
-      }
-    end,
-    config = function()
-      vim.api.nvim_set_hl(0, "DiffsConflictOursNr", { link = "LineNr" })
-      vim.api.nvim_set_hl(0, "DiffsConflictTheirsNr", { link = "LineNr" })
-      vim.api.nvim_set_hl(0, "DiffsConflictBaseNr", { link = "LineNr" })
-    end
-  }
 }
