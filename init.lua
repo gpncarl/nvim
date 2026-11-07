@@ -1,7 +1,7 @@
 vim.loader.enable()
 
 vim.g.user_dashboard = ""
-vim.g.user_picker = "snacks"
+vim.g.user_picker = "fzf-lua"
 vim.g.user_ts_context = false
 vim.g.user_leetcode = true
 vim.g.user_animate = false
